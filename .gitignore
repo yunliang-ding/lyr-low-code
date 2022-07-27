@@ -1,0 +1,5 @@
+dist
+docs-dist
+node_modules
+.vscode
+src

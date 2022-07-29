@@ -62,7 +62,7 @@ const Navbar: FC<INavbarProps> = ({
                   <NavLink
                     to={
                       nav.title === 'Playground'
-                        ? `${window.location.origin}${nav.path}`
+                        ? `${window.location.origin}${window.location.pathname}${nav.path}`
                         : nav.path
                     }
                     key={nav.path}

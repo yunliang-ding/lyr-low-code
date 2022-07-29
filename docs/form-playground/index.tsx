@@ -4,12 +4,14 @@ import { MonacoEditor, getTools } from 'react-core-form-designer';
 import { Button, Select } from 'react-core-form';
 import { Space, Spin } from 'antd';
 import Error from './error';
+import initial from './schema/initial';
 import basic from './schema/basic';
 import async from './schema/async';
 import effect from './schema/effect';
 import './index.less';
 
 const SchemaMapping = {
+  initial,
   basic,
   async,
   effect,
@@ -20,7 +22,7 @@ export default () => {
   const tempCode: any = useRef({});
   const editorMonacoRef: any = useRef({});
   const [code, setCode] = useState('export default {}');
-  const [template, setTemplate] = useState('basic');
+  const [template, setTemplate] = useState('initial');
   const [iframeSpin, setIframeSpin] = useState(true);
   const [errorInfo, setErrorInfo]: any = useState(false);
   useEffect(() => {
@@ -30,7 +32,7 @@ export default () => {
     tempCode.current.value = code;
     setIframeSpin(true); // 开始解析
     /** 本地存储一份在demo中需要 */
-    localStorage.setItem('module-schema', code);
+    localStorage.setItem('react-hoos-code', code);
   }, [code]);
   // 运行代码
   const runCode = async () => {
@@ -60,10 +62,14 @@ export default () => {
         <Space>
           <Select
             style={{ width: 120 }}
-            defaultValue="basic"
+            defaultValue="initial"
             onChange={setTemplate}
             dropdownClassName="app-playground-select"
             options={[
+              {
+                label: '默认模版',
+                value: 'initial',
+              },
               {
                 label: '基础表单',
                 value: 'basic',
@@ -83,22 +89,6 @@ export default () => {
             运行
           </Button>
         </Space>
-        <Select
-          style={{ width: 160 }}
-          defaultValue="CardForm"
-          dropdownClassName="app-playground-select"
-          options={[
-            {
-              label: '提交表单模型解析',
-              value: 'CardForm',
-            },
-            {
-              label: '查询表格模型解析',
-              value: 'TableProvider',
-              disabled: true,
-            },
-          ]}
-        />
       </div>
       <div className="playground-split">
         <SplitPane

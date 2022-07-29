@@ -45,15 +45,7 @@ const Navbar: FC<INavbarProps> = ({
         {navPrefix}
         {/* nav */}
         {navItems
-          .filter(
-            (item) =>
-              ![
-                'Form-Dashboard',
-                'Form-Playground',
-                'Preview',
-                'WorkSpace',
-              ].includes(item.title),
-          )
+          .filter((item) => item.path !== '/form-playground')
           .map((nav) => {
             const child = Boolean(nav.children?.length) && (
               <ul>
@@ -69,8 +61,8 @@ const Navbar: FC<INavbarProps> = ({
                 {nav.path ? (
                   <NavLink
                     to={
-                      ['Dashboard', 'Playground'].includes(nav.title)
-                        ? `${window.location.origin}${window.location.pathname}${nav.path}`
+                      nav.title === 'Playground'
+                        ? `${window.location.origin}${nav.path}`
                         : nav.path
                     }
                     key={nav.path}

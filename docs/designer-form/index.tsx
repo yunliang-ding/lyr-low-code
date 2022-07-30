@@ -49,7 +49,7 @@ export default () => {
               type="primary"
               key="export"
               onClick={() => {
-                if (formDesignerRef.current.fields?.length > 0) {
+                if (formDesignerRef.current.schema?.length > 0) {
                   exportDrawer.open({
                     initialValues: {
                       code: formDesignerRef.current.getStandardSchema({
@@ -91,7 +91,7 @@ export default () => {
                       ...formDesignerRef.current.formProps,
                       schema: formDesignerRef.current.schema,
                     })
-                    .replace('export default ', 'const schema = '),
+                    .replace('export default ', ''),
                 );
                 window.open(`#/~demos/docs-form-playground?schema=${schema}`);
               }}

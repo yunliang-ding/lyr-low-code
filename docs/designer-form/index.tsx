@@ -3,6 +3,7 @@ import * as customWidgets from '../widgets';
 import customWidgetsPropsConfig from '../widgets/config.json';
 import React, { useRef } from 'react';
 import { Button, CreateForm } from 'react-core-form';
+import { message } from 'antd';
 import './index.less';
 
 const exportDrawer = CreateForm.Drawer({
@@ -48,14 +49,18 @@ export default () => {
               type="primary"
               key="export"
               onClick={() => {
-                exportDrawer.open({
-                  initialValues: {
-                    code: formDesignerRef.current.getStandardSchema({
-                      ...formDesignerRef.current.formProps,
-                      schema: formDesignerRef.current.schema,
-                    }),
-                  },
-                });
+                if (formDesignerRef.current.fields?.length > 0) {
+                  exportDrawer.open({
+                    initialValues: {
+                      code: formDesignerRef.current.getStandardSchema({
+                        ...formDesignerRef.current.formProps,
+                        schema: formDesignerRef.current.schema,
+                      }),
+                    },
+                  });
+                } else {
+                  message.info('请选择表单项');
+                }
               }}
             >
               导出schema
@@ -74,6 +79,24 @@ export default () => {
               }}
             >
               清空
+            </Button>,
+            <Button
+              ghost
+              type="primary"
+              key="playground"
+              onClick={() => {
+                const schema = encodeURIComponent(
+                  formDesignerRef.current
+                    .getStandardSchema({
+                      ...formDesignerRef.current.formProps,
+                      schema: formDesignerRef.current.schema,
+                    })
+                    .replace('export default ', 'const schema = '),
+                );
+                window.open(`#/~demos/docs-form-playground?schema=${schema}`);
+              }}
+            >
+              去 playground 验证
             </Button>,
           ]}
         />

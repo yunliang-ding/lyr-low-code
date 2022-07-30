@@ -28,11 +28,10 @@ export default () => {
   useEffect(() => {
     setIframeSpin(true);
     setErrorInfo(false);
-    editorMonacoRef.current.setValue(code);
     tempCode.current.value = code;
     setIframeSpin(true); // 开始解析
     /** 本地存储一份在demo中需要 */
-    localStorage.setItem('react-hoos-code', code);
+    localStorage.setItem('react-hooks-code', code);
   }, [code]);
   // 运行代码
   const runCode = async () => {
@@ -46,14 +45,25 @@ export default () => {
   };
   useEffect(() => {
     const escode = SchemaMapping[template];
+    editorMonacoRef.current.setValue(escode);
     setCode(escode);
   }, [template]);
+  // Playground 入口
   useEffect(() => {
     const schema = new URLSearchParams(location.hash.split('?')[1]).get(
       'schema',
     );
     if (schema) {
-      setCode(decodeURIComponent(schema));
+      const escode = `import React from 'react';
+import { CardForm } from 'react-core-form';
+
+${decodeURIComponent(schema)}
+
+export default () => {
+  return <CardForm {...schema} />
+}`;
+      editorMonacoRef.current.setValue(escode);
+      setCode(escode);
     }
   }, []);
   return (

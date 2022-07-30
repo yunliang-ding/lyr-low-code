@@ -11,22 +11,22 @@ gapless: true
 /**
  * iframe: true
  */
+import ReactDom from 'react-dom';
 import React, { useState, useEffect } from 'react';
 import { getTools } from 'react-core-form-designer';
 
 export default () => {
-  const [ParseModules, setParseModules] = useState(<span>解析中...</span>);
   const { babelParse } = getTools();
   // 获取模块模型
-  const escode = localStorage.getItem('react-hoos-code');
+  const escode = localStorage.getItem('react-hooks-code');
   // 解析
   const parseStringToModule = async () => {
-    const ParseModules = await babelParse(escode, '');
-    setParseModules(ParseModules);
+    const ComponentApp = await babelParse(escode, '');
+    ReactDom.render(<ComponentApp />, document.querySelector('#app'));
   };
   useEffect(() => {
     parseStringToModule();
   }, []);
-  return ParseModules;
+  return <div id="app" />;
 };
 ```

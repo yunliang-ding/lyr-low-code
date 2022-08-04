@@ -13,12 +13,17 @@ toc: menu
 import React from 'react';
 import { FormDesigner } from 'react-core-form-designer';
 import defaultSchema from './schema';
+import { message } from 'antd';
 
 export default () => {
   return (
     <FormDesigner>
       <FormDesigner.FormCanvas
         column={2}
+        openCtrlS // 开启 ctrl + s
+        onCtrlS={() => {
+          message.success('保存中');
+        }}
         defaultSchema={defaultSchema}
         defaultSelectKey={defaultSchema[0].key}
         onSchemaSelect={(field) => {

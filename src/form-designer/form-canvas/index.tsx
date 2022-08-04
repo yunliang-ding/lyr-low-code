@@ -5,6 +5,7 @@ import { useCallback, useEffect, useContext, useMemo } from 'react';
 import { uuid as Uuid, cloneDeep } from '@/util';
 import { Ctx } from '../store';
 import { Empty } from 'antd';
+import { deleteCompent } from './util';
 import './index.less';
 
 export interface FormCanvasType {
@@ -24,6 +25,10 @@ export interface FormCanvasType {
   removeConfirm?: boolean;
   /** 操作栏配置 */
   extra?: [];
+  /** 开启ctrl + s */
+  openCtrlS?: boolean;
+  /** 钩子 */
+  onCtrlS?: () => void;
 }
 
 export default ({
@@ -35,6 +40,8 @@ export default ({
   style = {},
   removeConfirm = false,
   extra,
+  openCtrlS = false,
+  onCtrlS = () => {},
   ...rest
 }: FormCanvasType) => {
   const ctx: any = useContext(Ctx); // 拿到ctx
@@ -128,6 +135,33 @@ export default ({
   // 生成 itemRender
   recursionSchemaItem(_schema);
   const cls = ['form-canvas'];
+  /**
+   * 设置相关的键盘监听事件
+   */
+  const keyboardEvent = (e) => {
+    if (
+      openCtrlS &&
+      (e.key === 's' || e.key === 'S') &&
+      (navigator.platform.match('Mac') ? e.metaKey : e.ctrlKey)
+    ) {
+      e.preventDefault();
+      onCtrlS();
+    } else if (e.key === 'Backspace') {
+      /** 删除该字段 */
+      deleteCompent({
+        itemSchema: ctx.selectSchema,
+        schema: ctx.schema,
+        setSelectSchema: ctx.setSelectSchema,
+        onSchemaUpdate: ctx.setSchema,
+      });
+    }
+  };
+  useEffect(() => {
+    window.addEventListener('keydown', keyboardEvent);
+    return () => {
+      window.removeEventListener('keydown', keyboardEvent);
+    };
+  }, [ctx.selectSchema, ctx.schema]);
   return (
     <div ref={drop} className={cls.join(' ')} style={style}>
       {isOver && <div className="form-canvas-mask" />}

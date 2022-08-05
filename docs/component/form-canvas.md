@@ -20,9 +20,8 @@ export default () => {
     <FormDesigner>
       <FormDesigner.FormCanvas
         column={2}
-        openCtrlS // 开启 ctrl + s
         onCtrlS={() => {
-          message.success('保存中');
+          message.loading('保存中', 2);
         }}
         defaultSchema={defaultSchema}
         defaultSelectKey={defaultSchema[0].key}

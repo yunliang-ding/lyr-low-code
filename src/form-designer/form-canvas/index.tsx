@@ -25,11 +25,12 @@ export interface FormCanvasType {
   removeConfirm?: boolean;
   /** 操作栏配置 */
   extra?: [];
-  /** 开启ctrl + s */
-  openCtrlS?: boolean;
-  /** 钩子 */
+  /** 开启 ctrl + s */
   onCtrlS?: () => void;
 }
+
+/** 鼠标是否悬停在画布 */
+let mouseIsHoveringCanvas = false;
 
 export default ({
   empty = '点击/拖拽左侧栏的组件进行添加',
@@ -40,8 +41,7 @@ export default ({
   style = {},
   removeConfirm = false,
   extra,
-  openCtrlS = false,
-  onCtrlS = () => {},
+  onCtrlS,
   ...rest
 }: FormCanvasType) => {
   const ctx: any = useContext(Ctx); // 拿到ctx
@@ -140,13 +140,13 @@ export default ({
    */
   const keyboardEvent = (e) => {
     if (
-      openCtrlS &&
+      typeof onCtrlS === 'function' &&
       (e.key === 's' || e.key === 'S') &&
       (navigator.platform.match('Mac') ? e.metaKey : e.ctrlKey)
     ) {
       e.preventDefault();
       onCtrlS();
-    } else if (e.key === 'Backspace') {
+    } else if (e.key === 'Backspace' && mouseIsHoveringCanvas) {
       /** 删除该字段 */
       deleteCompent({
         itemSchema: ctx.selectSchema,
@@ -163,7 +163,17 @@ export default ({
     };
   }, [ctx.selectSchema, ctx.schema]);
   return (
-    <div ref={drop} className={cls.join(' ')} style={style}>
+    <div
+      ref={drop}
+      className={cls.join(' ')}
+      style={style}
+      onMouseEnter={() => {
+        mouseIsHoveringCanvas = true;
+      }}
+      onMouseLeave={() => {
+        mouseIsHoveringCanvas = false;
+      }}
+    >
       {isOver && <div className="form-canvas-mask" />}
       {_schema.length === 0 && (
         <Empty

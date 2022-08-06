@@ -8,37 +8,55 @@
 }
 .form-designer-playground {
   width: 100vw;
-  height: calc(100vh - 105px);
-  display: flex;
-  gap: 10px;
-  .widgets-panel {
-    width: 280px;
-    height: 100%;
-    overflow: auto;
+  height: calc(100vh - 104px);
+  &-header {
+    height: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    border-bottom: 1px solid #eee;
+    &-title {
+      font-size: 16px;
+      color: #111;
+      font-weight: 600;
+    }
   }
-  .form-canvas {
-    width: calc(100% - 680px);
-    height: 100%;
-    .ant-card-head {
-      height: 44px;
-      display: flex;
-      padding-right: 14px;
-      .ant-card-head-wrapper {
-        width: 100%;
+  &-body {
+    height: calc(100% - 50px);
+    background-color: #f9f9f9;
+    display: flex;
+    gap: 10px;
+    .widgets-panel {
+      width: 280px;
+      height: 100%;
+      overflow: auto;
+    }
+    .form-canvas {
+      width: calc(100% - 680px);
+      height: 100%;
+      .ant-card-head {
+        height: 44px;
         display: flex;
-        justify-content: space-between;
+        padding-right: 14px;
+        .ant-card-head-wrapper {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+        }
       }
-    }
-    .form-canvas-card-box {
-      background: transparent;
-      .ant-card-body {
+      .form-canvas-card-box {
         background: transparent;
-        min-width: 400px;
+        .ant-card-body {
+          background: transparent;
+          min-width: 400px;
+        }
       }
     }
-  }
-  .props-config-panel {
-    width: 400px;
-    height: 100%;
+    .props-config-panel {
+      width: 400px;
+      height: 100%;
+    }
   }
 }

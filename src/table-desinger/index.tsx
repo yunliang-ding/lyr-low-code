@@ -47,6 +47,50 @@ const Container = (props: any, ref: any) => {
   // 统一管理 TableProps
   const [tableProps, setTableProps] = useState<TableProps>({
     title: '用户列表',
+    emptyNode: '-',
+    tools: [
+      {
+        label: '新增用户',
+        key: 'add',
+        btnType: 'primary',
+      },
+    ],
+    pageSize: 10,
+    showMore: 4,
+    width: 180,
+    menus: [
+      {
+        label: '详情',
+        key: 'view',
+      },
+      {
+        label: '编辑',
+        key: 'edit',
+      },
+      {
+        label: '删除',
+        key: 'delete',
+        confirm: true,
+        content: '是否确认删除?',
+      },
+    ],
+    request: `{{_#async function(){
+  return {
+    success: true,
+    list: [{}],
+    total: 1
+  }
+} _#}}`,
+    toolsClick: `{{_#async function(tool){
+  if(tool.key === 'add'){
+    console.log('add')
+  }
+} _#}}`,
+    rowOperationsClick: `{{_#async function(menu, record){
+  if(menu.key === 'edit'){
+    console.log('record', record)
+  }
+} _#}}`,
   } as any);
   const [selectTable, setSelectTable] = useState(false);
   useEffect(() => {

@@ -67,16 +67,6 @@ export default ({
   }, debounceTime);
   /** 防抖0.1s */
   const onWidgetValuesChange = debounce((_, values) => {
-    const key = Object.keys(_)[0];
-    // 处理FormList
-    if (['options', 'columns'].includes(key) && Array.isArray(values[key])) {
-      values[key] = values[key].map((item) => {
-        if (item === undefined) {
-          item = {};
-        }
-        return item;
-      });
-    }
     onPropsConfigUpdate({ ...values }, 'widget');
   }, debounceTime);
   const onMount = ({ setSchemaByName }) => {

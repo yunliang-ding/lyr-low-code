@@ -6,10 +6,40 @@ import { cloneDeep, decrypt, getCleanCloneSchema } from '@/util';
  */
 export const getStandardSchema = (scurce = {}) => {
   const schema: any = cloneDeep(scurce);
+  /** 过滤不需要的属性 */
+  if (schema.searchSchema.layout === 'inline') {
+    delete schema.searchSchema.layout;
+  }
+  if (schema.searchSchema.size === 'middle') {
+    delete schema.searchSchema.size;
+  }
+  if (schema.searchSchema.hidden === false) {
+    delete schema.searchSchema.hidden;
+  }
   const searchSchema = getCleanCloneSchema(
     [schema.searchSchema],
     'const searchSchema = ',
   );
+  /** 过滤不需要的属性 */
+  if (schema.tableSchema.emptyNode === '-') {
+    delete schema.tableSchema.emptyNode;
+  }
+  if (schema.tableSchema.pageSize !== 10) {
+    schema.tableSchema.paginationConfig = {
+      pageSize: schema.tableSchema.pageSize,
+    };
+  }
+  delete schema.tableSchema.pageSize;
+  schema.tableSchema.rowOperations = {
+    showMore: schema.tableSchema.showMore,
+    width: schema.tableSchema.width,
+    menus: `{{_#function(){
+      return ${JSON.stringify(schema.tableSchema.menus, null, 2)}
+}_#}}`,
+  };
+  delete schema.tableSchema.showMore;
+  delete schema.tableSchema.width;
+  delete schema.tableSchema.menus;
   const tableSchema = getCleanCloneSchema(
     [schema.tableSchema],
     'const tableSchema = ',
@@ -20,10 +50,10 @@ export const getStandardSchema = (scurce = {}) => {
 /** 模型转换给Table */
 export const parseTableSchema = (values: any = {}) => {
   /** 工具栏 */
-  if (values.useDefaultTools === true) {
+  if (values.closeDefaultTools === true) {
     values.defaultTools = [];
   }
-  // 过滤undefined
+  // 过滤 undefined
   values.tools = values.tools?.filter((i) => i);
   /** 分页组装 */
   if (values.pagination && values.pageSize) {
@@ -37,7 +67,7 @@ export const parseTableSchema = (values: any = {}) => {
     width: values.width,
     title: '操作',
     fixed: 'right',
-    menus: () => {
+    menus: (record) => {
       return (
         values.menus
           ?.filter((i) => i)

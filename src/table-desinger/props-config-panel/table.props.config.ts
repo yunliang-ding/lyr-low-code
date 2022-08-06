@@ -24,7 +24,7 @@ const fields: SchemaProps<{
   },
   {
     type: 'Switch',
-    name: 'useDefaultTools',
+    name: 'closeDefaultTools',
     valuePropName: 'checked',
     label: '关闭默认操作栏',
   },
@@ -138,32 +138,16 @@ const fields: SchemaProps<{
     },
   },
   {
-    type: 'Switch',
-    name: 'pagination',
-    valuePropName: 'checked',
-    label: '是否开启分页设置',
+    type: 'BlockQuote',
+    props: {
+      title: '分页设置',
+    },
   },
-  ...[
-    {
-      type: 'BlockQuote',
-      props: {
-        title: '分页设置',
-      },
-    },
-    {
-      type: 'InputNumber',
-      name: 'pageSize',
-      label: '默认每页大小',
-    },
-  ].map((item) => {
-    return {
-      ...item,
-      effect: ['pagination'],
-      visible({ pagination }) {
-        return pagination;
-      },
-    };
-  }),
+  {
+    type: 'InputNumber',
+    name: 'pageSize',
+    label: '默认每页大小',
+  },
   {
     type: 'BlockQuote',
     props: {

@@ -143,6 +143,7 @@ TableDesigner.PropsConfigPanel = PropsConfigPanel;
 TableDesigner.useTools = () => {
   return {
     parseTableSchema,
+    getStandardSchema,
   };
 };
 export default TableDesigner;

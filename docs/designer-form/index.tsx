@@ -86,7 +86,11 @@ export default () => {
             customWidgets={customWidgets}
             customWidgetsPropsConfig={customWidgetsPropsConfig}
           />
-          <FormDesigner.FormCanvas />
+          <FormDesigner.FormCanvas
+            onCtrlS={() => {
+              message.loading('保存中', 2);
+            }}
+          />
           <FormDesigner.PropsConfigPanel />
         </FormDesigner>
       </div>

@@ -92,7 +92,7 @@ const Container = (props: any, ref: any) => {
   }
 } _#}}`,
   } as any);
-  const [selectTable, setSelectTable] = useState(false);
+  const [selectTable, setSelectTable] = useState(true);
   useEffect(() => {
     if (selectTable) {
       setSelectSchema({});

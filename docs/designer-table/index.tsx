@@ -72,7 +72,11 @@ export default () => {
       <div className="table-designer-playground-body">
         <TableDesigner ref={tableDesignerRef}>
           <TableDesigner.RegisterWidgets />
-          <TableDesigner.TableCanvas />
+          <TableDesigner.TableCanvas
+            onCtrlS={() => {
+              message.loading('保存中', 2);
+            }}
+          />
           <TableDesigner.PropsConfigPanel />
         </TableDesigner>
       </div>

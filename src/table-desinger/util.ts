@@ -16,11 +16,6 @@ export const getStandardSchema = (scurce = {}) => {
   if (schema.searchSchema.hidden === false) {
     delete schema.searchSchema.hidden;
   }
-  const searchSchema = getCleanCloneSchema(
-    [schema.searchSchema],
-    'const searchSchema = ',
-  );
-  /** 过滤不需要的属性 */
   if (schema.tableSchema.emptyNode === '-') {
     delete schema.tableSchema.emptyNode;
   }
@@ -40,11 +35,10 @@ export const getStandardSchema = (scurce = {}) => {
   delete schema.tableSchema.showMore;
   delete schema.tableSchema.width;
   delete schema.tableSchema.menus;
-  const tableSchema = getCleanCloneSchema(
-    [schema.tableSchema],
-    'const tableSchema = ',
-  );
-  return `${searchSchema}\n${tableSchema}`;
+  // 配置查询项
+  schema.tableSchema.searchSchema = schema.searchSchema;
+  const tableSchema = getCleanCloneSchema([schema.tableSchema]);
+  return tableSchema;
 };
 
 /** 模型转换给Table */

@@ -6,6 +6,7 @@ import { uuid as Uuid, cloneDeep } from '@/util';
 import { Ctx } from '../store';
 import { Empty } from 'antd';
 import { parseTableSchema } from '../util';
+import { deleteCompent } from '@/form-designer/form-canvas/util';
 import './index.less';
 
 export interface FormCanvasType {
@@ -15,7 +16,12 @@ export interface FormCanvasType {
   onSchemaSelect?: Function; // 字段选中
   accept?: string; // useDrop配置的accept
   style?: any;
+  /** 开启 ctrl + s */
+  onCtrlS?: () => void;
 }
+
+/** 鼠标是否悬停在画布 */
+let mouseIsHoveringCanvas = false;
 
 export default ({
   empty = '点击/拖拽左侧栏的组件进行添加',
@@ -24,6 +30,7 @@ export default ({
   defaultSchema = [],
   defaultSelectKey = '',
   style = {},
+  onCtrlS,
 }: FormCanvasType) => {
   const [reload, setReload] = useState(Math.random());
   const ctx: any = useContext(Ctx); // 拿到ctx
@@ -123,10 +130,47 @@ export default ({
   if (ctx.formProps.hidden) {
     cls.push('table-canvas-hidden-search');
   }
+  /**
+   * 设置相关的键盘监听事件
+   */
+  const keyboardEvent = (e) => {
+    if (
+      typeof onCtrlS === 'function' &&
+      (e.key === 's' || e.key === 'S') &&
+      (navigator.platform.match('Mac') ? e.metaKey : e.ctrlKey)
+    ) {
+      e.preventDefault();
+      onCtrlS();
+    } else if (e.key === 'Backspace' && mouseIsHoveringCanvas) {
+      /** 删除该字段 */
+      deleteCompent({
+        itemSchema: ctx.selectSchema,
+        schema: ctx.schema,
+        setSelectSchema: ctx.setSelectSchema,
+        onSchemaUpdate: ctx.setSchema,
+      });
+    }
+  };
+  useEffect(() => {
+    window.addEventListener('keydown', keyboardEvent);
+    return () => {
+      window.removeEventListener('keydown', keyboardEvent);
+    };
+  }, [ctx.selectSchema, ctx.schema]);
   return (
-    <div ref={drop} className={cls.join(' ')} style={style}>
+    <div
+      ref={drop}
+      className={cls.join(' ')}
+      style={style}
+      onMouseEnter={() => {
+        mouseIsHoveringCanvas = true;
+      }}
+      onMouseLeave={() => {
+        mouseIsHoveringCanvas = false;
+      }}
+    >
       {isOver && <div className="table-canvas-mask" />}
-      {_schema.length === 0 ? (
+      {ctx?.columns.length === 0 ? (
         <Empty
           image={Empty.PRESENTED_IMAGE_SIMPLE}
           description={empty}
@@ -136,11 +180,13 @@ export default ({
         <Table
           key={reload}
           columns={ctx.columns}
-          searchSchema={{
-            ...ctx.formProps,
-            hidden: false,
-            schema: _schema,
-          }}
+          searchSchema={
+            _schema.length > 0 && {
+              ...ctx.formProps,
+              hidden: false,
+              schema: _schema,
+            }
+          }
           {...parseTableSchema(cloneDeep(ctx?.tableProps))}
           tableRender={(dom) => {
             return (

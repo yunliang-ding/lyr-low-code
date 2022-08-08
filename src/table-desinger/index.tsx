@@ -8,7 +8,7 @@ import { Ctx } from '@/table-desinger/store';
 import { getStandardSchema, parseTableSchema } from './util';
 import { TableProps } from 'react-core-form';
 import { isEmpty } from '@/util';
-import { defaultInitialValues } from './config';
+import { defaultInitialValues } from './initial';
 import './index.less';
 
 const Container = (

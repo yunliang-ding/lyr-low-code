@@ -36,10 +36,12 @@ export default ({
   const ctx: any = useContext(Ctx); // 拿到ctx
   // update ctx
   useEffect(() => {
-    ctx.setSchema(defaultSchema);
-    const selectSchema =
-      defaultSchema.find((item: any) => item.key === defaultSelectKey) || {};
-    ctx.setSelectSchema(selectSchema);
+    if (defaultSchema.length > 0) {
+      ctx.setSchema(defaultSchema);
+      const selectSchema =
+        defaultSchema.find((item: any) => item.key === defaultSelectKey) || {};
+      ctx.setSelectSchema(selectSchema);
+    }
   }, []);
   const [{ isOver }, drop] = useDrop(
     () => ({
@@ -156,7 +158,13 @@ export default ({
     return () => {
       window.removeEventListener('keydown', keyboardEvent);
     };
-  }, [ctx.selectSchema, ctx.schema]);
+  }, [
+    ctx.formProps,
+    ctx.selectSchema,
+    ctx.schema,
+    ctx.tableProps,
+    ctx.columns,
+  ]);
   return (
     <div
       ref={drop}

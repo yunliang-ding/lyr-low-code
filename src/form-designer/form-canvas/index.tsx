@@ -161,7 +161,7 @@ export default ({
     return () => {
       window.removeEventListener('keydown', keyboardEvent);
     };
-  }, [ctx.selectSchema, ctx.schema]);
+  }, [ctx.formProps, ctx.selectSchema, ctx.schema]);
   return (
     <div
       ref={drop}

@@ -25,11 +25,29 @@ export const getStandardSchema = (scurce = {}) => {
     };
   }
   delete schema.tableSchema.pageSize;
+  schema.tableSchema.tools = schema.tableSchema.tools.filter((i) => i);
   schema.tableSchema.rowOperations = {
     showMore: schema.tableSchema.showMore,
     width: schema.tableSchema.width,
     menus: `{{_#function(){
-      return ${JSON.stringify(schema.tableSchema.menus, null, 2)}
+      return ${JSON.stringify(
+        schema.tableSchema.menus
+          .filter((i) => i)
+          .map((item) => {
+            if (item.confirm === true) {
+              item.confirm = {
+                ttile: '提示',
+                content: item.content,
+              };
+              delete item.content;
+            }
+            return {
+              ...item,
+            };
+          }),
+        null,
+        2,
+      )}
 }_#}}`,
   };
   delete schema.tableSchema.showMore;

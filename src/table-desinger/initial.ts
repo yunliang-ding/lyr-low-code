@@ -6,11 +6,10 @@ export const defaultInitialValues = {
     column: 3,
     layout: 'inline',
     size: 'middle',
-    hidden: false,
   },
   schema: [
     {
-      key: '4997488715',
+      key: 'userName',
       type: 'Input',
       label: '用户姓名',
       name: 'userName',
@@ -40,10 +39,7 @@ export const defaultInitialValues = {
   ],
   tableProps: {
     title: '用户列表',
-    toolsAlign: 'right',
     size: 'middle',
-    useRefresh: true,
-    useFilterColumns: true,
     emptyNode: '-',
     tools: [
       {
@@ -73,8 +69,14 @@ export const defaultInitialValues = {
     ],
     request: `{{_#async function(){
   return {
-    isError: false,
-    list: [{}],
+    success: true,
+    list: [{
+      id: 1,
+      userName: '张三',
+      userPhone: '13923783472',
+      userAge: 20,
+      userAddress: '测试地址'
+    }],
     total: 1
   }
 } _#}}`,

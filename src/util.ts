@@ -117,6 +117,16 @@ export const getCleanCloneSchema = (
     delete item.key;
     delete item.__parentKey__;
     delete item.isNew;
+    delete item.selectField;
+    if (item.actionAlign === 'end') {
+      delete item.actionAlign;
+    }
+    if (item.layout === 'vertical') {
+      delete item.layout;
+    }
+    if (item.size === 'middle') {
+      delete item.size;
+    }
     if (['BlockQuote'].includes(item.type)) {
       delete item.span;
       delete item.name;

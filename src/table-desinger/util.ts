@@ -13,9 +13,6 @@ export const getStandardSchema = (scurce = {}) => {
   if (schema.searchSchema.size === 'middle') {
     delete schema.searchSchema.size;
   }
-  if (schema.searchSchema.hidden === false) {
-    delete schema.searchSchema.hidden;
-  }
   if (schema.tableSchema.emptyNode === '-') {
     delete schema.tableSchema.emptyNode;
   }
@@ -36,7 +33,7 @@ export const getStandardSchema = (scurce = {}) => {
           .map((item) => {
             if (item.confirm === true) {
               item.confirm = {
-                ttile: '提示',
+                title: '提示',
                 content: item.content,
               };
               delete item.content;
@@ -65,8 +62,6 @@ export const parseTableSchema = (values: any = {}) => {
   if (values.closeDefaultTools === true) {
     values.defaultTools = [];
   }
-  // 过滤 undefined
-  values.tools = values.tools?.filter((i) => i);
   /** 分页组装 */
   if (values.pagination && values.pageSize) {
     values.paginationConfig = {
@@ -81,17 +76,15 @@ export const parseTableSchema = (values: any = {}) => {
     fixed: 'right',
     menus: (record) => {
       return (
-        values.menus
-          ?.filter((i) => i)
-          .map((menu) => {
-            if (menu.confirm) {
-              menu.confirm = {
-                title: '提示',
-                content: menu.content,
-              };
-            }
-            return menu;
-          }) || []
+        values.menus.map((menu) => {
+          if (menu.confirm) {
+            menu.confirm = {
+              title: '提示',
+              content: menu.content,
+            };
+          }
+          return menu;
+        }) || []
       );
     },
   };

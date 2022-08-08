@@ -86,7 +86,10 @@ export default ({
   };
   /** 防抖0.1s */
   const onTableValuesChange = debounce((v, values) => {
-    ctx.setTableProps(values);
+    // 子表单需要过滤一下
+    values.tools = values.tools.filter((i) => i?.label);
+    values.menus = values.menus.filter((i) => i?.label);
+    ctx.setTableProps({ ...values });
   }, debounceTime);
   /** 防抖0.1s */
   const onCellValuesChange = debounce((v, values) => {

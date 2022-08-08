@@ -165,6 +165,11 @@ export default ({
     ctx.tableProps,
     ctx.columns,
   ]);
+  /** request 变化刷新下 table */
+  const [table] = Table.useTable();
+  useEffect(() => {
+    table.onSearch();
+  }, [ctx.tableProps.request]);
   return (
     <div
       ref={drop}
@@ -187,6 +192,7 @@ export default ({
       ) : (
         <Table
           key={reload}
+          table={table}
           columns={ctx.columns}
           searchSchema={
             _schema.length > 0 && {

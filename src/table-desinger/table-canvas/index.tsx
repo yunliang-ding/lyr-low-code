@@ -5,7 +5,7 @@ import { useCallback, useState, useEffect, useContext, useMemo } from 'react';
 import { uuid as Uuid, cloneDeep } from '@/util';
 import { Ctx } from '../store';
 import { Empty } from 'antd';
-import { parseTableSchema } from '../util';
+import { parseTableColumns, parseTableSchema } from '../util';
 import { deleteCompent } from '@/form-designer/form-canvas/util';
 import './index.less';
 
@@ -193,7 +193,7 @@ export default ({
         <Table
           key={reload}
           table={table}
-          columns={ctx.columns}
+          columns={parseTableColumns(cloneDeep(ctx.columns))}
           searchSchema={
             _schema.length > 0 && {
               ...ctx.formProps,

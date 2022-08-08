@@ -6,12 +6,6 @@ import { SchemaProps, CreateForm } from 'react-core-form';
 
 const cellDetailFields: SchemaProps[] = [
   {
-    type: 'Switch',
-    name: 'columnNo',
-    valuePropName: 'checked',
-    label: '是否设置为自增序号',
-  },
-  {
     type: 'Input',
     label: '列标签',
     name: 'title',
@@ -30,6 +24,12 @@ const cellDetailFields: SchemaProps[] = [
     type: 'Input',
     label: '列后缀',
     name: 'suffix',
+  },
+  {
+    type: 'Switch',
+    name: 'columnNo',
+    valuePropName: 'checked',
+    label: '是否设置为自增序号',
   },
   {
     type: 'Switch',
@@ -94,11 +94,11 @@ const drawerCellForm = CreateForm.Drawer({
   width: 400,
   schema: cellDetailFields,
   containId: 'table-cell-drawer',
+  footer: false,
   widgets: {
     BindFunction,
   },
   drawerProps: {
-    mask: false,
     headerStyle: {
       height: 43.5,
     },

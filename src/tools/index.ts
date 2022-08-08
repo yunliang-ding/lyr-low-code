@@ -5,9 +5,23 @@ const babel = new BabelCompile();
 /**
  * useBabel
  */
-export const babelParse = (code: string, prefix = 'export default ') => {
+export const babelParse = (
+  code: string,
+  prefix = 'export default ',
+  dependencies = {},
+) => {
   try {
-    const res = babel.excuteCode(`${prefix}${code.replaceAll('↵', '')}`);
+    let dependenciesString = '';
+    if (dependencies) {
+      dependenciesString = Object.keys(dependencies)
+        .map((key) => {
+          return `import ${key} from '${dependencies[key]}';`;
+        })
+        .join('\n');
+    }
+    const res = babel.excuteCode(
+      `${dependenciesString}${prefix}${code.replaceAll('↵', '')}`,
+    );
     if (!res?.isError) {
       return res?.exports.default;
     } else {

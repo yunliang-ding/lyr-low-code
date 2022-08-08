@@ -120,3 +120,17 @@ export const parseTableSchema = (values: any = {}) => {
   delete values.pageSize;
   return values;
 };
+
+export const parseTableColumns = (columns = []) => {
+  return columns?.map((item) => {
+    // render 函数转椅
+    if (item.render) {
+      item.render = babelParse(decrypt(item.render, false), undefined, {
+        React: 'react',
+      });
+    }
+    return {
+      ...item,
+    };
+  });
+};

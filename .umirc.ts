@@ -32,6 +32,10 @@ export default defineConfig({
       path: '#/~demos/docs-form-playground',
     },
     {
+      title: '基础组件',
+      path: 'https://yunliang-ding.github.io/react-core-form',
+    },
+    {
       title: 'GitHub',
       path: 'https://github.com/yunliang-ding/core-form-designer',
     },

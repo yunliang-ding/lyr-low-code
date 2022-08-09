@@ -1,9 +1,9 @@
 {
   "name": "react-core-form-designer",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "基于react-core-form搭建低码相关组件",
   "author": "yunliang-ding",
-  "homepage": "https://yunliang-ding.github.io/core-form-designer",
+  "homepage": "https://yunliang-ding.github.io/react-core-form-designer",
   "keywords": [
     "react-core-form",
     "form-designer",
@@ -12,7 +12,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/yunliang-ding/core-form-designer"
+    "url": "https://github.com/yunliang-ding/react-core-form-designer"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

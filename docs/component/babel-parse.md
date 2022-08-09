@@ -80,3 +80,36 @@ export default () => {
   return <Form {...babelParse(schema, '')} />;
 };
 ```
+
+## 配置 babelParse 依赖
+
+```tsx
+/**
+ * background: '#fff'
+ */
+import React from 'react';
+import { Form } from 'react-core-form';
+import { getTools } from 'react-core-form-designer';
+
+const schema = `export default {
+  schema: [
+    {
+      label: "渲染",
+      type: () => {
+        return <div>相关的提示信息</div>
+      },
+    }
+  ],
+};
+`;
+export default () => {
+  const { babelParse } = getTools();
+  return (
+    <Form
+      {...babelParse(schema, '', {
+        React: 'react',
+      })}
+    />
+  );
+};
+```

@@ -24,6 +24,8 @@ export const getStandardSchema = (scurce = {}) => {
   delete schema.tableSchema.pageSize;
   schema.tableSchema.tools = schema.tableSchema.tools.filter((i) => i);
   schema.tableSchema.rowOperations = {
+    title: '操作',
+    fixed: 'right',
     showMore: schema.tableSchema.showMore,
     width: schema.tableSchema.width,
     menus: `{{_#function(){
@@ -47,6 +49,10 @@ export const getStandardSchema = (scurce = {}) => {
       )}
 }_#}}`,
   };
+  schema.tableSchema.scroll = {
+    x: schema.tableSchema.scrollX,
+  };
+  delete schema.tableSchema.scrollX;
   delete schema.tableSchema.showMore;
   delete schema.tableSchema.width;
   delete schema.tableSchema.menus;
@@ -118,6 +124,10 @@ export const parseTableSchema = (values: any = {}) => {
   delete values.showMore;
   delete values.width;
   delete values.pageSize;
+  values.scroll = {
+    x: values.scrollX,
+  };
+  delete values.scrollX;
   return values;
 };
 

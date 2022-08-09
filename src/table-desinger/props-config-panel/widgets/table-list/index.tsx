@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { isEmpty } from '@/util';
+import { isEmpty, uuid } from '@/util';
 import { Button } from 'react-core-form';
 import { Input, Space, Table } from 'antd';
 import './index.less';
@@ -33,7 +33,10 @@ export default ({
     onChange([...value]);
   };
   const add = () => {
-    value.push({});
+    value.push({
+      width: 200,
+      dataIndex: `key_${uuid(4)}`,
+    });
     onChange([...value]);
   };
   const remove = (index: number) => {

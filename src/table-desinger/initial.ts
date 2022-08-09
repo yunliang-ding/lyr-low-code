@@ -41,6 +41,7 @@ export const defaultInitialValues = {
     title: '用户列表',
     size: 'middle',
     emptyNode: '-',
+    scrollX: 1200,
     tools: [
       {
         label: '新增用户',

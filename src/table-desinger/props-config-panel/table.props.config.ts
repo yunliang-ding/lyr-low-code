@@ -17,6 +17,11 @@ const fields: SchemaProps<{
     label: '空数据提示文案',
   },
   {
+    type: 'InputNumber',
+    name: 'scrollX',
+    label: '容器水平宽度',
+  },
+  {
     type: 'BlockQuote',
     props: {
       title: '顶部工具栏设置',

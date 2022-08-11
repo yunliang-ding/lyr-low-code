@@ -72,6 +72,15 @@ const fields: SchemaProps<{
     },
   },
   {
+    type: 'Switch',
+    name: 'effectClearField',
+    valuePropName: 'checked',
+    label: '依赖变化清空值',
+    visible({ effect }) {
+      return effect?.length > 0;
+    },
+  },
+  {
     type: 'BindFunction',
     name: 'isShow',
     label: '设置isShow',

@@ -147,6 +147,13 @@ export const getCleanCloneSchema = (
     if (item.span === 1) {
       delete item.span;
     }
+    if (item?.effect.length === 0) {
+      delete item.effect;
+      delete item.effectClearField;
+    }
+    if (item.effectClearField !== true) {
+      delete item.effectClearField;
+    }
     // innerItemRender -> itemRender
     if (item.innerItemRender) {
       item.itemRender = item.innerItemRender;

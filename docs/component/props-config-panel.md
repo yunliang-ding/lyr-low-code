@@ -51,7 +51,7 @@ export default () => {
         ]}
         style={{
           height: 600,
-          width: 300,
+          width: 400,
           border: '1px solid #f2f2f2',
         }}
         onPropsConfigUpdate={(newProps, type) => {

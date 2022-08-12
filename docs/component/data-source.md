@@ -21,7 +21,7 @@ export default () => {
   const { babelParse } = getTools();
   const runApi = async () => {
     const data = await form.submit();
-    axios(babelParse(data.axiosConfig));
+    axios(babelParse(data.axiosConfig, ''));
   };
   return (
     <Space direction="vertical">
@@ -36,8 +36,8 @@ export default () => {
           modifyUser: 'dyl',
           name: 'userList',
           desc: '用户列表',
-          axiosConfig: `{
-  url: 'http://pm-saas.taobao.net/api/user',
+          axiosConfig: `export default {
+  url: 'http://www.baidu.com/api/demo',
   method: 'post',
   headers: {
     token: 'sdsdsd3wewewe',

@@ -50,6 +50,8 @@ const schema: SchemaProps<{}>[] = [
       </span>
     ),
     props: {
+      prefix: '',
+      useEncrypt: false,
       style: {
         height: 500,
       },

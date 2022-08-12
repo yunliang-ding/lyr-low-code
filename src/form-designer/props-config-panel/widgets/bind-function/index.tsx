@@ -6,7 +6,14 @@ import { debounce, isEmpty } from 'lodash';
 import { memo, useRef, useState } from 'react';
 import './index.less';
 
-export default ({ value, onChange, name, style = { height: 300 } }) => {
+export default ({
+  value,
+  onChange,
+  name,
+  style = { height: 300 },
+  prefix,
+  useEncrypt = true,
+}) => {
   const [errorInfo, setErrorInfo] = useState('');
   return (
     <div className="function_data_box" style={style}>
@@ -16,13 +23,15 @@ export default ({ value, onChange, name, style = { height: 300 } }) => {
         onChange={onChange}
         name={name}
         setErrorInfo={setErrorInfo}
+        prefix={prefix}
+        useEncrypt={useEncrypt}
       />
     </div>
   );
 };
 
 const MemoMonaco = memo(
-  ({ value, name, onChange, setErrorInfo }: any) => {
+  ({ value, name, onChange, setErrorInfo, prefix, useEncrypt }: any) => {
     const monacoRef: any = useRef({});
     return (
       <MonacoEditor
@@ -47,8 +56,8 @@ const MemoMonaco = memo(
               onChange(undefined);
             }
             await new Promise((res) => setTimeout(res, 1000));
-            babelParse(codeString);
-            onChange(encrypt(codeString));
+            babelParse(codeString, prefix);
+            onChange(useEncrypt ? encrypt(codeString) : codeString);
             setErrorInfo('');
           } catch (error) {
             setErrorInfo(error.toString());

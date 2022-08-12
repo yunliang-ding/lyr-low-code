@@ -1,4 +1,4 @@
-import { JsonData } from '@/form-designer/props-config-panel/widgets';
+import { BindFunction } from '@/form-designer/props-config-panel/widgets';
 import { Form } from 'react-core-form';
 import schema from './schema';
 import './index.less';
@@ -11,7 +11,7 @@ export default ({ initialValues = {}, form = Form.useForm()[0] }) => {
       <Form
         schema={schema}
         form={form}
-        widgets={{ JsonData }}
+        widgets={{ BindFunction }}
         initialValues={initialValues}
       />
     </div>

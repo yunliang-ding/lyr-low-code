@@ -1,7 +1,11 @@
-/* eslint-disable @iceworks/best-practices/recommend-polyfill */
 import { SchemaProps } from 'react-core-form';
 
 const schema: SchemaProps<{}>[] = [
+  {
+    type: 'Input',
+    name: 'id',
+    hidden: true,
+  },
   {
     type: 'Input',
     name: 'schemaId',
@@ -30,80 +34,24 @@ const schema: SchemaProps<{}>[] = [
     label: '数据源描述',
   },
   {
-    type: 'Input',
-    name: 'url',
-    label: '接口地址',
-    required: true,
-  },
-  {
-    type: 'RadioGroup',
-    name: 'method',
-    label: '请求方式',
-    props: {
-      optionType: 'button',
-      options: [
-        {
-          label: 'POST',
-          value: 'post',
-        },
-        {
-          label: 'GET',
-          value: 'get',
-        },
-      ],
-    },
-  },
-  {
-    type: 'TableList',
-    name: 'headers',
-    label: '请求头设置',
-    required: true,
-    beforeReceive({ headers }) {
-      return Object.keys(headers)?.map((key) => {
-        return {
-          label: key,
-          value: headers[key],
-        };
-      });
-    },
-    transform({ headers }) {
-      const obj = {};
-      headers.forEach((item) => {
-        obj[item.label] = item.value;
-      });
-      return {
-        headers: obj,
-      };
-    },
-    props: {
-      showNo: false,
-      schema: [
-        {
-          type: 'Input',
-          label: '属性名',
-          name: 'label',
-          style: {
-            width: 150,
-          },
-        },
-        {
-          type: 'Input',
-          label: '属性值',
-          name: 'value',
-          style: {
-            width: 200,
-          },
-        },
-      ],
-    },
-  },
-  {
-    type: 'JsonData',
-    name: 'params',
-    label: '参数配置',
+    type: 'BindFunction',
+    name: 'axiosConfig',
+    label: '请求配置',
+    extra: (
+      <span>
+        关于axios库相关的配置
+        <a
+          style={{ marginLeft: 8 }}
+          href="https://www.kancloud.cn/yunye/axios/234845/"
+          target="_blank"
+        >
+          参看这里
+        </a>
+      </span>
+    ),
     props: {
       style: {
-        height: 300,
+        height: 500,
       },
     },
   },

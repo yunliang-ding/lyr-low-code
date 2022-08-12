@@ -11,30 +11,21 @@ toc: menu
  * background: '#f6f7f9'
  */
 import React from 'react';
-import { DataSource } from 'react-core-form-designer';
+import { DataSource, getTools } from 'react-core-form-designer';
 import { Button, Form } from 'react-core-form';
 import { Space } from 'antd';
 import axios from 'axios';
 
 export default () => {
   const [form] = Form.useForm();
-  const test = async () => {
+  const { babelParse } = getTools();
+  const runApi = async () => {
     const data = await form.submit();
-    const options = {
-      url: data.url,
-      method: data.method,
-      headers: data.headers,
-    };
-    if (options.method === 'post') {
-      options.data = data.params;
-    } else {
-      options.params = data.params;
-    }
-    axios(options);
+    axios(babelParse(data.axiosConfig));
   };
   return (
     <Space direction="vertical">
-      <Button spin type="primary" onClick={test}>
+      <Button spin type="primary" onClick={runApi}>
         测试
       </Button>
       <DataSource
@@ -45,12 +36,26 @@ export default () => {
           modifyUser: 'dyl',
           name: 'userList',
           desc: '用户列表',
-          url: 'http://www.abc.net/api/user',
-          method: 'post',
-          headers: {
-            token: '123abc',
-          },
-          params: { userName: 'dyl' },
+          axiosConfig: `{
+  url: 'http://pm-saas.taobao.net/api/user',
+  method: 'post',
+  headers: {
+    token: 'sdsdsd3wewewe',
+  },
+  data: {
+    userName: 'test',
+  },
+  timeout: 1000,
+  withCredentials: true,
+  proxy: {
+    host: '127.0.0.1',
+    port: 9000,
+    auth: {
+      username: 'mikeymike',
+      password: 'rapunz3l',
+    },
+  },
+}`,
         }}
       />
     </Space>

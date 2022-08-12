@@ -8,7 +8,11 @@ const formlib = require('react-core-form');
 const presets = ['es2015', 'stage-0', 'react'];
 
 const safeEval = (code: string) => {
-  return Function(code)();
+  try {
+    return Function(code)();
+  } catch (error) {
+    console.log('safeEval error info', error);
+  }
 };
 
 class BabelCompile {

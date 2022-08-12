@@ -28,7 +28,7 @@ export const getStandardSchema = (scurce = {}) => {
     fixed: 'right',
     showMore: schema.tableSchema.showMore,
     width: schema.tableSchema.width,
-    menus: `{{_#function(){
+    menus: `{{_# () => {
       return ${JSON.stringify(
         schema.tableSchema.menus
           .filter((i) => i)

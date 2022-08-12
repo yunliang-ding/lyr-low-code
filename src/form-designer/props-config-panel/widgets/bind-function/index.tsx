@@ -39,7 +39,7 @@ const MemoMonaco = memo(
         value={
           value
             ? decrypt(value, false)
-            : `function(){
+            : `() => {
 
 }`
         }

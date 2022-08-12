@@ -68,7 +68,7 @@ export const defaultInitialValues = {
         content: '是否确认删除?',
       },
     ],
-    request: `{{_#async function(){
+    request: `{{_#async () => {
   return {
     success: true,
     list: [{
@@ -81,12 +81,12 @@ export const defaultInitialValues = {
     total: 1
   }
 } _#}}`,
-    toolsClick: `{{_#async function(tool){
+    toolsClick: `{{_#async (tool) => {
   if(tool.key === 'add'){
     console.log('add')
   }
 } _#}}`,
-    rowOperationsClick: `{{_#async function(menu, record){
+    rowOperationsClick: `{{_#async (menu, record) => {
   if(menu.key === 'edit'){
     console.log('record', record)
   }

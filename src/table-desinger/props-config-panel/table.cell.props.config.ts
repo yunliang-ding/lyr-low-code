@@ -4,7 +4,7 @@
 import FunctionEditor from '@/function-editor';
 import { SchemaProps, CreateForm } from 'react-core-form';
 
-const cellDetailFields: SchemaProps[] = [
+const cellDetailFields: SchemaProps<{}>[] = [
   {
     type: 'Input',
     label: '列标签',
@@ -85,6 +85,11 @@ const cellDetailFields: SchemaProps[] = [
     type: 'FunctionEditor',
     name: 'render',
     label: '自定义渲染',
+    props: {
+      defaultCode: `(item, record, index) => {
+  return item
+}`,
+    },
   },
 ];
 /**

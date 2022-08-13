@@ -4,9 +4,10 @@ import { Empty, Segmented } from 'antd';
 import ItemPropsConfig from './item.props.config';
 import FormPropsConfig from './form.props.config';
 import { isEmpty, recursionFind } from '@/util';
-import { BindFunction, JsonData } from './widgets';
 import { Ctx } from '@/form-designer/store';
 import { debounce } from 'lodash';
+import FunctionEditor from '@/function-editor';
+import JsonEditor from '@/json-editor';
 import './index.less';
 
 export interface PropsConfigPanelTypes {
@@ -64,15 +65,6 @@ export default ({
   }, debounceTime);
   /** 防抖0.1s */
   const onWidgetValuesChange = debounce((_, values) => {
-    const key = Object.keys(_)[0];
-    if (['columns'].includes(key) && Array.isArray(values[key])) {
-      values[key] = values[key].map((item) => {
-        if (item === undefined) {
-          item = {};
-        }
-        return item;
-      });
-    }
     onPropsConfigUpdate({ ...values }, 'widget');
   }, debounceTime);
   // TODO 没有考虑 FieldSet
@@ -123,7 +115,7 @@ export default ({
           >
             <Form
               widgets={{
-                BindFunction,
+                FunctionEditor,
               }}
               schema={FormPropsConfig}
               initialValues={ctx.formProps}
@@ -138,7 +130,7 @@ export default ({
           >
             <Form
               widgets={{
-                BindFunction,
+                FunctionEditor,
               }}
               onMount={onMount}
               schema={ItemPropsConfig}
@@ -154,8 +146,8 @@ export default ({
           >
             <Form
               widgets={{
-                BindFunction,
-                JsonData,
+                FunctionEditor,
+                JsonEditor,
               }}
               schema={propsConfig}
               initialValues={ctx.selectSchema?.props || {}}

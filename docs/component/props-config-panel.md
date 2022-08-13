@@ -44,7 +44,7 @@ export default () => {
             label: '最大长度',
           },
           {
-            type: 'BindFunction',
+            type: 'FunctionEditor',
             name: 'onChange',
             label: '设置onChange',
           },

@@ -37,7 +37,7 @@
       "label": "设置url路径"
     },
     {
-      "type": "BindFunction",
+      "type": "FunctionEditor",
       "name": "onChange",
       "label": "设置onChange"
     }

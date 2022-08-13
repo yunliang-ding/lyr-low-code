@@ -4,7 +4,7 @@
   "props": {},
   "propsConfig": [
     {
-      "type": "BindFunction",
+      "type": "FunctionEditor",
       "label": "渲染函数",
       "name": "render"
     }

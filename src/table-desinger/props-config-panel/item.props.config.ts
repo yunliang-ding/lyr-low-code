@@ -81,17 +81,17 @@ const fields: SchemaProps<{
     },
   },
   {
-    type: 'BindFunction',
+    type: 'FunctionEditor',
     name: 'isShow',
     label: '设置isShow',
   },
   {
-    type: 'BindFunction',
+    type: 'FunctionEditor',
     name: 'beforeReceive',
     label: '设置beforeReceive',
   },
   {
-    type: 'BindFunction',
+    type: 'FunctionEditor',
     name: 'transfrom',
     label: '设置transfrom',
   },

@@ -5,6 +5,7 @@ import { SchemaProps } from 'react-core-form';
 
 const fields: SchemaProps<{
   path: string;
+  defaultCode: string;
 }>[] = [
   {
     type: 'Input',
@@ -100,9 +101,14 @@ const fields: SchemaProps<{
     },
   },
   {
-    type: 'BindFunction',
+    type: 'FunctionEditor',
     name: 'onSubmit',
     label: '表单提交',
+    props: {
+      defaultCode: `async (values) => {
+
+}`,
+    },
   },
 ];
 

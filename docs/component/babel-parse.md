@@ -1,6 +1,6 @@
 ---
-order: 5
-title: 使用 babelParse 转译
+order: 9
+title: babelParse 转译代码片段
 toc: menu
 ---
 

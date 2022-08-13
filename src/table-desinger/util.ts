@@ -132,15 +132,21 @@ export const parseTableSchema = (values: any = {}) => {
 };
 
 export const parseTableColumns = (columns = []) => {
-  return columns?.map((item) => {
-    // render 函数转椅
-    if (item.render) {
-      item.render = babelParse(decrypt(item.render, false), undefined, {
-        React: 'react',
-      });
+  return columns?.map((column) => {
+    // render 函数转译
+    let render;
+    if (column.render) {
+      render = (item, record, index) => {
+        try {
+          return babelParse(decrypt(column.render, false))(item, record, index);
+        } catch (error) {
+          console.log(error);
+        }
+      };
     }
     return {
-      ...item,
+      ...column,
+      render,
     };
   });
 };

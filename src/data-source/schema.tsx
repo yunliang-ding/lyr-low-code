@@ -34,7 +34,7 @@ const schema: SchemaProps<{}>[] = [
     label: '数据源描述',
   },
   {
-    type: 'BindFunction',
+    type: 'FunctionEditor',
     name: 'axiosConfig',
     label: '请求配置',
     extra: (

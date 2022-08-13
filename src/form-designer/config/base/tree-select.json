@@ -45,13 +45,13 @@
       "label": "提示文案"
     },
     {
-      "type": "JsonData",
+      "type": "JsonEditor",
       "label": "设置数据源",
       "name": "treeData",
       "tooltip": "仅支持json"
     },
     {
-      "type": "BindFunction",
+      "type": "FunctionEditor",
       "name": "onChange",
       "label": "设置onChange"
     }

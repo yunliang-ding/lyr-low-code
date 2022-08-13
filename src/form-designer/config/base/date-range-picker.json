@@ -37,7 +37,7 @@
       "label": "是否允许清除"
     },
     {
-      "type": "BindFunction",
+      "type": "FunctionEditor",
       "name": "onChange",
       "label": "设置onChange"
     }

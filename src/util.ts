@@ -113,6 +113,12 @@ export const getCleanCloneSchema = (
 ) => {
   fields.forEach((item) => {
     deleteEmptyObjProps(item);
+    /** 移除函数字符串_is_code 结尾的 */
+    Object.keys(item).forEach((key) => {
+      if (key.endsWith('_is_code')) {
+        delete item[key];
+      }
+    });
     /** item */
     delete item.key;
     delete item.__parentKey__;
@@ -138,7 +144,7 @@ export const getCleanCloneSchema = (
     if (item.rules?.length === 0) {
       delete item.rules;
     }
-    if (item.rules?.length === 1 && item.rules[0].required === false) {
+    if (item.rules?.length === 1 && !item.rules[0].required) {
       delete item.rules;
     }
     if (item.required === false) {

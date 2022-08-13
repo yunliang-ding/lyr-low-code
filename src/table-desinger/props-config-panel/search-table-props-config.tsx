@@ -1,6 +1,6 @@
 import { Form } from 'react-core-form';
 import { Segmented } from 'antd';
-import { BindFunction } from '@/form-designer/props-config-panel/widgets';
+import FunctionEditor from '@/function-editor';
 
 export default ({
   tableType,
@@ -29,7 +29,7 @@ export default ({
       >
         <Form
           widgets={{
-            BindFunction,
+            FunctionEditor,
           }}
           schema={TablePropsConfig}
           initialValues={ctx.tableProps}
@@ -44,7 +44,7 @@ export default ({
       >
         <Form
           widgets={{
-            BindFunction,
+            FunctionEditor,
             TableList,
           }}
           schema={CellPropsConfig}

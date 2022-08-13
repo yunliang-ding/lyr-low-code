@@ -25,12 +25,15 @@
       "label": "提示文案"
     },
     {
-      "type": "BindFunction",
+      "type": "FunctionEditor",
       "label": "设置options",
-      "name": "options"
+      "name": "options",
+      "props": {
+        "defaultCode": "async (form) => { \n  return [] \n}"
+      }
     },
     {
-      "type": "BindFunction",
+      "type": "FunctionEditor",
       "name": "onChange",
       "label": "设置onChange"
     }

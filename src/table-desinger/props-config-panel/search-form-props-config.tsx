@@ -1,9 +1,7 @@
 import { Form } from 'react-core-form';
 import { Segmented } from 'antd';
-import {
-  JsonData,
-  BindFunction,
-} from '@/form-designer/props-config-panel/widgets';
+import FunctionEditor from '@/function-editor';
+import JsonEditor from '@/json-editor';
 
 export default ({
   setCompontentType,
@@ -34,7 +32,7 @@ export default ({
       >
         <Form
           widgets={{
-            BindFunction,
+            FunctionEditor,
           }}
           schema={FormPropsConfig}
           initialValues={ctx.formProps}
@@ -49,7 +47,7 @@ export default ({
       >
         <Form
           widgets={{
-            BindFunction,
+            FunctionEditor,
           }}
           onMount={onMount}
           schema={ItemPropsConfig}
@@ -65,8 +63,8 @@ export default ({
       >
         <Form
           widgets={{
-            BindFunction,
-            JsonData,
+            FunctionEditor,
+            JsonEditor,
           }}
           schema={propsConfig}
           initialValues={ctx.selectSchema?.props || {}}

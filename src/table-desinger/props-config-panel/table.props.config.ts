@@ -160,17 +160,17 @@ const fields: SchemaProps<{
     },
   },
   {
-    type: 'BindFunction',
+    type: 'FunctionEditor',
     name: 'request',
     label: '设置request',
   },
   {
-    type: 'BindFunction',
+    type: 'FunctionEditor',
     name: 'toolsClick',
     label: '设置toolsClick',
   },
   {
-    type: 'BindFunction',
+    type: 'FunctionEditor',
     name: 'rowOperationsClick',
     label: '设置rowOperationsClick',
   },

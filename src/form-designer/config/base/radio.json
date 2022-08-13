@@ -26,13 +26,13 @@
       "label": "是否禁用"
     },
     {
-      "type": "JsonData",
+      "type": "JsonEditor",
       "label": "设置数据源",
       "name": "options",
       "tooltip": "仅支持json"
     },
     {
-      "type": "BindFunction",
+      "type": "FunctionEditor",
       "name": "onChange",
       "label": "设置onChange"
     }

@@ -24,7 +24,7 @@
       "label": "关闭文案"
     },
     {
-      "type": "BindFunction",
+      "type": "FunctionEditor",
       "name": "onChange",
       "label": "设置onChange"
     }

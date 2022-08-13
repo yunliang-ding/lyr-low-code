@@ -1,4 +1,5 @@
 /* eslint-disable */
+import { encrypt, decrypt } from '@/util';
 import BabelCompile from './babel-compile';
 
 const babel = new BabelCompile();
@@ -8,16 +9,21 @@ const babel = new BabelCompile();
 export const babelParse = (
   code: string,
   prefix = 'export default ',
-  dependencies = {},
+  // 默认依赖 react、antd
+  dependencies = {
+    React: 'react',
+    antd: 'antd',
+  },
 ) => {
   try {
     let dependenciesString = '';
     if (dependencies) {
-      dependenciesString = Object.keys(dependencies)
-        .map((key) => {
-          return `import ${key} from '${dependencies[key]}';`;
-        })
-        .join('\n');
+      dependenciesString =
+        Object.keys(dependencies)
+          .map((key) => {
+            return `import ${key} from '${dependencies[key]}';`;
+          })
+          .join('\n') + '\n';
     }
     const res = babel.excuteCode(
       `${dependenciesString}${prefix}${code.replaceAll('↵', '')}`,
@@ -37,5 +43,7 @@ export default (config?: any) => {
   return {
     babelParse,
     BabelCompile,
+    encrypt,
+    decrypt,
   };
 };

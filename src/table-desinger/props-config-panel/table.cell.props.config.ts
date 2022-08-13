@@ -1,7 +1,7 @@
 /**
  * cell的属性配置
  */
-import { BindFunction } from '@/form-designer/props-config-panel/widgets';
+import FunctionEditor from '@/function-editor';
 import { SchemaProps, CreateForm } from 'react-core-form';
 
 const cellDetailFields: SchemaProps[] = [
@@ -82,7 +82,7 @@ const cellDetailFields: SchemaProps[] = [
     label: '是否展示成链接',
   },
   {
-    type: 'BindFunction',
+    type: 'FunctionEditor',
     name: 'render',
     label: '自定义渲染',
   },
@@ -96,7 +96,7 @@ const drawerCellForm = CreateForm.Drawer({
   containId: 'table-cell-drawer',
   footer: false,
   widgets: {
-    BindFunction,
+    FunctionEditor,
   },
   drawerProps: {
     headerStyle: {

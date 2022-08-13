@@ -13,6 +13,9 @@ export default ({
   style = { height: 300 },
   prefix,
   useEncrypt = true,
+  defaultCode = `() => {
+
+}`,
 }) => {
   const [errorInfo, setErrorInfo] = useState('');
   return (
@@ -25,24 +28,27 @@ export default ({
         setErrorInfo={setErrorInfo}
         prefix={prefix}
         useEncrypt={useEncrypt}
+        defaultCode={defaultCode}
       />
     </div>
   );
 };
 
 const MemoMonaco = memo(
-  ({ value, name, onChange, setErrorInfo, prefix, useEncrypt }: any) => {
+  ({
+    value,
+    name,
+    onChange,
+    setErrorInfo,
+    prefix,
+    useEncrypt,
+    defaultCode,
+  }: any) => {
     const monacoRef: any = useRef({});
     return (
       <MonacoEditor
         id={`bind-function_${name}`}
-        value={
-          value
-            ? decrypt(value, false)
-            : `() => {
-
-}`
-        }
+        value={value ? decrypt(value, false) : defaultCode}
         editorMonacoRef={monacoRef}
         options={{
           theme: 'vs-dark',
@@ -52,7 +58,7 @@ const MemoMonaco = memo(
         }}
         onChange={debounce(async (codeString) => {
           try {
-            if (isEmpty(codeString)) {
+            if (isEmpty(codeString) || codeString === defaultCode) {
               onChange(undefined);
             }
             await new Promise((res) => setTimeout(res, 1000));

@@ -5,6 +5,8 @@ import { SchemaProps } from 'react-core-form';
 
 const fields: SchemaProps<{
   path: string;
+  defaultCode: string;
+  useEncrypt?: boolean;
 }>[] = [
   {
     type: 'Input',
@@ -53,6 +55,19 @@ const fields: SchemaProps<{
     label: '是否必填',
   },
   {
+    type: 'FunctionEditor',
+    name: 'rules_is_code',
+    label: '规则校验',
+    props: {
+      prefix: '',
+      useEncrypt: false,
+      style: {
+        height: 160,
+      },
+      defaultCode: '[{}]',
+    },
+  },
+  {
     type: 'Select',
     name: 'effect',
     label: '设置effect',
@@ -61,12 +76,20 @@ const fields: SchemaProps<{
     },
   },
   {
-    type: 'BindFunction',
+    type: 'FunctionEditor',
     name: 'onEffect',
     label: '设置onEffect',
     effect: ['effect'],
     visible({ effect }) {
       return effect?.length > 0;
+    },
+    props: {
+      style: {
+        height: 160,
+      },
+      defaultCode: `async (name, form) => {
+ 
+ }`,
     },
   },
   {
@@ -79,24 +102,56 @@ const fields: SchemaProps<{
     },
   },
   {
-    type: 'BindFunction',
+    type: 'FunctionEditor',
     name: 'visible',
     label: '设置visible',
+    props: {
+      style: {
+        height: 160,
+      },
+      defaultCode: `(values) => {
+   return true;
+ }`,
+    },
   },
   {
-    type: 'BindFunction',
+    type: 'FunctionEditor',
     name: 'beforeReceive',
     label: '设置beforeReceive',
+    props: {
+      style: {
+        height: 160,
+      },
+      defaultCode: `async (values) => {
+ 
+ }`,
+    },
   },
   {
-    type: 'BindFunction',
+    type: 'FunctionEditor',
     name: 'transfrom',
     label: '设置transfrom',
+    props: {
+      style: {
+        height: 160,
+      },
+      defaultCode: `async (values) => {
+ 
+ }`,
+    },
   },
   {
-    type: 'BindFunction',
+    type: 'FunctionEditor',
     name: 'innerItemRender',
     label: '设置itemRender',
+    props: {
+      style: {
+        height: 200,
+      },
+      defaultCode: `async (dom, { form }) => {
+ 
+ }`,
+    },
   },
 ];
 

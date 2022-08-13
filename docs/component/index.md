@@ -17,7 +17,7 @@ nav:
 
 - 属性设置层 `PropsConfigPanel` 每个 widgets 属性配置区域
 
-- 核心拖拽层 `DataSource` 数据源配置、配置接口 Api
+- 数据源配置层 `DataSource` 配置接口 Api
 
 - 函数编辑器 `FunctionEditor` 自带格式校验
 

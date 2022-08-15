@@ -1,11 +1,9 @@
-.function_data_box {
-  width: 100%;
+.function_data_box,
+.function_data_box_full {
   height: fit-content;
   min-height: 160px;
+  min-width: 360px;
   position: relative;
-  .app-monaco-editor {
-    border: 1px solid #ddd;
-  }
   .function_data_error_info {
     overflow: auto;
     height: 50px;
@@ -19,4 +17,23 @@
     bottom: 0;
     padding: 10px;
   }
+  .function_data_box_full_screen {
+    position: absolute;
+    z-index: 2;
+    right: 10px;
+    color: #ccc;
+    .spicon-fullscreen,
+    .spicon-fullscreen-exit {
+      font-size: 20px;
+      cursor: pointer;
+    }
+  }
+}
+.function_data_box_full {
+  height: 100vh !important;
+  width: 100% !important;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 99999;
 }

@@ -58,6 +58,7 @@ const fields: SchemaProps<{}>[] = [
       prefix: '',
       style: {
         height: 160,
+        width: 360,
       },
       defaultCode: '[{}]',
     },
@@ -81,6 +82,7 @@ const fields: SchemaProps<{}>[] = [
     props: {
       style: {
         height: 160,
+        width: 360,
       },
       noChangeClearCode: true,
       defaultCode: `async (name, form) => {
@@ -104,6 +106,7 @@ const fields: SchemaProps<{}>[] = [
     props: {
       style: {
         height: 160,
+        width: 360,
       },
       noChangeClearCode: true,
       defaultCode: `(values) => {
@@ -118,6 +121,7 @@ const fields: SchemaProps<{}>[] = [
     props: {
       style: {
         height: 160,
+        width: 360,
       },
       noChangeClearCode: true,
       defaultCode: `async (values) => {
@@ -132,6 +136,7 @@ const fields: SchemaProps<{}>[] = [
     props: {
       style: {
         height: 160,
+        width: 360,
       },
       noChangeClearCode: true,
       defaultCode: `async (values) => {
@@ -146,6 +151,7 @@ const fields: SchemaProps<{}>[] = [
     props: {
       style: {
         height: 200,
+        width: 360,
       },
       noChangeClearCode: true,
       defaultCode: `async (dom, { form }) => {

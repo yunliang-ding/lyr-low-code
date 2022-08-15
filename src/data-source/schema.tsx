@@ -54,6 +54,7 @@ const schema: SchemaProps<{}>[] = [
       useEncrypt: false,
       style: {
         height: 500,
+        width: 510,
       },
     },
   },

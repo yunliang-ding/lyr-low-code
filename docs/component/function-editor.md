@@ -37,6 +37,7 @@ export default () => {
       <br />
       <br />
       <FunctionEditor
+        style={{ height: 300, width: '100%' }}
         onChange={(code) => {
           // 需要解码处理
           defaultCode = decrypt(code, false);

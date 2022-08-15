@@ -23,7 +23,7 @@ interface FunctionEditorProps {
    */
   defaultCode?: string;
   /**
-   * 默认代码段
+   * 没有改变代码自动设置为 undefined
    * @efault false
    */
   noChangeClearCode?: boolean;
@@ -32,16 +32,32 @@ export default ({
   value,
   onChange,
   name,
-  style = { height: 300 },
+  style = { height: 300, width: 360 },
   prefix,
   useEncrypt = true,
   defaultCode = '() => {}',
   noChangeClearCode = false,
 }: FunctionEditorProps) => {
   const [errorInfo, setErrorInfo] = useState('');
+  const [fullScreen, setFullScreen] = useState(false);
   return (
-    <div className="function_data_box" style={style}>
+    <div
+      className={fullScreen ? 'function_data_box_full' : 'function_data_box'}
+      style={style}
+    >
       {errorInfo && <div className="function_data_error_info">{errorInfo}</div>}
+      <div className="function_data_box_full_screen">
+        <i
+          className={
+            fullScreen
+              ? 'iconfont spicon-fullscreen-exit'
+              : 'iconfont spicon-fullscreen'
+          }
+          onClick={() => {
+            setFullScreen(!fullScreen);
+          }}
+        />
+      </div>
       <MemoMonaco
         value={value}
         onChange={onChange}

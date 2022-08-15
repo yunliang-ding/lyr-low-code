@@ -86,6 +86,7 @@ const cellDetailFields: SchemaProps<{}>[] = [
     name: 'render',
     label: '自定义渲染',
     props: {
+      noChangeClearCode: true,
       defaultCode: `(item, record, index) => {
   return item
 }`,

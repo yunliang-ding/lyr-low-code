@@ -20,11 +20,13 @@ export default () => {
   return 'hello world'
 }`;
   const parseCode = async () => {
-    try {
-      const fn = babelParse(defaultCode);
-      console.log(await fn());
-    } catch (error) {
-      console.log(error);
+    if (defaultCode) {
+      try {
+        const fn = babelParse(defaultCode);
+        console.log(await fn());
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
   return (

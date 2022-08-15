@@ -99,9 +99,9 @@ export const encrypt = (str: string) => {
 /** 函数解码 */
 export const decrypt = (str: string, quotation = true) => {
   if (quotation) {
-    return str.replaceAll('"{{_#', '').replaceAll('_#}}"', '');
+    return str?.replaceAll('"{{_#', '').replaceAll('_#}}"', '');
   }
-  return str.replaceAll('{{_#', '').replaceAll('_#}}', '');
+  return str?.replaceAll('{{_#', '').replaceAll('_#}}', '');
 };
 /**
  * 获取纯净的模型
@@ -116,7 +116,12 @@ export const getCleanCloneSchema = (
     /** 移除函数字符串_is_code 结尾的 */
     Object.keys(item).forEach((key) => {
       if (key.endsWith('_is_code')) {
-        delete item[key];
+        try {
+          item[key.replace('_is_code', '')] = item[key];
+          delete item[key];
+        } catch (error) {
+          console.log(error);
+        }
       }
     });
     /** item */
@@ -142,9 +147,6 @@ export const getCleanCloneSchema = (
     }
     delete item.message;
     if (item.rules?.length === 0) {
-      delete item.rules;
-    }
-    if (item.rules?.length === 1 && !item.rules[0].required) {
       delete item.rules;
     }
     if (item.required === false) {

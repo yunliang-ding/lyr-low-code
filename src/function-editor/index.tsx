@@ -3,9 +3,31 @@ import MonacoEditor from '@/monaco-editor';
 import { babelParse } from '@/tools';
 import { decrypt, encrypt } from '@/util';
 import { debounce, isEmpty } from 'lodash';
-import { memo, useRef, useState } from 'react';
+import { CSSProperties, memo, useRef, useState } from 'react';
 import './index.less';
 
+interface FunctionEditorProps {
+  value: string;
+  onChange: Function;
+  name?: string;
+  style?: CSSProperties;
+  prefix?: string;
+  /**
+   * 是否需要解码
+   * @default true
+   */
+  useEncrypt?: boolean;
+  /**
+   * 默认代码段
+   * @efault () => {}
+   */
+  defaultCode?: string;
+  /**
+   * 默认代码段
+   * @efault false
+   */
+  noChangeClearCode?: boolean;
+}
 export default ({
   value,
   onChange,
@@ -13,10 +35,9 @@ export default ({
   style = { height: 300 },
   prefix,
   useEncrypt = true,
-  defaultCode = `() => {
-
-}`,
-}) => {
+  defaultCode = '() => {}',
+  noChangeClearCode = false,
+}: FunctionEditorProps) => {
   const [errorInfo, setErrorInfo] = useState('');
   return (
     <div className="function_data_box" style={style}>
@@ -29,6 +50,7 @@ export default ({
         prefix={prefix}
         useEncrypt={useEncrypt}
         defaultCode={defaultCode}
+        noChangeClearCode={noChangeClearCode}
       />
     </div>
   );
@@ -43,6 +65,7 @@ const MemoMonaco = memo(
     prefix,
     useEncrypt,
     defaultCode,
+    noChangeClearCode,
   }: any) => {
     const monacoRef: any = useRef({});
     return (
@@ -58,8 +81,11 @@ const MemoMonaco = memo(
         }}
         onChange={debounce(async (codeString) => {
           try {
-            if (isEmpty(codeString) || codeString === defaultCode) {
-              onChange(undefined);
+            if (
+              isEmpty(codeString) ||
+              (codeString === defaultCode && noChangeClearCode)
+            ) {
+              return onChange(undefined);
             }
             await new Promise((res) => setTimeout(res, 1000));
             babelParse(codeString, prefix);

@@ -3,10 +3,7 @@
  */
 import { SchemaProps } from 'react-core-form';
 
-const fields: SchemaProps<{
-  path: string;
-  defaultCode: string;
-}>[] = [
+const fields: SchemaProps<{}>[] = [
   {
     type: 'Input',
     name: 'title',
@@ -105,6 +102,7 @@ const fields: SchemaProps<{
     name: 'onSubmit',
     label: '表单提交',
     props: {
+      noChangeClearCode: true,
       defaultCode: `async (values) => {
 
 }`,

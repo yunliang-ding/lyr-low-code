@@ -3,9 +3,7 @@
  */
 import { SchemaProps } from 'react-core-form';
 
-const fields: SchemaProps<{
-  path: string;
-}>[] = [
+const fields: SchemaProps<{}>[] = [
   {
     type: 'Input',
     name: 'key',
@@ -84,16 +82,25 @@ const fields: SchemaProps<{
     type: 'FunctionEditor',
     name: 'isShow',
     label: '设置isShow',
+    props: {
+      noChangeClearCode: true,
+    },
   },
   {
     type: 'FunctionEditor',
     name: 'beforeReceive',
     label: '设置beforeReceive',
+    props: {
+      noChangeClearCode: true,
+    },
   },
   {
     type: 'FunctionEditor',
     name: 'transfrom',
     label: '设置transfrom',
+    props: {
+      noChangeClearCode: true,
+    },
   },
 ];
 

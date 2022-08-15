@@ -3,11 +3,7 @@
  */
 import { SchemaProps } from 'react-core-form';
 
-const fields: SchemaProps<{
-  path: string;
-  defaultCode: string;
-  useEncrypt?: boolean;
-}>[] = [
+const fields: SchemaProps<{}>[] = [
   {
     type: 'Input',
     name: 'key',
@@ -60,7 +56,6 @@ const fields: SchemaProps<{
     label: '规则校验',
     props: {
       prefix: '',
-      useEncrypt: false,
       style: {
         height: 160,
       },
@@ -87,6 +82,7 @@ const fields: SchemaProps<{
       style: {
         height: 160,
       },
+      noChangeClearCode: true,
       defaultCode: `async (name, form) => {
  
  }`,
@@ -109,6 +105,7 @@ const fields: SchemaProps<{
       style: {
         height: 160,
       },
+      noChangeClearCode: true,
       defaultCode: `(values) => {
    return true;
  }`,
@@ -122,6 +119,7 @@ const fields: SchemaProps<{
       style: {
         height: 160,
       },
+      noChangeClearCode: true,
       defaultCode: `async (values) => {
  
  }`,
@@ -135,6 +133,7 @@ const fields: SchemaProps<{
       style: {
         height: 160,
       },
+      noChangeClearCode: true,
       defaultCode: `async (values) => {
  
  }`,
@@ -148,6 +147,7 @@ const fields: SchemaProps<{
       style: {
         height: 200,
       },
+      noChangeClearCode: true,
       defaultCode: `async (dom, { form }) => {
  
  }`,

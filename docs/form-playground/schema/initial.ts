@@ -1,4 +1,3 @@
-export default `import React from 'react';
-export default () => {
+export default `export default () => {
   return <h1>Hello World</h1>
 }`;

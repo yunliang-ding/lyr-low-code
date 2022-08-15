@@ -1,5 +1,4 @@
-export default `import React from 'react';
-import { Tag, Empty } from 'antd';
+export default `import { Tag, Empty } from 'antd';
 import { CardForm } from 'react-core-form';
 
 const sleep = (timer) => new Promise((res) => setTimeout(res, timer));

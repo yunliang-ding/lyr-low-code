@@ -1,5 +1,4 @@
-export default `import React from 'react';
-import { CardForm } from 'react-core-form';
+export default `import { CardForm } from 'react-core-form';
 
 export default () => {
   return (

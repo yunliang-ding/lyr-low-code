@@ -54,8 +54,7 @@ export default () => {
       'schema',
     );
     if (schema) {
-      const escode = `import React from 'react';
-import { CardForm } from 'react-core-form';
+      const escode = `import { CardForm } from 'react-core-form';
 
 const schema = ${decodeURIComponent(schema)}
 

@@ -144,6 +144,11 @@ export const parseTableColumns = (columns = []) => {
         }
       };
     }
+    // 自增序号
+    if (column.columnNo === true) {
+      column.columnType = 'colummNo';
+      delete column.columnNo;
+    }
     return {
       ...column,
       render,

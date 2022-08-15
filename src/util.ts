@@ -145,9 +145,6 @@ export const getCleanCloneSchema = (
     if (item.type === 'FieldSet') {
       getCleanCloneSchema(item.props.children, prefix);
     }
-    if (Array.isArray(item.columns)) {
-      getCleanCloneSchema(item.columns, prefix);
-    }
     delete item.message;
     if (item.rules?.length === 0) {
       delete item.rules;
@@ -174,11 +171,6 @@ export const getCleanCloneSchema = (
     if (item.innerVisible) {
       item.visible = item.innerVisible;
       delete item.visible;
-    }
-    // columnType 自增序号
-    if (item.columnNo === true) {
-      item.columnType = 'columnNo';
-      delete item.columnNo;
     }
     /** props */
     if (

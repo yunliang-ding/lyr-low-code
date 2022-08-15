@@ -52,6 +52,9 @@ export const getStandardSchema = (scurce = {}) => {
   schema.tableSchema.scroll = {
     x: schema.tableSchema.scrollX,
   };
+  if (schema.tableSchema.autoNo !== true) {
+    delete schema.tableSchema.autoNo;
+  }
   delete schema.tableSchema.scrollX;
   delete schema.tableSchema.showMore;
   delete schema.tableSchema.width;

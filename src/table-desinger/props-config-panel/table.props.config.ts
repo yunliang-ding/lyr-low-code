@@ -33,6 +33,13 @@ const fields: SchemaProps<{
     valuePropName: 'checked',
     label: '关闭默认操作栏',
   },
+
+  {
+    type: 'Switch',
+    name: 'autoNo',
+    valuePropName: 'checked',
+    label: '使用自增序号',
+  },
   {
     type: 'FormList',
     name: 'tools',

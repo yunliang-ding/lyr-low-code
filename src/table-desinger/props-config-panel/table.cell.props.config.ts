@@ -27,12 +27,6 @@ const cellDetailFields: SchemaProps<{}>[] = [
   },
   {
     type: 'Switch',
-    name: 'columnNo',
-    valuePropName: 'checked',
-    label: '是否设置为自增序号',
-  },
-  {
-    type: 'Switch',
     name: 'ellipsis',
     valuePropName: 'checked',
     label: '超出是否展示...',

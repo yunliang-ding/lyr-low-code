@@ -51,7 +51,7 @@ const fields: SchemaProps<{}>[] = [
   },
   {
     type: 'Switch',
-    name: 'ismore',
+    name: 'isExpand',
     valuePropName: 'checked',
     label: '更多才展示',
   },

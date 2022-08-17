@@ -1,6 +1,6 @@
 import { SchemaProps } from 'react-core-form';
 
-const schema: SchemaProps<{}>[] = [
+const schema = ({ editorProps }): SchemaProps<{}>[] => [
   {
     type: 'Input',
     name: 'id',
@@ -52,10 +52,7 @@ const schema: SchemaProps<{}>[] = [
     props: {
       prefix: '',
       useEncrypt: false,
-      style: {
-        height: 500,
-        width: 510,
-      },
+      ...editorProps,
     },
   },
 ];

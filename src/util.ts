@@ -138,6 +138,10 @@ export const getCleanCloneSchema = (
     if (item.size === 'middle') {
       delete item.size;
     }
+    if (item.isExpand === true) {
+      item.expand = true;
+    }
+    delete item.isExpand;
     if (['BlockQuote'].includes(item.type)) {
       delete item.span;
       delete item.name;

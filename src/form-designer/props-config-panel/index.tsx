@@ -133,7 +133,7 @@ export default ({
                 FunctionEditor,
               }}
               onMount={onMount}
-              schema={ItemPropsConfig}
+              schema={ItemPropsConfig()}
               initialValues={ctx.selectSchema || {}}
               onValuesChange={onItemValuesChange}
             />

@@ -64,19 +64,33 @@ export default () => {
             导出schema
           </Button>
           <Button
-            ghost
-            confirm={{
-              type: 'pop',
-              title: '是否确认清空',
-            }}
             type="primary"
-            key="clear"
+            key="export"
             onClick={() => {
-              formDesignerRef.current.setSchema([]);
-              formDesignerRef.current.setSelectSchema({});
+              if (formDesignerRef.current.schema?.length > 0) {
+                const code = formDesignerRef.current
+                  .getStandardSchema({
+                    ...formDesignerRef.current.formProps,
+                    schema: formDesignerRef.current.schema,
+                  })
+                  .replace('export default ', '');
+                const jsx = `import { CardForm } from 'react-core-form';
+
+const schema = ${code}
+export default () => {
+  return <CardForm {...schema} />
+}`;
+                window.open(
+                  `#/~demos/docs-form-playground?schema=${encodeURIComponent(
+                    jsx,
+                  )}`,
+                );
+              } else {
+                message.info('请选择表单项');
+              }
             }}
           >
-            清空
+            去 Playground 预览
           </Button>
         </Space>
       </div>

@@ -54,13 +54,7 @@ export default () => {
       'schema',
     );
     if (schema) {
-      const escode = `import { CardForm } from 'react-core-form';
-
-const schema = ${decodeURIComponent(schema)}
-
-export default () => {
-  return <CardForm {...schema} />
-}`;
+      const escode = decodeURIComponent(schema);
       editorMonacoRef.current.setValue(escode);
       setCode(escode);
     }

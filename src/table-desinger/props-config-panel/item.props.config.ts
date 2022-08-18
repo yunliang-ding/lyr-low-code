@@ -1,49 +1,9 @@
 /**
  * Item的属性配置
  */
-import { SchemaProps } from 'react-core-form';
+import formItemSchema from '@/form-designer/props-config-panel/item.props.config';
 
-const fields: SchemaProps<{}>[] = [
-  {
-    type: 'Input',
-    name: 'key',
-    label: '唯一标识',
-    props: {
-      disabled: true,
-    },
-  },
-  {
-    type: 'Input',
-    name: 'label',
-    label: '字段标签',
-  },
-  {
-    type: 'Input',
-    name: 'name',
-    label: '字段名称',
-  },
-  {
-    type: 'RadioGroup',
-    name: 'span',
-    label: '占据列数',
-    props: {
-      optionType: 'button',
-      options: [
-        {
-          label: '1列',
-          value: 1,
-        },
-        {
-          label: '2列',
-          value: 2,
-        },
-        {
-          label: '3列',
-          value: 3,
-        },
-      ],
-    },
-  },
+export default formItemSchema([
   {
     type: 'InputNumber',
     name: 'labelWidth',
@@ -61,47 +21,4 @@ const fields: SchemaProps<{}>[] = [
     valuePropName: 'checked',
     label: '改变立即查询',
   },
-  {
-    type: 'Select',
-    name: 'effect',
-    label: '设置effect',
-    props: {
-      mode: 'multiple',
-    },
-  },
-  {
-    type: 'Switch',
-    name: 'effectClearField',
-    valuePropName: 'checked',
-    label: '依赖变化清空值',
-    visible({ effect }) {
-      return effect?.length > 0;
-    },
-  },
-  {
-    type: 'FunctionEditor',
-    name: 'isShow',
-    label: '设置isShow',
-    props: {
-      noChangeClearCode: true,
-    },
-  },
-  {
-    type: 'FunctionEditor',
-    name: 'beforeReceive',
-    label: '设置beforeReceive',
-    props: {
-      noChangeClearCode: true,
-    },
-  },
-  {
-    type: 'FunctionEditor',
-    name: 'transfrom',
-    label: '设置transfrom',
-    props: {
-      noChangeClearCode: true,
-    },
-  },
-];
-
-export default fields;
+]);

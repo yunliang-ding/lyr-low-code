@@ -3,7 +3,29 @@
  */
 import { SchemaProps } from 'react-core-form';
 
-const fields: SchemaProps<{}>[] = [
+export const formItemSchema = (
+  insertSchema = [
+    {
+      type: 'Switch',
+      valuePropName: 'checked',
+      name: 'required',
+      label: '是否必填',
+    },
+    {
+      type: 'FunctionEditor',
+      name: 'rules_is_code',
+      label: '规则校验',
+      props: {
+        prefix: '',
+        style: {
+          height: 160,
+          width: 360,
+        },
+        defaultCode: '[{}]',
+      },
+    },
+  ] as SchemaProps<{}>[],
+): SchemaProps<{}>[] => [
   {
     type: 'Input',
     name: 'key',
@@ -44,25 +66,7 @@ const fields: SchemaProps<{}>[] = [
       ],
     },
   },
-  {
-    type: 'Switch',
-    valuePropName: 'checked',
-    name: 'required',
-    label: '是否必填',
-  },
-  {
-    type: 'FunctionEditor',
-    name: 'rules_is_code',
-    label: '规则校验',
-    props: {
-      prefix: '',
-      style: {
-        height: 160,
-        width: 360,
-      },
-      defaultCode: '[{}]',
-    },
-  },
+  ...insertSchema,
   {
     type: 'Select',
     name: 'effect',
@@ -87,7 +91,7 @@ const fields: SchemaProps<{}>[] = [
       noChangeClearCode: true,
       defaultCode: `async (name, form) => {
  
- }`,
+}`,
     },
   },
   {
@@ -110,8 +114,8 @@ const fields: SchemaProps<{}>[] = [
       },
       noChangeClearCode: true,
       defaultCode: `(values) => {
-   return true;
- }`,
+  return true;
+}`,
     },
   },
   {
@@ -124,9 +128,9 @@ const fields: SchemaProps<{}>[] = [
         width: 360,
       },
       noChangeClearCode: true,
-      defaultCode: `async (values) => {
+      defaultCode: `(values) => {
  
- }`,
+}`,
     },
   },
   {
@@ -139,9 +143,9 @@ const fields: SchemaProps<{}>[] = [
         width: 360,
       },
       noChangeClearCode: true,
-      defaultCode: `async (values) => {
+      defaultCode: `(values) => {
  
- }`,
+}`,
     },
   },
   {
@@ -154,11 +158,11 @@ const fields: SchemaProps<{}>[] = [
         width: 360,
       },
       noChangeClearCode: true,
-      defaultCode: `async (dom, { form }) => {
+      defaultCode: `(dom, { form }) => {
  
- }`,
+}`,
     },
   },
 ];
 
-export default fields;
+export default formItemSchema;

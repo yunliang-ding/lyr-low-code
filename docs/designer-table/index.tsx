@@ -61,11 +61,46 @@ export default () => {
                   },
                 });
               } else {
-                message.info('请选择表单项');
+                message.info('请选择配置项');
               }
             }}
           >
             导出schema
+          </Button>
+          <Button
+            type="primary"
+            key="export"
+            onClick={() => {
+              if (tableDesignerRef.current.columns?.length > 0) {
+                const code = tableDesignerRef.current
+                  .getStandardSchema({
+                    searchSchema: {
+                      ...tableDesignerRef.current.formProps,
+                      schema: tableDesignerRef.current.schema,
+                    },
+                    tableSchema: {
+                      ...tableDesignerRef.current.tableProps,
+                      columns: tableDesignerRef.current.columns,
+                    },
+                  })
+                  .replace('export default ', '');
+                const jsx = `import { Table } from 'react-core-form';
+
+const schema = ${code}
+export default () => {
+  return <Table {...schema} />
+}`;
+                window.open(
+                  `#/~demos/docs-form-playground?schema=${encodeURIComponent(
+                    jsx,
+                  )}`,
+                );
+              } else {
+                message.info('请选择配置项');
+              }
+            }}
+          >
+            去 Playground 预览
           </Button>
         </Space>
       </div>

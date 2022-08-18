@@ -20,6 +20,8 @@ export interface TableListProps {
     onClick: (item, onCellChange?) => {};
   }[];
   creatorButtonProps?: any;
+  focusName?: string;
+  openConfirm?: boolean;
 }
 
 export default ({
@@ -31,6 +33,8 @@ export default ({
   creatorButtonProps = {
     type: 'primary',
   },
+  focusName = 'title',
+  openConfirm = true,
 }: TableListProps) => {
   const onCellChange = (v, key, index) => {
     value[index][key] = v;
@@ -112,7 +116,7 @@ export default ({
                       {
                         key: 'remove',
                         label: '删除',
-                        confirm: {
+                        confirm: openConfirm && {
                           title: '提示',
                           content: '是否确认删除',
                         },
@@ -128,12 +132,12 @@ export default ({
                           confirm={item.confirm}
                           onClick={() => {
                             if (item.key !== 'remove') {
-                              if (isEmpty(value[index].title)) {
+                              if (isEmpty(value[index]?.[focusName])) {
                                 return document
                                   .getElementById(
-                                    `app-table-list-input-title-${index}`,
+                                    `app-table-list-input-${focusName}-${index}`,
                                   )
-                                  .focus();
+                                  ?.focus();
                               }
                             }
                             item.onClick?.(record, (v, key) => {

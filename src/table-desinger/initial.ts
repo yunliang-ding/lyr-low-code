@@ -81,15 +81,5 @@ export const defaultInitialValues = {
     total: 1
   }
 } _#}}`,
-    toolsClick: `{{_#async (tool) => {
-  if(tool.key === 'add'){
-    console.log('add')
-  }
-} _#}}`,
-    rowOperationsClick: `{{_#async (menu, record) => {
-  if(menu.key === 'edit'){
-    console.log('record', record)
-  }
-} _#}}`,
   },
 };

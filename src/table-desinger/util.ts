@@ -23,6 +23,20 @@ export const getStandardSchema = (scurce = {}) => {
   }
   delete schema.tableSchema.pageSize;
   schema.tableSchema.tools = schema.tableSchema.tools.filter((i) => i);
+  // clear tools
+  schema.tableSchema.tools = schema.tableSchema.tools?.map((item) => {
+    if (item.spin !== true) {
+      delete item.spin;
+    }
+    if (item.ghost !== true) {
+      delete item.ghost;
+    }
+    if (item.btnType === 'primary') {
+      delete item.btnType;
+    }
+    delete item.bindFormType;
+    return item;
+  });
   schema.tableSchema.rowOperations = {
     title: '操作',
     fixed: 'right',
@@ -38,11 +52,12 @@ export const getStandardSchema = (scurce = {}) => {
                 title: '提示',
                 content: item.content,
               };
-              delete item.content;
+            } else {
+              delete item.confirm;
             }
-            return {
-              ...item,
-            };
+            delete item.content;
+            delete item.bindFormType;
+            return item;
           }),
         null,
         2,

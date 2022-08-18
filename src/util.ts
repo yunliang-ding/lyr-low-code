@@ -210,7 +210,9 @@ export const getCleanCloneSchema = (
       export ${prefix} ${JSON.stringify(fields[0], null, 2)?.replaceAll(
       '\\"',
       '"',
-    )}`).replaceAll('\\n', '\n'),
+    )}`)
+      .replaceAll('\\n', '\n')
+      .replaceAll('\\', ''),
     {
       parser: 'typescript',
       plugins,

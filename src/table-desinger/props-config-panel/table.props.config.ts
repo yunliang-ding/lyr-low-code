@@ -1,11 +1,265 @@
 /**
  * Table的属性配置
  */
-import { SchemaProps } from 'react-core-form';
+import FunctionEditor from '../../function-editor';
+import { CreateForm, SchemaProps } from 'react-core-form';
 
-const fields: SchemaProps<{
-  path: string;
-}>[] = [
+/** 顶部工具栏 */
+const drawerToolForm = CreateForm.Drawer({
+  containId: 'table-tools-drawer',
+  footer: false,
+  width: 400,
+  drawerProps: {
+    footer: false,
+    headerStyle: {
+      height: 43.5,
+    },
+    style: {
+      top: 64,
+      height: 'calc(100% - 57px)',
+    },
+  },
+  widgets: {
+    FunctionEditor,
+  },
+  schema: [
+    {
+      type: 'Select',
+      name: 'btnType',
+      label: '按钮主题',
+      props: {
+        options: [
+          {
+            label: '默认',
+            value: 'default',
+          },
+          {
+            label: '主题色',
+            value: 'primary',
+          },
+        ],
+      },
+    },
+    {
+      type: 'Switch',
+      name: 'spin',
+      valuePropName: 'checked',
+      label: '开始loading',
+    },
+    {
+      type: 'Switch',
+      name: 'ghost',
+      valuePropName: 'checked',
+      label: '使用ghost',
+    },
+    {
+      type: 'Input',
+      name: 'auth',
+      label: '配置权限标识',
+      tooltip: '控制按钮权限',
+    },
+    {
+      type: 'FunctionEditor',
+      name: 'visible',
+      label: '是否展示',
+      props: {
+        noChangeClearCode: true,
+        style: {
+          height: 100,
+          width: 360,
+        },
+        defaultCode: `() => {
+  return true
+}`,
+      } as any,
+    },
+
+    {
+      type: 'RadioGroup',
+      name: 'bindFormType',
+      label: '绑定表单',
+      props: {
+        optionType: 'button',
+        options: [
+          {
+            label: 'Modal 弹出层',
+            value: 'modal',
+          },
+          {
+            label: 'Drawer 抽屉',
+            value: 'drawer',
+          },
+        ],
+      },
+    },
+    {
+      type: 'FunctionEditor',
+      name: 'drawerFormProps',
+      label: '绑定DrawerForm',
+      effect: ['bindFormType'],
+      visible({ bindFormType }) {
+        return bindFormType === 'drawer';
+      },
+      props: {
+        noChangeClearCode: true,
+        defaultCode: `({ onSearch }) => {
+ 
+}`,
+      } as any,
+    },
+    {
+      type: 'FunctionEditor',
+      name: 'modalFormProps',
+      label: '绑定ModalForm',
+      effect: ['bindFormType'],
+      visible({ bindFormType }) {
+        return bindFormType === 'modal';
+      },
+      props: {
+        noChangeClearCode: true,
+        defaultCode: `({ onSearch }) => {
+ 
+}`,
+      } as any,
+    },
+    {
+      type: 'FunctionEditor',
+      name: 'onClick',
+      label: '点击事件',
+      props: {
+        noChangeClearCode: true,
+        defaultCode: `async (params, { onSearch }) => {
+ 
+}`,
+      } as any,
+    },
+  ],
+});
+
+/** 列操作栏 */
+const drawerMenuForm = CreateForm.Drawer({
+  containId: 'table-menu-drawer',
+  footer: false,
+  width: 400,
+  drawerProps: {
+    footer: false,
+    headerStyle: {
+      height: 43.5,
+    },
+    style: {
+      top: 64,
+      height: 'calc(100% - 57px)',
+    },
+  },
+  widgets: {
+    FunctionEditor,
+  },
+  schema: [
+    {
+      type: 'Switch',
+      name: 'spin',
+      valuePropName: 'checked',
+      label: '开始loading',
+    },
+    {
+      type: 'Input',
+      name: 'auth',
+      label: '配置权限标识',
+      tooltip: '控制按钮权限',
+    },
+    {
+      type: 'Switch',
+      name: 'confirm',
+      valuePropName: 'checked',
+      label: '开启二次确认',
+    },
+    {
+      type: 'Input',
+      name: 'content',
+      label: '提示内容',
+      effect: ['confirm'],
+      visible({ confirm }) {
+        return confirm;
+      },
+    },
+    {
+      type: 'FunctionEditor',
+      name: 'visible',
+      label: '是否展示',
+      props: {
+        noChangeClearCode: true,
+        style: {
+          height: 100,
+          width: 360,
+        },
+        defaultCode: `(record) => {
+  return true
+}`,
+      } as any,
+    },
+    {
+      type: 'RadioGroup',
+      name: 'bindFormType',
+      label: '绑定表单',
+      props: {
+        optionType: 'button',
+        options: [
+          {
+            label: 'Modal 弹出层',
+            value: 'modal',
+          },
+          {
+            label: 'Drawer 抽屉',
+            value: 'drawer',
+          },
+        ],
+      },
+    },
+    {
+      type: 'FunctionEditor',
+      name: 'drawerFormProps',
+      label: '绑定DrawerForm',
+      effect: ['bindFormType'],
+      visible({ bindFormType }) {
+        return bindFormType === 'drawer';
+      },
+      props: {
+        noChangeClearCode: true,
+        defaultCode: `({ query }) => {
+ 
+}`,
+      } as any,
+    },
+    {
+      type: 'FunctionEditor',
+      name: 'modalFormProps',
+      label: '绑定ModalForm',
+      effect: ['bindFormType'],
+      visible({ bindFormType }) {
+        return bindFormType === 'modal';
+      },
+      props: {
+        noChangeClearCode: true,
+        defaultCode: `({ query }) => {
+ 
+}`,
+      } as any,
+    },
+    {
+      type: 'FunctionEditor',
+      name: 'onClick',
+      label: '点击事件',
+      props: {
+        noChangeClearCode: true,
+        defaultCode: `async (record, { query }) => {
+ 
+}`,
+      } as any,
+    },
+  ],
+});
+
+const schema: SchemaProps<{}>[] = [
   {
     type: 'Input',
     name: 'title',
@@ -17,9 +271,22 @@ const fields: SchemaProps<{
     label: '空数据提示文案',
   },
   {
-    type: 'InputNumber',
-    name: 'scrollX',
-    label: '容器水平宽度',
+    type: 'RadioGroup',
+    name: 'size',
+    label: '尺寸大小',
+    props: {
+      optionType: 'button',
+      options: [
+        {
+          label: 'small',
+          value: 'small',
+        },
+        {
+          label: 'middle',
+          value: 'middle',
+        },
+      ],
+    },
   },
   {
     type: 'BlockQuote',
@@ -28,58 +295,77 @@ const fields: SchemaProps<{
     },
   },
   {
-    type: 'Switch',
-    name: 'closeDefaultTools',
-    valuePropName: 'checked',
-    label: '关闭默认操作栏',
+    type: 'RadioGroup',
+    name: 'toolsAlign',
+    label: '工具栏位置',
+    props: {
+      optionType: 'button',
+      options: [
+        {
+          label: '左对齐',
+          value: 'left',
+        },
+        {
+          label: '右对齐',
+          value: 'right',
+        },
+      ],
+    },
   },
-
+  {
+    type: 'Switch',
+    name: 'useRefresh',
+    valuePropName: 'checked',
+    label: '启用刷新',
+  },
+  {
+    type: 'Switch',
+    name: 'useFilterColumns',
+    valuePropName: 'checked',
+    label: '启用过滤',
+  },
   {
     type: 'Switch',
     name: 'autoNo',
     valuePropName: 'checked',
-    label: '使用自增序号',
+    label: '启用自增序号',
   },
   {
-    type: 'FormList',
+    type: 'InputNumber',
+    name: 'scrollX',
+    label: '容器水平宽度',
+  },
+  {
+    type: 'TableList',
     name: 'tools',
     label: '工具栏集合',
     props: {
-      grid: {
-        gridStyle: {
-          rowGap: 0,
-          columnGap: 20,
-        },
-        column: 3,
-      },
-      label: '选项',
-      schema: [
+      openConfirm: false,
+      focusName: 'label',
+      actions: [
         {
-          type: 'Input',
-          name: 'label',
-          label: '标签名',
-        },
-        {
-          type: 'Input',
-          name: 'key',
-          label: '唯一标识',
-        },
-        {
-          type: 'Select',
-          name: 'btnType',
-          label: '按钮主题',
-          props: {
-            options: [
-              {
-                label: '默认',
-                value: 'default',
+          key: 'edit',
+          label: '修改',
+          onClick: (record, onCellChange) => {
+            drawerToolForm.open({
+              title: record.label,
+              initialValues: record,
+              onValuesChange: (v: any) => {
+                const k = Object.keys(v)[0];
+                onCellChange(v[k], k);
               },
-              {
-                label: '主题色',
-                value: 'primary',
-              },
-            ],
+            });
           },
+        },
+      ],
+      columns: [
+        {
+          title: '标签名',
+          dataIndex: 'label',
+        },
+        {
+          title: '唯一标识',
+          dataIndex: 'key',
         },
       ],
     },
@@ -101,50 +387,36 @@ const fields: SchemaProps<{
     label: '操作栏宽度',
   },
   {
-    type: 'FormList',
+    type: 'TableList',
     name: 'menus',
     label: '操作栏列集合',
     props: {
-      label: '选项',
-      grid: {
-        gridStyle: {
-          rowGap: 0,
-          columnGap: 20,
-        },
-        column: 3,
-      },
-      schema: [
+      openConfirm: false,
+      focusName: 'label',
+      actions: [
         {
-          type: 'Input',
-          name: 'label',
-          label: '标签名',
-        },
-        {
-          type: 'Input',
-          name: 'key',
-          label: '唯一标识',
-        },
-        {
-          type: 'Switch',
-          name: 'spin',
-          valuePropName: 'checked',
-          label: '开启加载',
-        },
-        {
-          type: 'Switch',
-          name: 'confirm',
-          valuePropName: 'checked',
-          label: '开启二次确认',
-        },
-        {
-          type: 'Input',
-          name: 'content',
-          label: '提示内容',
-          span: 2,
-          effect: [['menus', 'index', 'confirm']],
-          visible({ menus }) {
-            return menus[this.name[0]]?.confirm;
+          key: 'edit',
+          label: '修改',
+          onClick: (record, onCellChange) => {
+            drawerMenuForm.open({
+              title: record.label,
+              initialValues: record,
+              onValuesChange: (v: any) => {
+                const k = Object.keys(v)[0];
+                onCellChange(v[k], k);
+              },
+            });
           },
+        },
+      ],
+      columns: [
+        {
+          title: '标签名',
+          dataIndex: 'label',
+        },
+        {
+          title: '唯一标识',
+          dataIndex: 'key',
         },
       ],
     },
@@ -169,18 +441,8 @@ const fields: SchemaProps<{
   {
     type: 'FunctionEditor',
     name: 'request',
-    label: '设置request',
-  },
-  {
-    type: 'FunctionEditor',
-    name: 'toolsClick',
-    label: '设置toolsClick',
-  },
-  {
-    type: 'FunctionEditor',
-    name: 'rowOperationsClick',
-    label: '设置rowOperationsClick',
+    label: '数据查询事件',
   },
 ];
 
-export default fields;
+export default schema;

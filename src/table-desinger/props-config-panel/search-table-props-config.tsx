@@ -30,6 +30,7 @@ export default ({
         <Form
           widgets={{
             FunctionEditor,
+            TableList,
           }}
           schema={TablePropsConfig}
           initialValues={ctx.tableProps}

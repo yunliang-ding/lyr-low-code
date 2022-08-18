@@ -41,10 +41,14 @@ export default ({
     onChange([...value]);
   };
   const add = () => {
-    value.push({
-      width: 200,
-      dataIndex: `key_${uuid(4)}`,
-    });
+    value.push(
+      focusName === 'title'
+        ? {
+            width: 200,
+            dataIndex: `key_${uuid(4)}`,
+          }
+        : {},
+    );
     onChange([...value]);
   };
   const remove = (index: number) => {

@@ -225,7 +225,7 @@ const drawerMenuForm = CreateForm.Drawer({
       },
       props: {
         noChangeClearCode: true,
-        defaultCode: `({ query }) => {
+        defaultCode: `(record, { query }) => {
  
 }`,
       } as any,
@@ -240,7 +240,7 @@ const drawerMenuForm = CreateForm.Drawer({
       },
       props: {
         noChangeClearCode: true,
-        defaultCode: `({ query }) => {
+        defaultCode: `(record, { query }) => {
  
 }`,
       } as any,

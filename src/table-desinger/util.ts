@@ -13,6 +13,9 @@ export const getStandardSchema = (scurce = {}) => {
   if (schema.searchSchema.size === 'middle') {
     delete schema.searchSchema.size;
   }
+  if (schema.searchSchema.schema?.length === 0) {
+    delete schema.searchSchema;
+  }
   if (schema.tableSchema.emptyNode === '-') {
     delete schema.tableSchema.emptyNode;
   }
@@ -64,6 +67,9 @@ export const getStandardSchema = (scurce = {}) => {
       )}
 }_#}}`,
   };
+  if (!(schema.tableSchema.menus.length > 0)) {
+    delete schema.tableSchema.rowOperations;
+  }
   schema.tableSchema.scroll = {
     x: schema.tableSchema.scrollX,
   };
@@ -82,71 +88,13 @@ export const getStandardSchema = (scurce = {}) => {
 
 /** 模型转换给Table */
 export const parseTableSchema = (values: any = {}) => {
-  /** 工具栏 */
-  if (values.closeDefaultTools === true) {
-    values.defaultTools = [];
-  }
-  /** 分页组装 */
-  if (values.pagination && values.pageSize) {
-    values.paginationConfig = {
-      pageSize: values.pageSize,
-    };
-  }
-  /** rowOperations 组装 */
-  values.rowOperations = {
-    showMore: values.showMore,
-    width: values.width,
-    title: '操作',
-    fixed: 'right',
-    menus: (record) => {
-      return (
-        values.menus.map((menu) => {
-          if (menu.confirm) {
-            menu.confirm = {
-              title: '提示',
-              content: menu.content,
-            };
-          }
-          return menu;
-        }) || []
-      );
-    },
-  };
-  /**
-   * 函数的解析
-   */
-  if (values.request) {
-    try {
-      values.request = babelParse(decrypt(values.request, false));
-    } catch (error) {
-      console.log('request 解析异常->', error);
-    }
-  }
-  if (values.toolsClick) {
-    try {
-      values.toolsClick = babelParse(decrypt(values.toolsClick, false));
-    } catch (error) {
-      console.log('toolsClick 解析异常->', error);
-    }
-  }
-  if (values.rowOperationsClick) {
-    try {
-      values.rowOperationsClick = babelParse(
-        decrypt(values.rowOperationsClick, false),
-      );
-    } catch (error) {
-      console.log('rowOperationsClick 解析异常->', error);
-    }
-  }
-  /** 删除无效属性 */
-  delete values.showMore;
-  delete values.width;
-  delete values.pageSize;
-  values.scroll = {
-    x: values.scrollX,
-  };
-  delete values.scrollX;
-  return values;
+  return babelParse(
+    getStandardSchema({
+      searchSchema: {},
+      tableSchema: values,
+    }),
+    '',
+  );
 };
 
 export const parseTableColumns = (columns = []) => {

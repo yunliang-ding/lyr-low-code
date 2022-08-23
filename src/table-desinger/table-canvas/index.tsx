@@ -6,7 +6,6 @@ import { uuid as Uuid, cloneDeep } from '@/util';
 import { Ctx } from '../store';
 import { Empty } from 'antd';
 import { parseTableColumns, parseTableSchema } from '../util';
-import { deleteCompent } from '@/form-designer/form-canvas/util';
 import './index.less';
 
 export interface FormCanvasType {
@@ -19,9 +18,6 @@ export interface FormCanvasType {
   /** 开启 ctrl + s */
   onCtrlS?: () => void;
 }
-
-/** 鼠标是否悬停在画布 */
-let mouseIsHoveringCanvas = false;
 
 export default ({
   empty = '点击/拖拽左侧栏的组件进行添加',
@@ -143,14 +139,6 @@ export default ({
     ) {
       e.preventDefault();
       onCtrlS();
-    } else if (e.key === 'Backspace' && mouseIsHoveringCanvas) {
-      /** 删除该字段 */
-      deleteCompent({
-        itemSchema: ctx.selectSchema,
-        schema: ctx.schema,
-        setSelectSchema: ctx.setSelectSchema,
-        onSchemaUpdate: ctx.setSchema,
-      });
     }
   };
   useEffect(() => {
@@ -171,17 +159,7 @@ export default ({
     table.onSearch();
   }, [ctx.tableProps.request]);
   return (
-    <div
-      ref={drop}
-      className={cls.join(' ')}
-      style={style}
-      onMouseEnter={() => {
-        mouseIsHoveringCanvas = true;
-      }}
-      onMouseLeave={() => {
-        mouseIsHoveringCanvas = false;
-      }}
-    >
+    <div ref={drop} className={cls.join(' ')} style={style}>
       {isOver && <div className="table-canvas-mask" />}
       {ctx?.columns.length === 0 ? (
         <Empty
@@ -193,6 +171,7 @@ export default ({
         <Table
           key={reload}
           table={table}
+          {...parseTableSchema(cloneDeep(ctx?.tableProps))}
           columns={parseTableColumns(cloneDeep(ctx.columns))}
           searchSchema={
             _schema.length > 0 && {
@@ -201,7 +180,6 @@ export default ({
               schema: _schema,
             }
           }
-          {...parseTableSchema(cloneDeep(ctx?.tableProps))}
           tableRender={(dom) => {
             return (
               <div

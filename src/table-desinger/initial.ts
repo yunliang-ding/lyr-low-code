@@ -52,6 +52,9 @@ export const defaultInitialValues = {
     pageSize: 10,
     showMore: 4,
     width: 180,
+    pagination: true,
+    rowKey: 'id',
+    openDefaultTools: true,
     menus: [
       {
         label: '详情',

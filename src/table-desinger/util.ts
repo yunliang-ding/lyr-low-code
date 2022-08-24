@@ -19,6 +19,12 @@ export const getStandardSchema = (scurce = {}) => {
   if (schema.tableSchema.emptyNode === '-') {
     delete schema.tableSchema.emptyNode;
   }
+  if (schema.tableSchema.pagination === true) {
+    delete schema.tableSchema.pagination;
+  }
+  if (schema.tableSchema.rowKey === 'id') {
+    delete schema.tableSchema.rowKey;
+  }
   if (schema.tableSchema.pageSize !== 10) {
     schema.tableSchema.paginationConfig = {
       pageSize: schema.tableSchema.pageSize,
@@ -76,6 +82,10 @@ export const getStandardSchema = (scurce = {}) => {
   if (schema.tableSchema.autoNo !== true) {
     delete schema.tableSchema.autoNo;
   }
+  if (schema.tableSchema.openDefaultTools !== true) {
+    schema.tableSchema.defaultTools = [];
+  }
+  delete schema.tableSchema.openDefaultTools;
   delete schema.tableSchema.scrollX;
   delete schema.tableSchema.showMore;
   delete schema.tableSchema.width;

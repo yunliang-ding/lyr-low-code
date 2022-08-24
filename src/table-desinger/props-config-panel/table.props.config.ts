@@ -262,6 +262,11 @@ const drawerMenuForm = CreateForm.Drawer({
 const schema: SchemaProps<{}>[] = [
   {
     type: 'Input',
+    name: 'rowKey',
+    label: '唯一标识',
+  },
+  {
+    type: 'Input',
     name: 'title',
     label: '列表标题',
   },
@@ -314,15 +319,15 @@ const schema: SchemaProps<{}>[] = [
   },
   {
     type: 'Switch',
-    name: 'useRefresh',
+    name: 'pagination',
     valuePropName: 'checked',
-    label: '启用刷新',
+    label: '启用分页',
   },
   {
     type: 'Switch',
-    name: 'useFilterColumns',
+    name: 'openDefaultTools',
     valuePropName: 'checked',
-    label: '启用过滤',
+    label: '启用默认工具栏',
   },
   {
     type: 'Switch',

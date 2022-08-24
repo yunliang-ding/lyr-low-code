@@ -189,6 +189,9 @@ export const getCleanCloneSchema = (
     if (item.props?.showCount === false) {
       delete item.props.showCount;
     }
+    if (item.props?.mode === 'default') {
+      delete item.props.mode;
+    }
     if (item.props?.maxLength === 64) {
       delete item.props.maxLength;
     }

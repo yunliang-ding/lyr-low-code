@@ -73,7 +73,6 @@ const RegisterWidgets = ({
         label: widget.label,
         span: widget.span === 'fill' ? ctx.formProps.column : 1,
         name: `${widget.type || ''}_${uuid}`,
-        required: false,
         props: cloneDeep(widget.props), // 剔除引用关系
       });
       ctx.setSchema([...ctx.schema]);

@@ -13,11 +13,6 @@ export default ({ type, props, onClick, widget, column = 2 }) => {
             label: widget.label,
             name: widget.type,
             span: widget.span === 'fill' ? column : 1,
-            rules: [
-              {
-                required: false,
-              },
-            ],
             props,
             isNew: true, // 新增标识
           },

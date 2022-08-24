@@ -26,6 +26,27 @@ const cellDetailFields: SchemaProps<{}>[] = [
     name: 'suffix',
   },
   {
+    type: 'Select',
+    label: '日期格式转换',
+    name: 'dateFormat',
+    props: {
+      options: [
+        {
+          label: '年-月-日',
+          value: 'YYYY-MM-DD',
+        },
+        {
+          label: '年-月-日 时:分',
+          value: 'YYYY-MM-DD hh:mm',
+        },
+        {
+          label: '年-月-日 时:分:秒',
+          value: 'YYYY-MM-DD hh:mm:ss',
+        },
+      ],
+    },
+  },
+  {
     type: 'Switch',
     name: 'ellipsis',
     valuePropName: 'checked',

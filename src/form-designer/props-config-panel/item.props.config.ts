@@ -25,6 +25,7 @@ export const formItemSchema = (
       },
     },
   ] as SchemaProps<{}>[],
+  type?: string,
 ): SchemaProps<{}>[] => [
   {
     type: 'Input',
@@ -51,6 +52,9 @@ export const formItemSchema = (
     extra: '用于区间组件设置别名',
     props: {
       mode: 'Input',
+    },
+    visible() {
+      return ['RangeInput', 'RangePicker'].includes(type);
     },
   },
   {

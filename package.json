@@ -49,15 +49,15 @@
   "peerDependencies": {
     "react": "17.0.2",
     "antd": "4.20.0",
-    "react-core-form": "0.0.8"
+    "react-core-form": "0.0.9"
   },
   "devDependencies": {
+    "react-core-form": "0.0.9",
     "@types/lodash": "4.14.168",
     "@umijs/test": "^3.0.5",
     "@types/ali-oss": "6.16.3",
     "@babel/runtime": "7.16.0",
     "antd": "4.20.0",
-    "react-core-form": "^0.0.8",
     "axios": "^0.21.1",
     "babel-plugin-import": "1.13.3",
     "dumi": "^1.0.14",

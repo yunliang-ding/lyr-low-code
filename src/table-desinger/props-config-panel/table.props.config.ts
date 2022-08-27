@@ -4,9 +4,166 @@
 import FunctionEditor from '../../function-editor';
 import { CreateForm, SchemaProps } from 'react-core-form';
 
+/** 顶部工具栏和操作栏相同部分 */
+const toolPropsConfig = (isRowOperation = false): SchemaProps<{}>[] => {
+  return [
+    {
+      type: 'Switch',
+      name: 'spin',
+      valuePropName: 'checked',
+      label: '开启loading',
+    },
+    {
+      type: 'Input',
+      name: 'auth',
+      label: '配置权限标识',
+      tooltip: '控制按钮权限',
+    },
+    {
+      type: 'FunctionEditor',
+      name: 'visible',
+      label: '是否展示',
+      props: {
+        noChangeClearCode: true,
+        style: {
+          height: 100,
+          width: 360,
+        },
+        defaultCode: isRowOperation
+          ? `(record) => {
+  return true
+}`
+          : `() => {
+  return true
+}`,
+      } as any,
+    },
+    {
+      type: 'RadioGroup',
+      name: 'bindFormType',
+      label: '绑定表单',
+      props: {
+        optionType: 'button',
+        options: [
+          {
+            label: '我的表单模型',
+            value: 'modelId',
+          },
+          {
+            label: '自定义 Modal',
+            value: 'modal',
+          },
+          {
+            label: '自定义 Drawer',
+            value: 'drawer',
+          },
+        ],
+      },
+    },
+    {
+      type: 'AsyncSelect',
+      label: '选择表单模型',
+      name: 'modelId',
+      effect: ['bindFormType'],
+      visible({ bindFormType }) {
+        return bindFormType === 'modelId';
+      },
+      effectClearField: true,
+      props: {
+        options: () => {
+          return [
+            {
+              label: '新增用户',
+              value: 1,
+            },
+            {
+              label: '新增角色',
+              value: 2,
+            },
+          ];
+        },
+      },
+    },
+    {
+      type: 'RadioGroup',
+      name: 'modelIdType',
+      label: '展示形式',
+      effect: ['modelId', 'bindFormType'],
+      effectClearField: true,
+      visible({ modelId }) {
+        return modelId !== undefined;
+      },
+      props: {
+        options: [
+          {
+            label: 'Modal 展示',
+            value: 'modal',
+          },
+          {
+            label: 'Drawer 展示',
+            value: 'drawer',
+          },
+        ],
+      },
+    },
+    {
+      type: 'FunctionEditor',
+      name: 'drawerFormProps',
+      label: '绑定DrawerForm',
+      effect: ['bindFormType', 'modelIdType'],
+      visible({ bindFormType, modelIdType }) {
+        return bindFormType === 'drawer' || modelIdType === 'drawer';
+      },
+      props: {
+        noChangeClearCode: true,
+        defaultCode: isRowOperation
+          ? `async ({ onSearch }, record) => {
+
+}`
+          : `async ({ onSearch }) => {
+
+}`,
+      } as any,
+    },
+    {
+      type: 'FunctionEditor',
+      name: 'modalFormProps',
+      label: '绑定ModalForm',
+      effect: ['bindFormType', 'modelIdType'],
+      visible({ bindFormType, modelIdType }) {
+        return bindFormType === 'modal' || modelIdType === 'modal';
+      },
+      props: {
+        noChangeClearCode: true,
+        defaultCode: isRowOperation
+          ? `async ({ onSearch }, record) => {
+
+}`
+          : `async ({ onSearch }) => {
+
+}`,
+      } as any,
+    },
+    {
+      type: 'FunctionEditor',
+      name: 'onClick',
+      label: '点击事件',
+      props: {
+        noChangeClearCode: true,
+        defaultCode: isRowOperation
+          ? `async (record, { onSearch }) => {
+
+}`
+          : `async (params, { onSearch }) => {
+
+}`,
+      } as any,
+    },
+  ];
+};
+
 /** 顶部工具栏 */
 const drawerToolForm = CreateForm.Drawer({
-  containId: 'table-tools-drawer',
   footer: false,
   width: 400,
   drawerProps: {
@@ -42,103 +199,16 @@ const drawerToolForm = CreateForm.Drawer({
     },
     {
       type: 'Switch',
-      name: 'spin',
-      valuePropName: 'checked',
-      label: '开始loading',
-    },
-    {
-      type: 'Switch',
       name: 'ghost',
       valuePropName: 'checked',
       label: '使用ghost',
     },
-    {
-      type: 'Input',
-      name: 'auth',
-      label: '配置权限标识',
-      tooltip: '控制按钮权限',
-    },
-    {
-      type: 'FunctionEditor',
-      name: 'visible',
-      label: '是否展示',
-      props: {
-        noChangeClearCode: true,
-        style: {
-          height: 100,
-          width: 360,
-        },
-        defaultCode: `() => {
-  return true
-}`,
-      } as any,
-    },
-
-    {
-      type: 'RadioGroup',
-      name: 'bindFormType',
-      label: '绑定表单',
-      props: {
-        optionType: 'button',
-        options: [
-          {
-            label: 'Modal 弹出层',
-            value: 'modal',
-          },
-          {
-            label: 'Drawer 抽屉',
-            value: 'drawer',
-          },
-        ],
-      },
-    },
-    {
-      type: 'FunctionEditor',
-      name: 'drawerFormProps',
-      label: '绑定DrawerForm',
-      effect: ['bindFormType'],
-      visible({ bindFormType }) {
-        return bindFormType === 'drawer';
-      },
-      props: {
-        noChangeClearCode: true,
-        defaultCode: `({ onSearch }) => {
- 
-}`,
-      } as any,
-    },
-    {
-      type: 'FunctionEditor',
-      name: 'modalFormProps',
-      label: '绑定ModalForm',
-      effect: ['bindFormType'],
-      visible({ bindFormType }) {
-        return bindFormType === 'modal';
-      },
-      props: {
-        noChangeClearCode: true,
-        defaultCode: `({ onSearch }) => {
- 
-}`,
-      } as any,
-    },
-    {
-      type: 'FunctionEditor',
-      name: 'onClick',
-      label: '点击事件',
-      props: {
-        noChangeClearCode: true,
-        defaultCode: `async (params, { onSearch }) => {
- 
-}`,
-      } as any,
-    },
+    ...toolPropsConfig(true),
   ],
 });
 
 /** 列操作栏 */
 const drawerMenuForm = CreateForm.Drawer({
-  containId: 'table-menu-drawer',
   footer: false,
   width: 400,
   drawerProps: {
@@ -157,18 +227,6 @@ const drawerMenuForm = CreateForm.Drawer({
   schema: [
     {
       type: 'Switch',
-      name: 'spin',
-      valuePropName: 'checked',
-      label: '开始loading',
-    },
-    {
-      type: 'Input',
-      name: 'auth',
-      label: '配置权限标识',
-      tooltip: '控制按钮权限',
-    },
-    {
-      type: 'Switch',
       name: 'confirm',
       valuePropName: 'checked',
       label: '开启二次确认',
@@ -182,80 +240,7 @@ const drawerMenuForm = CreateForm.Drawer({
         return confirm;
       },
     },
-    {
-      type: 'FunctionEditor',
-      name: 'visible',
-      label: '是否展示',
-      props: {
-        noChangeClearCode: true,
-        style: {
-          height: 100,
-          width: 360,
-        },
-        defaultCode: `(record) => {
-  return true
-}`,
-      } as any,
-    },
-    {
-      type: 'RadioGroup',
-      name: 'bindFormType',
-      label: '绑定表单',
-      props: {
-        optionType: 'button',
-        options: [
-          {
-            label: 'Modal 弹出层',
-            value: 'modal',
-          },
-          {
-            label: 'Drawer 抽屉',
-            value: 'drawer',
-          },
-        ],
-      },
-    },
-    {
-      type: 'FunctionEditor',
-      name: 'drawerFormProps',
-      label: '绑定DrawerForm',
-      effect: ['bindFormType'],
-      visible({ bindFormType }) {
-        return bindFormType === 'drawer';
-      },
-      props: {
-        noChangeClearCode: true,
-        defaultCode: `(record, { query }) => {
- 
-}`,
-      } as any,
-    },
-    {
-      type: 'FunctionEditor',
-      name: 'modalFormProps',
-      label: '绑定ModalForm',
-      effect: ['bindFormType'],
-      visible({ bindFormType }) {
-        return bindFormType === 'modal';
-      },
-      props: {
-        noChangeClearCode: true,
-        defaultCode: `(record, { query }) => {
- 
-}`,
-      } as any,
-    },
-    {
-      type: 'FunctionEditor',
-      name: 'onClick',
-      label: '点击事件',
-      props: {
-        noChangeClearCode: true,
-        defaultCode: `async (record, { query }) => {
- 
-}`,
-      } as any,
-    },
+    ...toolPropsConfig(true),
   ],
 });
 

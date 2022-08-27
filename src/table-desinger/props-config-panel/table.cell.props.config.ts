@@ -114,7 +114,6 @@ const cellDetailFields: SchemaProps<{}>[] = [
 const drawerCellForm = CreateForm.Drawer({
   width: 400,
   schema: cellDetailFields,
-  containId: 'table-cell-drawer',
   footer: false,
   widgets: {
     FunctionEditor,

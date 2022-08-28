@@ -102,10 +102,13 @@ const toolPropsConfig = (isRowOperation = false): SchemaProps<{}>[] => {
               modelIdType === 'modal' ? 'modalFormProps' : 'drawerFormProps';
             form.setFieldsValueTouchOnValuesChange({
               [key]: isRowOperation
-                ? `async ({ onRefresh }, record) => {
+                ? `{{_#async ({ onRefresh }, record) => {
   const formProps = await getCrudModelById(${modelId});
   return {
     ...formProps,
+    initialValues: {
+      ...record,
+    }
     async onSubmit(v){
       try {
         await formProps.onSubmit(v);
@@ -115,8 +118,8 @@ const toolPropsConfig = (isRowOperation = false): SchemaProps<{}>[] => {
       }
     }
   }
-}`
-                : `async ({ onSearch }) => {
+}_#}}`
+                : `{{_#async ({ onSearch }) => {
   const formProps = await getCrudModelById(${modelId});
   return {
     ...formProps,
@@ -129,7 +132,7 @@ const toolPropsConfig = (isRowOperation = false): SchemaProps<{}>[] => {
       }
     }
   }
-}`,
+}_#}}`,
             });
           }
         },

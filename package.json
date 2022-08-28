@@ -49,10 +49,10 @@
   "peerDependencies": {
     "react": "17.0.2",
     "antd": "4.20.0",
-    "react-core-form": "0.0.9"
+    "react-core-form": "0.0.11"
   },
   "devDependencies": {
-    "react-core-form": "0.0.9",
+    "react-core-form": "0.0.11",
     "@types/lodash": "4.14.168",
     "@umijs/test": "^3.0.5",
     "@types/ali-oss": "6.16.3",

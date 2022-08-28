@@ -44,6 +44,8 @@ export const getStandardSchema = (scurce = {}) => {
       delete item.btnType;
     }
     delete item.bindFormType;
+    delete item.modelId;
+    delete item.modelIdType;
     return item;
   });
   schema.tableSchema.rowOperations = {
@@ -66,6 +68,8 @@ export const getStandardSchema = (scurce = {}) => {
             }
             delete item.content;
             delete item.bindFormType;
+            delete item.modelId;
+            delete item.modelIdType;
             return item;
           }),
         null,

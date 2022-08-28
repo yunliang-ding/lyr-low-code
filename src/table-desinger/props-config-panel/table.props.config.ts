@@ -94,6 +94,45 @@ const toolPropsConfig = (isRowOperation = false): SchemaProps<{}>[] => {
         return modelId !== undefined;
       },
       props: {
+        onChange() {
+          const { form } = this;
+          const { modelId, modelIdType } = form.getFieldsValue(true);
+          if (modelIdType && modelId) {
+            const key =
+              modelIdType === 'modal' ? 'modalFormProps' : 'drawerFormProps';
+            form.setFieldsValueTouchOnValuesChange({
+              [key]: isRowOperation
+                ? `async ({ onRefresh }, record) => {
+  const formProps = await getCrudModelById(${modelId});
+  return {
+    ...formProps,
+    async onSubmit(v){
+      try {
+        await formProps.onSubmit(v);
+        onRefresh();
+      } catch(e) {
+        return Promise.reject();
+      }
+    }
+  }
+}`
+                : `async ({ onSearch }) => {
+  const formProps = await getCrudModelById(${modelId});
+  return {
+    ...formProps,
+    async onSubmit(v){
+      try {
+        await formProps.onSubmit(v);
+        onSearch();
+      } catch(e) {
+        return Promise.reject();
+      }
+    }
+  }
+}`,
+            });
+          }
+        },
         options: [
           {
             label: 'Modal 展示',
@@ -117,7 +156,7 @@ const toolPropsConfig = (isRowOperation = false): SchemaProps<{}>[] => {
       props: {
         noChangeClearCode: true,
         defaultCode: isRowOperation
-          ? `async ({ onSearch }, record) => {
+          ? `async ({ onRefresh }, record) => {
 
 }`
           : `async ({ onSearch }) => {
@@ -136,7 +175,7 @@ const toolPropsConfig = (isRowOperation = false): SchemaProps<{}>[] => {
       props: {
         noChangeClearCode: true,
         defaultCode: isRowOperation
-          ? `async ({ onSearch }, record) => {
+          ? `async ({ onRefresh }, record) => {
 
 }`
           : `async ({ onSearch }) => {
@@ -151,7 +190,7 @@ const toolPropsConfig = (isRowOperation = false): SchemaProps<{}>[] => {
       props: {
         noChangeClearCode: true,
         defaultCode: isRowOperation
-          ? `async (record, { onSearch }) => {
+          ? `async (record, { onRefresh }) => {
 
 }`
           : `async (params, { onSearch }) => {
@@ -203,7 +242,7 @@ const drawerToolForm = CreateForm.Drawer({
       valuePropName: 'checked',
       label: '使用ghost',
     },
-    ...toolPropsConfig(true),
+    ...toolPropsConfig(),
   ],
 });
 
@@ -244,7 +283,7 @@ const drawerMenuForm = CreateForm.Drawer({
   ],
 });
 
-const schema: SchemaProps<{}>[] = [
+export default [
   {
     type: 'Input',
     name: 'rowKey',
@@ -433,6 +472,4 @@ const schema: SchemaProps<{}>[] = [
     name: 'request',
     label: '数据查询事件',
   },
-];
-
-export default schema;
+] as SchemaProps<{}>[];

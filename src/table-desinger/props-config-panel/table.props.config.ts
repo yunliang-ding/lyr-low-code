@@ -44,6 +44,18 @@ const toolPropsConfig = (isRowOperation = false): SchemaProps<{}>[] => {
       label: '绑定表单',
       props: {
         optionType: 'button',
+        onChange(e) {
+          const v = e.target?.value;
+          if (v === 'modal') {
+            this.form.setFieldsValueTouchOnValuesChange({
+              drawerFormProps: undefined,
+            });
+          } else if (v === 'drawer') {
+            this.form.setFieldsValueTouchOnValuesChange({
+              modalFormProps: undefined,
+            });
+          }
+        },
         options: [
           {
             label: '我的表单模型',
@@ -90,8 +102,8 @@ const toolPropsConfig = (isRowOperation = false): SchemaProps<{}>[] => {
       label: '展示形式',
       effect: ['modelId', 'bindFormType'],
       effectClearField: true,
-      visible({ modelId }) {
-        return modelId !== undefined;
+      visible({ modelId, bindFormType }) {
+        return modelId !== undefined && bindFormType === 'modelId';
       },
       props: {
         onChange() {
@@ -100,6 +112,11 @@ const toolPropsConfig = (isRowOperation = false): SchemaProps<{}>[] => {
           if (modelIdType && modelId) {
             const key =
               modelIdType === 'modal' ? 'modalFormProps' : 'drawerFormProps';
+            const clearFieldName =
+              modelIdType === 'modal' ? 'drawerFormProps' : 'modalFormProps';
+            form.setFieldsValueTouchOnValuesChange({
+              [clearFieldName]: undefined,
+            });
             form.setFieldsValueTouchOnValuesChange({
               [key]: isRowOperation
                 ? `{{_#async ({ onRefresh }, record) => {
@@ -154,7 +171,10 @@ const toolPropsConfig = (isRowOperation = false): SchemaProps<{}>[] => {
       label: '绑定DrawerForm',
       effect: ['bindFormType', 'modelIdType'],
       visible({ bindFormType, modelIdType }) {
-        return bindFormType === 'drawer' || modelIdType === 'drawer';
+        return (
+          bindFormType === 'drawer' ||
+          (bindFormType === 'modelId' && modelIdType === 'drawer')
+        );
       },
       props: {
         noChangeClearCode: true,
@@ -173,7 +193,10 @@ const toolPropsConfig = (isRowOperation = false): SchemaProps<{}>[] => {
       label: '绑定ModalForm',
       effect: ['bindFormType', 'modelIdType'],
       visible({ bindFormType, modelIdType }) {
-        return bindFormType === 'modal' || modelIdType === 'modal';
+        return (
+          bindFormType === 'modal' ||
+          (bindFormType === 'modelId' && modelIdType === 'modal')
+        );
       },
       props: {
         noChangeClearCode: true,

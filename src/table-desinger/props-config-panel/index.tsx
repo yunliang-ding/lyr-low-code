@@ -19,6 +19,8 @@ export interface PropsConfigPanelTypes {
   style?: any; //
   /** 设置防抖时间 */
   debounceTime?: number;
+  /** 选择模型 */
+  selectModelOptions?: () => Promise<[]>;
 }
 
 export default ({
@@ -27,6 +29,7 @@ export default ({
   style = {},
   onPropsConfigUpdate = () => {},
   debounceTime = 100,
+  selectModelOptions = async () => [],
 }: PropsConfigPanelTypes) => {
   const ctx: any = useContext(Ctx); // 拿到ctx
   const [compontentType, setCompontentType]: any = useState('表单项属性');
@@ -101,7 +104,7 @@ export default ({
         tableType,
         setTableType,
         TableList,
-        TablePropsConfig,
+        TablePropsConfig: TablePropsConfig({ selectModelOptions }),
         onTableValuesChange,
         CellPropsConfig,
         onCellValuesChange,

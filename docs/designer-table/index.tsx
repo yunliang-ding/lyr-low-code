@@ -112,7 +112,18 @@ export default () => {
               message.loading('保存中', 2);
             }}
           />
-          <TableDesigner.PropsConfigPanel />
+          <TableDesigner.PropsConfigPanel
+            selectModelOptions={async () => [
+              {
+                label: '新增用户',
+                value: 1,
+              },
+              {
+                label: '新增角色',
+                value: 2,
+              },
+            ]}
+          />
         </TableDesigner>
       </div>
     </div>

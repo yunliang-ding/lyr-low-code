@@ -5,6 +5,7 @@ import DataSource from './data-source';
 import JsonEditor from './json-editor';
 import FunctionEditor from './function-editor';
 import getTools from './tools';
+import CrudModelRender from './crud-model-render';
 
 export {
   FormDesigner,
@@ -14,4 +15,5 @@ export {
   DataSource,
   JsonEditor,
   FunctionEditor,
+  CrudModelRender,
 };

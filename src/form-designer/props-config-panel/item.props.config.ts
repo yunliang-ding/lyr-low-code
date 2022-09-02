@@ -25,7 +25,10 @@ export const formItemSchema = (
       },
     },
   ] as SchemaProps<{}>[],
-  type?: string,
+  ctx = {
+    schema: [],
+    selectSchema: { key: '', type: '' },
+  },
 ): SchemaProps<{}>[] => [
   {
     type: 'Input',
@@ -54,7 +57,7 @@ export const formItemSchema = (
       mode: 'Input',
     },
     visible() {
-      return ['RangeInput', 'RangePicker'].includes(type);
+      return ['RangeInput', 'RangePicker'].includes(ctx.selectSchema.type);
     },
   },
   {
@@ -80,12 +83,27 @@ export const formItemSchema = (
     },
   },
   ...insertSchema,
+  // TODO 没有考虑 FieldSet
   {
-    type: 'Select',
+    type: 'AsyncSelect',
     name: 'effect',
     label: '设置effect',
     props: {
       mode: 'multiple',
+      options() {
+        const options = ctx.schema
+          ?.filter(
+            (item) =>
+              item.key !== ctx.selectSchema.key && item.type !== 'BlockQuote',
+          ) // 过滤自己
+          .map((schema) => {
+            return {
+              label: schema.label,
+              value: schema.name,
+            };
+          });
+        return options;
+      },
     },
   },
   {

@@ -72,21 +72,6 @@ export default ({
   const onWidgetValuesChange = debounce((_, values) => {
     onPropsConfigUpdate({ ...values }, 'widget');
   }, debounceTime);
-  const onMount = ({ setSchemaByName }) => {
-    const options = ctx.schema
-      ?.filter((item) => item.key !== ctx.selectSchema.key) // 过滤自己
-      .map((schema) => {
-        return {
-          label: schema.label,
-          value: schema.name,
-        };
-      });
-    setSchemaByName('effect', {
-      props: {
-        options,
-      },
-    });
-  };
   /** 防抖0.1s */
   const onTableValuesChange = debounce((v, values) => {
     // 子表单需要过滤一下
@@ -118,7 +103,6 @@ export default ({
         compontentType,
         FormPropsConfig,
         onFormValuesChange,
-        onMount,
         ItemPropsConfig,
         onItemValuesChange,
         propsConfig,

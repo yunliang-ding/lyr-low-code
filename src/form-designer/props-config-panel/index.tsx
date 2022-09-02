@@ -67,25 +67,6 @@ export default ({
   const onWidgetValuesChange = debounce((_, values) => {
     onPropsConfigUpdate({ ...values }, 'widget');
   }, debounceTime);
-  // TODO 没有考虑 FieldSet
-  const onMount = ({ setSchemaByName }) => {
-    const options = ctx.schema
-      ?.filter(
-        (item) =>
-          item.key !== ctx.selectSchema.key && item.type !== 'BlockQuote',
-      ) // 过滤自己
-      .map((schema) => {
-        return {
-          label: schema.label,
-          value: schema.name,
-        };
-      });
-    setSchemaByName('effect', {
-      props: {
-        options,
-      },
-    });
-  };
   return (
     <div
       className="props-config-panel"
@@ -132,8 +113,7 @@ export default ({
               widgets={{
                 FunctionEditor,
               }}
-              onMount={onMount}
-              schema={ItemPropsConfig(undefined, ctx.selectSchema.type)}
+              schema={ItemPropsConfig(undefined, ctx)}
               initialValues={ctx.selectSchema || {}}
               onValuesChange={onItemValuesChange}
             />

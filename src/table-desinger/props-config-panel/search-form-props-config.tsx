@@ -8,7 +8,6 @@ export default ({
   compontentType,
   FormPropsConfig,
   onFormValuesChange,
-  onMount,
   ItemPropsConfig,
   onItemValuesChange,
   propsConfig,
@@ -49,8 +48,7 @@ export default ({
           widgets={{
             FunctionEditor,
           }}
-          onMount={onMount}
-          schema={ItemPropsConfig(ctx.selectSchema.type)}
+          schema={ItemPropsConfig(ctx)}
           initialValues={ctx.selectSchema || {}}
           onValuesChange={onItemValuesChange}
         />

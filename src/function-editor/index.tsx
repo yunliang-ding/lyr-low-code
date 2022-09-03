@@ -1,9 +1,9 @@
 /* eslint-disable @iceworks/best-practices/recommend-polyfill */
 import MonacoEditor from '@/monaco-editor';
 import { babelParse } from '@/tools';
-import { decrypt, encrypt } from '@/util';
+import { decrypt, encrypt, uuid } from '@/util';
 import { debounce, isEmpty } from 'lodash';
-import { CSSProperties, memo, useRef, useState } from 'react';
+import { CSSProperties, memo, useEffect, useRef, useState } from 'react';
 import './index.less';
 
 interface FunctionEditorProps {
@@ -27,19 +27,40 @@ interface FunctionEditorProps {
    * @efault false
    */
   noChangeClearCode?: boolean;
+  functionRef?: any;
 }
 export default ({
   value,
-  onChange,
-  name,
+  onChange = () => {},
+  name = uuid(10),
   style = { height: 300, width: 360 },
   prefix,
   useEncrypt = true,
   defaultCode = '() => {}',
   noChangeClearCode = false,
+  functionRef = useRef({}),
 }: FunctionEditorProps) => {
   const [errorInfo, setErrorInfo] = useState('');
   const [fullScreen, setFullScreen] = useState(false);
+  useEffect(() => {
+    functionRef.current = {
+      getModuleDefault: () => {
+        return babelParse(
+          decrypt(value, false), // 解码
+          prefix,
+          undefined,
+        );
+      },
+      getModule: () => {
+        return babelParse(
+          decrypt(value, false), // 解码
+          prefix,
+          undefined,
+          false,
+        );
+      },
+    };
+  }, []);
   return (
     <div
       className={fullScreen ? 'function_data_box_full' : 'function_data_box'}

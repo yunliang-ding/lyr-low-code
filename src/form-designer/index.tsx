@@ -5,7 +5,7 @@ import PropsConfigPanel from './props-config-panel';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { DndProvider } from 'react-dnd';
 import { Ctx } from './store';
-import { getStandardSchema } from '../util';
+import { getStandardSchema as getFormStandardSchema } from '../util';
 import './index.less';
 
 const Container = (props: any, ref: any) => {
@@ -34,7 +34,14 @@ const Container = (props: any, ref: any) => {
     setSelectSchema,
     formProps,
     setFormProps,
-    getStandardSchema,
+    getStandardSchema: (
+      params = {
+        ...formProps,
+        schema,
+      },
+    ) => {
+      return getFormStandardSchema(params);
+    },
   };
   // 通知
   useEffect(() => {
@@ -54,7 +61,7 @@ FormDesigner.PropsConfigPanel = PropsConfigPanel;
 FormDesigner.useTools = () => {
   return {
     // 获取标准数据模型
-    getStandardSchema,
+    getStandardSchema: getFormStandardSchema,
   };
 };
 export default FormDesigner;

@@ -5,7 +5,10 @@ import PropsConfigPanel from './props-config-panel';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { DndProvider } from 'react-dnd';
 import { Ctx } from '@/table-desinger/store';
-import { getStandardSchema, parseTableSchema } from './util';
+import {
+  getStandardSchema as getTableStandardSchema,
+  parseTableSchema,
+} from './util';
 import { TableProps } from 'react-core-form';
 import { isEmpty } from '@/util';
 import { defaultInitialValues } from './initial';
@@ -58,7 +61,20 @@ const Container = (
     tableProps,
     setTableProps,
     parseTableSchema,
-    getStandardSchema,
+    getStandardSchema: (
+      params = {
+        searchSchema: {
+          ...formProps,
+          schema,
+        },
+        tableSchema: {
+          ...tableProps,
+          columns,
+        },
+      },
+    ) => {
+      return getTableStandardSchema(params);
+    },
   };
   // 通知
   useEffect(() => {
@@ -78,7 +94,7 @@ TableDesigner.PropsConfigPanel = PropsConfigPanel;
 TableDesigner.useTools = () => {
   return {
     parseTableSchema,
-    getStandardSchema,
+    getStandardSchema: getTableStandardSchema,
   };
 };
 export default TableDesigner;

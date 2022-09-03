@@ -14,6 +14,8 @@ export const babelParse = (
     React: 'react',
     antd: 'antd',
   },
+  // 默认导出 default
+  exportDefault = true,
 ) => {
   try {
     let dependenciesString = '';
@@ -29,7 +31,11 @@ export const babelParse = (
       `${dependenciesString}${prefix}${code.replaceAll('↵', '')}`,
     );
     if (!res?.isError) {
-      return res?.exports.default;
+      if (exportDefault) {
+        return res?.exports.default;
+      } else {
+        return res?.exports;
+      }
     } else {
       throw res?.error;
     }

@@ -48,16 +48,7 @@ export default () => {
               if (tableDesignerRef.current.columns?.length > 0) {
                 exportDrawer.open({
                   initialValues: {
-                    code: tableDesignerRef.current.getStandardSchema({
-                      searchSchema: {
-                        ...tableDesignerRef.current.formProps,
-                        schema: tableDesignerRef.current.schema,
-                      },
-                      tableSchema: {
-                        ...tableDesignerRef.current.tableProps,
-                        columns: tableDesignerRef.current.columns,
-                      },
-                    }),
+                    code: tableDesignerRef.current.getStandardSchema(),
                   },
                 });
               } else {

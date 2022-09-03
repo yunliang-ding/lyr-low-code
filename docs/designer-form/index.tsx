@@ -50,10 +50,7 @@ export default () => {
               if (formDesignerRef.current.schema?.length > 0) {
                 exportDrawer.open({
                   initialValues: {
-                    code: formDesignerRef.current.getStandardSchema({
-                      ...formDesignerRef.current.formProps,
-                      schema: formDesignerRef.current.schema,
-                    }),
+                    code: formDesignerRef.current.getStandardSchema(),
                   },
                 });
               } else {

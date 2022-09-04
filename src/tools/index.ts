@@ -16,9 +16,9 @@ export const babelParse = ({
   },
   // 默认 default 导出
   exportDefault = true,
-  required = {},
+  require = {},
 }) => {
-  const babel = new BabelCompile(required);
+  const babel = new BabelCompile(require);
   try {
     let dependenciesString = '';
     if (!isEmpty(dependencies)) {

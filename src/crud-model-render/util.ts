@@ -31,12 +31,12 @@ const parseStandardSchemaStrategy = {
 };
 
 /** 注册模型Api */
-export const registerGlobalApi = async (serviceString, required) => {
+export const registerGlobalApi = async (serviceString, require) => {
   const Window: any = window;
   Window.API = babelParse({
     code: serviceString,
     prefix: '',
-    required,
+    require,
     exportDefault: false,
   });
   Window.getCrudModelById = async (modelId: number) => {

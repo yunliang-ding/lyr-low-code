@@ -3,6 +3,7 @@
  */
 import FunctionEditor from '../../function-editor';
 import { CreateForm, SchemaProps } from 'react-core-form';
+import { encrypt } from '@/util';
 
 /** 顶部工具栏和操作栏相同部分 */
 const toolPropsConfig = (
@@ -111,7 +112,7 @@ const toolPropsConfig = (
             });
             form.setFieldsValueTouchOnValuesChange({
               [key]: isRowOperation
-                ? `{{_#async ({ onRefresh }, record) => {
+                ? encrypt(`async ({ onRefresh }, record) => {
   const formProps = await getCrudModelById(${modelId});
   return {
     ...formProps,
@@ -127,8 +128,8 @@ const toolPropsConfig = (
       }
     }
   }
-}_#}}`
-                : `{{_#async ({ onSearch }) => {
+}`)
+                : encrypt(`async ({ onSearch }) => {
   const formProps = await getCrudModelById(${modelId});
   return {
     ...formProps,
@@ -141,7 +142,7 @@ const toolPropsConfig = (
       }
     }
   }
-}_#}}`,
+}`),
             });
           }
         },

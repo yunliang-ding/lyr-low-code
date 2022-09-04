@@ -1,3 +1,5 @@
+import { encrypt } from '@/util';
+
 /**
  * 默认的配置
  */
@@ -71,7 +73,7 @@ export const defaultInitialValues = {
         content: '是否确认删除?',
       },
     ],
-    request: `{{_#async () => {
+    request: encrypt(`async () => {
   return {
     success: true,
     list: [{
@@ -83,6 +85,6 @@ export const defaultInitialValues = {
     }],
     total: 1
   }
-} _#}}`,
+}`),
   },
 };

@@ -16,9 +16,7 @@ const CrudModelRender = ({
   schemaId,
   loadingText = 'loading...',
   baseURL = 'https://yl.server.net',
-  require = {
-    request: axios,
-  },
+  require = {},
 }: CrudModelRenderProps) => {
   const [standRes, setStandRes]: any = useState({
     type: 'form',
@@ -34,8 +32,17 @@ const CrudModelRender = ({
         } = await axios.post(`${baseURL}/crud-model/selectSource`, {
           schemaId,
         });
-        if (code === 200 && data.modelServices) {
-          registerGlobalApi(decode(data.modelServices), require);
+        if (code === 200 && data.modelService) {
+          const modelService = JSON.parse(decode(data.modelService));
+          if (require.request === undefined) {
+            require.request = axios.create({
+              baseURL: modelService.baseURL,
+              headers: {
+                [modelService.tokenKey]: modelService.tokenValue,
+              },
+            });
+          }
+          registerGlobalApi(modelService.code, require);
         }
         /** 解析模型 */
         const res = await queryModelBySchemaId(schemaId, baseURL);

@@ -1,6 +1,6 @@
 /* eslint-disable no-await-in-loop */
 import { babelParse } from '@/tools';
-import { cloneDeep, decrypt, getCleanCloneSchema } from '@/util';
+import { cloneDeep, decrypt, encrypt, getCleanCloneSchema } from '@/util';
 /**
  * 克隆一份
  */
@@ -53,7 +53,7 @@ export const getStandardSchema = (scurce = {}) => {
     fixed: 'right',
     showMore: schema.tableSchema.showMore,
     width: schema.tableSchema.width,
-    menus: `{{_# () => {
+    menus: encrypt(`() => {
       return ${JSON.stringify(
         schema.tableSchema.menus
           .filter((i) => i)
@@ -75,7 +75,7 @@ export const getStandardSchema = (scurce = {}) => {
         null,
         2,
       )}
-}_#}}`,
+}`),
   };
   if (!(schema.tableSchema.menus.length > 0)) {
     delete schema.tableSchema.rowOperations;

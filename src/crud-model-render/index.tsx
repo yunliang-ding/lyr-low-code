@@ -1,13 +1,14 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { ReactNode, useEffect, useState } from 'react';
 import { Table, CardForm } from 'react-core-form';
-import { queryModelBySchemaId, registerGlobalApi } from './util';
+import { decode, queryModelBySchemaId, registerGlobalApi } from './util';
 import axios from 'axios';
 
 interface CrudModelRenderProps {
   schemaId: string;
   loadingText?: ReactNode;
   baseURL?: string;
+  require?: any;
 }
 
 /** 渲染模型 */
@@ -15,6 +16,9 @@ const CrudModelRender = ({
   schemaId,
   loadingText = 'loading...',
   baseURL = 'https://yl.server.net',
+  require = {
+    request: axios,
+  },
 }: CrudModelRenderProps) => {
   const [standRes, setStandRes]: any = useState({
     type: 'form',
@@ -30,8 +34,8 @@ const CrudModelRender = ({
         } = await axios.post(`${baseURL}/crud-model/selectSource`, {
           schemaId,
         });
-        if (code === 200) {
-          registerGlobalApi(data);
+        if (code === 200 && data.modelServices) {
+          registerGlobalApi(decode(data.modelServices), require);
         }
         /** 解析模型 */
         const res = await queryModelBySchemaId(schemaId, baseURL);

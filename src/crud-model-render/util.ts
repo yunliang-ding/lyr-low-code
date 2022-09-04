@@ -31,32 +31,14 @@ const parseStandardSchemaStrategy = {
 };
 
 /** 注册模型Api */
-export const registerGlobalApi = async (data) => {
-  const API = {};
+export const registerGlobalApi = async (serviceString, required) => {
   const Window: any = window;
-  data.forEach((item) => {
-    // 处理参数
-    API[item.sourceName] = (params = {}) => {
-      try {
-        const options: any = babelParse({
-          code: decode(item.params),
-          prefix: '',
-        });
-        if (options.method === 'get') {
-          options.params = params;
-        } else {
-          options.data = params;
-        }
-        return axios({
-          ...options,
-        });
-      } catch (error) {
-        console.log(`${item.sourceName} api error info -->`, error);
-      }
-    };
+  Window.API = babelParse({
+    code: serviceString,
+    prefix: '',
+    required,
+    exportDefault: false,
   });
-  Window.API = API;
-  /** 注册查询模型方法 */
   Window.getCrudModelById = async (modelId: number) => {
     const result = await queryModelBySchemaId(modelId);
     return result?.schema;

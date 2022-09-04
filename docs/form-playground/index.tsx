@@ -36,7 +36,10 @@ export default () => {
   // 运行代码
   const runCode = async () => {
     try {
-      babelParse(tempCode.current.value, ''); // 检查代码是否有报错
+      babelParse({
+        code: tempCode.current.value,
+        prefix: '',
+      }); // 检查代码是否有报错
       setErrorInfo(false);
       setCode(tempCode.current.value);
     } catch (error) {

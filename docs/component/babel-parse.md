@@ -77,7 +77,14 @@ const schema = `export default {
 `;
 export default () => {
   const { babelParse } = getTools();
-  return <Form {...babelParse(schema, '')} />;
+  return (
+    <Form
+      {...babelParse({
+        code: schema,
+        prefix: '',
+      })}
+    />
+  );
 };
 ```
 
@@ -106,8 +113,12 @@ export default () => {
   const { babelParse } = getTools();
   return (
     <Form
-      {...babelParse(schema, '', {
-        React: 'react',
+      {...babelParse({
+        code: schema,
+        prefix: '',
+        dependencies: {
+          React: 'react',
+        },
       })}
     />
   );

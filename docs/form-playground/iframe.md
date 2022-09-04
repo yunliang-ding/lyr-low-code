@@ -21,7 +21,10 @@ export default () => {
   const escode = localStorage.getItem('react-hooks-code');
   // 解析
   const parseStringToModule = async () => {
-    const ComponentApp = await babelParse(escode, '');
+    const ComponentApp = await babelParse({
+      code: escode,
+      prefix: '',
+    });
     ReactDom.render(<ComponentApp />, document.querySelector('#app'));
   };
   useEffect(() => {

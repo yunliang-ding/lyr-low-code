@@ -45,19 +45,17 @@ export default ({
   useEffect(() => {
     functionRef.current = {
       getModuleDefault: () => {
-        return babelParse(
-          decrypt(value, false), // 解码
+        return babelParse({
+          code: decrypt(value, false), // 解码
           prefix,
-          undefined,
-        );
+        });
       },
       getModule: () => {
-        return babelParse(
-          decrypt(value, false), // 解码
+        return babelParse({
+          code: decrypt(value, false), // 解码
           prefix,
-          undefined,
-          false,
-        );
+          exportDefault: false,
+        });
       },
     };
   }, []);
@@ -122,10 +120,14 @@ const MemoMonaco = memo(
               isEmpty(codeString) ||
               (codeString === defaultCode && noChangeClearCode)
             ) {
+              setErrorInfo('');
               return onChange(undefined);
             }
             await new Promise((res) => setTimeout(res, 1000));
-            babelParse(codeString, prefix);
+            babelParse({
+              code: codeString,
+              prefix,
+            });
             onChange(useEncrypt ? encrypt(codeString) : codeString);
             setErrorInfo('');
           } catch (error) {

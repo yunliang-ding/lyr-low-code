@@ -102,13 +102,13 @@ export const getStandardSchema = (scurce = {}) => {
 
 /** 模型转换给Table */
 export const parseTableSchema = (values: any = {}) => {
-  return babelParse(
-    getStandardSchema({
+  return babelParse({
+    code: getStandardSchema({
       searchSchema: {},
       tableSchema: values,
     }),
-    '',
-  );
+    prefix: '',
+  });
 };
 
 export const parseTableColumns = (columns = []) => {
@@ -118,7 +118,9 @@ export const parseTableColumns = (columns = []) => {
     if (column.render) {
       render = (item, record, index) => {
         try {
-          return babelParse(decrypt(column.render, false))(item, record, index);
+          return babelParse({
+            code: decrypt(column.render, false),
+          })(item, record, index);
         } catch (error) {
           console.log(error);
         }

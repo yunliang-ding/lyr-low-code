@@ -7,12 +7,15 @@ import axios from 'axios';
 const parseStandardSchemaStrategy = {
   1: (data) => {
     const { getStandardSchema } = FormDesigner.useTools();
-    return babelParse(getStandardSchema(data), '');
+    return babelParse({
+      code: getStandardSchema(data),
+      prefix: '',
+    });
   },
   2: (data) => {
     const { getStandardSchema } = TableDesigner.useTools();
-    return babelParse(
-      getStandardSchema({
+    return babelParse({
+      code: getStandardSchema({
         searchSchema: {
           ...data.formProps,
           fields: data.fields,
@@ -22,8 +25,8 @@ const parseStandardSchemaStrategy = {
           columns: data.columns,
         },
       }),
-      '',
-    );
+      prefix: '',
+    });
   },
 };
 
@@ -35,7 +38,10 @@ export const registerGlobalApi = async (data) => {
     // 处理参数
     API[item.sourceName] = (params = {}) => {
       try {
-        const options: any = babelParse(decode(item.params), '');
+        const options: any = babelParse({
+          code: decode(item.params),
+          prefix: '',
+        });
         if (options.method === 'get') {
           options.params = params;
         } else {

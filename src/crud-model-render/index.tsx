@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { ReactNode, useEffect, useState } from 'react';
 import { Table, CardForm } from 'react-core-form';
-import { queryModelBySchemaId, registerGlobalApi } from './util';
+import { decode, queryModelBySchemaId, registerGlobalApi } from './util';
 import axios from 'axios';
 
 interface CrudModelRenderProps {
@@ -16,7 +16,7 @@ const CrudModelRender = ({
   schemaId,
   loadingText = 'loading...',
   baseURL = 'https://yl.server.net',
-  require = {},
+  require,
 }: CrudModelRenderProps) => {
   const [standRes, setStandRes]: any = useState({
     type: 'form',
@@ -30,10 +30,11 @@ const CrudModelRender = ({
         const {
           data: { code, data },
         } = await axios.get(`${baseURL}/crud-model/getDetail/${schemaId}`);
-        if (code === 200 && data.modelService) {
+        if (code === 200) {
+          // 注册接口服务
           registerGlobalApi(
-            data.modelServiceCode,
-            data.modelServiceOptions,
+            decode(data.modelServiceCode || ''),
+            decode(data.modelServiceOptions || ''),
             require,
           );
         }

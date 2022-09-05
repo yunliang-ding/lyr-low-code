@@ -29,6 +29,7 @@ interface FunctionEditorProps {
   noChangeClearCode?: boolean;
   functionRef?: any;
   require?: any;
+  debounceTime?: number;
 }
 export default ({
   value,
@@ -41,21 +42,23 @@ export default ({
   noChangeClearCode = false,
   functionRef = useRef({}),
   require,
+  debounceTime = 300,
 }: FunctionEditorProps) => {
   const [errorInfo, setErrorInfo] = useState('');
   const [fullScreen, setFullScreen] = useState(false);
+  const valueRef = useRef(value);
   useEffect(() => {
     functionRef.current = {
       getModuleDefault: () => {
         return babelParse({
-          code: decrypt(value, false), // 解码
+          code: decrypt(valueRef.current, false), // 解码
           prefix,
           require,
         });
       },
       getModule: () => {
         return babelParse({
-          code: decrypt(value, false), // 解码
+          code: decrypt(valueRef.current, false), // 解码
           prefix,
           exportDefault: false,
           require,
@@ -83,7 +86,10 @@ export default ({
       </div>
       <MemoMonaco
         value={value}
-        onChange={onChange}
+        onChange={(v) => {
+          valueRef.current = v; // 同步文本
+          onChange(v);
+        }}
         name={name}
         setErrorInfo={setErrorInfo}
         prefix={prefix}
@@ -91,6 +97,7 @@ export default ({
         defaultCode={defaultCode}
         noChangeClearCode={noChangeClearCode}
         require={require}
+        debounceTime={debounceTime}
       />
     </div>
   );
@@ -107,6 +114,7 @@ const MemoMonaco = memo(
     defaultCode,
     noChangeClearCode,
     require,
+    debounceTime,
   }: any) => {
     const monacoRef: any = useRef({});
     return (
@@ -140,7 +148,7 @@ const MemoMonaco = memo(
           } catch (error) {
             setErrorInfo(error.toString());
           }
-        }, 300)}
+        }, debounceTime)}
       />
     );
   },

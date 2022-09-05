@@ -29,7 +29,10 @@ export default () => {
       <br />
       <FunctionEditor
         functionRef={functionRef}
-        value={`async (data) => {
+        debounceTime={0}
+        prefix=""
+        style={{ width: '100%', height: 300 }}
+        value={`export default async (data) => {
   return data
 }`}
       />
@@ -63,6 +66,8 @@ export default () => {
       <br />
       <FunctionEditor
         functionRef={functionRef}
+        style={{ width: '100%', height: 300 }}
+        debounceTime={0}
         prefix=""
         value={`export default {
   options: {
@@ -101,6 +106,8 @@ export default () => {
       <FunctionEditor
         prefix=""
         functionRef={functionRef}
+        debounceTime={0}
+        style={{ width: '100%', height: 300 }}
         value={`export const user1 = {
   name: 'Test1',
   age: 90
@@ -142,9 +149,11 @@ export default () => {
       <FunctionEditor
         prefix=""
         functionRef={functionRef}
+        debounceTime={0}
         require={{
           request: axios,
         }}
+        style={{ width: '100%', height: 300 }}
         value={`import axios from 'axios';
 
 export const getList = () => {

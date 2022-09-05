@@ -98,12 +98,20 @@ import React from 'react';
 import { Form } from 'react-core-form';
 import { getTools } from 'react-core-form-designer';
 
-const schema = `export default {
+const renderProps = {
+  label: '自定义渲染、点击查看',
+  onClick: () => {
+    alert('hello');
+  },
+};
+
+const schema = `import renderProps from 'renderProps';
+export default {
   schema: [
     {
       label: "渲染",
       type: () => {
-        return <div>相关的提示信息</div>
+        return <div onClick={renderProps.onClick}>{renderProps.label}</div>
       },
     }
   ],
@@ -116,8 +124,8 @@ export default () => {
       {...babelParse({
         code: schema,
         prefix: '',
-        dependencies: {
-          React: 'react',
+        require: {
+          renderProps,
         },
       })}
     />

@@ -39,22 +39,24 @@ export const registerGlobalApi = async (
 ) => {
   // 解析
   try {
-    const { baseURL, tokenKey, tokenValue } = JSON.parse(modelServiceOptions);
-    if (require.request === undefined) {
-      require.request = axios.create({
-        baseURL,
-        headers: {
-          [tokenKey]: tokenValue,
-        },
+    const Window: any = window;
+    if (modelServiceCode) {
+      const { baseURL, tokenKey, tokenValue } = JSON.parse(modelServiceOptions);
+      if (require.request === undefined) {
+        require.request = axios.create({
+          baseURL,
+          headers: {
+            [tokenKey]: tokenValue,
+          },
+        });
+      }
+      Window.API = babelParse({
+        code: decrypt(modelServiceCode, false),
+        prefix: '',
+        require,
+        exportDefault: false,
       });
     }
-    const Window: any = window;
-    Window.API = babelParse({
-      code: decrypt(modelServiceCode, false),
-      prefix: '',
-      require,
-      exportDefault: false,
-    });
     Window.getCrudModelById = async (modelId: number) => {
       const result = await queryModelBySchemaId(modelId);
       return result?.schema;

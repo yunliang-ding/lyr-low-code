@@ -33,16 +33,47 @@ export default () => {
 ```tsx
 import React from 'react';
 import { FormDesigner } from 'react-core-form-designer';
-import * as customWidgets from '../widgets';
-import customWidgetsPropsConfig from '../widgets/config.json';
 import { Space } from 'antd';
 
 export default () => {
   return (
     <FormDesigner>
       <FormDesigner.RegisterWidgets
-        customWidgets={customWidgets}
-        customWidgetsPropsConfig={customWidgetsPropsConfig}
+        customWidgets={{
+          CustomInput: () => {
+            return (
+              <div>
+                自定义组件
+                <input {...props} />
+              </div>
+            );
+          },
+        }}
+        customWidgetsPropsConfig={[
+          {
+            type: 'CustomInput',
+            label: '自定义组件',
+            props: {
+              placeholder: '请选择',
+              allowClear: true,
+              disabled: false,
+              mode: '',
+            },
+            propsConfig: [
+              {
+                type: 'Switch',
+                valuePropName: 'checked',
+                name: 'disabled',
+                label: '是否禁用',
+              },
+              {
+                type: 'Input',
+                name: 'placeholder',
+                label: '提示文案',
+              },
+            ],
+          },
+        ]}
         style={{
           height: 900,
           width: 300,

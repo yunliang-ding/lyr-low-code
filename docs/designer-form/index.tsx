@@ -1,6 +1,4 @@
 import { FormDesigner, MonacoEditor } from 'react-core-form-designer';
-import * as customWidgets from '../widgets';
-import customWidgetsPropsConfig from '../widgets/config.json';
 import React, { useRef } from 'react';
 import { Button, CreateForm } from 'react-core-form';
 import { message, Space } from 'antd';
@@ -93,10 +91,7 @@ export default () => {
       </div>
       <div className="form-designer-playground-body">
         <FormDesigner ref={formDesignerRef}>
-          <FormDesigner.RegisterWidgets
-            customWidgets={customWidgets}
-            customWidgetsPropsConfig={customWidgetsPropsConfig}
-          />
+          <FormDesigner.RegisterWidgets />
           <FormDesigner.FormCanvas
             onCtrlS={() => {
               message.loading('保存中', 2);

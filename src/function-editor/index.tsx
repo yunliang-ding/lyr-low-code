@@ -28,6 +28,7 @@ interface FunctionEditorProps {
    */
   noChangeClearCode?: boolean;
   functionRef?: any;
+  require?: any;
 }
 export default ({
   value,
@@ -39,6 +40,7 @@ export default ({
   defaultCode = '() => {}',
   noChangeClearCode = false,
   functionRef = useRef({}),
+  require,
 }: FunctionEditorProps) => {
   const [errorInfo, setErrorInfo] = useState('');
   const [fullScreen, setFullScreen] = useState(false);
@@ -48,6 +50,7 @@ export default ({
         return babelParse({
           code: decrypt(value, false), // 解码
           prefix,
+          require,
         });
       },
       getModule: () => {
@@ -55,6 +58,7 @@ export default ({
           code: decrypt(value, false), // 解码
           prefix,
           exportDefault: false,
+          require,
         });
       },
     };
@@ -86,6 +90,7 @@ export default ({
         useEncrypt={useEncrypt}
         defaultCode={defaultCode}
         noChangeClearCode={noChangeClearCode}
+        require={require}
       />
     </div>
   );
@@ -101,6 +106,7 @@ const MemoMonaco = memo(
     useEncrypt,
     defaultCode,
     noChangeClearCode,
+    require,
   }: any) => {
     const monacoRef: any = useRef({});
     return (
@@ -127,6 +133,7 @@ const MemoMonaco = memo(
             babelParse({
               code: codeString,
               prefix,
+              require,
             });
             onChange(useEncrypt ? encrypt(codeString) : codeString);
             setErrorInfo('');

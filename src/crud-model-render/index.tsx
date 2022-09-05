@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { ReactNode, useEffect, useState } from 'react';
 import { Table, CardForm } from 'react-core-form';
-import { decode, queryModelBySchemaId, registerGlobalApi } from './util';
+import { queryModelBySchemaId, registerGlobalApi } from './util';
 import axios from 'axios';
 
 interface CrudModelRenderProps {
@@ -29,23 +29,16 @@ const CrudModelRender = ({
         /** 注册Api */
         const {
           data: { code, data },
-        } = await axios.post(`${baseURL}/crud-model/selectSource`, {
-          schemaId,
-        });
+        } = await axios.get(`${baseURL}/crud-model/getDetail/${schemaId}`);
         if (code === 200 && data.modelService) {
-          const modelService = JSON.parse(decode(data.modelService));
-          if (require.request === undefined) {
-            require.request = axios.create({
-              baseURL: modelService.baseURL,
-              headers: {
-                [modelService.tokenKey]: modelService.tokenValue,
-              },
-            });
-          }
-          registerGlobalApi(modelService.code, require);
+          registerGlobalApi(
+            data.modelServiceCode,
+            data.modelServiceOptions,
+            require,
+          );
         }
         /** 解析模型 */
-        const res = await queryModelBySchemaId(schemaId, baseURL);
+        const res = await queryModelBySchemaId(schemaId, baseURL, data);
         setStandRes(res);
       } catch (error) {
         console.log(error);

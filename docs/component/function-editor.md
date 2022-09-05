@@ -115,7 +115,7 @@ export const user2 = {
 };
 ```
 
-## 导出多个函数
+## 使用第三方依赖包
 
 ```tsx
 /**
@@ -123,6 +123,7 @@ export const user2 = {
  */
 import React from 'react';
 import { Button } from 'antd';
+import axios from 'axios';
 import { FunctionEditor } from 'react-core-form-designer';
 
 export default () => {
@@ -141,12 +142,17 @@ export default () => {
       <FunctionEditor
         prefix=""
         functionRef={functionRef}
-        value={`export const getList = () => {
-  console.log('is getList')
+        require={{
+          request: axios,
+        }}
+        value={`import axios from 'axios';
+
+export const getList = () => {
+  console.log('is getList', axios)
 };
 export const add = () => {
   console.log('is add')
-}`}
+};`}
       />
     </>
   );

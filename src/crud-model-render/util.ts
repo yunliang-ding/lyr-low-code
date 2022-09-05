@@ -2,6 +2,7 @@
 import FormDesigner from '@/form-designer';
 import TableDesigner from '@/table-desinger';
 import { babelParse } from '@/tools';
+import { decrypt, isEmpty } from '@/util';
 import axios from 'axios';
 
 const parseStandardSchemaStrategy = {
@@ -31,36 +32,59 @@ const parseStandardSchemaStrategy = {
 };
 
 /** 注册模型Api */
-export const registerGlobalApi = async (serviceString, require) => {
-  const Window: any = window;
-  Window.API = babelParse({
-    code: serviceString,
-    prefix: '',
-    require,
-    exportDefault: false,
-  });
-  Window.getCrudModelById = async (modelId: number) => {
-    const result = await queryModelBySchemaId(modelId);
-    return result?.schema;
-  };
+export const registerGlobalApi = async (
+  modelServiceCode,
+  modelServiceOptions,
+  require: any = {},
+) => {
+  // 解析
+  try {
+    const { baseURL, tokenKey, tokenValue } = JSON.parse(modelServiceOptions);
+    if (require.request === undefined) {
+      require.request = axios.create({
+        baseURL,
+        headers: {
+          [tokenKey]: tokenValue,
+        },
+      });
+    }
+    const Window: any = window;
+    Window.API = babelParse({
+      code: decrypt(modelServiceCode, false),
+      prefix: '',
+      require,
+      exportDefault: false,
+    });
+    Window.getCrudModelById = async (modelId: number) => {
+      const result = await queryModelBySchemaId(modelId);
+      return result?.schema;
+    };
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 /** 解析模型 */
 export const queryModelBySchemaId = async (
   schemaId,
   baseURL = 'https://yl.server.net',
+  schemaEntity: any = {},
 ) => {
-  const {
-    data: { code, data },
-  } = await axios.get(`${baseURL}/crud-model/schema/detail/${schemaId}`);
-  if (code === 200) {
-    const object = JSON.parse(decode(data.pageSchema));
-    return {
-      type: data.type,
-      schema: parseStandardSchemaStrategy[data.type](object),
-    };
+  if (isEmpty(schemaEntity)) {
+    const {
+      data: { code, data },
+    } = await axios.get(`${baseURL}/crud-model/schema/detail/${schemaId}`);
+    if (code === 200) {
+      schemaEntity = data;
+    } else {
+      return {};
+    }
   }
-  return {};
+  const object = JSON.parse(decode(schemaEntity.pageSchema));
+  return {
+    type: schemaEntity.type,
+    schema: parseStandardSchemaStrategy[schemaEntity.type](object),
+  };
 };
 
 export const decode = (str): string => {

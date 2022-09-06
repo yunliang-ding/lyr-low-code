@@ -84,3 +84,5 @@ export default () => {
   );
 };
 ```
+
+<API src="../../src/form-designer/register-widgets/index.tsx" hideTitle></API>

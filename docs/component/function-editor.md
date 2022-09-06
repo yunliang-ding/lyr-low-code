@@ -18,7 +18,7 @@ export default () => {
   const functionRef = React.useRef({});
   const runApi = async () => {
     const fn = functionRef.current.getModuleDefault();
-    console.log(await fn(100));
+    await fn();
   };
   return (
     <>
@@ -32,8 +32,8 @@ export default () => {
         debounceTime={0}
         prefix=""
         style={{ width: '100%', height: 300 }}
-        value={`export default async (data) => {
-  return data
+        value={`export default async () => {
+  console.log('导出默认函数')
 }`}
       />
     </>
@@ -167,3 +167,5 @@ export const add = () => {
   );
 };
 ```
+
+<API src="../../src/function-editor/index.tsx" hideTitle></API>

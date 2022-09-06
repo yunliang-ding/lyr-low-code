@@ -132,3 +132,5 @@ export default () => {
   );
 };
 ```
+
+<API src="../../src/tools/type.tsx" hideTitle></API>

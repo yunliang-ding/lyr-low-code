@@ -11,12 +11,19 @@ import JsonEditor from '@/json-editor';
 import './index.less';
 
 export interface PropsConfigPanelTypes {
-  props: any; // 组件描述
-  propsConfig: Array<any>; // 属性配置
-  onPropsConfigUpdate: Function; // 配置改变返回新的配置
-  /** 设置防抖时间 */
+  /** 组件属性 */
+  props: any;
+  /** 组件属性配置 */
+  propsConfig: Array<any>;
+  /** 配置改变钩子 */
+  onPropsConfigUpdate?: Function;
+  /**
+   * 设置防抖时间 (ms)
+   * @default 100
+   */
   debounceTime?: number;
-  style?: any; //
+  /** 主容器样式 */
+  style?: any;
 }
 
 export default ({

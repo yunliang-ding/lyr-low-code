@@ -15,9 +15,14 @@ export interface RegisterWidgetsType {
   type?: string;
   /** 点击的钩子 */
   onClick?: Function;
-  /** 样式 */
+  /** 主容器样式 */
   style?: object;
+  /** 自定义上下文store */
   context?: any;
+  /**
+   * 内置组件
+   * @default react-core-form 所有表单组件
+   */
   innerWidgets?: any;
 }
 

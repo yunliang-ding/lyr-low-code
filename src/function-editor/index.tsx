@@ -7,10 +7,18 @@ import { CSSProperties, memo, useEffect, useRef, useState } from 'react';
 import './index.less';
 
 interface FunctionEditorProps {
+  /** es6 module 代码片段 */
   value: string;
+  /** 改变钩子 */
   onChange: Function;
+  /** name */
   name?: string;
+  /** 主容器样式 */
   style?: CSSProperties;
+  /**
+   * 配置解析前缀
+   * @default 不配置默认加上 export default 前缀
+   */
   prefix?: string;
   /**
    * 是否需要解码
@@ -19,16 +27,22 @@ interface FunctionEditorProps {
   useEncrypt?: boolean;
   /**
    * 默认代码段
-   * @efault () => {}
+   * @default () => {}
    */
   defaultCode?: string;
   /**
    * 没有改变代码自动设置为 undefined
-   * @efault false
+   * @default false
    */
   noChangeClearCode?: boolean;
+  /** ref 引用 */
   functionRef?: any;
+  /** 配置第三方依赖 */
   require?: any;
+  /**
+   * 设置防抖时间(ms)
+   * @default 300
+   */
   debounceTime?: number;
 }
 export default ({

@@ -17,14 +17,20 @@ export interface FormCanvasType {
   defaultSelectKey?: string;
   /** 字段选中事件 */
   onSchemaSelect?: Function;
-  /** useDrop配置的accept */
+  /** 更新钩子、拖拽、新增、删除、触发 */
+  onSchemaUpdate?: Function;
+  /**
+   * 拖拽可接受的accept
+   * @default left-box
+   */
   accept?: string;
   /** 主画布样式 */
   style?: any;
-  /** 删除是否二次提示 */
+  /**
+   * 删除是否二次提示
+   * @default false
+   */
   removeConfirm?: boolean;
-  /** 操作栏配置 */
-  extra?: [];
   /** 开启 ctrl + s */
   onCtrlS?: () => void;
 }
@@ -35,12 +41,12 @@ let mouseIsHoveringCanvas = false;
 export default ({
   empty = '点击/拖拽左侧栏的组件进行添加',
   onSchemaSelect = () => {},
+  onSchemaUpdate = () => {},
   accept = 'left-box',
   defaultSchema = [],
   defaultSelectKey = '',
   style = {},
   removeConfirm = false,
-  extra,
   onCtrlS,
   ...rest
 }: FormCanvasType) => {
@@ -52,6 +58,9 @@ export default ({
       defaultSchema.find((item: any) => item.key === defaultSelectKey) || {};
     ctx.setSelectSchema(selectSchema);
   }, []);
+  useEffect(() => {
+    onSchemaUpdate(ctx.schema);
+  }, [ctx.schema]);
   const [{ isOver }, drop] = useDrop(
     () => ({
       accept,
@@ -185,7 +194,6 @@ export default ({
       <CardForm
         schema={_schema}
         key={ctx.widgets}
-        extra
         {...ctx?.formProps}
         {...rest}
         widgets={ctx.widgets}
@@ -203,7 +211,6 @@ export default ({
         ]}
         cardProps={{
           className: 'form-canvas-card-box',
-          extra,
         }}
       />
     </div>

@@ -168,4 +168,6 @@ export const add = () => {
 };
 ```
 
+## API
+
 <API src="../../src/function-editor/index.tsx" hideTitle></API>

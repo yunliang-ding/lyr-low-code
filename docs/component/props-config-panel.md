@@ -63,4 +63,6 @@ export default () => {
 };
 ```
 
+## API
+
 <API src="../../src/form-designer/props-config-panel/index.tsx" hideTitle></API>

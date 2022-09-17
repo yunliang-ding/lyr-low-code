@@ -44,16 +44,16 @@
     "react-dnd-html5-backend": "14.0.0",
     "monaco-editor": "0.33.0",
     "babel-standalone": "6.26.0",
-    "immutability-helper":"3.1.1",
+    "immutability-helper": "3.1.1",
     "axios": "^0.21.1"
   },
   "peerDependencies": {
     "react": "17.0.2",
     "antd": "4.20.0",
-    "react-core-form": "0.0.11"
+    "react-core-form": "0.0.13"
   },
   "devDependencies": {
-    "react-core-form": "0.0.11",
+    "react-core-form": "0.0.13",
     "@types/lodash": "4.14.168",
     "@umijs/test": "^3.0.5",
     "@types/ali-oss": "6.16.3",

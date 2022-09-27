@@ -44,7 +44,7 @@
     "react-dnd-html5-backend": "14.0.0",
     "monaco-editor": "0.33.0",
     "babel-standalone": "6.26.0",
-    "immutability-helper":"3.1.1",
+    "immutability-helper": "3.1.1",
     "axios": "^0.21.1"
   },
   "peerDependencies": {

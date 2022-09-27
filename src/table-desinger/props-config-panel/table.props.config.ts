@@ -2,7 +2,7 @@
  * Table的属性配置
  */
 import FunctionEditor from '../../function-editor';
-import { CreateForm, SchemaProps } from 'react-core-form';
+import { CreateDrawer, SchemaProps } from 'react-core-form';
 import { encrypt } from '@/util';
 
 /** 顶部工具栏和操作栏相同部分 */
@@ -221,7 +221,7 @@ const toolPropsConfig = (
 };
 
 /** 顶部工具栏 */
-const drawerToolForm = CreateForm.Drawer({
+const drawerToolForm = CreateDrawer({
   footer: false,
   width: 400,
   drawerProps: {
@@ -240,7 +240,7 @@ const drawerToolForm = CreateForm.Drawer({
 });
 
 /** 列操作栏 */
-const drawerMenuForm = CreateForm.Drawer({
+const drawerMenuForm = CreateDrawer({
   footer: false,
   width: 400,
   drawerProps: {

@@ -1,10 +1,10 @@
 import { Button, message, Space } from 'antd';
 import React, { useRef } from 'react';
-import { CreateForm } from 'react-core-form';
+import { CreateDrawer } from 'react-core-form';
 import { MonacoEditor, TableDesigner } from 'react-core-form-designer';
 import './index.less';
 
-const exportDrawer = CreateForm.Drawer({
+const exportDrawer = CreateDrawer({
   title: '标准数据模型',
   footer: false,
   width: 600,

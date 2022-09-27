@@ -1,6 +1,6 @@
 {
   "name": "react-core-form-designer",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "基于react-core-form搭建低码相关组件",
   "author": "yunliang-ding",
   "homepage": "https://yunliang-ding.github.io/react-core-form-designer",
@@ -50,10 +50,10 @@
   "peerDependencies": {
     "react": "17.0.2",
     "antd": "4.20.0",
-    "react-core-form": "0.0.11"
+    "react-core-form": "0.0.15"
   },
   "devDependencies": {
-    "react-core-form": "0.0.11",
+    "react-core-form": "0.0.15",
     "@types/lodash": "4.14.168",
     "@umijs/test": "^3.0.5",
     "@types/ali-oss": "6.16.3",

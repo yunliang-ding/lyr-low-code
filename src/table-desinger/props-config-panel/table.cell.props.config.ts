@@ -2,7 +2,7 @@
  * cell的属性配置
  */
 import FunctionEditor from '@/function-editor';
-import { SchemaProps, CreateForm } from 'react-core-form';
+import { SchemaProps, CreateDrawer } from 'react-core-form';
 
 const cellDetailFields: SchemaProps<{}>[] = [
   {
@@ -111,7 +111,7 @@ const cellDetailFields: SchemaProps<{}>[] = [
 /**
  * 列明细信息编辑
  */
-const drawerCellForm = CreateForm.Drawer({
+const drawerCellForm = CreateDrawer({
   width: 400,
   schema: cellDetailFields,
   footer: false,

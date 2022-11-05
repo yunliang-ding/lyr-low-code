@@ -29,11 +29,7 @@ export default defineConfig({
     null, // null 值代表保留约定式生成的导航，只做增量配置
     {
       title: 'Playground',
-      path: '#/~demos/docs-form-playground',
-    },
-    {
-      title: '基础组件',
-      path: 'https://yunliang-ding.github.io/react-core-form',
+      path: 'http://121.4.49.147:9000/react-playground',
     },
     {
       title: 'GitHub',
@@ -43,7 +39,7 @@ export default defineConfig({
   chainWebpack: (config) => {
     config.plugin('monaco-editor').use(MonacoWebpackPlugin, [
       {
-        languages: ['javascript', 'typescript'],
+        languages: ['javascript', 'typescript', 'html'],
       },
     ]);
   },

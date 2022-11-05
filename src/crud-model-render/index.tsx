@@ -1,8 +1,9 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { ReactNode, useEffect, useState } from 'react';
 import { Table, CardForm } from 'react-core-form';
-import { decode, queryModelBySchemaId, registerGlobalApi } from './util';
+import { queryModelBySchemaId, registerGlobalApi } from './util';
 import axios from 'axios';
+import { decode } from '@/util';
 
 interface CrudModelRenderProps {
   schemaId: string;

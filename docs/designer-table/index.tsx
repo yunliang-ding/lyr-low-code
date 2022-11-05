@@ -1,7 +1,11 @@
 import { Button, message, Space } from 'antd';
 import React, { useRef } from 'react';
 import { CreateDrawer } from 'react-core-form';
-import { MonacoEditor, TableDesigner } from 'react-core-form-designer';
+import {
+  MonacoEditor,
+  TableDesigner,
+  getTools,
+} from 'react-core-form-designer';
 import './index.less';
 
 const exportDrawer = CreateDrawer({
@@ -34,6 +38,7 @@ const exportDrawer = CreateDrawer({
 
 export default () => {
   const tableDesignerRef: any = useRef({});
+  const { encode } = getTools();
   return (
     <div className="table-designer-playground">
       <div className="table-designer-playground-header">
@@ -82,7 +87,7 @@ export default () => {
   return <Table {...schema} />
 }`;
                 window.open(
-                  `#/~demos/docs-form-playground?schema=${encodeURIComponent(
+                  `http://121.4.49.147:9000/react-playground?code=${encode(
                     jsx,
                   )}`,
                 );

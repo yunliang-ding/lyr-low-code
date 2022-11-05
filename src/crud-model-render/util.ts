@@ -2,7 +2,7 @@
 import FormDesigner from '@/form-designer';
 import TableDesigner from '@/table-desinger';
 import { babelParse } from '@/tools';
-import { decrypt, isEmpty } from '@/util';
+import { decode, decrypt, isEmpty } from '@/util';
 import axios from 'axios';
 
 const parseStandardSchemaStrategy = {
@@ -87,13 +87,4 @@ export const queryModelBySchemaId = async (
     type: schemaEntity.type,
     schema: parseStandardSchemaStrategy[schemaEntity.type](object),
   };
-};
-
-export const decode = (str): string => {
-  try {
-    return decodeURIComponent(atob(str));
-  } catch (error) {
-    console.log(error);
-    return '';
-  }
 };

@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { isEmpty } from '../util';
+import { decode, encode, isEmpty } from '../util';
 import { encrypt, decrypt } from '@/util';
 import BabelCompile from './babel-compile';
 
@@ -53,5 +53,7 @@ export default (config?: any) => {
     BabelCompile,
     encrypt,
     decrypt,
+    encode,
+    decode,
   };
 };

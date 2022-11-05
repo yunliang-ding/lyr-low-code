@@ -225,3 +225,21 @@ export const getCleanCloneSchema = (
     ? code.replace('};', '} as { schema: SchemaProps[] };')
     : code;
 };
+
+export const decode = (str): string => {
+  try {
+    return decodeURIComponent(atob(str));
+  } catch (error) {
+    console.log(error);
+    return '';
+  }
+};
+
+export const encode = (str): string => {
+  try {
+    return btoa(encodeURIComponent(str));
+  } catch (error) {
+    console.log(error);
+    return '';
+  }
+};

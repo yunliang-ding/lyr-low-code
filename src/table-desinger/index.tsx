@@ -15,20 +15,20 @@ import { defaultInitialValues } from './initial';
 import './index.less';
 
 const Container = (
-  { initalValues = defaultInitialValues, ...props }: any,
+  { initialValues = defaultInitialValues, ...props }: any,
   ref: any,
 ) => {
   // 统一管理FormProps
-  const [formProps, setFormProps] = useState(initalValues.formProps);
+  const [formProps, setFormProps] = useState(initialValues.formProps);
   // 统一管理 schema
-  const [schema, setSchema] = useState(initalValues.schema);
+  const [schema, setSchema] = useState(initialValues.schema);
   // 统一管理选中的 schema
   const [selectSchema, setSelectSchema] = useState({});
   // 统一管理 columns
-  const [columns, setColumns] = useState(initalValues.columns);
+  const [columns, setColumns] = useState(initialValues.columns);
   // 统一管理 TableProps
   const [tableProps, setTableProps] = useState<TableProps>(
-    initalValues.tableProps,
+    initialValues.tableProps,
   );
   const [selectTable, setSelectTable] = useState(true);
   useEffect(() => {

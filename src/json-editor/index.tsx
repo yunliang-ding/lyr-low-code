@@ -25,6 +25,7 @@ const MemoMonaco = memo(
       <MonacoEditor
         id={`json_data_${name}`}
         value={JSON.stringify(value, null, 2)}
+        language="json"
         options={{
           theme: 'vs-dark',
           minimap: {

@@ -39,7 +39,7 @@ export default defineConfig({
   chainWebpack: (config) => {
     config.plugin('monaco-editor').use(MonacoWebpackPlugin, [
       {
-        languages: ['javascript', 'typescript', 'html'],
+        languages: ['javascript', 'typescript', 'html', 'json'],
       },
     ]);
   },

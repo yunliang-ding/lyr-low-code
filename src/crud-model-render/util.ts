@@ -3,23 +3,24 @@ import FormDesigner from '@/form-designer';
 import TableDesigner from '@/table-desinger';
 import { babelParse } from '@/tools';
 import { decode, decrypt, isEmpty } from '@/util';
+import { axiosInstance } from '.';
 import axios from 'axios';
 
 const parseStandardSchemaStrategy = {
-  1: (data) => {
+  form: (data) => {
     const { getStandardSchema } = FormDesigner.useTools();
     return babelParse({
       code: getStandardSchema(data),
       prefix: '',
     });
   },
-  2: (data) => {
+  table: (data) => {
     const { getStandardSchema } = TableDesigner.useTools();
     return babelParse({
       code: getStandardSchema({
         searchSchema: {
           ...data.formProps,
-          fields: data.fields,
+          schema: data.schema,
         },
         tableSchema: {
           ...data.tableProps,
@@ -32,16 +33,12 @@ const parseStandardSchemaStrategy = {
 };
 
 /** 注册模型Api */
-export const registerGlobalApi = async (
-  modelServiceCode,
-  modelServiceOptions,
-  require: any = {},
-) => {
+export const registerGlobalApi = async (services, require: any = {}) => {
   // 解析
   try {
     const Window: any = window;
-    if (modelServiceCode) {
-      const { baseURL, tokenKey, tokenValue } = JSON.parse(modelServiceOptions);
+    if (services) {
+      const { baseURL, tokenKey, tokenValue, code } = JSON.parse(services);
       if (require.request === undefined) {
         require.request = axios.create({
           baseURL,
@@ -51,14 +48,15 @@ export const registerGlobalApi = async (
         });
       }
       Window.API = babelParse({
-        code: decrypt(modelServiceCode, false),
+        code: decrypt(code, false),
         prefix: '',
         require,
         exportDefault: false,
       });
     }
-    Window.getCrudModelById = async (modelId: number) => {
-      const result = await queryModelBySchemaId(modelId);
+    // 通过模型Id 获取 模型信息
+    Window.getCrudModelById = async (schemaId: number) => {
+      const result = await queryModelBySchemaId(schemaId);
       return result?.schema;
     };
   } catch (error) {
@@ -67,24 +65,20 @@ export const registerGlobalApi = async (
 };
 
 /** 解析模型 */
-export const queryModelBySchemaId = async (
-  schemaId,
-  baseURL = 'https://yl.server.net',
-  schemaEntity: any = {},
-) => {
-  if (isEmpty(schemaEntity)) {
+export const queryModelBySchemaId = async (schemaId, entity = undefined) => {
+  if (isEmpty(entity)) {
     const {
       data: { code, data },
-    } = await axios.get(`${baseURL}/crud-model/schema/detail/${schemaId}`);
+    } = await axiosInstance.get(`/crud/detail?id=${schemaId}`);
     if (code === 200) {
-      schemaEntity = data;
+      entity = data;
     } else {
       return {};
     }
   }
-  const object = JSON.parse(decode(schemaEntity.pageSchema));
+  const object = JSON.parse(decode(entity.schema));
   return {
-    type: schemaEntity.type,
-    schema: parseStandardSchemaStrategy[schemaEntity.type](object),
+    type: entity.type,
+    schema: parseStandardSchemaStrategy[entity.type](object),
   };
 };

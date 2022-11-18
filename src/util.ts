@@ -6,16 +6,16 @@ const prettier = require('prettier/standalone');
 const plugins = [require('prettier/parser-typescript')];
 
 // 查找指定key
-export const recursionFind = (fields: any, key: string) => {
+export const recursionFind = (schema: any, key: string) => {
   const targetField: any = { field: {} };
-  recursionLoopFind(fields, key, targetField);
+  recursionLoopFind(schema, key, targetField);
   return targetField.field;
 };
 
 // 递归查找指定key
-export const recursionLoopFind = (fields: any, key: string, currentField) => {
-  for (let i = 0; i < fields.length; i++) {
-    const item = fields[i];
+export const recursionLoopFind = (schema: any, key: string, currentField) => {
+  for (let i = 0; i < schema.length; i++) {
+    const item = schema[i];
     if (item.key === key) {
       currentField.field = item;
       break;
@@ -107,11 +107,11 @@ export const decrypt = (str: string, quotation = true) => {
  * 获取纯净的模型
  */
 export const getCleanCloneSchema = (
-  fields = [],
+  schema = [],
   prefix = ' default ',
   exportTs = false,
 ) => {
-  fields.forEach((item) => {
+  schema.forEach((item) => {
     deleteEmptyObjProps(item);
     /** 移除函数字符串_is_code 结尾的 */
     Object.keys(item).forEach((key) => {
@@ -210,7 +210,7 @@ export const getCleanCloneSchema = (
     decrypt(`${
       exportTs ? 'import { SchemaProps } from "react-core-form";\n' : ''
     } 
-      export ${prefix} ${JSON.stringify(fields[0], null, 2)?.replaceAll(
+      export ${prefix} ${JSON.stringify(schema[0], null, 2)?.replaceAll(
       '\\"',
       '"',
     )}`)

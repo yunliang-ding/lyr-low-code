@@ -3,7 +3,7 @@
  */
 import { SchemaProps } from 'react-core-form';
 
-const fields: SchemaProps<{
+const schema: SchemaProps<{
   path: string;
 }>[] = [
   {
@@ -76,4 +76,4 @@ const fields: SchemaProps<{
   },
 ];
 
-export default fields;
+export default schema;

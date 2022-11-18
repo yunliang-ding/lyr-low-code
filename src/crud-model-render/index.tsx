@@ -2,8 +2,16 @@
 import { ReactNode, useEffect, useState } from 'react';
 import { Table, CardForm } from 'react-core-form';
 import { queryModelBySchemaId, registerGlobalApi } from './util';
-import axios from 'axios';
 import { decode } from '@/util';
+import axios from 'axios';
+
+export const axiosInstance = axios.create({
+  baseURL: 'http://121.4.49.147:8360',
+  withCredentials: true,
+  headers: {
+    appId: 1,
+  },
+});
 
 interface CrudModelRenderProps {
   schemaId: string;
@@ -16,7 +24,6 @@ interface CrudModelRenderProps {
 const CrudModelRender = ({
   schemaId,
   loadingText = 'loading...',
-  baseURL = 'https://yl.server.net',
   require,
 }: CrudModelRenderProps) => {
   const [standRes, setStandRes]: any = useState({
@@ -30,17 +37,15 @@ const CrudModelRender = ({
         /** 注册Api */
         const {
           data: { code, data },
-        } = await axios.get(`${baseURL}/crud-model/getDetail/${schemaId}`);
+        } = await axiosInstance.get(`/crud/detail?id=${schemaId}`);
         if (code === 200) {
           // 注册接口服务
-          registerGlobalApi(
-            decode(data.modelServiceCode || ''),
-            decode(data.modelServiceOptions || ''),
-            require,
-          );
+          if (data.services) {
+            registerGlobalApi(decode(data.services), require);
+          }
         }
         /** 解析模型 */
-        const res = await queryModelBySchemaId(schemaId, baseURL, data);
+        const res = await queryModelBySchemaId(schemaId, data);
         setStandRes(res);
       } catch (error) {
         console.log(error);
@@ -52,9 +57,9 @@ const CrudModelRender = ({
   if (spin) {
     return loadingText;
   }
-  if (standRes.type === 1) {
+  if (standRes.type === 'form') {
     return <CardForm {...standRes.schema} />;
-  } else if (standRes.type === 2) {
+  } else if (standRes.type === 'table') {
     return <Table {...standRes.schema} />;
   }
   return null;

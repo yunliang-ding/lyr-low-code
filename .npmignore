@@ -4,3 +4,12 @@
 /docs
 /mock
 /.dumi
+/.github
+/docs-dist
+/.editorconfig                                      
+/.eslintignore                                      
+/.eslintrc.js                                       
+/.fatherrc.ts                                       
+/.prettierignore                                    
+/.prettierrc                                        
+/.umirc.ts 

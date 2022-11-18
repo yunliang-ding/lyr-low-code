@@ -3,14 +3,14 @@ import { ReactNode, useEffect, useState } from 'react';
 import { Table, CardForm } from 'react-core-form';
 import { queryModelBySchemaId, registerGlobalApi } from './util';
 import { decode } from '@/util';
+import { Button, Result } from 'antd';
 import axios from 'axios';
-import { Result } from 'antd';
 
 export const axiosInstance = axios.create({
   baseURL: 'http://121.4.49.147:8360',
   withCredentials: true,
   headers: {
-    appId: 1,
+    appId: 11,
   },
 });
 
@@ -68,7 +68,25 @@ const CrudModelRender = ({
   } else if (standRes.type === 'table') {
     return <Table {...standRes.schema} />;
   } else if (standRes.type === 'error') {
-    return <Result status="403" title="403" subTitle={standRes.msg} />;
+    return (
+      <Result
+        status="403"
+        title="403"
+        subTitle={standRes.msg}
+        extra={
+          <Button
+            type="primary"
+            onClick={() => {
+              window.open(
+                `http://121.4.49.147:8360/unification/login?redirect=${location.href}&appId=11`,
+              );
+            }}
+          >
+            点击登录
+          </Button>
+        }
+      />
+    );
   }
   return null;
 };

@@ -4,6 +4,7 @@ import { Table, CardForm } from 'react-core-form';
 import { queryModelBySchemaId, registerGlobalApi } from './util';
 import { decode } from '@/util';
 import axios from 'axios';
+import { Result } from 'antd';
 
 export const axiosInstance = axios.create({
   baseURL: 'http://121.4.49.147:8360',
@@ -36,17 +37,22 @@ const CrudModelRender = ({
       try {
         /** 注册Api */
         const {
-          data: { code, data },
+          data: { code, data, msg },
         } = await axiosInstance.get(`/crud/detail?id=${schemaId}`);
         if (code === 200) {
           // 注册接口服务
           if (data.services) {
             registerGlobalApi(decode(data.services), require);
           }
+          /** 解析模型 */
+          const res = await queryModelBySchemaId(schemaId, data);
+          setStandRes(res);
+        } else {
+          setStandRes({
+            type: 'error',
+            msg,
+          });
         }
-        /** 解析模型 */
-        const res = await queryModelBySchemaId(schemaId, data);
-        setStandRes(res);
       } catch (error) {
         console.log(error);
       } finally {
@@ -61,6 +67,8 @@ const CrudModelRender = ({
     return <CardForm {...standRes.schema} />;
   } else if (standRes.type === 'table') {
     return <Table {...standRes.schema} />;
+  } else if (standRes.type === 'error') {
+    return <Result status="403" title="403" subTitle={standRes.msg} />;
   }
   return null;
 };

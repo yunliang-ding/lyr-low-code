@@ -3,7 +3,7 @@ import Drag from './drag';
 import { Ctx } from '@/form-designer/store';
 import { useContext, useEffect, useMemo } from 'react';
 import { uuid as Uuid, cloneDeep } from '@/util';
-import builtInWidget from '../config';
+import builtInWidget from '../material-config';
 import './index.less';
 
 export interface RegisterWidgetsType {

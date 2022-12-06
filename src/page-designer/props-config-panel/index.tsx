@@ -1,10 +1,10 @@
 import { CSSProperties, useContext } from 'react';
 import { Empty } from 'antd';
-import { isEmpty } from '@/util';
+import { isEmpty, recursionFind } from '@/util';
 import { Ctx } from '../store';
 import { debounce } from 'lodash';
 import MaterialPropsConfig from './material-props-config';
-import { FunctionEditor } from '@/index';
+import { FunctionEditor, JsonEditor } from '@/index';
 import './index.less';
 
 export interface PropsConfigPanelTypes {
@@ -17,8 +17,9 @@ export interface PropsConfigPanelTypes {
 }
 
 export default ({
-  style = {},
-  onPropsConfigUpdate = () => {},
+  style = {
+    padding: '12px 20px',
+  },
   debounceTime = 100,
 }: PropsConfigPanelTypes) => {
   // 拿到 ctx
@@ -29,7 +30,13 @@ export default ({
   )?.propsConfig;
   /** 防抖0.1s */
   const onValuesChange = debounce((v, values) => {
-    onPropsConfigUpdate(v, values);
+    // 更新 selectItem
+    ctx.selectItem = { ...ctx.selectItem, props: values };
+    ctx.setSelectItem(ctx.selectItem);
+    // 更新 schema
+    const schema = recursionFind(ctx.schema, ctx.selectItem.key);
+    Object.assign(schema, ctx.selectItem);
+    ctx.setSchema([...ctx.schema]);
   }, debounceTime);
   return (
     <div className="props-config-panel" style={style} key={ctx.selectItem?.key}>
@@ -47,6 +54,7 @@ export default ({
             onValuesChange,
             widgets: {
               FunctionEditor,
+              JsonEditor,
             },
           }}
         />

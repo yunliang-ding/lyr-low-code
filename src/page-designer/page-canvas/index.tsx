@@ -84,7 +84,7 @@ export default ({
   // 重新创建
   useEffect(() => {
     setReload(Math.random());
-  }, [ctx.selectItem.key, _schema]);
+  }, [ctx.selectItem, ctx.selectItem.key, _schema]);
   /**
    * 设置相关的键盘监听事件
    */

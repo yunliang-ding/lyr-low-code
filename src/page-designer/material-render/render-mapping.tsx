@@ -23,7 +23,12 @@ import {
 
 export default {
   Text: Typography.Text,
-  Link: Typography.Link,
+  Link: ({ title, ...props }) => {
+    if (props.target) {
+      props.target = '_blank';
+    }
+    return <a {...props}>{title}</a>;
+  },
   Title: Typography.Title,
   Alert,
   Avatar,

@@ -115,7 +115,7 @@ export default ({
           className="page-canvas-empty"
         />
       ) : (
-        <MaterialRender key={reload} schema={ctx.schema} accept={accept} />
+        <MaterialRender key={reload} accept={accept} ctx={ctx} />
       )}
     </div>
   );

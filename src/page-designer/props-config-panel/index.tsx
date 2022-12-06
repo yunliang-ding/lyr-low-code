@@ -1,9 +1,10 @@
 import { CSSProperties, useContext } from 'react';
 import { Empty } from 'antd';
 import { isEmpty } from '@/util';
-import { Ctx } from '@/table-desinger/store';
+import { Ctx } from '../store';
 import { debounce } from 'lodash';
 import MaterialPropsConfig from './material-props-config';
+import { FunctionEditor } from '@/index';
 import './index.less';
 
 export interface PropsConfigPanelTypes {
@@ -20,7 +21,12 @@ export default ({
   onPropsConfigUpdate = () => {},
   debounceTime = 100,
 }: PropsConfigPanelTypes) => {
-  const ctx: any = useContext(Ctx); // 拿到ctx
+  // 拿到 ctx
+  const ctx: any = useContext(Ctx);
+  // 获取模型
+  const propsConfig = ctx.widgets.__originalConfig__?.find(
+    (widget) => widget.type === ctx.selectItem.type,
+  )?.propsConfig;
   /** 防抖0.1s */
   const onValuesChange = debounce((v, values) => {
     onPropsConfigUpdate(v, values);
@@ -36,9 +42,12 @@ export default ({
       ) : (
         <MaterialPropsConfig
           {...{
-            schema: ctx.selectItem.schema,
-            values: ctx.selectItem.props,
+            schema: propsConfig,
+            initialValues: ctx.selectItem.props,
             onValuesChange,
+            widgets: {
+              FunctionEditor,
+            },
           }}
         />
       )}

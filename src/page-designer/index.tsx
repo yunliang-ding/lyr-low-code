@@ -9,14 +9,6 @@ import { Ctx } from './store';
 import './index.less';
 
 const Container = (props: any, ref: any) => {
-  // 统一管理FormProps
-  const [formProps, setFormProps] = useState({
-    column: 2,
-    title: '默认标题',
-    actionAlign: 'end',
-    layout: 'vertical',
-    size: 'middle',
-  });
   // 统一管理 widgets
   const [widgets, setWidgets] = useState<{
     __originalConfig__?: object[]; // 部件的配置项模型

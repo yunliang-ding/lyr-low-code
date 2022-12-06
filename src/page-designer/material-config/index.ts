@@ -1,3 +1,6 @@
+import text from './typography/text.json';
+import link from './typography/link.json';
+import title from './typography/title.json';
 import alert from './alert.json';
 import avatar from './avatar.json';
 import breadcrumb from './breadcrumb.json';
@@ -8,7 +11,6 @@ import collapse from './collapse.json';
 import descriptions from './descriptions.json';
 import divider from './divider.json';
 import empty from './empty.json';
-import icon from './icon.json';
 import progress from './progress.json';
 import result from './result.json';
 import statistic from './statistic.json';
@@ -22,6 +24,9 @@ import blockQuote from './block-quote.json';
 
 export default {
   base: [
+    text,
+    link,
+    title,
     alert,
     avatar,
     breadcrumb,
@@ -29,7 +34,6 @@ export default {
     descriptions,
     divider,
     empty,
-    icon,
     progress,
     result,
     statistic,

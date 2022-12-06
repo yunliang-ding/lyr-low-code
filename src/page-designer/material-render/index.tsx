@@ -1,12 +1,11 @@
 import DragContainer from '@/form-designer/form-canvas/drag';
-import { useContext } from 'react';
-import { Ctx } from '../store';
+import renderMapping from './render-mapping';
 
-export default ({ schema, accept }) => {
-  const ctx: any = useContext(Ctx); // 拿到ctx
+export default ({ accept, ctx }) => {
   return (
     <>
-      {schema.map((item) => {
+      {ctx.schema.map((item) => {
+        const Comp = renderMapping[item.type] || (() => null);
         return (
           <DragContainer
             key={item.key}
@@ -15,13 +14,13 @@ export default ({ schema, accept }) => {
             schema={ctx.schema}
             selected={ctx.selectItem.key === item.key} // 是否选中
             onSchemaUpdate={(schema) => {
-              ctx.setSchema(schema);
+              ctx.setSchema([...schema]);
             }}
             setSelectSchema={(i: any) => {
               ctx.setSelectItem({ ...i });
             }}
           >
-            render-is-{item.label}
+            <Comp {...item.props} />
           </DragContainer>
         );
       })}

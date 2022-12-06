@@ -1,5 +1,5 @@
-import { Form } from 'react-core-form';
+import { CoreFormProps, Form } from 'react-core-form';
 
-export default (props) => {
+export default (props: CoreFormProps) => {
   return <Form {...props} />;
 };

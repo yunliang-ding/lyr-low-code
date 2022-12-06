@@ -45,7 +45,7 @@
       "label": "标题"
     },
     {
-      "type": "InputNumber",
+      "type": "Input",
       "name": "description",
       "label": "描述"
     },

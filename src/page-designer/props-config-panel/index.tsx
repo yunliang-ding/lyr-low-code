@@ -49,8 +49,21 @@ export default ({
       ) : (
         <MaterialPropsConfig
           {...{
-            schema: propsConfig,
-            initialValues: ctx.selectItem.props,
+            schema: [
+              {
+                type: 'Slider',
+                name: 'width',
+                label: '设置宽度',
+                props: {
+                  min: 30,
+                },
+              },
+              ...propsConfig,
+            ],
+            initialValues: {
+              width: 100,
+              ...ctx.selectItem.props,
+            },
             onValuesChange,
             widgets: {
               FunctionEditor,

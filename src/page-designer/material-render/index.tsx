@@ -7,21 +7,27 @@ export default ({ accept, ctx }) => {
       {ctx.schema.map((item) => {
         const Comp = renderMapping[item.type] || (() => null);
         return (
-          <DragContainer
-            key={item.key}
-            accept={accept}
-            itemSchema={item}
-            schema={ctx.schema}
-            selected={ctx.selectItem.key === item.key} // 是否选中
-            onSchemaUpdate={(schema) => {
-              ctx.setSchema([...schema]);
-            }}
-            setSelectSchema={(i: any) => {
-              ctx.setSelectItem({ ...i });
+          <div
+            style={{
+              width: item.props.width ? item.props.width + '%' : '100%',
             }}
           >
-            <Comp {...item.props} />
-          </DragContainer>
+            <DragContainer
+              key={item.key}
+              accept={accept}
+              itemSchema={item}
+              schema={ctx.schema}
+              selected={ctx.selectItem.key === item.key} // 是否选中
+              onSchemaUpdate={(schema) => {
+                ctx.setSchema([...schema]);
+              }}
+              setSelectSchema={(i: any) => {
+                ctx.setSelectItem({ ...i });
+              }}
+            >
+              <Comp {...item.props}>{item.props.text}</Comp>
+            </DragContainer>
+          </div>
         );
       })}
     </>

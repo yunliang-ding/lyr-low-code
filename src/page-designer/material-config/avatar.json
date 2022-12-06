@@ -2,45 +2,43 @@
   "type": "Avatar",
   "label": "头像",
   "props": {
-    "placeholder": "请输入",
-    "allowClear": true,
-    "disabled": false,
-    "maxLength": 64,
-    "showCount": false
+    "shape": "circle",
+    "size": 40,
+    "gap": 10,
+    "src": "https://joeschmoe.io/api/v1/random"
   },
   "propsConfig": [
     {
-      "type": "Switch",
-      "valuePropName": "checked",
-      "name": "showCount",
-      "label": "是否展示计数"
-    },
-    {
-      "type": "Switch",
-      "valuePropName": "checked",
-      "name": "disabled",
-      "label": "是否禁用"
-    },
-    {
-      "type": "Switch",
-      "name": "allowClear",
-      "valuePropName": "checked",
-      "label": "是否允许清除"
-    },
-    {
-      "type": "Input",
-      "name": "placeholder",
-      "label": "提示文案"
+      "type": "RadioGroup",
+      "name": "shape",
+      "label": "形状",
+      "props": {
+        "options": [
+          {
+            "label": "圆角",
+            "value": "circle"
+          },
+          {
+            "label": "矩形",
+            "value": "square"
+          }
+        ]
+      }
     },
     {
       "type": "InputNumber",
-      "name": "maxLength",
-      "label": "最大长度"
+      "name": "size",
+      "label": "尺寸"
     },
     {
-      "type": "FunctionEditor",
-      "name": "onChange",
-      "label": "设置onChange"
+      "type": "InputNumber",
+      "name": "gap",
+      "label": "间隙"
+    },
+    {
+      "type": "Input",
+      "name": "src",
+      "label": "资源地址"
     }
   ]
 }

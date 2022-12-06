@@ -20,6 +20,7 @@ import {
   Tabs,
   Tag,
 } from 'antd';
+import CrudModelRender from '@/crud-model-render';
 
 export default {
   Text: Typography.Text,
@@ -49,6 +50,7 @@ export default {
   Collapse,
   Row,
   Col,
+  CrudModelRender,
   BlockQuote: () => {
     return 'BlockQuote';
   },

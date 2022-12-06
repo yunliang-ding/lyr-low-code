@@ -2,8 +2,8 @@
 import { ReactNode, useEffect, useState } from 'react';
 import { Table, CardForm } from 'react-core-form';
 import { queryModelBySchemaId, registerGlobalApi } from './util';
-import { decode } from '@/util';
-import { Button, Result } from 'antd';
+import { decode, isEmpty } from '@/util';
+import { Button, Empty, Result } from 'antd';
 import axios from 'axios';
 
 export const axiosInstance = axios.create({
@@ -60,6 +60,11 @@ const CrudModelRender = ({
       }
     })();
   }, []);
+  if (isEmpty(schemaId)) {
+    return (
+      <Empty description="缺少模型ID" image={Empty.PRESENTED_IMAGE_SIMPLE} />
+    );
+  }
   if (spin) {
     return loadingText;
   }

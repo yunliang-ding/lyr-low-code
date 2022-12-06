@@ -1,0 +1,24 @@
+{
+  "type": "CrudModelRender",
+  "label": "我的模型",
+  "props": {},
+  "propsConfig": [
+    {
+      "type": "Select",
+      "name": "schemaId",
+      "label": "我的模型",
+      "props": {
+        "options": [
+          {
+            "label": "新增用户",
+            "value": 1
+          },
+          {
+            "label": "用户列表",
+            "value": 3
+          }
+        ]
+      }
+    }
+  ]
+}

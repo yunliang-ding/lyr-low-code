@@ -25,7 +25,9 @@ export default ({ accept, ctx }) => {
                 ctx.setSelectItem({ ...i });
               }}
             >
-              <Comp {...item.props}>{item.props.text}</Comp>
+              <div style={{ pointerEvents: 'none' }}>
+                <Comp {...item.props} />
+              </div>
             </DragContainer>
           </div>
         );

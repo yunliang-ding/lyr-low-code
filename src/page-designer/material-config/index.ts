@@ -21,6 +21,7 @@ import timeline from './timeline.json';
 import row from './row.json';
 import col from './col.json';
 import blockQuote from './block-quote.json';
+import crudModelRender from './crud-model-render.json';
 
 export default {
   base: [
@@ -42,7 +43,9 @@ export default {
     tag,
     timeline,
     card,
+    carousel,
+    collapse,
   ],
-  advance: [carousel, collapse],
+  advance: [crudModelRender],
   layout: [row, col, blockQuote],
 };

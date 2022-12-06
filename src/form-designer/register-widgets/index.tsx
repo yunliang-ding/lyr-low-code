@@ -1,6 +1,6 @@
 /* eslint-disable no-await-in-loop */
 import Drag from './drag';
-import { Ctx } from '@/form-designer/store';
+import { Ctx } from '../store';
 import { useContext, useEffect, useMemo } from 'react';
 import { uuid as Uuid, cloneDeep } from '@/util';
 import builtInWidget from '../material-config';

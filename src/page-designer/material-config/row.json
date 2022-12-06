@@ -1,6 +1,6 @@
 {
-  "type": "divider",
-  "label": "分割线",
+  "type": "Row",
+  "label": "行容器",
   "props": {
     "placeholder": "请输入",
     "allowClear": true,

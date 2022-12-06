@@ -4,7 +4,7 @@ order: 1
 toc: menu
 nav:
   title: 研发日志
-  order: 3
+  order: 5
 ---
 
 ### 0.0.5 (2022-09-17)

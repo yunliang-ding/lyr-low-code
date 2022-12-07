@@ -45,5 +45,5 @@ export default {
     collapse,
   ],
   advance: [crudModelRender],
-  layout: [blockQuote, card],
+  layout: [blockQuote],
 };

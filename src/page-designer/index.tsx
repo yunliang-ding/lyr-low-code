@@ -9,6 +9,10 @@ import { Ctx } from './store';
 import './index.less';
 
 const Container = (props: any, ref: any) => {
+  // 统一管理 schema
+  const [canvasProps, setCanvasProps] = useState({
+    column: 4,
+  });
   // 统一管理 widgets
   const [widgets, setWidgets] = useState<{
     __originalConfig__?: object[]; // 部件的配置项模型
@@ -18,6 +22,8 @@ const Container = (props: any, ref: any) => {
   // 统一管理选中的 schema
   const [selectItem, setSelectItem] = useState({});
   const ctx = {
+    canvasProps,
+    setCanvasProps,
     widgets,
     setWidgets,
     schema,

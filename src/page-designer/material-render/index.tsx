@@ -9,7 +9,7 @@ export default ({ accept, ctx }) => {
         return (
           <div
             style={{
-              width: item.props.width ? item.props.width + '%' : '100%',
+              gridColumnStart: `span ${item.props.span || 1}`,
             }}
           >
             <DragContainer

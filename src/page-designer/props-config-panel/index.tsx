@@ -1,11 +1,11 @@
-import { CSSProperties, useContext } from 'react';
-import { Empty } from 'antd';
+import { CSSProperties, useContext, useState } from 'react';
+import { Empty, Segmented } from 'antd';
 import { isEmpty, recursionFind } from '@/util';
 import { Ctx } from '../store';
 import { debounce } from 'lodash';
-import MaterialPropsConfig from './material-props-config';
 import { FunctionEditor, JsonEditor } from '@/index';
 import './index.less';
+import { Form } from 'react-core-form';
 
 export interface PropsConfigPanelTypes {
   onPropsConfigUpdate: Function; // 配置改变返回新的配置
@@ -16,12 +16,8 @@ export interface PropsConfigPanelTypes {
   selectModelOptions?: () => Promise<[]>;
 }
 
-export default ({
-  style = {
-    padding: '12px 20px',
-  },
-  debounceTime = 100,
-}: PropsConfigPanelTypes) => {
+export default ({ style = {}, debounceTime = 100 }: PropsConfigPanelTypes) => {
+  const [compontentType, setCompontentType]: any = useState('物料配置');
   // 拿到 ctx
   const ctx: any = useContext(Ctx);
   // 获取模型
@@ -47,30 +43,110 @@ export default ({
           className="page-canvas-empty"
         />
       ) : (
-        <MaterialPropsConfig
-          {...{
-            schema: [
-              {
-                type: 'Slider',
-                name: 'width',
-                label: '设置宽度',
-                props: {
-                  min: 30,
+        <>
+          <div className="props-config-panel-header">
+            <Segmented
+              onChange={setCompontentType}
+              value={compontentType}
+              options={['画布配置', '物料配置']}
+            />
+          </div>
+          <div
+            className="props-config-panel-body"
+            style={{
+              display: compontentType === '画布配置' ? 'block' : 'none',
+            }}
+          >
+            <Form
+              {...{
+                schema: [
+                  {
+                    type: 'RadioGroup',
+                    name: 'column',
+                    label: '设置布局',
+                    props: {
+                      optionType: 'button',
+                      options: [
+                        {
+                          label: '一等份',
+                          value: 1,
+                        },
+                        {
+                          label: '二等份',
+                          value: 2,
+                        },
+                        {
+                          label: '三等份',
+                          value: 3,
+                        },
+                        {
+                          label: '四等份',
+                          value: 4,
+                        },
+                      ],
+                    },
+                  },
+                ],
+                initialValues: {
+                  ...ctx.canvasProps,
                 },
-              },
-              ...propsConfig,
-            ],
-            initialValues: {
-              width: 100,
-              ...ctx.selectItem.props,
-            },
-            onValuesChange,
-            widgets: {
-              FunctionEditor,
-              JsonEditor,
-            },
-          }}
-        />
+                onValuesChange: (v, values) => {
+                  console.log(values);
+                  ctx.setCanvasProps(values);
+                },
+              }}
+            />
+          </div>
+          <div
+            className="props-config-panel-body"
+            style={{
+              display: compontentType === '物料配置' ? 'block' : 'none',
+            }}
+          >
+            <Form
+              {...{
+                schema: [
+                  {
+                    type: 'RadioGroup',
+                    name: 'span',
+                    label: '设置等份',
+                    props: {
+                      optionType: 'button',
+                      options: [
+                        {
+                          label: '占一份',
+                          value: 1,
+                        },
+                        {
+                          label: '占二份',
+                          value: 2,
+                        },
+                        {
+                          label: '占三份',
+                          value: 3,
+                        },
+                        {
+                          label: '占四份',
+                          value: 4,
+                        },
+                      ],
+                    },
+                  },
+                  ...propsConfig,
+                ],
+                initialValues: {
+                  span: 1,
+                  ...ctx.selectItem.props,
+                },
+                onValuesChange,
+                widgets: {
+                  FunctionEditor,
+                  JsonEditor,
+                },
+              }}
+            />
+          </div>
+        </>
       )}
     </div>
   );

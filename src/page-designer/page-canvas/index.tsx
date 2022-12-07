@@ -5,6 +5,7 @@ import { Ctx } from '../store';
 import { Empty } from 'antd';
 import MaterialRender from '../material-render';
 import './index.less';
+import { Grid } from 'react-core-form';
 
 export interface FormCanvasType {
   empty?: string; // 空数据展示
@@ -115,7 +116,9 @@ export default ({
           className="page-canvas-empty"
         />
       ) : (
-        <MaterialRender key={reload} accept={accept} ctx={ctx} />
+        <Grid column={ctx.canvasProps.column}>
+          <MaterialRender key={reload} accept={accept} ctx={ctx} />
+        </Grid>
       )}
     </div>
   );

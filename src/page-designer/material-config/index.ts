@@ -18,8 +18,6 @@ import steps from './steps.json';
 import tabs from './tabs.json';
 import tag from './tag.json';
 import timeline from './timeline.json';
-import row from './row.json';
-import col from './col.json';
 import blockQuote from './block-quote.json';
 import crudModelRender from './crud-model-render.json';
 
@@ -47,5 +45,5 @@ export default {
     collapse,
   ],
   advance: [crudModelRender],
-  layout: [row, col, blockQuote],
+  layout: [blockQuote, card],
 };

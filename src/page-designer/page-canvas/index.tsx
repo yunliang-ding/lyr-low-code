@@ -117,7 +117,7 @@ export default ({
         />
       ) : (
         <Grid column={ctx.canvasProps.column}>
-          <MaterialRender key={reload} accept={accept} ctx={ctx} />
+          <MaterialRender accept={accept} ctx={ctx} />
         </Grid>
       )}
     </div>

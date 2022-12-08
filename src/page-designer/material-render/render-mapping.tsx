@@ -1,4 +1,5 @@
-import CrudModelRender from '@/crud-model-render';
+import CrudRender from '@/crud-model-render';
+import { memo } from 'react';
 import {
   Typography,
   Alert,
@@ -69,7 +70,14 @@ export default {
   Collapse,
   Row,
   Col,
-  CrudModelRender,
+  CrudModelRender: memo(
+    (props: any) => {
+      return <CrudRender {...props} />;
+    },
+    (pre, next) => {
+      return pre.schemaId === next.schemaId;
+    },
+  ),
   BlockQuote: () => {
     return 'BlockQuote';
   },

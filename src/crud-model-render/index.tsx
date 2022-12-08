@@ -26,40 +26,42 @@ const CrudModelRender = ({
   schemaId,
   loadingText = 'loading...',
   require,
-}: CrudModelRenderProps) => {
+}: CrudModelRenderProps): any => {
   const [standRes, setStandRes]: any = useState({
     type: 'form',
     schema: {},
   });
   const [spin, setSpin] = useState(true);
   useEffect(() => {
-    (async () => {
-      try {
-        /** 注册Api */
-        const {
-          data: { code, data, msg },
-        } = await axiosInstance.get(`/crud/detail?id=${schemaId}`);
-        if (code === 200) {
-          // 注册接口服务
-          if (data.services) {
-            registerGlobalApi(decode(data.services), require);
+    if (schemaId) {
+      (async () => {
+        try {
+          /** 注册Api */
+          const {
+            data: { code, data, msg },
+          } = await axiosInstance.get(`/crud/detail?id=${schemaId}`);
+          if (code === 200) {
+            // 注册接口服务
+            if (data.services) {
+              registerGlobalApi(decode(data.services), require);
+            }
+            /** 解析模型 */
+            const res = await queryModelBySchemaId(schemaId, data);
+            setStandRes(res);
+          } else {
+            setStandRes({
+              type: 'error',
+              msg,
+            });
           }
-          /** 解析模型 */
-          const res = await queryModelBySchemaId(schemaId, data);
-          setStandRes(res);
-        } else {
-          setStandRes({
-            type: 'error',
-            msg,
-          });
+        } catch (error) {
+          console.log(error);
+        } finally {
+          setSpin(false);
         }
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setSpin(false);
-      }
-    })();
-  }, []);
+      })();
+    }
+  }, [schemaId]);
   if (isEmpty(schemaId)) {
     return (
       <Empty description="缺少模型ID" image={Empty.PRESENTED_IMAGE_SIMPLE} />

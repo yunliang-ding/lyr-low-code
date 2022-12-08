@@ -1,3 +1,4 @@
+import CrudModelRender from '@/crud-model-render';
 import {
   Typography,
   Alert,
@@ -8,7 +9,7 @@ import {
   Card,
   Timeline,
   Avatar,
-  Breadcrumb,
+  Breadcrumb as AntdBreadcrumb,
   Button,
   Descriptions,
   Divider,
@@ -20,7 +21,6 @@ import {
   Tabs,
   Tag,
 } from 'antd';
-import CrudModelRender from '@/crud-model-render';
 
 export default {
   Text: Typography.Text,
@@ -33,7 +33,24 @@ export default {
   Title: Typography.Title,
   Alert,
   Avatar,
-  Breadcrumb,
+  Breadcrumb: (props) => {
+    return (
+      <AntdBreadcrumb separator={props.separator}>
+        {props.items?.map((item) => {
+          return (
+            <AntdBreadcrumb.Item
+              key={item.value}
+              onClick={(item) => {
+                props.onClick?.(item);
+              }}
+            >
+              {item.label}
+            </AntdBreadcrumb.Item>
+          );
+        })}
+      </AntdBreadcrumb>
+    );
+  },
   Button,
   Descriptions,
   Divider,

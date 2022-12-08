@@ -10,7 +10,7 @@ import {
   Timeline,
   Avatar,
   Breadcrumb as AntdBreadcrumb,
-  Button,
+  Button as AntdButton,
   Descriptions,
   Divider,
   Empty,
@@ -51,7 +51,9 @@ export default {
       </AntdBreadcrumb>
     );
   },
-  Button,
+  Button: (props) => {
+    return <AntdButton {...props}>{props.text}</AntdButton>;
+  },
   Descriptions,
   Divider,
   Empty,

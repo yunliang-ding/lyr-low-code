@@ -2,11 +2,10 @@
   "type": "Button",
   "label": "按钮",
   "props": {
-    "placeholder": "请输入",
-    "allowClear": true,
+    "text": "按钮",
     "disabled": false,
-    "maxLength": 64,
-    "showCount": false
+    "ghost": false,
+    "type": "primary"
   },
   "propsConfig": [
     {
@@ -16,17 +15,37 @@
       "label": "是否禁用"
     },
     {
+      "type": "Switch",
+      "valuePropName": "checked",
+      "name": "ghost",
+      "label": "幽灵模式"
+    },
+    {
       "type": "Input",
       "name": "text",
-      "label": "按钮文案",
+      "label": "按钮文案"
+    },
+    {
+      "type": "Select",
+      "name": "type",
+      "label": "按钮主题",
       "props": {
-        "defaultValue": "按钮"
+        "options": [
+          {
+            "label": "默认",
+            "value": "default"
+          },
+          {
+            "label": "主题色",
+            "value": "primary"
+          }
+        ]
       }
     },
     {
       "type": "FunctionEditor",
-      "name": "onChange",
-      "label": "设置onChange"
+      "name": "onClick",
+      "label": "设置onClick"
     }
   ]
 }

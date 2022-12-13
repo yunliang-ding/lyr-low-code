@@ -9,18 +9,6 @@
   },
   "propsConfig": [
     {
-      "type": "Switch",
-      "valuePropName": "checked",
-      "name": "disabled",
-      "label": "是否禁用"
-    },
-    {
-      "type": "Switch",
-      "valuePropName": "checked",
-      "name": "ghost",
-      "label": "幽灵模式"
-    },
-    {
       "type": "Input",
       "name": "text",
       "label": "按钮文案"
@@ -41,6 +29,18 @@
           }
         ]
       }
+    },
+    {
+      "type": "Switch",
+      "valuePropName": "checked",
+      "name": "disabled",
+      "label": "是否禁用"
+    },
+    {
+      "type": "Switch",
+      "valuePropName": "checked",
+      "name": "ghost",
+      "label": "幽灵模式"
     },
     {
       "type": "FunctionEditor",

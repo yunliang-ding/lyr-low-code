@@ -1,4 +1,4 @@
-import { PageDesigner, MonacoEditor, getTools } from 'react-core-form-designer';
+import { PageDesigner, MonacoEditor } from 'react-core-form-designer';
 import React, { useRef } from 'react';
 import { Button, CreateDrawer } from 'react-core-form';
 import { message, Space } from 'antd';
@@ -33,7 +33,6 @@ const exportDrawer = CreateDrawer({
 });
 
 export default () => {
-  const { encode } = getTools();
   const pageDesignerRef: any = useRef({});
   return (
     <div className="page-designer-playground">
@@ -49,11 +48,14 @@ export default () => {
               if (pageDesignerRef.current.schema?.length > 0) {
                 exportDrawer.open({
                   initialValues: {
-                    code: pageDesignerRef.current.getStandardSchema(),
+                    code: pageDesignerRef.current.getPageStandardSchema({
+                      canvasProps: pageDesignerRef.current.canvasProps,
+                      schema: pageDesignerRef.current.schema,
+                    }),
                   },
                 });
               } else {
-                message.info('请选择表单项');
+                message.info('物料为空');
               }
             }}
           >

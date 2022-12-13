@@ -4,11 +4,13 @@ import RegisterWidgets from './register-widgets';
 import PropsConfigPanel from './props-config-panel';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { DndProvider } from 'react-dnd';
-import { getStandardSchema } from '../util';
+import { getPageStandardSchema } from './util';
 import { Ctx } from './store';
 import './index.less';
 
 const Container = (props: any, ref: any) => {
+  // 统一管理 state
+  const [state, setState] = useState({});
   // 统一管理 schema
   const [canvasProps, setCanvasProps] = useState({
     column: 4,
@@ -22,6 +24,8 @@ const Container = (props: any, ref: any) => {
   // 统一管理选中的 schema
   const [selectItem, setSelectItem] = useState({});
   const ctx = {
+    state,
+    setState,
     canvasProps,
     setCanvasProps,
     widgets,
@@ -30,7 +34,7 @@ const Container = (props: any, ref: any) => {
     setSchema,
     selectItem,
     setSelectItem,
-    getStandardSchema,
+    getPageStandardSchema,
   };
   // 通知
   useEffect(() => {
@@ -50,7 +54,7 @@ PageDesigner.PropsConfigPanel = PropsConfigPanel;
 PageDesigner.useTools = () => {
   return {
     // 获取标准数据模型
-    getStandardSchema,
+    getPageStandardSchema,
   };
 };
 export default PageDesigner;

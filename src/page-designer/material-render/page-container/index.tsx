@@ -17,7 +17,7 @@ export default ({
       '.page-container-wapper-header',
     )?.getBoundingClientRect();
     $('.page-container-wapper-children').style.height = `calc(100% - ${
-      height + 50
+      height + (footer.length > 0 ? 50 : 0)
     }px)`;
   }, [children]);
   return (

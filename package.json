@@ -49,16 +49,18 @@
   },
   "peerDependencies": {
     "react": "17.0.2",
-    "antd": "4.20.0",
+    "antd": "4.23.0",
+    "@ant-design/pro-components":"2.3.47",
     "react-core-form": "0.0.15"
   },
   "devDependencies": {
     "react-core-form": "0.0.15",
+    "antd": "4.23.0",
+    "@ant-design/pro-components":"2.3.47",
     "@types/lodash": "4.14.168",
     "@umijs/test": "^3.0.5",
     "@types/ali-oss": "6.16.3",
     "@babel/runtime": "7.16.0",
-    "antd": "4.20.0",
     "babel-plugin-import": "1.13.3",
     "dumi": "^1.0.14",
     "eslint": "^7.27.0",

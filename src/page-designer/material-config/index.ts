@@ -27,8 +27,6 @@ export default {
     link,
     title,
     alert,
-    avatar,
-    breadcrumb,
     button,
     descriptions,
     divider,

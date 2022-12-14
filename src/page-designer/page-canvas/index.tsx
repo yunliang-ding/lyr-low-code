@@ -4,8 +4,9 @@ import { uuid as Uuid, cloneDeep } from '@/util';
 import { Ctx } from '../store';
 import { Empty } from 'antd';
 import MaterialRender from '../material-render';
-import './index.less';
 import { Grid } from 'react-core-form';
+import PageContainer from '../material-render/page-container';
+import './index.less';
 
 export interface FormCanvasType {
   empty?: string; // 空数据展示
@@ -116,9 +117,11 @@ export default ({
           className="page-canvas-empty"
         />
       ) : (
-        <Grid column={ctx.canvasProps.column}>
-          <MaterialRender accept={accept} ctx={ctx} />
-        </Grid>
+        <PageContainer {...ctx.pageProps} onTabChange={undefined}>
+          <Grid column={ctx.pageProps.column}>
+            <MaterialRender accept={accept} ctx={ctx} />
+          </Grid>
+        </PageContainer>
       )}
     </div>
   );

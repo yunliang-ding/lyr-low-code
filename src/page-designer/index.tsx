@@ -6,15 +6,14 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import { DndProvider } from 'react-dnd';
 import { getPageStandardSchema } from './util';
 import { Ctx } from './store';
+import defaultPageProps from './initial';
 import './index.less';
 
 const Container = (props: any, ref: any) => {
   // 统一管理 state
   const [state, setState] = useState({});
   // 统一管理 schema
-  const [canvasProps, setCanvasProps] = useState({
-    column: 4,
-  });
+  const [pageProps, setPageProps] = useState(defaultPageProps);
   // 统一管理 widgets
   const [widgets, setWidgets] = useState<{
     __originalConfig__?: object[]; // 部件的配置项模型
@@ -26,8 +25,8 @@ const Container = (props: any, ref: any) => {
   const ctx = {
     state,
     setState,
-    canvasProps,
-    setCanvasProps,
+    pageProps,
+    setPageProps,
     widgets,
     setWidgets,
     schema,

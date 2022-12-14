@@ -4,8 +4,9 @@ import { isEmpty, recursionFind } from '@/util';
 import { Ctx } from '../store';
 import { debounce } from 'lodash';
 import { FunctionEditor, JsonEditor } from '@/index';
-import './index.less';
 import { Form } from 'react-core-form';
+import pageConfig from './page.config';
+import './index.less';
 
 export interface PropsConfigPanelTypes {
   onPropsConfigUpdate: Function; // 配置改变返回新的配置
@@ -17,6 +18,7 @@ export interface PropsConfigPanelTypes {
 }
 
 export default ({ style = {}, debounceTime = 100 }: PropsConfigPanelTypes) => {
+  const [form] = Form.useForm();
   const [compontentType, setCompontentType]: any = useState('物料配置');
   // 拿到 ctx
   const ctx: any = useContext(Ctx);
@@ -59,40 +61,17 @@ export default ({ style = {}, debounceTime = 100 }: PropsConfigPanelTypes) => {
           >
             <Form
               {...{
-                schema: [
-                  {
-                    type: 'RadioGroup',
-                    name: 'column',
-                    label: '设置布局',
-                    props: {
-                      optionType: 'button',
-                      options: [
-                        {
-                          label: '一等份',
-                          value: 1,
-                        },
-                        {
-                          label: '二等份',
-                          value: 2,
-                        },
-                        {
-                          label: '三等份',
-                          value: 3,
-                        },
-                        {
-                          label: '四等份',
-                          value: 4,
-                        },
-                      ],
-                    },
-                  },
-                ],
-                initialValues: {
-                  ...ctx.canvasProps,
+                schema: pageConfig,
+                widgets: {
+                  JsonEditor,
+                  FunctionEditor,
                 },
-                onValuesChange: (v, values) => {
-                  console.log(values);
-                  ctx.setCanvasProps(values);
+                initialValues: {
+                  ...ctx.pageProps,
+                },
+                form,
+                onValuesChange: async () => {
+                  ctx.setPageProps(await form.submit());
                 },
               }}
             />

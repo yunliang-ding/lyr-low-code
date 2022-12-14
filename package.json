@@ -49,14 +49,12 @@
   },
   "peerDependencies": {
     "react": "17.0.2",
-    "antd": "4.23.0",
-    "@ant-design/pro-components":"2.3.47",
+    "antd": "4.21.0",
     "react-core-form": "0.0.15"
   },
   "devDependencies": {
     "react-core-form": "0.0.15",
-    "antd": "4.23.0",
-    "@ant-design/pro-components":"2.3.47",
+    "antd": "4.21.0",
     "@types/lodash": "4.14.168",
     "@umijs/test": "^3.0.5",
     "@types/ali-oss": "6.16.3",

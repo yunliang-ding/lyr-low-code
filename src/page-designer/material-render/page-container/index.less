@@ -1,0 +1,57 @@
+.page-container-wapper {
+  height: 100%;
+  width: 100%;
+  background-color: #fff;
+  &-breadcrumb {
+    padding: 12px;
+    width: 100%;
+  }
+  &-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 12px;
+    padding-top: 0;
+    &-text {
+      width: 60%;
+      font-size: 18px;
+      color: #000;
+    }
+    &-extra {
+      width: 40%;
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+  }
+  &-descriptions {
+    padding: 12px;
+    padding-bottom: 0px;
+  }
+  &-tabs {
+    padding: 0 12px;
+    .ant-tabs-nav {
+      margin-bottom: 0px !important;
+    }
+  }
+  &-children {
+    width: 100%;
+    overflow: auto;
+    padding: 18px;
+    background-color: #eff1f4;
+  }
+  &-footer {
+    position: absolute;
+    bottom: 0px;
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    gap: 12px;
+    padding: 0 12px;
+    height: 50px;
+    align-items: center;
+    border-top: 1px solid #eee;
+    background-color: #fff;
+  }
+}

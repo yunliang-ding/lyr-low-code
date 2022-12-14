@@ -5,16 +5,16 @@ export default {
     title: '设置单个页面',
     breadcrumb: [
       {
-        breadcrumbName: '菜单1',
-        path: '/menu1',
+        label: '菜单1',
+        value: '/menu1',
       },
       {
-        breadcrumbName: '菜单2',
-        path: '/menu2',
+        label: '菜单2',
+        value: '/menu2',
       },
       {
-        breadcrumbName: '菜单3',
-        path: '/menu3',
+        label: '菜单3',
+        value: '/menu3',
       },
     ],
     extra: [
@@ -26,23 +26,46 @@ export default {
         label: '按钮2',
       },
     ],
+    descriptions: [
+      {
+        label: '项目编号',
+        value: 'CZ20220926003',
+      },
+      {
+        label: '创建人',
+        value: '测试用户',
+      },
+      {
+        label: '创建时间',
+        value: '2022-12-12',
+      },
+    ],
   },
   tabList: [
     {
-      tab: '选项卡1',
-      key: '1',
+      label: '选项卡1',
+      value: '1',
     },
     {
-      tab: '选项卡2',
-      key: '2',
+      label: '选项卡2',
+      value: '2',
     },
     {
-      tab: '选项卡3',
-      key: '3',
+      label: '选项卡3',
+      value: '3',
     },
   ],
   onTabChange: encrypt(`async (key) => {
-console.log(key)
+  console.log(key)
 }`),
   column: 1,
+  footer: [
+    {
+      label: '按钮1',
+      type: 'primary',
+    },
+    {
+      label: '按钮2',
+    },
+  ],
 };

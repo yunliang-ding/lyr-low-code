@@ -49,8 +49,8 @@ export default () => {
                 exportDrawer.open({
                   initialValues: {
                     code: pageDesignerRef.current.getPageStandardSchema({
-                      canvasProps: pageDesignerRef.current.canvasProps,
-                      schema: pageDesignerRef.current.schema,
+                      ...pageDesignerRef.current.pageProps,
+                      children: pageDesignerRef.current.schema,
                     }),
                   },
                 });

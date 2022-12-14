@@ -7,7 +7,7 @@ const plugins = [require('prettier/parser-typescript')];
 export const getPageStandardSchema = (scurce) => {
   const schema = cloneDeep(scurce);
   // 删除多余的属性
-  schema.schema.forEach((item) => {
+  schema.children.forEach((item) => {
     delete item.key;
     delete item.name;
     delete item.label;

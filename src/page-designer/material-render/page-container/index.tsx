@@ -1,5 +1,5 @@
 import { Breadcrumb, Descriptions, Tabs } from 'antd';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Button } from 'react-core-form';
 import './index.less';
 
@@ -9,6 +9,7 @@ export default ({
   header: { title = '', breadcrumb = [], extra = [], descriptions = [] },
   tabList = [],
   children = null,
+  activeKey,
   onTabChange = () => {},
   footer = {},
 }: any) => {
@@ -68,7 +69,7 @@ export default ({
         )}
         {tabList.length > 0 && (
           <div className="page-container-wapper-tabs">
-            <Tabs onTabClick={onTabChange}>
+            <Tabs onTabClick={onTabChange} activeKey={activeKey}>
               {tabList.map((item) => {
                 return <Tabs.TabPane tab={item.label} key={item.value} />;
               })}

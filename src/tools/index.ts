@@ -3,6 +3,13 @@ import { decode, encode, isEmpty } from '../util';
 import { encrypt, decrypt } from '@/util';
 import BabelCompile from './babel-compile';
 
+interface babelParseProps {
+  code: string;
+  prefix?: string;
+  dependencies?: any;
+  exportDefault?: any;
+  require?: any;
+}
 /**
  * 解析
  */
@@ -17,7 +24,7 @@ export const babelParse = ({
   // 默认 default 导出
   exportDefault = true,
   require = {},
-}) => {
+}: babelParseProps) => {
   const babel = new BabelCompile(require);
   try {
     let dependenciesString = '';

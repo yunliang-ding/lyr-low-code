@@ -2,6 +2,11 @@ import { SchemaProps } from 'react-core-form';
 
 export default [
   {
+    type: 'FunctionEditor',
+    name: 'onMount',
+    label: '页面加载完钩子',
+  },
+  {
     type: 'RadioGroup',
     name: 'column',
     label: '设置内容排版',
@@ -60,6 +65,11 @@ export default [
     type: 'JsonEditor',
     name: 'tabList',
     label: '选项卡设置',
+  },
+  {
+    type: 'Input',
+    name: 'activeKey',
+    label: '选项卡选中值',
   },
   {
     type: 'FunctionEditor',

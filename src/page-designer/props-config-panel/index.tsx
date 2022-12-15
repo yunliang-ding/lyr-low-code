@@ -1,6 +1,6 @@
 import { CSSProperties, useContext, useState } from 'react';
 import { Empty, Segmented } from 'antd';
-import { isEmpty, recursionFind } from '@/util';
+import { encrypt, isEmpty, recursionFind } from '@/util';
 import { Ctx } from '../store';
 import { debounce } from 'lodash';
 import { FunctionEditor, JsonEditor } from '@/index';
@@ -111,10 +111,18 @@ export default ({ style = {}, debounceTime = 100 }: PropsConfigPanelTypes) => {
                       ],
                     },
                   },
+                  {
+                    type: 'FunctionEditor',
+                    label: '是否展示',
+                    name: 'visible',
+                  },
                   ...propsConfig,
                 ],
                 initialValues: {
                   span: 1,
+                  visible: encrypt(`() => {
+  return true
+}`),
                   ...ctx.selectItem.props,
                 },
                 onValuesChange,

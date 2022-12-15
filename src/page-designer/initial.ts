@@ -41,6 +41,7 @@ export default {
       },
     ],
   },
+  activeKey: '',
   tabList: [
     {
       label: '选项卡1',
@@ -55,7 +56,7 @@ export default {
       value: '3',
     },
   ],
-  onTabChange: encrypt(`async (key) => {
+  onTabChange: encrypt(`(key) => {
   console.log(key)
 }`),
   column: 1,
@@ -68,4 +69,9 @@ export default {
       label: '按钮2',
     },
   ],
+  onMount: encrypt(`async () => {
+  /** 初始化一份状态管理 */
+  setState({
+  })
+}`),
 };

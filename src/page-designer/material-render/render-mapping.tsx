@@ -81,4 +81,4 @@ export default {
   BlockQuote: () => {
     return 'BlockQuote';
   },
-};
+} as any;

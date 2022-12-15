@@ -4,8 +4,8 @@ import { uuid as Uuid, cloneDeep } from '@/util';
 import { Ctx } from '../store';
 import { Empty } from 'antd';
 import MaterialRender from '../material-render';
-import './index.less';
 import { getPageStandardSchema } from '../util';
+import './index.less';
 
 export interface FormCanvasType {
   empty?: string; // 空数据展示

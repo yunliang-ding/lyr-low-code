@@ -29,3 +29,30 @@ export const getPageStandardSchema = (scurce) => {
   );
   return code;
 };
+
+// 字符串模版解析
+export const parseString = (template, context) => {
+  return template.replace(/\{\{(.*?)\}\}/g, (match, key) => {
+    return context[key.split('.')[1]];
+  });
+};
+
+// 注入 state 到模型
+export const injectStateToModules = (modules, state) => {
+  Object.keys(modules).forEach((key) => {
+    if (Object.prototype.toString.call(modules[key]) === '[object Object]') {
+      injectStateToModules(modules[key], state);
+    }
+    if (Object.prototype.toString.call(modules[key]) === '[object Array]') {
+      modules[key].forEach((i) => {
+        injectStateToModules(i, state);
+      });
+    }
+    if (
+      Object.prototype.toString.call(modules[key]) === '[object String]' &&
+      modules[key].includes('{{')
+    ) {
+      modules[key] = parseString(modules[key], state);
+    }
+  });
+};

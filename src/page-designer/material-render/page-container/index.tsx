@@ -6,7 +6,10 @@ import './index.less';
 const $ = document.querySelector.bind(document);
 
 export default ({
-  header: { title = '', breadcrumb = [], extra = [], descriptions = [] },
+  title = () => null,
+  breadcrumb = [],
+  extra = [],
+  descriptions = [],
   tabList = [],
   children = null,
   activeKey,
@@ -43,7 +46,7 @@ export default ({
           </div>
         )}
         <div className="page-container-wapper-title">
-          <div className="page-container-wapper-title-text">{title}</div>
+          <div className="page-container-wapper-title-text">{title()}</div>
           <div className="page-container-wapper-title-extra">
             {extra.map((btn) => {
               return (

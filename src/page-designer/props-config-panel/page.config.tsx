@@ -33,33 +33,30 @@ export default [
     },
   },
   {
-    type: 'FieldSet',
-    name: 'header',
-    label: '头部信息设置',
+    type: 'BlockQuote',
     props: {
-      children: [
-        {
-          type: 'Input',
-          name: 'title',
-          label: '标题',
-        },
-        {
-          type: 'JsonEditor',
-          name: 'breadcrumb',
-          label: '设置面包屑',
-        },
-        {
-          type: 'JsonEditor',
-          name: 'extra',
-          label: '设置操作按钮',
-        },
-        {
-          type: 'JsonEditor',
-          name: 'descriptions',
-          label: '设置描述信息',
-        },
-      ],
+      title: '头部信息设置',
     },
+  },
+  {
+    type: 'FunctionEditor',
+    name: 'title',
+    label: '标题',
+  },
+  {
+    type: 'JsonEditor',
+    name: 'breadcrumb',
+    label: '设置面包屑',
+  },
+  {
+    type: 'JsonEditor',
+    name: 'extra',
+    label: '设置操作按钮',
+  },
+  {
+    type: 'JsonEditor',
+    name: 'descriptions',
+    label: '设置描述信息',
   },
   {
     type: 'JsonEditor',

@@ -4,11 +4,8 @@ import { uuid as Uuid, cloneDeep } from '@/util';
 import { Ctx } from '../store';
 import { Empty } from 'antd';
 import MaterialRender from '../material-render';
-import { Grid } from 'react-core-form';
-import PageContainer from '../material-render/page-container';
-import PageContainerRender from '../material-render/render';
-import { getPageStandardSchema } from '../util';
 import './index.less';
+import { getPageStandardSchema } from '../util';
 
 export interface FormCanvasType {
   empty?: string; // 空数据展示
@@ -119,22 +116,14 @@ export default ({
           className="page-canvas-empty"
         />
       ) : (
-        <PageContainer
-          {...ctx.pageProps}
-          onTabChange={() => {}}
-          activeKey={undefined}
-        >
-          <Grid column={ctx.pageProps.column}>
-            <MaterialRender accept={accept} ctx={ctx} />
-          </Grid>
-        </PageContainer>
+        <MaterialRender
+          accept={accept}
+          schema={getPageStandardSchema({
+            children: ctx.schema,
+            pageProps: ctx.pageProps,
+          })}
+        />
       )}
-      <PageContainerRender
-        schema={getPageStandardSchema({
-          children: ctx.schema,
-          pageProps: ctx.pageProps,
-        })}
-      />
     </div>
   );
 };

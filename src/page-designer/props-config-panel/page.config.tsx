@@ -2,6 +2,11 @@ import { SchemaProps } from 'react-core-form';
 
 export default [
   {
+    type: 'FunctionEditor',
+    name: 'onMount',
+    label: '页面加载完钩子',
+  },
+  {
     type: 'RadioGroup',
     name: 'column',
     label: '设置内容排版',
@@ -73,10 +78,5 @@ export default [
     type: 'JsonEditor',
     name: 'footer',
     label: '底部操作按钮',
-  },
-  {
-    type: 'FunctionEditor',
-    name: 'onMount',
-    label: '页面加载完钩子',
   },
 ] as SchemaProps[];

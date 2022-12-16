@@ -7,7 +7,7 @@ import Render from './render';
 import Canvas from './canvas';
 import { injectStateToModules } from '../util';
 
-export default ({ schema, accept, type = 'canvas' }) => {
+export default ({ schema, accept }) => {
   const ctx: any = useContext(Ctx); // 拿到ctx
   let modules = {
     children: [],
@@ -41,7 +41,7 @@ export default ({ schema, accept, type = 'canvas' }) => {
   const { pageProps } = modules;
   // 注入 state 到模型
   injectStateToModules(modules, ctx.state);
-  return type === 'canvas' ? (
+  return ctx.type === 'canvas' ? (
     <PageContainer {...pageProps} title={() => '标题信息'}>
       <Canvas ctx={ctx} accept={accept} />
     </PageContainer>

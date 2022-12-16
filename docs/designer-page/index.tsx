@@ -1,4 +1,4 @@
-import { PageDesigner, MonacoEditor, getTools } from 'react-core-form-designer';
+import { PageDesigner, MonacoEditor } from 'react-core-form-designer';
 import React, { useRef } from 'react';
 import { Button, CreateDrawer } from 'react-core-form';
 import { message, Space } from 'antd';
@@ -34,7 +34,6 @@ const exportDrawer = CreateDrawer({
 
 export default () => {
   const pageDesignerRef: any = useRef({});
-  const { encode } = getTools();
   return (
     <div className="page-designer-playground">
       <div className="page-designer-playground-header">
@@ -50,7 +49,7 @@ export default () => {
                 exportDrawer.open({
                   initialValues: {
                     code: pageDesignerRef.current.getPageStandardSchema({
-                      ...pageDesignerRef.current.pageProps,
+                      pageProps: pageDesignerRef.current.pageProps,
                       children: pageDesignerRef.current.schema,
                     }),
                   },
@@ -67,28 +66,17 @@ export default () => {
             key="export"
             onClick={() => {
               if (pageDesignerRef.current.schema?.length > 0) {
-                const code = pageDesignerRef.current
-                  .getPageStandardSchema({
-                    ...pageDesignerRef.current.pageProps,
-                    children: pageDesignerRef.current.schema,
-                  })
-                  .replace('export default ', '');
-                const jsx = `import { PageRender } from 'react-core-form-designer';
-
-export default () => {
-  return <PageRender schema={${code}} />
-}`;
-                window.open(
-                  `http://121.4.49.147:9000/react-playground?code=${encode(
-                    jsx,
-                  )}`,
+                pageDesignerRef.current.setType(
+                  pageDesignerRef.current.type === 'render'
+                    ? 'canvas'
+                    : 'render',
                 );
               } else {
                 message.info('请选择配置项');
               }
             }}
           >
-            去 Playground 预览
+            {pageDesignerRef.current.type === 'render' ? '编辑' : '预览'}
           </Button>
         </Space>
       </div>

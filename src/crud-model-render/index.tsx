@@ -4,7 +4,7 @@ import { Table, CardForm } from 'react-core-form';
 import { queryModelBySchemaId, registerGlobalApi } from './util';
 import { decode, isEmpty } from '@/util';
 import { Button, Empty, Result } from 'antd';
-import Page from '@/page-designer/material-render/render';
+import MaterialRender from '@/page-designer/material-render';
 import axios from 'axios';
 
 export const axiosInstance = axios.create({
@@ -76,7 +76,7 @@ const CrudModelRender = ({
   } else if (standRes.type === 'table') {
     return <Table {...standRes.schema} />;
   } else if (standRes.type === 'page') {
-    return <Page {...standRes.schema} />;
+    return <MaterialRender schema={standRes.schema} />;
   } else if (standRes.type === 'error') {
     return (
       <Result

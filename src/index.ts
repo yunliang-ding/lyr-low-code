@@ -6,7 +6,7 @@ import JsonEditor from './json-editor';
 import FunctionEditor from './function-editor';
 import getTools from './tools';
 import CrudModelRender from './crud-model-render';
-import PageRender from './page-designer/material-render';
+import MaterialRender from './page-designer/material-render';
 
 export {
   FormDesigner,
@@ -17,5 +17,5 @@ export {
   JsonEditor,
   FunctionEditor,
   CrudModelRender,
-  PageRender,
+  MaterialRender,
 };

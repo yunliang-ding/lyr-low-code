@@ -3,8 +3,8 @@ import { useState, useEffect, useContext, useMemo } from 'react';
 import { uuid as Uuid, cloneDeep } from '@/util';
 import { Ctx } from '../store';
 import { Empty } from 'antd';
-import MaterialRender from '../material-render';
 import { getPageStandardSchema } from '../util';
+import { MaterialRender } from '@/index';
 import './index.less';
 
 export interface FormCanvasType {
@@ -119,8 +119,8 @@ export default ({
         <MaterialRender
           accept={accept}
           schema={getPageStandardSchema({
-            children: ctx.schema,
             pageProps: ctx.pageProps,
+            children: ctx.schema,
           })}
         />
       )}

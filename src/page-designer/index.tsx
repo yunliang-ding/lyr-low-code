@@ -10,6 +10,8 @@ import defaultPageProps from './initial';
 import './index.less';
 
 const Container = (props: any, ref: any) => {
+  // 设置渲染类型
+  const [type, setType] = useState('canvas');
   // 统一管理 state
   const [state, setState] = useState({});
   // 统一管理 schema
@@ -23,6 +25,8 @@ const Container = (props: any, ref: any) => {
   // 统一管理选中的 schema
   const [selectItem, setSelectItem] = useState({});
   const ctx = {
+    type,
+    setType,
     state,
     setState,
     pageProps,

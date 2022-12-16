@@ -2,7 +2,7 @@ import renderMapping from './render-mapping';
 
 export default ({ children }) => {
   return (
-    <>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
       {children.map((item) => {
         // 控制是否渲染逻辑
         if (item.props.visible?.() === false) {
@@ -19,6 +19,6 @@ export default ({ children }) => {
           </div>
         );
       })}
-    </>
+    </div>
   );
 };

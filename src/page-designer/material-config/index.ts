@@ -2,8 +2,6 @@ import text from './typography/text.json';
 import link from './typography/link.json';
 import title from './typography/title.json';
 import alert from './alert.json';
-import avatar from './avatar.json';
-import breadcrumb from './breadcrumb.json';
 import button from './button.json';
 import card from './card.json';
 import carousel from './carousel.json';

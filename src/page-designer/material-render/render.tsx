@@ -1,9 +1,8 @@
-import { Grid } from 'react-core-form';
 import renderMapping from './render-mapping';
 
-export default ({ pageProps, children }) => {
+export default ({ children }) => {
   return (
-    <Grid column={pageProps.column}>
+    <>
       {children.map((item) => {
         // 控制是否渲染逻辑
         if (item.props.visible?.() === false) {
@@ -20,6 +19,6 @@ export default ({ pageProps, children }) => {
           </div>
         );
       })}
-    </Grid>
+    </>
   );
 };

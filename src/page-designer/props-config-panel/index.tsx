@@ -85,38 +85,12 @@ export default ({ style = {}, debounceTime = 100 }: PropsConfigPanelTypes) => {
             <Form
               {...{
                 schema: [
-                  {
-                    type: 'RadioGroup',
-                    name: 'span',
-                    label: '设置等份',
-                    props: {
-                      optionType: 'button',
-                      options: [
-                        {
-                          label: '占一份',
-                          value: 1,
-                        },
-                        {
-                          label: '占二份',
-                          value: 2,
-                        },
-                        {
-                          label: '占三份',
-                          value: 3,
-                        },
-                        {
-                          label: '占四份',
-                          value: 4,
-                        },
-                      ],
-                    },
-                  },
+                  ...propsConfig,
                   {
                     type: 'FunctionEditor',
                     label: '是否展示',
                     name: 'visible',
                   },
-                  ...propsConfig,
                 ],
                 initialValues: {
                   span: 1,

@@ -7,32 +7,6 @@ export default [
     label: '页面加载完钩子',
   },
   {
-    type: 'RadioGroup',
-    name: 'column',
-    label: '设置内容排版',
-    props: {
-      optionType: 'button',
-      options: [
-        {
-          label: '一等份',
-          value: 1,
-        },
-        {
-          label: '二等份',
-          value: 2,
-        },
-        {
-          label: '三等份',
-          value: 3,
-        },
-        {
-          label: '四等份',
-          value: 4,
-        },
-      ],
-    },
-  },
-  {
     type: 'BlockQuote',
     props: {
       title: '头部信息设置',

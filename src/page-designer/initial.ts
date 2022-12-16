@@ -63,7 +63,6 @@ export default {
     activeKey: key
   })
 }`),
-  column: 1,
   footer: [
     {
       label: '按钮1',

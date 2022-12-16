@@ -109,21 +109,13 @@ export default ({
   return (
     <div ref={drop} className={cls.join(' ')} style={style}>
       {isOver && <div className="page-canvas-mask" />}
-      {ctx?.schema.length === 0 ? (
-        <Empty
-          image={Empty.PRESENTED_IMAGE_SIMPLE}
-          description={empty}
-          className="page-canvas-empty"
-        />
-      ) : (
-        <MaterialRender
-          accept={accept}
-          schema={getPageStandardSchema({
-            pageProps: ctx.pageProps,
-            children: ctx.schema,
-          })}
-        />
-      )}
+      <MaterialRender
+        accept={accept}
+        schema={getPageStandardSchema({
+          pageProps: ctx.pageProps,
+          children: ctx.schema,
+        })}
+      />
     </div>
   );
 };

@@ -1,10 +1,9 @@
 import DragContainer from '@/form-designer/form-canvas/drag';
-import { Grid } from 'react-core-form';
 import renderMapping from './render-mapping';
 
 export default ({ accept, ctx }) => {
   return (
-    <Grid column={ctx.pageProps.column}>
+    <>
       {ctx.schema.map((item) => {
         const Comp = renderMapping[item.type] || (() => null);
         return (
@@ -33,6 +32,6 @@ export default ({ accept, ctx }) => {
           </div>
         );
       })}
-    </Grid>
+    </>
   );
 };

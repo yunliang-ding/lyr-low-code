@@ -93,7 +93,6 @@ export default ({ style = {}, debounceTime = 100 }: PropsConfigPanelTypes) => {
                   },
                 ],
                 initialValues: {
-                  span: 1,
                   visible: encrypt(`() => {
   return true
 }`),

@@ -1,4 +1,4 @@
-import renderMapping from './render-mapping';
+import renderMapping from './mapping';
 
 export default ({ children }) => {
   return (

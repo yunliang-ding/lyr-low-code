@@ -10,11 +10,10 @@ import {
   Card,
   Timeline,
   Avatar,
-  Breadcrumb as AntdBreadcrumb,
   Button as AntdButton,
-  Descriptions,
-  Divider,
-  Empty,
+  Breadcrumb as AntdBreadcrumb,
+  Descriptions as AntdDescriptions,
+  Empty as AntdEmpty,
   Progress,
   Statistic,
   Result,
@@ -55,9 +54,31 @@ export default {
   Button: (props) => {
     return <AntdButton {...props}>{props.text}</AntdButton>;
   },
-  Descriptions,
-  Divider,
-  Empty,
+  Descriptions: (props) => {
+    return (
+      <AntdDescriptions title={props.title} column={props.column}>
+        {props.children?.map((item) => {
+          return (
+            <AntdDescriptions.Item label={item.label} key={item.label}>
+              {item.value}
+            </AntdDescriptions.Item>
+          );
+        })}
+      </AntdDescriptions>
+    );
+  },
+  Empty: (props) => {
+    return (
+      <AntdEmpty
+        description={props.description}
+        image={
+          props.simple
+            ? AntdEmpty.PRESENTED_IMAGE_SIMPLE
+            : AntdEmpty.PRESENTED_IMAGE_DEFAULT
+        }
+      />
+    );
+  },
   Progress,
   Result,
   Statistic,

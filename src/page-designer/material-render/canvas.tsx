@@ -1,5 +1,5 @@
 import DragContainer from '@/form-designer/form-canvas/drag';
-import renderMapping from './render-mapping';
+import renderMapping from './mapping';
 
 export default ({ accept, ctx }) => {
   return (

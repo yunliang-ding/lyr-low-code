@@ -1,46 +1,21 @@
 {
-  "type": "Empyt",
+  "type": "Empty",
   "label": "空提示",
   "props": {
-    "placeholder": "请输入",
-    "allowClear": true,
-    "disabled": false,
-    "maxLength": 64,
-    "showCount": false
+    "description": "数据为空",
+    "simple": true
   },
   "propsConfig": [
     {
       "type": "Switch",
       "valuePropName": "checked",
-      "name": "showCount",
-      "label": "是否展示计数"
-    },
-    {
-      "type": "Switch",
-      "valuePropName": "checked",
-      "name": "disabled",
-      "label": "是否禁用"
-    },
-    {
-      "type": "Switch",
-      "name": "allowClear",
-      "valuePropName": "checked",
-      "label": "是否允许清除"
+      "name": "simple",
+      "label": "展示简单的logo"
     },
     {
       "type": "Input",
-      "name": "placeholder",
+      "name": "description",
       "label": "提示文案"
-    },
-    {
-      "type": "InputNumber",
-      "name": "maxLength",
-      "label": "最大长度"
-    },
-    {
-      "type": "FunctionEditor",
-      "name": "onChange",
-      "label": "设置onChange"
     }
   ]
 }

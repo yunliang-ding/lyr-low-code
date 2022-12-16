@@ -41,6 +41,7 @@ export default ({ schema, accept }) => {
   const { pageProps } = modules;
   // 注入 state 到模型
   injectStateToModules(modules, ctx.state);
+  console.log(pageProps);
   return ctx.type === 'canvas' ? (
     <PageContainer {...pageProps} title={() => '标题信息'}>
       <Canvas ctx={ctx} accept={accept} />

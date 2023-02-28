@@ -7,7 +7,7 @@ import Render from './render';
 import Canvas from './canvas';
 import { injectStateToModules } from '../util';
 
-export default ({ schema, accept }) => {
+export default ({ schema, accept = 'left' }) => {
   const ctx: any = useContext(Ctx); // 拿到ctx
   let modules = {
     children: [],

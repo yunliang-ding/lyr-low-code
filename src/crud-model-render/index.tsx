@@ -43,9 +43,7 @@ const CrudModelRender = ({
           } = await axiosInstance.get(`/crud/detail?id=${schemaId}`);
           if (code === 200) {
             // 注册接口服务
-            if (data.services) {
-              registerGlobalApi(decode(data.services), require);
-            }
+            registerGlobalApi(decode(data.services), require);
             /** 解析模型 */
             const res = await queryModelBySchemaId(schemaId, data);
             setStandRes(res);

@@ -1,5 +1,5 @@
 /* eslint-disable no-bitwise */
-import * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
+import { uuid } from '@/util';
 import { useEffect, useRef, CSSProperties } from 'react';
 import './index.less';
 
@@ -19,60 +19,76 @@ export interface MonacoProps {
   id?: string;
   mode?: 'nomal' | 'diff';
   renderSideBySide?: boolean;
+  cdnPath: string;
 }
 /**
  * 编辑器
  */
 export default ({
+  id = `monaco-container-${uuid(8)}`,
   value = '',
   onChange = () => {},
   onSave = () => {},
+  style = {
+    width: 800,
+    height: 400,
+  },
   language = 'javascript',
   theme = 'vs-dark',
-  id = 'monaco-container',
   editorMonacoRef = useRef<any>({}),
   options = {},
+  cdnPath = 'https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.36.0/min/vs',
   ...rest
 }: MonacoProps) => {
+  // 加载资源
   useEffect(() => {
-    const monacoInstance: monaco.editor.IStandaloneCodeEditor =
-      monaco.editor.create(document.getElementById(id), {
-        value,
-        language,
-        selectOnLineNumbers: true,
-        automaticLayout: true,
-        tabSize: 2,
-        fontSize: 14,
-        theme,
-        fontWeight: '400',
-        minimap: {
-          enabled: true,
+    if (cdnPath) {
+      const _require: any = (window as any).require;
+      _require.config({
+        paths: {
+          vs: cdnPath,
         },
-        ...options,
-        ...rest,
       });
-    // ctrl + s 执行 onSave
-    monacoInstance.addCommand(
-      monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS,
-      () => {
-        const code = monacoInstance.getValue();
-        onSave(code);
-      },
-    );
-    // onChange
-    monacoInstance.onDidChangeModelContent((e) => {
-      const code = monacoInstance.getValue();
-      if (!e.isFlush) {
-        onChange(code);
-      }
-    });
-    editorMonacoRef.current = monacoInstance; // 挂到ref
-  }, []);
-  // update
-  useEffect(() => {
-    if (editorMonacoRef.current) {
-      editorMonacoRef.current.setValue?.(value);
+      _require(['vs/editor/editor.main'], () => {
+        const _monaco: any = (window as any).monaco;
+        const monacoInstance = _monaco.editor.create(
+          document.getElementById(id),
+          {
+            language,
+            selectOnLineNumbers: true,
+            automaticLayout: true,
+            tabSize: 2,
+            fontSize: 14,
+            theme,
+            fontWeight: '400',
+            minimap: {
+              enabled: true,
+            },
+            value,
+            ...options,
+            ...rest,
+          },
+        );
+        // ctrl + s 执行 onSave
+        monacoInstance.addCommand(
+          _monaco.KeyMod.CtrlCmd | _monaco.KeyCode.KeyS,
+          () => {
+            const code = monacoInstance.getValue();
+            onSave(code);
+          },
+        );
+        // onChange
+        monacoInstance.onDidChangeModelContent((e) => {
+          const code = monacoInstance.getValue();
+          if (!e.isFlush) {
+            onChange(code);
+          }
+        });
+        editorMonacoRef.current = monacoInstance; // 挂到ref
+      });
     }
-  }, [value]);
-  return <div id={id} className="app-monaco-editor" />;
+  }, []);
+  return cdnPath ? (
+    <div id={id} className="app-monaco-editor" style={style} />
+  ) : null;
 };

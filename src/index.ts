@@ -1,7 +1,7 @@
 import FormDesigner from './form-designer';
 import TableDesigner from './table-desinger';
 import PageDesigner from './page-designer';
-import MonacoEditor from './monaco-editor';
+import CodeEditor from './code-editor';
 import JsonEditor from './json-editor';
 import FunctionEditor from './function-editor';
 import getTools from './tools';
@@ -12,7 +12,7 @@ export {
   FormDesigner,
   TableDesigner,
   PageDesigner,
-  MonacoEditor,
+  CodeEditor,
   getTools,
   JsonEditor,
   FunctionEditor,

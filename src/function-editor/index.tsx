@@ -1,5 +1,5 @@
 /* eslint-disable @iceworks/best-practices/recommend-polyfill */
-import MonacoEditor from '@/monaco-editor';
+import CodeEditor from '@/code-editor';
 import { babelParse } from '@/tools';
 import { decrypt, encrypt, uuid } from '@/util';
 import { debounce, isEmpty } from 'lodash';
@@ -98,13 +98,12 @@ export default ({
           }}
         />
       </div>
-      <MemoMonaco
+      <MemoCode
         value={value}
         onChange={(v) => {
           valueRef.current = v; // 同步文本
           onChange(v);
         }}
-        name={name}
         setErrorInfo={setErrorInfo}
         prefix={prefix}
         useEncrypt={useEncrypt}
@@ -117,10 +116,9 @@ export default ({
   );
 };
 
-const MemoMonaco = memo(
+const MemoCode = memo(
   ({
     value,
-    name,
     onChange,
     setErrorInfo,
     prefix,
@@ -130,13 +128,11 @@ const MemoMonaco = memo(
     require,
     debounceTime,
   }: any) => {
-    const monacoRef: any = useRef({});
+    const codeRef: any = useRef({});
     return (
-      <MonacoEditor
-        id={`bind-function_${name}`}
+      <CodeEditor
         value={value ? decrypt(value, false) : defaultCode}
-        editorMonacoRef={monacoRef}
-        theme={'vs-dark'}
+        codeRef={codeRef}
         minimap={{
           enabled: false,
         }}

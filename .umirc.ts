@@ -1,5 +1,4 @@
 import { defineConfig } from 'dumi';
-const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
 export default defineConfig({
   mode: 'site',
@@ -44,12 +43,5 @@ export default defineConfig({
       path: 'https://github.com/yunliang-ding/core-form-designer',
     },
   ],
-  chainWebpack: (config) => {
-    config.plugin('monaco-editor').use(MonacoWebpackPlugin, [
-      {
-        languages: ['javascript', 'typescript', 'html', 'json'],
-      },
-    ]);
-  },
   // more config: https://d.umijs.org/config
 });

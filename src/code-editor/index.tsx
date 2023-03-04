@@ -2,7 +2,7 @@ import { uuid } from '@/util';
 import { useEffect, useRef, CSSProperties } from 'react';
 import './index.less';
 
-export interface MonacoProps {
+export interface CodeProps {
   id?: string;
   /** 语言设置 */
   language?: string;
@@ -18,23 +18,23 @@ export interface MonacoProps {
   onChange?: Function;
   /** ctrl + s 钩子 */
   onSave?: Function;
-  /** monaco 实例引用 */
-  editorMonacoRef?: any;
+  /** code 实例引用 */
+  codeRef?: any;
 }
 /**
  * 编辑器
  */
 export default ({
-  id = `monaco-container-${uuid(8)}`,
+  id = `code-container-${uuid(8)}`,
   value = '',
   onChange = () => {},
   onSave = () => {},
   style = {},
   language = 'javascript',
   theme = 'vs-dark',
-  editorMonacoRef = useRef<any>({}),
+  codeRef = useRef<any>({}),
   ...rest
-}: MonacoProps) => {
+}: CodeProps) => {
   // 加载资源
   useEffect(() => {
     const _require: any = (window as any).require;
@@ -45,42 +45,39 @@ export default ({
         },
       });
       _require(['vs/editor/editor.main'], () => {
-        const _monaco: any = (window as any).monaco;
-        const monacoInstance = _monaco.editor.create(
-          document.getElementById(id),
-          {
-            language,
-            selectOnLineNumbers: true,
-            automaticLayout: true,
-            tabSize: 2,
-            fontSize: 14,
-            theme,
-            fontWeight: '400',
-            minimap: {
-              enabled: true,
-            },
-            value,
-            ...rest,
+        const _code: any = (window as any).monaco;
+        const codeInstance = _code.editor.create(document.getElementById(id), {
+          language,
+          selectOnLineNumbers: true,
+          automaticLayout: true,
+          tabSize: 2,
+          fontSize: 14,
+          theme,
+          fontWeight: '400',
+          minimap: {
+            enabled: true,
           },
-        );
+          value,
+          ...rest,
+        });
         // ctrl + s 执行 onSave
-        monacoInstance.addCommand(
-          _monaco.KeyMod.CtrlCmd | _monaco.KeyCode.KeyS,
+        codeInstance.addCommand(
+          _code.KeyMod.CtrlCmd | _code.KeyCode.KeyS,
           () => {
-            const code = monacoInstance.getValue();
+            const code = codeInstance.getValue();
             onSave(code);
           },
         );
         // onChange
-        monacoInstance.onDidChangeModelContent((e) => {
-          const code = monacoInstance.getValue();
+        codeInstance.onDidChangeModelContent((e) => {
+          const code = codeInstance.getValue();
           if (!e.isFlush) {
             onChange(code);
           }
         });
-        editorMonacoRef.current = monacoInstance; // 挂到ref
+        codeRef.current = codeInstance; // 挂到ref
       });
     }
   }, []);
-  return <div id={id} className="app-monaco-editor" style={style} />;
+  return <div id={id} className="app-code-editor" style={style} />;
 };

@@ -1,4 +1,4 @@
-import { FormDesigner, MonacoEditor, getTools } from 'react-core-form-designer';
+import { FormDesigner, CodeEditor, getTools } from 'react-core-form-designer';
 import React, { useRef } from 'react';
 import { Button, CreateDrawer } from 'react-core-form';
 import { message, Space } from 'antd';
@@ -18,14 +18,10 @@ const exportDrawer = CreateDrawer({
   },
   render({ value }) {
     return (
-      <MonacoEditor
-        id="export-schema"
+      <CodeEditor
         value={value.code}
-        options={{
-          theme: 'vs-dark',
-          minimap: {
-            enabled: false,
-          },
+        minimap={{
+          enabled: false,
         }}
       />
     );

@@ -1,11 +1,7 @@
 import { Button, message, Space } from 'antd';
 import React, { useRef } from 'react';
 import { CreateDrawer } from 'react-core-form';
-import {
-  MonacoEditor,
-  TableDesigner,
-  getTools,
-} from 'react-core-form-designer';
+import { CodeEditor, TableDesigner, getTools } from 'react-core-form-designer';
 import './index.less';
 
 const exportDrawer = CreateDrawer({
@@ -22,14 +18,10 @@ const exportDrawer = CreateDrawer({
   },
   render({ value }) {
     return (
-      <MonacoEditor
-        id="export-schema"
+      <CodeEditor
         value={value.code}
-        options={{
-          theme: 'vs-dark',
-          minimap: {
-            enabled: false,
-          },
+        minimap={{
+          enabled: false,
         }}
       />
     );

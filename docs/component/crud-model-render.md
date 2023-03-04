@@ -14,7 +14,7 @@ import React from 'react';
 import { CrudModelRender } from 'react-core-form-designer';
 
 export default () => {
-  return <CrudModelRender schemaId="3" />;
+  return <CrudModelRender schemaId="1" />;
 };
 ```
 

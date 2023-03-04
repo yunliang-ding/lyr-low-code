@@ -1,4 +1,3 @@
-/* eslint-disable @iceworks/best-practices/recommend-polyfill */
 import MonacoEditor from '@/monaco-editor';
 import { debounce } from 'lodash';
 import { memo, useState } from 'react';
@@ -26,11 +25,9 @@ const MemoMonaco = memo(
         id={`json_data_${name}`}
         value={JSON.stringify(value, null, 2)}
         language="json"
-        options={{
-          theme: 'vs-dark',
-          minimap: {
-            enabled: false,
-          },
+        theme={'vs-dark'}
+        minimap={{
+          enabled: false,
         }}
         onChange={debounce((code: string) => {
           try {

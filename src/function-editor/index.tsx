@@ -136,11 +136,9 @@ const MemoMonaco = memo(
         id={`bind-function_${name}`}
         value={value ? decrypt(value, false) : defaultCode}
         editorMonacoRef={monacoRef}
-        options={{
-          theme: 'vs-dark',
-          minimap: {
-            enabled: false,
-          },
+        theme={'vs-dark'}
+        minimap={{
+          enabled: false,
         }}
         onChange={debounce(async (codeString) => {
           try {

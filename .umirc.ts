@@ -13,6 +13,14 @@ export default defineConfig({
     '@font-size-small': '12px',
     '@primary-color': '#4e60d4',
   },
+  links: [
+    {
+      herf: 'https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.36.0/min/vs/editor/editor.main.min.css',
+    },
+  ],
+  scripts: [
+    'https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.36.0/min/vs/loader.min.js',
+  ],
   extraBabelPlugins: [
     [
       'import',

@@ -1,25 +1,25 @@
-/* eslint-disable no-bitwise */
 import { uuid } from '@/util';
 import { useEffect, useRef, CSSProperties } from 'react';
 import './index.less';
 
 export interface MonacoProps {
-  language?: string;
-  value: string;
-  originalValue?: string;
-  theme?: 'vs-dark' | 'vs';
-  style?: CSSProperties;
-  onChange?: Function;
-  onSave?: Function;
-  reload?: any;
-  options?: any;
-  className?: string;
-  onMount?: Function;
-  editorMonacoRef?: any;
   id?: string;
-  mode?: 'nomal' | 'diff';
-  renderSideBySide?: boolean;
-  cdnPath: string;
+  /** 语言设置 */
+  language?: string;
+  /** 默认值 */
+  value: string;
+  /** 主题 */
+  theme?: 'vs-dark' | 'vs';
+  /** 是否展示小地图 */
+  minimap?: any;
+  /** 容器样式 */
+  style?: CSSProperties;
+  /** onChange 钩子 */
+  onChange?: Function;
+  /** ctrl + s 钩子 */
+  onSave?: Function;
+  /** monaco 实例引用 */
+  editorMonacoRef?: any;
 }
 /**
  * 编辑器
@@ -29,24 +29,19 @@ export default ({
   value = '',
   onChange = () => {},
   onSave = () => {},
-  style = {
-    width: 800,
-    height: 400,
-  },
+  style = {},
   language = 'javascript',
   theme = 'vs-dark',
   editorMonacoRef = useRef<any>({}),
-  options = {},
-  cdnPath = 'https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.36.0/min/vs',
   ...rest
 }: MonacoProps) => {
   // 加载资源
   useEffect(() => {
-    if (cdnPath) {
-      const _require: any = (window as any).require;
+    const _require: any = (window as any).require;
+    if (_require) {
       _require.config({
         paths: {
-          vs: cdnPath,
+          vs: 'https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.36.0/min/vs',
         },
       });
       _require(['vs/editor/editor.main'], () => {
@@ -65,7 +60,6 @@ export default ({
               enabled: true,
             },
             value,
-            ...options,
             ...rest,
           },
         );
@@ -88,7 +82,5 @@ export default ({
       });
     }
   }, []);
-  return cdnPath ? (
-    <div id={id} className="app-monaco-editor" style={style} />
-  ) : null;
+  return <div id={id} className="app-monaco-editor" style={style} />;
 };

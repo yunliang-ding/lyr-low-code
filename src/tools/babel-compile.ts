@@ -4,7 +4,6 @@ const react = require('react');
 const axios = require('axios');
 const moment = require('moment');
 const reactCoreForm = require('react-core-form');
-const reactCoreFormDesigner = require('../index');
 
 const safeEval = (code: string) => {
   try {
@@ -24,7 +23,6 @@ class BabelCompile {
       axios,
       antd,
       'react-core-form': reactCoreForm,
-      'react-core-form-designer': reactCoreFormDesigner,
       ...scope,
     };
   }

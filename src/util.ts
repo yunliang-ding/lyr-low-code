@@ -2,8 +2,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import cloneDeep from 'lodash/cloneDeep';
 
-const prettier = require('prettier/standalone');
-const plugins = [require('prettier/parser-typescript')];
+// const plugins = [require('prettier/parser-typescript')];
 
 // 查找指定key
 export const recursionFind = (schema: any, key: string) => {
@@ -206,6 +205,7 @@ export const getCleanCloneSchema = (
     }
   });
   // 替换并且使用prettier格式化代码
+  const prettier = (window as any).prettier;
   const code = prettier.format(
     decrypt(`${
       exportTs ? 'import { SchemaProps } from "react-core-form";\n' : ''
@@ -218,7 +218,7 @@ export const getCleanCloneSchema = (
       .replaceAll('\\', ''),
     {
       parser: 'typescript',
-      plugins,
+      plugins: (window as any).prettierPlugins,
     },
   );
   return exportTs

@@ -18,6 +18,9 @@ export default defineConfig({
     },
   ],
   scripts: [
+    'https://cdn.bootcdn.net/ajax/libs/prettier/2.8.4/standalone.min.js',
+    'https://cdn.bootcdn.net/ajax/libs/prettier/2.8.4/parser-typescript.min.js',
+    'https://cdn.bootcdn.net/ajax/libs/babel-standalone/7.21.2/babel.min.js',
     'https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.36.0/min/vs/loader.min.js',
   ],
   extraBabelPlugins: [

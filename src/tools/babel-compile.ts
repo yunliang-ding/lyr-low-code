@@ -1,10 +1,8 @@
 /* eslint-disable */
-const { transform } = require('babel-standalone');
 const antd = require('antd');
 const react = require('react');
 const axios = require('axios');
 const moment = require('moment');
-const presets = ['es2015', 'stage-0', 'react'];
 const reactCoreForm = require('react-core-form');
 const reactCoreFormDesigner = require('../index');
 
@@ -21,13 +19,13 @@ class BabelCompile {
   exports = {};
   constructor(scope = {}) {
     this.scope = {
-      ...scope,
       react,
       moment,
       axios,
       antd,
       'react-core-form': reactCoreForm,
       'react-core-form-designer': reactCoreFormDesigner,
+      ...scope,
     };
   }
   require = (key: string) => {
@@ -35,6 +33,7 @@ class BabelCompile {
     return this.scope[key];
   };
   excuteCode = (code: string): any => {
+    const { transform } = (window as any).Babel;
     const res: any = {
       isError: false,
       error: '',
@@ -42,14 +41,14 @@ class BabelCompile {
     };
     try {
       const es5 = transform(code, {
-        presets,
+        presets: ['env', 'react'],
       }).code;
       const transfromCode = transform(
         `(require, exports) => {
           ${es5};
         }`,
         {
-          presets,
+          presets: ['env', 'react'],
         },
       ).code;
       // 在解析的es5中 注入 return 用 safeEval 执行

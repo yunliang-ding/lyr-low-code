@@ -4,8 +4,9 @@ const antd = require('antd');
 const react = require('react');
 const axios = require('axios');
 const moment = require('moment');
-const formlib = require('react-core-form');
 const presets = ['es2015', 'stage-0', 'react'];
+const reactCoreForm = require('react-core-form');
+const reactCoreFormDesigner = require('../index');
 
 const safeEval = (code: string) => {
   try {
@@ -25,7 +26,8 @@ class BabelCompile {
       moment,
       axios,
       antd,
-      'react-core-form': formlib,
+      'react-core-form': reactCoreForm,
+      'react-core-form-designer': reactCoreFormDesigner,
     };
   }
   require = (key: string) => {

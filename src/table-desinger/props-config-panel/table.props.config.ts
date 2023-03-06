@@ -171,6 +171,8 @@ const toolPropsConfig = (
         );
       },
       props: {
+        mode: 'function',
+        useEncrypt: true,
         noChangeClearCode: true,
         defaultCode: isRowOperation
           ? `async ({ onRefresh }, record) => {
@@ -194,6 +196,8 @@ const toolPropsConfig = (
       },
       props: {
         noChangeClearCode: true,
+        mode: 'function',
+        useEncrypt: true,
         defaultCode: isRowOperation
           ? `async ({ onRefresh }, record) => {
 
@@ -209,6 +213,8 @@ const toolPropsConfig = (
       label: '点击事件',
       props: {
         noChangeClearCode: true,
+        mode: 'function',
+        useEncrypt: true,
         defaultCode: isRowOperation
           ? `async (record, { onRefresh }) => {
 
@@ -486,5 +492,9 @@ export default ({ selectModelOptions }) =>
       type: 'CodeEditor',
       name: 'request',
       label: '数据查询事件',
+      props: {
+        mode: 'function',
+        useEncrypt: true,
+      },
     },
   ] as SchemaProps<{}>[];

@@ -1,7 +1,6 @@
 /**
  * Table的属性配置
  */
-import FunctionEditor from '../../function-editor';
 import { CreateDrawer, SchemaProps } from 'react-core-form';
 import { encrypt } from '@/util';
 
@@ -24,11 +23,13 @@ const toolPropsConfig = (
       tooltip: '控制按钮权限',
     },
     {
-      type: 'FunctionEditor',
+      type: 'CodeEditor',
       name: 'visible',
       label: '是否展示',
       props: {
         noChangeClearCode: true,
+        mode: 'function',
+        useEncrypt: true,
         style: {
           height: 100,
           width: 360,
@@ -159,7 +160,7 @@ const toolPropsConfig = (
       },
     },
     {
-      type: 'FunctionEditor',
+      type: 'CodeEditor',
       name: 'drawerFormProps',
       label: '绑定DrawerForm',
       effect: ['bindFormType', 'modelIdType'],
@@ -181,7 +182,7 @@ const toolPropsConfig = (
       } as any,
     },
     {
-      type: 'FunctionEditor',
+      type: 'CodeEditor',
       name: 'modalFormProps',
       label: '绑定ModalForm',
       effect: ['bindFormType', 'modelIdType'],
@@ -203,7 +204,7 @@ const toolPropsConfig = (
       } as any,
     },
     {
-      type: 'FunctionEditor',
+      type: 'CodeEditor',
       name: 'onClick',
       label: '点击事件',
       props: {
@@ -234,9 +235,6 @@ const drawerToolForm = CreateDrawer({
       height: 'calc(100% - 57px)',
     },
   },
-  widgets: {
-    FunctionEditor,
-  },
 });
 
 /** 列操作栏 */
@@ -252,9 +250,6 @@ const drawerMenuForm = CreateDrawer({
       top: 64,
       height: 'calc(100% - 57px)',
     },
-  },
-  widgets: {
-    FunctionEditor,
   },
 });
 
@@ -488,7 +483,7 @@ export default ({ selectModelOptions }) =>
       },
     },
     {
-      type: 'FunctionEditor',
+      type: 'CodeEditor',
       name: 'request',
       label: '数据查询事件',
     },

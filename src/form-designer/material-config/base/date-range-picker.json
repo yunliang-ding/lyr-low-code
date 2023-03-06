@@ -37,9 +37,13 @@
       "label": "是否允许清除"
     },
     {
-      "type": "FunctionEditor",
+      "type": "CodeEditor",
       "name": "onChange",
-      "label": "设置onChange"
+      "label": "设置onChange",
+      "props": {
+        "mode": "function",
+        "useEncrypt": true
+      }
     }
   ]
 }

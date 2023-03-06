@@ -98,11 +98,13 @@ const schema: SchemaProps<{}>[] = [
     },
   },
   {
-    type: 'FunctionEditor',
+    type: 'CodeEditor',
     name: 'onSubmit',
     label: '表单提交',
     props: {
       noChangeClearCode: true,
+      mode: 'function',
+      useEncrypt: true,
       defaultCode: `async (values) => {
 
 }`,

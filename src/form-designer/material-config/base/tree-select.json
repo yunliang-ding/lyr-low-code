@@ -45,15 +45,22 @@
       "label": "提示文案"
     },
     {
-      "type": "JsonEditor",
+      "type": "CodeEditor",
       "label": "设置数据源",
       "name": "treeData",
-      "tooltip": "仅支持json"
+      "tooltip": "仅支持json",
+      "props": {
+        "mode": "json"
+      }
     },
     {
-      "type": "FunctionEditor",
+      "type": "CodeEditor",
       "name": "onChange",
-      "label": "设置onChange"
+      "label": "设置onChange",
+      "props": {
+        "mode": "function",
+        "useEncrypt": true
+      }
     }
   ]
 }

@@ -12,9 +12,13 @@
       "label": "是否禁用"
     },
     {
-      "type": "FunctionEditor",
+      "type": "CodeEditor",
       "name": "onChange",
-      "label": "设置onChange"
+      "label": "设置onChange",
+      "props": {
+        "mode": "function",
+        "useEncrypt": true
+      }
     }
   ]
 }

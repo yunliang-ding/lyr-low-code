@@ -2,9 +2,13 @@ import { SchemaProps } from 'react-core-form';
 
 export default [
   {
-    type: 'FunctionEditor',
+    type: 'CodeEditor',
     name: 'onMount',
     label: '页面加载完钩子',
+    props: {
+      mode: 'function',
+      useEncrypt: true,
+    },
   },
   {
     type: 'BlockQuote',
@@ -13,30 +17,46 @@ export default [
     },
   },
   {
-    type: 'FunctionEditor',
+    type: 'CodeEditor',
     name: 'title',
     label: '标题渲染',
     extra: '仅在渲染阶段生效',
+    props: {
+      mode: 'function',
+      useEncrypt: true,
+    },
   },
   {
-    type: 'JsonEditor',
+    type: 'CodeEditor',
     name: 'breadcrumb',
     label: '设置面包屑',
+    props: {
+      mode: 'json',
+    },
   },
   {
-    type: 'JsonEditor',
+    type: 'CodeEditor',
     name: 'extra',
     label: '设置操作按钮',
+    props: {
+      mode: 'json',
+    },
   },
   {
-    type: 'JsonEditor',
+    type: 'CodeEditor',
     name: 'descriptions',
     label: '设置描述信息',
+    props: {
+      mode: 'json',
+    },
   },
   {
-    type: 'JsonEditor',
+    type: 'CodeEditor',
     name: 'tabList',
     label: '选项卡设置',
+    props: {
+      mode: 'json',
+    },
   },
   {
     type: 'Input',
@@ -44,13 +64,20 @@ export default [
     label: '选项卡选中值',
   },
   {
-    type: 'FunctionEditor',
+    type: 'CodeEditor',
     label: '切换选项卡回调',
     name: 'onTabChange',
+    props: {
+      mode: 'function',
+      useEncrypt: true,
+    },
   },
   {
-    type: 'JsonEditor',
+    type: 'CodeEditor',
     name: 'footer',
     label: '底部操作按钮',
+    props: {
+      mode: 'json',
+    },
   },
 ] as SchemaProps[];

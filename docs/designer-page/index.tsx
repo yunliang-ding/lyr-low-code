@@ -1,6 +1,6 @@
-import { PageDesigner, CodeEditor } from 'react-core-form-designer';
+import { PageDesigner } from 'react-core-form-designer';
 import React, { useRef } from 'react';
-import { Button, CreateDrawer } from 'react-core-form';
+import { Button, CodeEditor, CreateDrawer } from 'react-core-form';
 import { message, Space } from 'antd';
 import './index.less';
 
@@ -17,14 +17,7 @@ const exportDrawer = CreateDrawer({
     },
   },
   render({ value }) {
-    return (
-      <CodeEditor
-        value={value.code}
-        minimap={{
-          enabled: false,
-        }}
-      />
-    );
+    return <CodeEditor value={value.code} minimapEnabled={false} />;
   },
 });
 

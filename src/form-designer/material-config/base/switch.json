@@ -24,9 +24,13 @@
       "label": "关闭文案"
     },
     {
-      "type": "FunctionEditor",
+      "type": "CodeEditor",
       "name": "onChange",
-      "label": "设置onChange"
+      "label": "设置onChange",
+      "props": {
+        "mode": "function",
+        "useEncrypt": true
+      }
     }
   ]
 }

@@ -44,9 +44,13 @@ export default () => {
             label: '最大长度',
           },
           {
-            type: 'FunctionEditor',
+            type: 'CodeEditor',
             name: 'onChange',
             label: '设置onChange',
+            props: {
+              mode: 'function',
+              useEncrypt: true,
+            },
           },
         ]}
         style={{

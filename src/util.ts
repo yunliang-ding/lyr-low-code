@@ -1,8 +1,9 @@
 /* eslint-disable @iceworks/best-practices/recommend-polyfill */
 /* eslint-disable react-hooks/rules-of-hooks */
 import cloneDeep from 'lodash/cloneDeep';
+import { Tools } from 'react-core-form';
 
-// const plugins = [require('prettier/parser-typescript')];
+const { isEmpty, uuid } = Tools;
 
 // 查找指定key
 export const recursionFind = (schema: any, key: string) => {
@@ -24,30 +25,7 @@ export const recursionLoopFind = (schema: any, key: string, currentField) => {
   }
 };
 
-/** 判断空 */
-export const isEmpty = (param: any) => {
-  if (param === null || param === undefined) {
-    return true;
-  }
-  if (Array.isArray(param)) {
-    return param.length === 0;
-  }
-  if (typeof param === 'string') {
-    return param.trim() === '';
-  }
-  if (typeof param === 'object') {
-    return Object.keys(param).length === 0;
-  }
-  return false;
-};
-/**
- * 简易uuid
- */
-export const uuid = (size: number) => {
-  return Math.random().toString().substr(2, size);
-};
-
-export { cloneDeep };
+export { cloneDeep, uuid, isEmpty };
 
 export const InputOrSelect = [
   'Input',
@@ -87,9 +65,9 @@ const deleteEmptyObjProps = (object) => {
 /**
  * 克隆一份
  */
-export const getStandardSchema = (scurce = {}, exportTs = false) => {
+export const getStandardSchema = (scurce = {}) => {
   const schema = cloneDeep(scurce);
-  return getCleanCloneSchema([schema], undefined, exportTs);
+  return getCleanCloneSchema([schema]);
 };
 /** 函数打码 */
 export const encrypt = (str: string) => {
@@ -105,12 +83,9 @@ export const decrypt = (str: string, quotation = true) => {
 /**
  * 获取纯净的模型
  */
-export const getCleanCloneSchema = (
-  schema = [],
-  prefix = ' default ',
-  exportTs = false,
-) => {
+export const getCleanCloneSchema = (schema = []) => {
   schema.forEach((item) => {
+    console.log(item);
     deleteEmptyObjProps(item);
     /** 移除函数字符串_is_code 结尾的 */
     Object.keys(item).forEach((key) => {
@@ -146,7 +121,7 @@ export const getCleanCloneSchema = (
       delete item.name;
     }
     if (item.type === 'FieldSet') {
-      getCleanCloneSchema(item.props.children, prefix);
+      getCleanCloneSchema(item.props.children);
     }
     delete item.message;
     if (item.rules?.length === 0) {
@@ -207,13 +182,12 @@ export const getCleanCloneSchema = (
   // 替换并且使用prettier格式化代码
   const prettier = (window as any).prettier;
   const code = prettier.format(
-    decrypt(`${
-      exportTs ? 'import { SchemaProps } from "react-core-form";\n' : ''
-    } 
-      export ${prefix} ${JSON.stringify(schema[0], null, 2)?.replaceAll(
-      '\\"',
-      '"',
-    )}`)
+    decrypt(
+      `export default ${JSON.stringify(schema[0], null, 2)?.replaceAll(
+        '\\"',
+        '"',
+      )}`,
+    )
       .replaceAll('\\n', '\n')
       .replaceAll('\\', ''),
     {
@@ -221,25 +195,5 @@ export const getCleanCloneSchema = (
       plugins: (window as any).prettierPlugins,
     },
   );
-  return exportTs
-    ? code.replace('};', '} as { schema: SchemaProps[] };')
-    : code;
-};
-
-export const decode = (str): string => {
-  try {
-    return decodeURIComponent(atob(str));
-  } catch (error) {
-    console.log(error);
-    return '';
-  }
-};
-
-export const encode = (str): string => {
-  try {
-    return btoa(encodeURIComponent(str));
-  } catch (error) {
-    console.log(error);
-    return '';
-  }
+  return code;
 };

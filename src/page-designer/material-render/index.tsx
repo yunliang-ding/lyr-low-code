@@ -1,7 +1,7 @@
 import PageContainer from './page-container';
+import { Tools } from 'react-core-form';
 import { Ctx } from '@/page-designer/store';
 import { useContext, useEffect } from 'react';
-import { babelParse } from '@/tools';
 import { decrypt } from '@/util';
 import Render from './render';
 import Canvas from './canvas';
@@ -17,10 +17,9 @@ export default ({ schema, accept = 'left' }) => {
   };
   // 解析模块
   try {
-    modules = babelParse({
+    modules = Tools.babelParse({
       code: decrypt(`${schema}`, false), // 解码
       exportDefault: true,
-      prefix: '',
       require: {
         state: ctx.state,
         setState: ctx.setState,

@@ -1,6 +1,8 @@
 /* eslint-disable no-await-in-loop */
-import { babelParse } from '@/tools';
+import { Tools } from 'react-core-form';
 import { cloneDeep, decrypt, encrypt, getCleanCloneSchema } from '@/util';
+
+const { babelParse } = Tools;
 /**
  * 克隆一份
  */
@@ -107,7 +109,6 @@ export const parseTableSchema = (values: any = {}) => {
       searchSchema: {},
       tableSchema: values,
     }),
-    prefix: '',
   });
 };
 

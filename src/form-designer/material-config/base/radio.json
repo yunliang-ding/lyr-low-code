@@ -26,15 +26,22 @@
       "label": "是否禁用"
     },
     {
-      "type": "JsonEditor",
+      "type": "CodeEditor",
       "label": "设置数据源",
       "name": "options",
-      "tooltip": "仅支持json"
+      "tooltip": "仅支持json",
+      "props": {
+        "mode": "json"
+      }
     },
     {
-      "type": "FunctionEditor",
+      "type": "CodeEditor",
       "name": "onChange",
-      "label": "设置onChange"
+      "label": "设置onChange",
+      "props": {
+        "mode": "function",
+        "useEncrypt": true
+      }
     }
   ]
 }

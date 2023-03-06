@@ -1,7 +1,7 @@
 import { Button, message, Space } from 'antd';
 import React, { useRef } from 'react';
-import { CreateDrawer } from 'react-core-form';
-import { CodeEditor, TableDesigner, getTools } from 'react-core-form-designer';
+import { CreateDrawer, CodeEditor, Tools } from 'react-core-form';
+import { TableDesigner } from 'react-core-form-designer';
 import './index.less';
 
 const exportDrawer = CreateDrawer({
@@ -17,20 +17,13 @@ const exportDrawer = CreateDrawer({
     },
   },
   render({ value }) {
-    return (
-      <CodeEditor
-        value={value.code}
-        minimap={{
-          enabled: false,
-        }}
-      />
-    );
+    return <CodeEditor value={value.code} minimapEnabled={false} />;
   },
 });
 
 export default () => {
+  const { encode } = Tools;
   const tableDesignerRef: any = useRef({});
-  const { encode } = getTools();
   return (
     <div className="table-designer-playground">
       <div className="table-designer-playground-header">

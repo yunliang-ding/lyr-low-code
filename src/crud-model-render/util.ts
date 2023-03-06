@@ -1,22 +1,21 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import FormDesigner from '@/form-designer';
 import TableDesigner from '@/table-desinger';
-import { babelParse } from '@/tools';
-import { decode, decrypt, isEmpty } from '@/util';
+import { Tools } from 'react-core-form';
+import { decrypt, isEmpty } from '@/util';
 import { axiosInstance } from '.';
 import axios from 'axios';
 
 const parseStandardSchemaStrategy = {
   form: (data) => {
     const { getStandardSchema } = FormDesigner.useTools();
-    return babelParse({
+    return Tools.babelParse({
       code: getStandardSchema(data),
-      prefix: '',
     });
   },
   table: (data) => {
     const { getStandardSchema } = TableDesigner.useTools();
-    return babelParse({
+    return Tools.babelParse({
       code: getStandardSchema({
         searchSchema: {
           ...data.formProps,
@@ -27,7 +26,6 @@ const parseStandardSchemaStrategy = {
           columns: data.columns,
         },
       }),
-      prefix: '',
     });
   },
 };
@@ -47,9 +45,8 @@ export const registerGlobalApi = async (services, require: any = {}) => {
           },
         });
       }
-      Window.API = babelParse({
+      Window.API = Tools.babelParse({
         code: decrypt(code, false),
-        prefix: '',
         require,
         exportDefault: false,
       });
@@ -76,7 +73,7 @@ export const queryModelBySchemaId = async (schemaId, entity = undefined) => {
       return {};
     }
   }
-  const object = JSON.parse(decode(entity.schema));
+  const object = JSON.parse(Tools.decode(entity.schema));
   return {
     type: entity.type,
     schema: parseStandardSchemaStrategy[entity.type](object),

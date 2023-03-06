@@ -1,7 +1,6 @@
 /**
  * cell的属性配置
  */
-import FunctionEditor from '@/function-editor';
 import { SchemaProps, CreateDrawer } from 'react-core-form';
 
 const cellDetailFields: SchemaProps<{}>[] = [
@@ -97,11 +96,13 @@ const cellDetailFields: SchemaProps<{}>[] = [
     label: '是否展示成链接',
   },
   {
-    type: 'FunctionEditor',
+    type: 'CodeEditor',
     name: 'render',
     label: '自定义渲染',
     props: {
       noChangeClearCode: true,
+      mode: 'function',
+      useEncrypt: true,
       defaultCode: `(item, record, index) => {
   return item
 }`,
@@ -115,9 +116,6 @@ const drawerCellForm = CreateDrawer({
   width: 400,
   schema: cellDetailFields,
   footer: false,
-  widgets: {
-    FunctionEditor,
-  },
   drawerProps: {
     headerStyle: {
       height: 43.5,

@@ -4,9 +4,13 @@
   "props": {},
   "propsConfig": [
     {
-      "type": "FunctionEditor",
+      "type": "CodeEditor",
       "label": "渲染函数",
-      "name": "render"
+      "name": "render",
+      "props": {
+        "mode": "function",
+        "useEncrypt": true
+      }
     }
   ]
 }

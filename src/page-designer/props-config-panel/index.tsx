@@ -3,7 +3,6 @@ import { Empty, Segmented } from 'antd';
 import { encrypt, isEmpty, recursionFind } from '@/util';
 import { Ctx } from '../store';
 import { debounce } from 'lodash';
-import { FunctionEditor, JsonEditor } from '@/index';
 import { Form } from 'react-core-form';
 import pageConfig from './page.config';
 import './index.less';
@@ -62,10 +61,6 @@ export default ({ style = {}, debounceTime = 100 }: PropsConfigPanelTypes) => {
             <Form
               {...{
                 schema: pageConfig,
-                widgets: {
-                  JsonEditor,
-                  FunctionEditor,
-                },
                 initialValues: {
                   ...ctx.pageProps,
                 },
@@ -87,9 +82,13 @@ export default ({ style = {}, debounceTime = 100 }: PropsConfigPanelTypes) => {
                 schema: [
                   ...propsConfig,
                   {
-                    type: 'FunctionEditor',
+                    type: 'CodeEditor',
                     label: '是否展示',
                     name: 'visible',
+                    props: {
+                      mode: 'function',
+                      useEncrypt: true,
+                    },
                   },
                 ],
                 initialValues: {
@@ -99,10 +98,6 @@ export default ({ style = {}, debounceTime = 100 }: PropsConfigPanelTypes) => {
                   ...ctx.selectItem.props,
                 },
                 onValuesChange,
-                widgets: {
-                  FunctionEditor,
-                  JsonEditor,
-                },
               }}
             />
           </div>

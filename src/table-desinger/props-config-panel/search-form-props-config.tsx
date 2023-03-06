@@ -1,7 +1,5 @@
 import { Form } from 'react-core-form';
 import { Segmented } from 'antd';
-import FunctionEditor from '@/function-editor';
-import JsonEditor from '@/json-editor';
 
 export default ({
   setCompontentType,
@@ -30,9 +28,6 @@ export default ({
         }}
       >
         <Form
-          widgets={{
-            FunctionEditor,
-          }}
           schema={FormPropsConfig}
           initialValues={ctx.formProps}
           onValuesChange={onFormValuesChange}
@@ -45,9 +40,6 @@ export default ({
         }}
       >
         <Form
-          widgets={{
-            FunctionEditor,
-          }}
           schema={ItemPropsConfig(ctx)}
           initialValues={ctx.selectSchema || {}}
           onValuesChange={onItemValuesChange}
@@ -60,10 +52,6 @@ export default ({
         }}
       >
         <Form
-          widgets={{
-            FunctionEditor,
-            JsonEditor,
-          }}
           schema={propsConfig}
           initialValues={ctx.selectSchema?.props || {}}
           onValuesChange={onWidgetValuesChange}

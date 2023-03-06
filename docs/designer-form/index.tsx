@@ -1,6 +1,6 @@
-import { FormDesigner, CodeEditor, getTools } from 'react-core-form-designer';
+import { FormDesigner } from 'react-core-form-designer';
 import React, { useRef } from 'react';
-import { Button, CreateDrawer } from 'react-core-form';
+import { Button, CreateDrawer, CodeEditor, Tools } from 'react-core-form';
 import { message, Space } from 'antd';
 import './index.less';
 
@@ -17,20 +17,13 @@ const exportDrawer = CreateDrawer({
     },
   },
   render({ value }) {
-    return (
-      <CodeEditor
-        value={value.code}
-        minimap={{
-          enabled: false,
-        }}
-      />
-    );
+    return <CodeEditor value={value.code} minimapEnabled={false} />;
   },
 });
 
 export default () => {
   const formDesignerRef: any = useRef({});
-  const { encode } = getTools();
+  const { encode } = Tools;
   return (
     <div className="form-designer-playground">
       <div className="form-designer-playground-header">

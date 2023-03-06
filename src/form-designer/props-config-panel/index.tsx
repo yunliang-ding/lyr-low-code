@@ -6,8 +6,6 @@ import FormPropsConfig from './form.props.config';
 import { isEmpty, recursionFind } from '@/util';
 import { Ctx } from '@/form-designer/store';
 import { debounce } from 'lodash';
-import FunctionEditor from '@/function-editor';
-import JsonEditor from '@/json-editor';
 import './index.less';
 
 export interface PropsConfigPanelTypes {
@@ -102,9 +100,6 @@ export default ({
             }}
           >
             <Form
-              widgets={{
-                FunctionEditor,
-              }}
               schema={FormPropsConfig}
               initialValues={ctx.formProps}
               onValuesChange={onFormValuesChange}
@@ -117,9 +112,6 @@ export default ({
             }}
           >
             <Form
-              widgets={{
-                FunctionEditor,
-              }}
               schema={ItemPropsConfig(undefined, ctx)}
               initialValues={ctx.selectSchema || {}}
               onValuesChange={onItemValuesChange}
@@ -132,10 +124,6 @@ export default ({
             }}
           >
             <Form
-              widgets={{
-                FunctionEditor,
-                JsonEditor,
-              }}
               schema={propsConfig}
               initialValues={ctx.selectSchema?.props || {}}
               onValuesChange={onWidgetValuesChange}

@@ -50,9 +50,13 @@
       "label": "描述"
     },
     {
-      "type": "FunctionEditor",
+      "type": "CodeEditor",
       "name": "onClose",
-      "label": "设置onClose"
+      "label": "设置onClose",
+      "props": {
+        "mode": "function",
+        "useEncrypt": true
+      }
     }
   ]
 }

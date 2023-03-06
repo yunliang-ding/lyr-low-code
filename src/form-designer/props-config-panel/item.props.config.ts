@@ -12,7 +12,7 @@ export const formItemSchema = (
       label: '是否必填',
     },
     {
-      type: 'FunctionEditor',
+      type: 'CodeEditor',
       name: 'rules_is_code',
       label: '规则校验',
       props: {
@@ -22,6 +22,8 @@ export const formItemSchema = (
           width: 360,
         },
         defaultCode: '[{}]',
+        mode: 'function',
+        useEncrypt: true,
       },
     },
   ] as SchemaProps<{}>[],
@@ -107,7 +109,7 @@ export const formItemSchema = (
     },
   },
   {
-    type: 'FunctionEditor',
+    type: 'CodeEditor',
     name: 'onEffect',
     label: '设置onEffect',
     effect: ['effect'],
@@ -119,6 +121,8 @@ export const formItemSchema = (
         height: 160,
         width: 360,
       },
+      mode: 'function',
+      useEncrypt: true,
       noChangeClearCode: true,
       defaultCode: `async (name, form) => {
  
@@ -135,7 +139,7 @@ export const formItemSchema = (
     },
   },
   {
-    type: 'FunctionEditor',
+    type: 'CodeEditor',
     name: 'visible',
     label: '设置visible',
     props: {
@@ -143,6 +147,8 @@ export const formItemSchema = (
         height: 160,
         width: 360,
       },
+      mode: 'function',
+      useEncrypt: true,
       noChangeClearCode: true,
       defaultCode: `(values) => {
   return true;
@@ -150,7 +156,7 @@ export const formItemSchema = (
     },
   },
   {
-    type: 'FunctionEditor',
+    type: 'CodeEditor',
     name: 'beforeReceive',
     label: '设置beforeReceive',
     props: {
@@ -158,6 +164,8 @@ export const formItemSchema = (
         height: 160,
         width: 360,
       },
+      mode: 'function',
+      useEncrypt: true,
       noChangeClearCode: true,
       defaultCode: `(values) => {
  
@@ -165,7 +173,7 @@ export const formItemSchema = (
     },
   },
   {
-    type: 'FunctionEditor',
+    type: 'CodeEditor',
     name: 'transfrom',
     label: '设置transfrom',
     props: {
@@ -173,6 +181,8 @@ export const formItemSchema = (
         height: 160,
         width: 360,
       },
+      mode: 'function',
+      useEncrypt: true,
       noChangeClearCode: true,
       defaultCode: `(values) => {
  
@@ -180,7 +190,7 @@ export const formItemSchema = (
     },
   },
   {
-    type: 'FunctionEditor',
+    type: 'CodeEditor',
     name: 'innerItemRender',
     label: '设置itemRender',
     props: {
@@ -189,6 +199,8 @@ export const formItemSchema = (
         width: 360,
       },
       noChangeClearCode: true,
+      useEncrypt: true,
+      mode: 'function',
       defaultCode: `(dom, { form }) => {
  
 }`,

@@ -1,6 +1,5 @@
 import { Form } from 'react-core-form';
 import { Segmented } from 'antd';
-import FunctionEditor from '@/function-editor';
 
 export default ({
   tableType,
@@ -29,7 +28,6 @@ export default ({
       >
         <Form
           widgets={{
-            FunctionEditor,
             TableList,
           }}
           schema={TablePropsConfig}
@@ -45,7 +43,6 @@ export default ({
       >
         <Form
           widgets={{
-            FunctionEditor,
             TableList,
           }}
           schema={CellPropsConfig}

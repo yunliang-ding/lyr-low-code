@@ -13,17 +13,23 @@
       "label": "是否禁用"
     },
     {
-      "type": "FunctionEditor",
+      "type": "CodeEditor",
       "label": "设置options",
       "name": "options",
       "props": {
-        "defaultCode": "async (form) => { \n  return [{ \n    label: '选项1',\n   value: 1\n  }] \n}"
+        "defaultCode": "async (form) => { \n  return [{ \n    label: '选项1',\n   value: 1\n  }] \n}",
+        "mode": "function",
+        "useEncrypt": true
       }
     },
     {
-      "type": "FunctionEditor",
+      "type": "CodeEditor",
       "name": "onChange",
-      "label": "设置onChange"
+      "label": "设置onChange",
+      "props": {
+        "mode": "function",
+        "useEncrypt": true
+      }
     }
   ]
 }

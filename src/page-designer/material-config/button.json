@@ -43,9 +43,13 @@
       "label": "幽灵模式"
     },
     {
-      "type": "FunctionEditor",
+      "type": "CodeEditor",
       "name": "onClick",
-      "label": "设置onClick"
+      "label": "设置onClick",
+      "props": {
+        "mode": "function",
+        "useEncrypt": true
+      }
     }
   ]
 }

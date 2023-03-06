@@ -20,10 +20,13 @@
   },
   "propsConfig": [
     {
-      "type": "JsonEditor",
+      "type": "CodeEditor",
       "label": "设置数据源",
       "name": "items",
-      "tooltip": "仅支持json"
+      "tooltip": "仅支持json",
+      "props": {
+        "mode": "json"
+      }
     },
     {
       "type": "Input",
@@ -31,9 +34,13 @@
       "name": "separator"
     },
     {
-      "type": "FunctionEditor",
+      "type": "CodeEditor",
       "name": "onClick",
-      "label": "设置onClick"
+      "label": "设置onClick",
+      "props": {
+        "mode": "function",
+        "useEncrypt": true
+      }
     }
   ]
 }

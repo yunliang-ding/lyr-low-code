@@ -25,17 +25,23 @@
       "label": "提示文案"
     },
     {
-      "type": "FunctionEditor",
+      "type": "CodeEditor",
       "label": "设置options",
       "name": "options",
       "props": {
-        "defaultCode": "async (form) => { \n  return [] \n}"
+        "defaultCode": "async (form) => { \n  return [] \n}",
+        "mode": "function",
+        "useEncrypt": true
       }
     },
     {
-      "type": "FunctionEditor",
+      "type": "CodeEditor",
       "name": "onChange",
-      "label": "设置onChange"
+      "label": "设置onChange",
+      "props": {
+        "mode": "function",
+        "useEncrypt": true
+      }
     }
   ]
 }

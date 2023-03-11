@@ -85,7 +85,6 @@ export const decrypt = (str: string, quotation = true) => {
  */
 export const getCleanCloneSchema = (schema = []) => {
   schema.forEach((item) => {
-    console.log(item);
     deleteEmptyObjProps(item);
     /** 移除函数字符串_is_code 结尾的 */
     Object.keys(item).forEach((key) => {

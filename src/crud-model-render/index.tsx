@@ -1,11 +1,12 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { ReactNode, useEffect, useState } from 'react';
-import { Table, CardForm, Tools } from 'react-core-form';
+import { Table, CardForm } from 'react-core-form';
 import { queryModelBySchemaId, registerGlobalApi } from './util';
 import { isEmpty } from '@/util';
 import { Button, Empty, Result } from 'antd';
 import MaterialRender from '@/page-designer/material-render';
 import axios from 'axios';
+import { decode } from 'react-core-form-tools';
 
 export const axiosInstance = axios.create({
   baseURL: 'http://121.4.49.147:8360',
@@ -43,7 +44,7 @@ const CrudModelRender = ({
           } = await axiosInstance.get(`/crud/detail?id=${schemaId}`);
           if (code === 200) {
             // 注册接口服务
-            registerGlobalApi(Tools.decode(data.services), require);
+            registerGlobalApi(decode(data.services), require);
             /** 解析模型 */
             const res = await queryModelBySchemaId(schemaId, data);
             setStandRes(res);

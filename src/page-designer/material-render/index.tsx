@@ -1,5 +1,5 @@
 import PageContainer from './page-container';
-import { Tools } from 'react-core-form';
+import { babelParse } from 'react-core-form';
 import { Ctx } from '@/page-designer/store';
 import { useContext, useEffect } from 'react';
 import { decrypt } from '@/util';
@@ -17,7 +17,7 @@ export default ({ schema, accept = 'left' }) => {
   };
   // 解析模块
   try {
-    modules = Tools.babelParse({
+    modules = babelParse({
       code: decrypt(`${schema}`, false), // 解码
       exportDefault: true,
       require: {

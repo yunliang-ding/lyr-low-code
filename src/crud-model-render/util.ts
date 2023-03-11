@@ -1,7 +1,8 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import FormDesigner from '@/form-designer';
 import TableDesigner from '@/table-desinger';
-import { Tools } from 'react-core-form';
+import { decode } from 'react-core-form-tools';
+import { babelParse } from 'react-core-form';
 import { decrypt, isEmpty } from '@/util';
 import { axiosInstance } from '.';
 import axios from 'axios';
@@ -9,13 +10,13 @@ import axios from 'axios';
 const parseStandardSchemaStrategy = {
   form: (data) => {
     const { getStandardSchema } = FormDesigner.useTools();
-    return Tools.babelParse({
+    return babelParse({
       code: getStandardSchema(data),
     });
   },
   table: (data) => {
     const { getStandardSchema } = TableDesigner.useTools();
-    return Tools.babelParse({
+    return babelParse({
       code: getStandardSchema({
         searchSchema: {
           ...data.formProps,
@@ -45,7 +46,7 @@ export const registerGlobalApi = async (services, require: any = {}) => {
           },
         });
       }
-      Window.API = Tools.babelParse({
+      Window.API = babelParse({
         code: decrypt(code, false),
         require,
         exportDefault: false,
@@ -73,7 +74,7 @@ export const queryModelBySchemaId = async (schemaId, entity = undefined) => {
       return {};
     }
   }
-  const object = JSON.parse(Tools.decode(entity.schema));
+  const object = JSON.parse(decode(entity.schema));
   return {
     type: entity.type,
     schema: parseStandardSchemaStrategy[entity.type](object),

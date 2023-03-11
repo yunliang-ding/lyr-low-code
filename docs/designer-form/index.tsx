@@ -1,6 +1,7 @@
-import { FormDesigner } from 'react-core-form-designer';
 import React, { useRef } from 'react';
-import { Button, CreateDrawer, CodeEditor, Tools } from 'react-core-form';
+import { Button, CreateDrawer, CodeEditor } from 'react-core-form';
+import { FormDesigner } from 'react-core-form-designer';
+import { encode } from 'react-core-form-tools';
 import { message, Space } from 'antd';
 import './index.less';
 
@@ -23,7 +24,6 @@ const exportDrawer = CreateDrawer({
 
 export default () => {
   const formDesignerRef: any = useRef({});
-  const { encode } = Tools;
   return (
     <div className="form-designer-playground">
       <div className="form-designer-playground-header">

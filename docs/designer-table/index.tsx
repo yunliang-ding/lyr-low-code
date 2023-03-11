@@ -1,6 +1,7 @@
 import { Button, message, Space } from 'antd';
 import React, { useRef } from 'react';
-import { CreateDrawer, CodeEditor, Tools } from 'react-core-form';
+import { CreateDrawer, CodeEditor } from 'react-core-form';
+import { encode } from 'react-core-form-tools';
 import { TableDesigner } from 'react-core-form-designer';
 import './index.less';
 
@@ -22,7 +23,6 @@ const exportDrawer = CreateDrawer({
 });
 
 export default () => {
-  const { encode } = Tools;
   const tableDesignerRef: any = useRef({});
   return (
     <div className="table-designer-playground">

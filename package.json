@@ -48,8 +48,7 @@
     "antd": ">=4.21.0",
     "react": ">=17.0.2",
     "react-dom": ">=17.0.2",
-    "react-core-form": ">=0.0.28",
-    "react-core-form-tools": ">=0.0.2"
+    "react-core-form": "1.0.5"
   },
   "devDependencies": {
     "axios": "^0.21.1",

@@ -7,6 +7,18 @@ nav:
   order: 1
 ---
 
+<div style="display:flex;align-items:center;margin-bottom:24px">
+  <span style="font-size:30px;font-weight:600;display:inline-block;">react-core-form-designer</span>
+</div>
+<p style="display:flex;justify-content:space-between;width:220px">
+  <a href="https://npmmirror.com/package/react-core-form-designer">
+    <img alt="npm" src="http://121.4.49.147:8360/npm/version?package=react-core-form-designer">
+  </a>
+  <a href="https://npmmirror.com/package/react-core-form-designer">
+    <img alt="npm" src="http://121.4.49.147:8360/npm/downloads?package=react-core-form-designer">
+  </a>
+</p>
+
 ## 依赖 cdn 资源
 
 ```js

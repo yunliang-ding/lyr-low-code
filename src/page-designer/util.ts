@@ -1,9 +1,6 @@
 import { decrypt } from '@/util';
 import cloneDeep from 'lodash/cloneDeep';
 
-const prettier = require('prettier/standalone');
-const plugins = [require('prettier/parser-typescript')];
-
 export const getPageStandardSchema = (scurce) => {
   const schema = cloneDeep(scurce);
   // 删除多余的属性
@@ -13,6 +10,7 @@ export const getPageStandardSchema = (scurce) => {
     delete item.label;
   });
   // 替换并且使用prettier格式化代码
+  const prettier = (window as any).prettier;
   const code = prettier.format(
     decrypt(
       `export default ${JSON.stringify(schema, null, 2)?.replaceAll(
@@ -24,7 +22,7 @@ export const getPageStandardSchema = (scurce) => {
       .replaceAll('\\', ''),
     {
       parser: 'typescript',
-      plugins,
+      plugins: (window as any).prettierPlugins,
     },
   );
   return code;

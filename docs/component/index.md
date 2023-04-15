@@ -22,11 +22,10 @@ nav:
 ## 依赖 cdn 资源
 
 ```js
-<link herf="https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.36.0/min/vs/editor/editor.main.min.css"/>
-<script src="https://cdn.bootcdn.net/ajax/libs/prettier/2.8.4/standalone.min.js"></script>
-<script src="https://cdn.bootcdn.net/ajax/libs/prettier/2.8.4/parser-typescript.min.js"></script>
-<script src="https://cdn.bootcdn.net/ajax/libs/babel-standalone/7.21.2/babel.min.js"></script>
-<script src="https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.36.0/min/vs/loader.min.js"></script>
+'https://g.alicdn.com/code/lib/prettier/2.0.3/standalone.min.js',
+'https://g.alicdn.com/code/lib/prettier/2.0.3/parser-typescript.min.js',
+'https://g.alicdn.com/code/lib/babel-standalone/7.21.2/babel.min.js',
+'https://react-core-form.oss-cn-beijing.aliyuncs.com/prism.min.js',
 ```
 
 <Alert>

@@ -48,15 +48,14 @@
     "antd": ">=4.21.0",
     "react": ">=17.0.2",
     "react-dom": ">=17.0.2",
-    "react-core-form": "1.0.5"
+    "react-core-form": "1.0.14"
   },
   "devDependencies": {
     "axios": "^0.21.1",
     "antd": "4.21.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-core-form": "0.0.28",
-    "react-core-form-tools": "0.0.3",
+    "react-core-form": "1.0.14",
     "@types/lodash": "4.14.168",
     "@umijs/test": "^3.0.5",
     "@types/ali-oss": "6.16.3",

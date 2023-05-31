@@ -81,7 +81,7 @@ export default ({
   }, debounceTime);
   /** 防抖0.1s */
   const onCellValuesChange = debounce((v, values) => {
-    ctx.setColumns(values.columns);
+    ctx.setColumns([...values.columns]);
   }, debounceTime);
   const PanelRender = ctx.selectTable ? (
     <SearchTablePropsConfig
@@ -117,15 +117,7 @@ export default ({
       style={style}
       key={ctx.selectSchema?.key}
     >
-      {isEmpty(ctx.selectSchema) && !ctx.selectTable ? (
-        <Empty
-          image={Empty.PRESENTED_IMAGE_SIMPLE}
-          description="请选择需要设置的表单项"
-          className="form-canvas-empty"
-        />
-      ) : (
-        PanelRender
-      )}
+      {PanelRender}
     </div>
   );
 };

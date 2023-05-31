@@ -1,7 +1,6 @@
 import { Button, message, Space } from 'antd';
 import React, { useRef } from 'react';
 import { CreateDrawer, CodeEditor } from 'react-core-form';
-import { encode } from 'react-core-form-tools';
 import { TableDesigner } from 'react-core-form-designer';
 import './index.less';
 
@@ -42,46 +41,11 @@ export default () => {
                   },
                 });
               } else {
-                message.info('请选择配置项');
+                message.info('暂无数据');
               }
             }}
           >
             导出schema
-          </Button>
-          <Button
-            type="primary"
-            key="export"
-            onClick={() => {
-              if (tableDesignerRef.current.columns?.length > 0) {
-                const code = tableDesignerRef.current
-                  .getStandardSchema({
-                    searchSchema: {
-                      ...tableDesignerRef.current.formProps,
-                      schema: tableDesignerRef.current.schema,
-                    },
-                    tableSchema: {
-                      ...tableDesignerRef.current.tableProps,
-                      columns: tableDesignerRef.current.columns,
-                    },
-                  })
-                  .replace('export default ', '');
-                const jsx = `import { Table } from 'react-core-form';
-
-const schema = ${code}
-export default () => {
-  return <Table {...schema} />
-}`;
-                window.open(
-                  `http://121.4.49.147:9000/react-playground?code=${encode(
-                    jsx,
-                  )}`,
-                );
-              } else {
-                message.info('请选择配置项');
-              }
-            }}
-          >
-            去 Playground 预览
           </Button>
         </Space>
       </div>

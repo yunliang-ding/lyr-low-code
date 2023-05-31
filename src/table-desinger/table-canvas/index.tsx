@@ -123,7 +123,7 @@ export default ({
   // 重新创建
   useEffect(() => {
     setReload(Math.random());
-  }, [ctx.widgets, ctx.selectSchema.key, _schema]);
+  }, [ctx.widgets, ctx.selectSchema.key, _schema, ctx.columns]);
   const cls = ['table-canvas'];
   if (ctx.formProps.hidden) {
     cls.push('table-canvas-hidden-search');
@@ -161,43 +161,35 @@ export default ({
   return (
     <div ref={drop} className={cls.join(' ')} style={style}>
       {isOver && <div className="table-canvas-mask" />}
-      {ctx?.columns.length === 0 ? (
-        <Empty
-          image={Empty.PRESENTED_IMAGE_SIMPLE}
-          description={empty}
-          className="table-canvas-empty"
-        />
-      ) : (
-        <Table
-          key={reload}
-          table={table}
-          {...parseTableSchema(cloneDeep(ctx?.tableProps))}
-          columns={parseTableColumns(cloneDeep(ctx.columns))}
-          searchSchema={
-            _schema.length > 0 && {
-              ...ctx.formProps,
-              hidden: false,
-              schema: _schema,
-            }
+      <Table
+        key={reload}
+        table={table}
+        {...parseTableSchema(cloneDeep(ctx?.tableProps))}
+        columns={parseTableColumns(cloneDeep(ctx.columns))}
+        searchSchema={
+          _schema.length > 0 && {
+            ...ctx.formProps,
+            hidden: false,
+            schema: _schema,
           }
-          tableRender={(dom) => {
-            return (
-              <div
-                className={
-                  ctx.selectTable
-                    ? 'table-canvas-table-selected'
-                    : 'table-canvas-table'
-                }
-                onClick={() => {
-                  ctx.setSelectTable?.(true);
-                }}
-              >
-                {dom}
-              </div>
-            );
-          }}
-        />
-      )}
+        }
+        tableRender={(dom) => {
+          return (
+            <div
+              className={
+                ctx.selectTable
+                  ? 'table-canvas-table-selected'
+                  : 'table-canvas-table'
+              }
+              onClick={() => {
+                ctx.setSelectTable?.(true);
+              }}
+            >
+              {dom}
+            </div>
+          );
+        }}
+      />
     </div>
   );
 };

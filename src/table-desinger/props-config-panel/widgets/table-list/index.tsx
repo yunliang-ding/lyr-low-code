@@ -1,6 +1,6 @@
 import { isEmpty, uuid } from '@/util';
 import { Button } from 'react-core-form';
-import { Input, Space, Table } from 'antd';
+import { Input, message, Space, Table } from 'antd';
 import { useCallback } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
@@ -52,6 +52,9 @@ export default ({
     onChange([...value]);
   };
   const remove = (index: number) => {
+    if (value.length === 1) {
+      return message.info('至少保留一项');
+    }
     value.splice(index, 1);
     onChange([...value]);
   };

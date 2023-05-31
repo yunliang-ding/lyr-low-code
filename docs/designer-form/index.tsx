@@ -42,7 +42,7 @@ export default () => {
                   },
                 });
               } else {
-                message.info('请选择表单项');
+                message.info('暂无数据');
               }
             }}
           >
@@ -52,30 +52,10 @@ export default () => {
             type="primary"
             key="export"
             onClick={() => {
-              if (formDesignerRef.current.schema?.length > 0) {
-                const code = formDesignerRef.current
-                  .getStandardSchema({
-                    ...formDesignerRef.current.formProps,
-                    schema: formDesignerRef.current.schema,
-                  })
-                  .replace('export default ', '');
-                const jsx = `import { CardForm } from 'react-core-form';
-
-const schema = ${code}
-export default () => {
-  return <CardForm {...schema} />
-}`;
-                window.open(
-                  `http://121.4.49.147:9000/react-playground?code=${encode(
-                    jsx,
-                  )}`,
-                );
-              } else {
-                message.info('请选择表单项');
-              }
+              formDesignerRef.current.setSchema([]);
             }}
           >
-            去 Playground 预览
+            清空
           </Button>
         </Space>
       </div>

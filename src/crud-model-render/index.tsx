@@ -87,7 +87,8 @@ const CrudModelRender = ({
             type="primary"
             onClick={() => {
               window.open(
-                `http://121.4.49.147:8360/unification/login?redirect=${location.href}&appId=11?auth=demo`,
+                `http://121.4.49.147:8360/unification/login?redirect=${location.href}&appId=11&auth=demo`,
+                '_self',
               );
             }}
           >

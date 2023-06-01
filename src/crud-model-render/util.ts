@@ -4,7 +4,7 @@ import TableDesigner from '@/table-desinger';
 import { decode } from 'react-core-form-tools';
 import { babelParse } from 'react-core-form';
 import { decrypt, isEmpty } from '@/util';
-import { axiosInstance } from '.';
+import { getAxiosInstance } from '.';
 import axios from 'axios';
 
 const parseStandardSchemaStrategy = {
@@ -67,7 +67,7 @@ export const queryModelBySchemaId = async (schemaId, entity = undefined) => {
   if (isEmpty(entity)) {
     const {
       data: { code, data },
-    } = await axiosInstance.get(`/crud/detail?id=${schemaId}`);
+    } = await getAxiosInstance().get(`/crud/detail?id=${schemaId}`);
     if (code === 200) {
       entity = data;
     } else {

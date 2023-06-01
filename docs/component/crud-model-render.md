@@ -14,7 +14,7 @@ import React from 'react';
 import { CrudModelRender } from 'react-core-form-designer';
 
 export default () => {
-  return <CrudModelRender schemaId="1" />;
+  return <CrudModelRender schemaId={1} appId={10} />;
 };
 ```
 
@@ -30,7 +30,8 @@ import { CrudModelRender } from 'react-core-form-designer';
 export default () => {
   return (
     <CrudModelRender
-      schemaId="1"
+      schemaId={1}
+      appId={10}
       require={{
         hello: () => {
           console.log('hello');
@@ -40,3 +41,7 @@ export default () => {
   );
 };
 ```
+
+## API
+
+<API src="../../src/crud-model-render/index.tsx" hideTitle></API>

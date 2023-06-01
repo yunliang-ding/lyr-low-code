@@ -3,25 +3,33 @@ import { ReactNode, useEffect, useState } from 'react';
 import { Table, CardForm } from 'react-core-form';
 import { queryModelBySchemaId, registerGlobalApi } from './util';
 import { isEmpty } from '@/util';
-import { Button, Empty, Result } from 'antd';
+import { Empty } from 'antd';
 import MaterialRender from '@/page-designer/material-render';
 import axios from 'axios';
 import { decode } from 'react-core-form-tools';
 
-const APPID = 10;
+let axiosInstance = null;
 
-export const axiosInstance = axios.create({
-  baseURL: 'http://121.4.49.147:8360',
-  withCredentials: true,
-  headers: {
-    appId: APPID,
-  },
-});
+export const getAxiosInstance = () => axiosInstance;
+
+const setAxiosInstance = (appId: number) => {
+  axiosInstance = axios.create({
+    baseURL: 'http://121.4.49.147:8360',
+    withCredentials: true,
+    headers: {
+      appId,
+    },
+  });
+};
 
 interface CrudModelRenderProps {
+  /** 应用Id */
+  appId: number;
+  /** 模型Id */
   schemaId: string;
+  /** 加载提示 */
   loadingText?: ReactNode;
-  baseURL?: string;
+  /** 注入模型依赖 */
   require?: any;
 }
 
@@ -30,7 +38,9 @@ const CrudModelRender = ({
   schemaId,
   loadingText = 'loading...',
   require,
+  appId,
 }: CrudModelRenderProps): any => {
+  setAxiosInstance(appId); // 绑定应用
   const [standRes, setStandRes]: any = useState({
     type: 'form',
     schema: {},
@@ -43,7 +53,7 @@ const CrudModelRender = ({
           /** 注册Api */
           const {
             data: { code, data, msg },
-          } = await axiosInstance.get(`/crud/detail?id=${schemaId}`);
+          } = await getAxiosInstance().get(`/crud/detail?id=${schemaId}`);
           if (code === 200) {
             // 注册接口服务
             registerGlobalApi(data.services && decode(data.services), require);
@@ -69,6 +79,11 @@ const CrudModelRender = ({
       <Empty description="缺少模型ID" image={Empty.PRESENTED_IMAGE_SIMPLE} />
     );
   }
+  if (isEmpty(appId)) {
+    return (
+      <Empty description="缺少应用ID" image={Empty.PRESENTED_IMAGE_SIMPLE} />
+    );
+  }
   if (spin) {
     return loadingText;
   }
@@ -79,26 +94,7 @@ const CrudModelRender = ({
   } else if (standRes.type === 'page') {
     return <MaterialRender schema={standRes.schema} />;
   } else if (standRes.type === 'error') {
-    return (
-      <Result
-        status="403"
-        title="403"
-        subTitle={standRes.msg}
-        extra={
-          <Button
-            type="primary"
-            onClick={() => {
-              window.open(
-                `http://121.4.49.147:8360/unification/login?redirect=${location.href}&appId=${APPID}&auth=demo`,
-                '_self',
-              );
-            }}
-          >
-            点击登录
-          </Button>
-        }
-      />
-    );
+    return standRes.msg;
   }
   return null;
 };

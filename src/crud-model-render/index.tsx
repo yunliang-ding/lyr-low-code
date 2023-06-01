@@ -8,11 +8,13 @@ import MaterialRender from '@/page-designer/material-render';
 import axios from 'axios';
 import { decode } from 'react-core-form-tools';
 
+const APPID = 10;
+
 export const axiosInstance = axios.create({
   baseURL: 'http://121.4.49.147:8360',
   withCredentials: true,
   headers: {
-    appId: 11,
+    appId: APPID,
   },
 });
 
@@ -87,7 +89,7 @@ const CrudModelRender = ({
             type="primary"
             onClick={() => {
               window.open(
-                `http://121.4.49.147:8360/unification/login?redirect=${location.href}&appId=10&auth=demo`,
+                `http://121.4.49.147:8360/unification/login?redirect=${location.href}&appId=${APPID}&auth=demo`,
                 '_self',
               );
             }}

@@ -24,7 +24,7 @@ const setAxiosInstance = (appId: number) => {
 
 interface CrudModelRenderProps {
   /** 应用Id */
-  appId: number;
+  appId?: number;
   /** 模型Id */
   schemaId: string;
   /** 加载提示 */
@@ -38,7 +38,7 @@ const CrudModelRender = ({
   schemaId,
   loadingText = 'loading...',
   require,
-  appId,
+  appId = 1,
 }: CrudModelRenderProps): any => {
   setAxiosInstance(appId); // 绑定应用
   const [standRes, setStandRes]: any = useState({

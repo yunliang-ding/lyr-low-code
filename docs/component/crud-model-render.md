@@ -14,7 +14,7 @@ import React from 'react';
 import { CrudModelRender } from 'react-core-form-designer';
 
 export default () => {
-  return <CrudModelRender schemaId={1} appId={10} />;
+  return <CrudModelRender schemaId={1} />;
 };
 ```
 
@@ -31,7 +31,6 @@ export default () => {
   return (
     <CrudModelRender
       schemaId={1}
-      appId={10}
       require={{
         hello: () => {
           console.log('hello');

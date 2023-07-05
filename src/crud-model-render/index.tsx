@@ -14,7 +14,7 @@ export const getAxiosInstance = () => axiosInstance;
 
 const setAxiosInstance = (appId: number) => {
   axiosInstance = axios.create({
-    baseURL: 'http://121.4.49.147:8360',
+    baseURL: 'http://server.yunliang.cloud',
     withCredentials: true,
     headers: {
       appId,

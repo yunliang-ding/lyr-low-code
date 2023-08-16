@@ -37,13 +37,11 @@ export const registerGlobalApi = async (services, require: any = {}) => {
   try {
     const Window: any = window;
     if (services) {
-      const { baseURL, tokenKey, tokenValue, code } = JSON.parse(services);
+      const { baseURL, code } = JSON.parse(services);
       if (require.request === undefined) {
         require.request = axios.create({
           baseURL,
-          headers: {
-            [tokenKey]: tokenValue,
-          },
+          withCredentials: true, // 携带 cookie
         });
       }
       Window.API = babelParse({

@@ -1,5 +1,5 @@
 /* eslint-disable no-await-in-loop */
-import { babelParse } from 'react-core-form';
+import { babelParse } from 'react-core-form-tools';
 import { cloneDeep, decrypt, encrypt, getCleanCloneSchema } from '@/util';
 /**
  * 克隆一份

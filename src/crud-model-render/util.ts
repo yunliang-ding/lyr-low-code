@@ -1,8 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import FormDesigner from '@/form-designer';
 import TableDesigner from '@/table-desinger';
-import { decode } from 'react-core-form-tools';
-import { babelParse } from 'react-core-form';
+import { decode, babelParse } from 'react-core-form-tools';
 import { decrypt, isEmpty } from '@/util';
 import { getAxiosInstance } from '.';
 import axios from 'axios';

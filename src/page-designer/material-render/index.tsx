@@ -1,5 +1,5 @@
 import PageContainer from './page-container';
-import { babelParse } from 'react-core-form';
+import { babelParse } from 'react-core-form-tools';
 import { Ctx } from '@/page-designer/store';
 import { useContext, useEffect } from 'react';
 import { decrypt } from '@/util';

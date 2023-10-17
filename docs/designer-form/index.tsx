@@ -1,7 +1,6 @@
 import React, { useRef } from 'react';
 import { Button, CreateDrawer, CodeEditor } from 'react-core-form';
 import { FormDesigner } from 'react-core-form-designer';
-import { encode } from 'react-core-form-tools';
 import { message, Space } from 'antd';
 import './index.less';
 

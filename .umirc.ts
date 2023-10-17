@@ -30,6 +30,7 @@ export default defineConfig({
     ],
   ],
   history: { type: 'hash' },
+  hash: false,
   navs: [
     null, // null 值代表保留约定式生成的导航，只做增量配置
     {

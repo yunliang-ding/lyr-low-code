@@ -1,5 +1,6 @@
 import { Form } from 'react-core-form';
 import { Segmented } from 'antd';
+import { CodeEditor } from 'react-core-form-code-editor';
 
 export default ({
   setCompontentType,
@@ -31,6 +32,7 @@ export default ({
           schema={FormPropsConfig}
           initialValues={ctx.formProps}
           onValuesChange={onFormValuesChange}
+          widgets={{ CodeEditor }}
         />
       </div>
       <div
@@ -43,6 +45,7 @@ export default ({
           schema={ItemPropsConfig(ctx)}
           initialValues={ctx.selectSchema || {}}
           onValuesChange={onItemValuesChange}
+          widgets={{ CodeEditor }}
         />
       </div>
       <div
@@ -55,6 +58,7 @@ export default ({
           schema={propsConfig}
           initialValues={ctx.selectSchema?.props || {}}
           onValuesChange={onWidgetValuesChange}
+          widgets={{ CodeEditor }}
         />
       </div>
     </>

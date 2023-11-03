@@ -7,6 +7,7 @@ import { isEmpty, recursionFind } from '@/util';
 import { Ctx } from '@/form-designer/store';
 import { debounce } from 'lodash';
 import './index.less';
+import { CodeEditor } from 'react-core-form-code-editor';
 
 export interface PropsConfigPanelTypes {
   /** 组件属性 */
@@ -103,6 +104,9 @@ export default ({
               schema={FormPropsConfig}
               initialValues={ctx.formProps}
               onValuesChange={onFormValuesChange}
+              widgets={{
+                CodeEditor,
+              }}
             />
           </div>
           <div
@@ -115,6 +119,9 @@ export default ({
               schema={ItemPropsConfig(undefined, ctx)}
               initialValues={ctx.selectSchema || {}}
               onValuesChange={onItemValuesChange}
+              widgets={{
+                CodeEditor,
+              }}
             />
           </div>
           <div
@@ -127,6 +134,9 @@ export default ({
               schema={propsConfig}
               initialValues={ctx.selectSchema?.props || {}}
               onValuesChange={onWidgetValuesChange}
+              widgets={{
+                CodeEditor,
+              }}
             />
           </div>
         </>

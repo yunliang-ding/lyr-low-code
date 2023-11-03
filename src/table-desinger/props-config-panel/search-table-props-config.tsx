@@ -1,5 +1,6 @@
 import { Form } from 'react-core-form';
 import { Segmented } from 'antd';
+import { CodeEditor } from 'react-core-form-code-editor';
 
 export default ({
   tableType,
@@ -29,6 +30,7 @@ export default ({
         <Form
           widgets={{
             TableList,
+            CodeEditor,
           }}
           schema={TablePropsConfig}
           initialValues={ctx.tableProps}
@@ -44,6 +46,7 @@ export default ({
         <Form
           widgets={{
             TableList,
+            CodeEditor,
           }}
           schema={CellPropsConfig}
           initialValues={{

@@ -6,14 +6,15 @@ import { debounce } from 'lodash';
 import { Form } from 'react-core-form';
 import pageConfig from './page.config';
 import './index.less';
+import { CodeEditor } from 'react-core-form-code-editor';
 
 export interface PropsConfigPanelTypes {
-  onPropsConfigUpdate: Function; // 配置改变返回新的配置
+  // onPropsConfigUpdate: Function; // 配置改变返回新的配置
   style?: CSSProperties;
   /** 设置防抖时间 */
   debounceTime?: number;
   /** 选择模型 */
-  selectModelOptions?: () => Promise<[]>;
+  // selectModelOptions?: () => Promise<[]>;
 }
 
 export default ({ style = {}, debounceTime = 100 }: PropsConfigPanelTypes) => {
@@ -65,6 +66,9 @@ export default ({ style = {}, debounceTime = 100 }: PropsConfigPanelTypes) => {
                   ...ctx.pageProps,
                 },
                 form,
+                widgets: {
+                  CodeEditor,
+                },
                 onValuesChange: async () => {
                   ctx.setPageProps(await form.submit());
                 },
@@ -98,6 +102,9 @@ export default ({ style = {}, debounceTime = 100 }: PropsConfigPanelTypes) => {
                   ...ctx.selectItem.props,
                 },
                 onValuesChange,
+                widgets: {
+                  CodeEditor,
+                },
               }}
             />
           </div>

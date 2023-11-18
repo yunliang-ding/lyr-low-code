@@ -1,5 +1,5 @@
 import { Form } from 'react-core-form';
-import { Segmented } from 'antd';
+import { Radio } from '@arco-design/web-react';
 import { CodeEditor } from 'react-core-form-code-editor';
 
 export default ({
@@ -16,9 +16,10 @@ export default ({
   return (
     <>
       <div className="props-config-panel-header">
-        <Segmented
+        <Radio.Group
           onChange={setCompontentType}
           value={compontentType}
+          type="button"
           options={['表单属性', '表单项属性', '部件属性']}
         />
       </div>

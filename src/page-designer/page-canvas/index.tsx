@@ -2,16 +2,14 @@ import { useDrop } from 'react-dnd';
 import { useState, useEffect, useContext, useMemo } from 'react';
 import { uuid as Uuid, cloneDeep } from '@/util';
 import { Ctx } from '../store';
-import { Empty } from 'antd';
 import { getPageStandardSchema } from '../util';
-import { MaterialRender } from '@/index';
+import MaterialRender from '@/page-designer/material-render';
 import './index.less';
 
 export interface FormCanvasType {
   empty?: string; // 空数据展示
   defaultSchema?: []; // 默认模型
   defaultSelectKey?: string; // 选中的key
-  onSchemaSelect?: Function; // 字段选中
   accept?: string; // useDrop配置的accept
   style?: any;
   /** 开启 ctrl + s */

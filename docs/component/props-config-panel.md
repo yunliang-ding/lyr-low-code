@@ -23,14 +23,12 @@ export default () => {
         propsConfig={[
           {
             type: 'Switch',
-            valuePropName: 'checked',
             name: 'disabled',
             label: '是否禁用',
           },
           {
             type: 'Switch',
             name: 'allowClear',
-            valuePropName: 'checked',
             label: '是否允许清除',
           },
           {

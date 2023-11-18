@@ -1,4 +1,5 @@
-import { Breadcrumb, Descriptions, Tabs } from 'antd';
+/* eslint-disable @typescript-eslint/restrict-plus-operands */
+import { Breadcrumb, Descriptions, Tabs } from '@arco-design/web-react';
 import { useEffect } from 'react';
 import { Button } from 'react-core-form';
 import './index.less';
@@ -59,22 +60,14 @@ export default ({
         </div>
         {descriptions.length > 0 && (
           <div className="page-container-wapper-descriptions">
-            <Descriptions>
-              {descriptions.map((item) => {
-                return (
-                  <Descriptions.Item label={item.label} key={item.label}>
-                    {item.value}
-                  </Descriptions.Item>
-                );
-              })}
-            </Descriptions>
+            <Descriptions data={descriptions} />
           </div>
         )}
         {tabList.length > 0 && (
           <div className="page-container-wapper-tabs">
-            <Tabs onTabClick={onTabChange} activeKey={activeKey}>
+            <Tabs onClickTab={onTabChange} activeTab={activeKey}>
               {tabList.map((item) => {
-                return <Tabs.TabPane tab={item.label} key={item.value} />;
+                return <Tabs.TabPane title={item.label} key={item.value} />;
               })}
             </Tabs>
           </div>

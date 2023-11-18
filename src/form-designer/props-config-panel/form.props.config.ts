@@ -109,7 +109,7 @@ const schema: SchemaProps<{}>[] = [
 
 }`,
     },
-  },
+  } as any,
 ];
 
 export default schema;

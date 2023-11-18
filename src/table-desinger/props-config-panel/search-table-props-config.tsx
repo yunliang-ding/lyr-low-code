@@ -1,5 +1,5 @@
 import { Form } from 'react-core-form';
-import { Segmented } from 'antd';
+import { Radio } from '@arco-design/web-react';
 import { CodeEditor } from 'react-core-form-code-editor';
 
 export default ({
@@ -15,9 +15,10 @@ export default ({
   return (
     <>
       <div className="props-config-panel-header" id="table-cell-props-config">
-        <Segmented
+        <Radio.Group
           onChange={setTableType}
           value={tableType}
+          type="button"
           options={['表格属性', '表格列属性']}
         />
       </div>

@@ -1,12 +1,12 @@
 import { CSSProperties, useContext, useState } from 'react';
-import { Empty, Segmented } from 'antd';
+import { Empty, Radio } from '@arco-design/web-react';
 import { encrypt, isEmpty, recursionFind } from '@/util';
 import { Ctx } from '../store';
 import { debounce } from 'lodash';
 import { Form } from 'react-core-form';
 import pageConfig from './page.config';
-import './index.less';
 import { CodeEditor } from 'react-core-form-code-editor';
+import './index.less';
 
 export interface PropsConfigPanelTypes {
   // onPropsConfigUpdate: Function; // 配置改变返回新的配置
@@ -40,14 +40,14 @@ export default ({ style = {}, debounceTime = 100 }: PropsConfigPanelTypes) => {
     <div className="props-config-panel" style={style} key={ctx.selectItem?.key}>
       {isEmpty(ctx.selectItem) ? (
         <Empty
-          image={Empty.PRESENTED_IMAGE_SIMPLE}
           description="请选择需要设置的物料"
           className="page-canvas-empty"
         />
       ) : (
         <>
           <div className="props-config-panel-header">
-            <Segmented
+            <Radio.Group
+              type="button"
               onChange={setCompontentType}
               value={compontentType}
               options={['画布配置', '物料配置']}

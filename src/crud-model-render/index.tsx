@@ -3,7 +3,7 @@ import { ReactNode, useEffect, useState } from 'react';
 import { Table, CardForm } from 'react-core-form';
 import { queryModelBySchemaId, registerGlobalApi } from './util';
 import { isEmpty } from '@/util';
-import { Empty } from 'antd';
+import { Empty } from '@arco-design/web-react';
 import MaterialRender from '@/page-designer/material-render';
 import axios from 'axios';
 import { decode } from 'react-core-form-tools';
@@ -82,14 +82,10 @@ const CrudModelRender = ({
     }
   }, [schemaId]);
   if (isEmpty(schemaId)) {
-    return (
-      <Empty description="缺少模型ID" image={Empty.PRESENTED_IMAGE_SIMPLE} />
-    );
+    return <Empty description="缺少模型ID" />;
   }
   if (isEmpty(appId)) {
-    return (
-      <Empty description="缺少应用ID" image={Empty.PRESENTED_IMAGE_SIMPLE} />
-    );
+    return <Empty description="缺少应用ID" />;
   }
   if (spin) {
     return loadingText;

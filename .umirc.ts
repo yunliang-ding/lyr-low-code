@@ -5,29 +5,63 @@ export default defineConfig({
   title: 'react-core-form-designer',
   outputPath: 'docs-dist',
   locales: [['zh-CN', '中文']],
+  favicon:
+    'https://unpkg.byted-static.com/latest/byted/arco-config/assets/favicon.ico',
+  logo: 'https://unpkg.byted-static.com/latest/byted/arco-config/assets/favicon.ico',
   theme: {
-    '@primary-background-color': '#4e60d4',
-    '@text-color': '#6a6a6a',
-    '@font-size-base': '13px',
-    '@font-size-small': '12px',
-    '@primary-color': '#4e60d4',
+    '@c-primary': '#165dff',
   },
-  scripts: [
-    'https://g.alicdn.com/code/lib/prettier/2.0.3/standalone.min.js',
-    'https://g.alicdn.com/code/lib/prettier/2.0.3/parser-typescript.min.js',
-    'https://g.alicdn.com/code/lib/babel-standalone/7.21.2/babel.min.js',
-    'https://react-core-form.oss-cn-beijing.aliyuncs.com/prism.min.js',
+  styles: [
+    `
+    div,
+    span,
+    td,
+    th,
+    a,
+    button,
+    p,
+    label {
+      font-size: 12px;
+      font-weight: 500;
+    }
+    h2{
+      font-size: 18px !important;
+    }
+    li, input, label{
+      font-weight: 500 !important;
+      font-size: 12px !important;
+    }
+    .__dumi-default-menu-list
+      > li
+      > a {
+        font-size: 13px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .__dumi-default-menu-list
+      > a
+      > span {
+        font-size: 12px;
+      }
+  `,
   ],
   extraBabelPlugins: [
     [
       'import',
       {
-        libraryName: 'antd',
-        libraryDirectory: 'lib',
-        style: true,
+        libraryName: '@arco-design/web-react',
+        libraryDirectory: 'es',
+        camel2DashComponentName: false,
+        style: true, // 样式按需加载
       },
-      'antd',
     ],
+  ],
+  scripts: [
+    'https://g.alicdn.com/code/lib/prettier/2.0.3/standalone.min.js',
+    'https://g.alicdn.com/code/lib/prettier/2.0.3/parser-typescript.min.js',
+    'https://g.alicdn.com/code/lib/babel-standalone/7.21.2/babel.min.js',
+    'https://react-core-form.oss-cn-beijing.aliyuncs.com/prism.min.js',
   ],
   history: { type: 'hash' },
   hash: false,

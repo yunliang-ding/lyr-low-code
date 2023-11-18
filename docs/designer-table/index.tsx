@@ -1,6 +1,7 @@
-import { Button, message, Space } from 'antd';
+import { Button, Message, Space } from '@arco-design/web-react';
 import React, { useRef } from 'react';
-import { CreateDrawer, CodeEditor } from 'react-core-form';
+import { CreateDrawer } from 'react-core-form';
+import { CodeEditor } from 'react-core-form-code-editor';
 import { TableDesigner } from 'react-core-form-designer';
 import './index.less';
 
@@ -41,7 +42,7 @@ export default () => {
                   },
                 });
               } else {
-                message.info('暂无数据');
+                Message.info('暂无数据');
               }
             }}
           >
@@ -54,7 +55,7 @@ export default () => {
           <TableDesigner.RegisterWidgets />
           <TableDesigner.TableCanvas
             onCtrlS={() => {
-              message.loading('保存中', 2);
+              Message.loading('保存中');
             }}
           />
           <TableDesigner.PropsConfigPanel

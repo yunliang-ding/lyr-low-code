@@ -1,26 +1,26 @@
+/* eslint-disable @typescript-eslint/no-shadow */
 import CrudRender from '@/crud-model-render';
 import { memo } from 'react';
 import {
   Typography,
   Alert,
-  Row,
-  Col,
   Carousel,
   Collapse,
   Card,
   Timeline,
   Avatar,
-  Button as AntdButton,
-  Breadcrumb as AntdBreadcrumb,
-  Descriptions as AntdDescriptions,
-  Empty as AntdEmpty,
+  Button as ArcoButton,
+  Breadcrumb as ArcoBreadcrumb,
+  Descriptions as ArcoDescriptions,
+  Empty as ArcoEmpty,
   Progress,
   Statistic,
   Result,
   Steps,
   Tabs,
   Tag,
-} from 'antd';
+  Grid,
+} from '@arco-design/web-react';
 
 export default {
   Text: Typography.Text,
@@ -35,49 +35,36 @@ export default {
   Avatar,
   Breadcrumb: (props) => {
     return (
-      <AntdBreadcrumb separator={props.separator}>
+      <ArcoBreadcrumb separator={props.separator}>
         {props.items?.map((item) => {
           return (
-            <AntdBreadcrumb.Item
+            <ArcoBreadcrumb.Item
               key={item.value}
               onClick={(item) => {
                 props.onClick?.(item);
               }}
             >
               {item.label}
-            </AntdBreadcrumb.Item>
+            </ArcoBreadcrumb.Item>
           );
         })}
-      </AntdBreadcrumb>
+      </ArcoBreadcrumb>
     );
   },
   Button: (props) => {
-    return <AntdButton {...props}>{props.text}</AntdButton>;
+    return <ArcoButton {...props}>{props.text}</ArcoButton>;
   },
   Descriptions: (props) => {
     return (
-      <AntdDescriptions title={props.title} column={props.column}>
-        {props.children?.map((item) => {
-          return (
-            <AntdDescriptions.Item label={item.label} key={item.label}>
-              {item.value}
-            </AntdDescriptions.Item>
-          );
-        })}
-      </AntdDescriptions>
+      <ArcoDescriptions
+        title={props.title}
+        column={props.column}
+        data={props.children}
+      />
     );
   },
   Empty: (props) => {
-    return (
-      <AntdEmpty
-        description={props.description}
-        image={
-          props.simple
-            ? AntdEmpty.PRESENTED_IMAGE_SIMPLE
-            : AntdEmpty.PRESENTED_IMAGE_DEFAULT
-        }
-      />
-    );
+    return <ArcoEmpty description={props.description} />;
   },
   Progress,
   Result,
@@ -89,8 +76,8 @@ export default {
   Card,
   Carousel,
   Collapse,
-  Row,
-  Col,
+  Row: Grid.Row,
+  Col: Grid.Col,
   CrudModelRender: memo(
     (props: any) => {
       return <CrudRender {...props} />;

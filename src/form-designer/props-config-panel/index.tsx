@@ -1,13 +1,13 @@
 import { Form } from 'react-core-form';
 import { useContext, useState } from 'react';
-import { Empty, Segmented } from 'antd';
+import { Empty, Radio } from '@arco-design/web-react';
 import ItemPropsConfig from './item.props.config';
 import FormPropsConfig from './form.props.config';
 import { isEmpty, recursionFind } from '@/util';
 import { Ctx } from '@/form-designer/store';
 import { debounce } from 'lodash';
-import './index.less';
 import { CodeEditor } from 'react-core-form-code-editor';
+import './index.less';
 
 export interface PropsConfigPanelTypes {
   /** 组件属性 */
@@ -81,16 +81,16 @@ export default ({
     >
       {isEmpty(ctx.selectSchema) ? (
         <Empty
-          image={Empty.PRESENTED_IMAGE_SIMPLE}
           description="请选择需要设置的表单项"
           className="form-canvas-empty"
         />
       ) : (
         <>
           <div className="props-config-panel-header">
-            <Segmented
+            <Radio.Group
               onChange={setCompontentType}
               value={compontentType}
+              type="button"
               options={['表单配置', '表单项配置', '子部件配置']}
             />
           </div>

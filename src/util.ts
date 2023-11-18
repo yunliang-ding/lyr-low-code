@@ -1,3 +1,4 @@
+/* eslint-disable prefer-destructuring */
 /* eslint-disable @iceworks/best-practices/recommend-polyfill */
 /* eslint-disable react-hooks/rules-of-hooks */
 import cloneDeep from 'lodash/cloneDeep';

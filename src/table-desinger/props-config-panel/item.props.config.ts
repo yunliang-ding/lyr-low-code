@@ -14,13 +14,11 @@ export default (ctx) =>
       {
         type: 'Switch',
         name: 'isExpand',
-        valuePropName: 'checked',
         label: '更多才展示',
       },
       {
         type: 'Switch',
         name: 'autosearch',
-        valuePropName: 'checked',
         label: '改变立即查询',
       },
     ],

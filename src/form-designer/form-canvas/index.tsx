@@ -4,7 +4,7 @@ import DragContainer from './drag';
 import { useCallback, useEffect, useContext, useMemo } from 'react';
 import { uuid as Uuid, cloneDeep } from '@/util';
 import { Ctx } from '../store';
-import { Empty } from 'antd';
+import { Empty } from '@arco-design/web-react';
 import { deleteCompent } from './util';
 import './index.less';
 
@@ -185,11 +185,7 @@ export default ({
     >
       {isOver && <div className="form-canvas-mask" />}
       {_schema.length === 0 && (
-        <Empty
-          image={Empty.PRESENTED_IMAGE_SIMPLE}
-          description={empty}
-          className="form-canvas-empty"
-        />
+        <Empty description={empty} className="form-canvas-empty" />
       )}
       <CardForm
         schema={_schema}

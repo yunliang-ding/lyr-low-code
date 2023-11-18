@@ -1,4 +1,4 @@
-import { Button } from 'antd';
+import { Button } from '@arco-design/web-react';
 import { useDrag } from 'react-dnd';
 
 export default ({ type, props, onClick, widget, column = 2 }) => {

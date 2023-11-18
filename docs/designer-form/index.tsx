@@ -1,7 +1,8 @@
 import React, { useRef } from 'react';
-import { Button, CreateDrawer, CodeEditor } from 'react-core-form';
+import { Button, CreateDrawer } from 'react-core-form';
+import { CodeEditor } from 'react-core-form-code-editor';
 import { FormDesigner } from 'react-core-form-designer';
-import { message, Space } from 'antd';
+import { Message, Space } from '@arco-design/web-react';
 import './index.less';
 
 const exportDrawer = CreateDrawer({
@@ -41,7 +42,7 @@ export default () => {
                   },
                 });
               } else {
-                message.info('暂无数据');
+                Message.info('暂无数据');
               }
             }}
           >
@@ -63,7 +64,7 @@ export default () => {
           <FormDesigner.RegisterWidgets />
           <FormDesigner.FormCanvas
             onCtrlS={() => {
-              message.loading('保存中', 2);
+              Message.loading('保存中');
             }}
           />
           <FormDesigner.PropsConfigPanel />

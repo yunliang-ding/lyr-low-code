@@ -48,28 +48,24 @@ const cellDetailFields: SchemaProps<{}>[] = [
   {
     type: 'Switch',
     name: 'ellipsis',
-    valuePropName: 'checked',
     label: '超出是否展示...',
   },
   {
     type: 'Switch',
     name: 'copyable',
-    valuePropName: 'checked',
     label: '是否支持拷贝文案',
   },
   {
     type: 'Switch',
     name: 'resize',
-    valuePropName: 'checked',
     label: '是否可拖拽调整宽度',
   },
   {
     type: 'Switch',
     name: 'useThousandth',
-    valuePropName: 'checked',
     label: '是否展示千分位',
   },
-  ...[
+  ...([
     {
       type: 'InputNumber',
       name: 'minimumFractionDigits',
@@ -88,11 +84,10 @@ const cellDetailFields: SchemaProps<{}>[] = [
         return useThousandth;
       },
     };
-  }),
+  }) as any),
   {
     type: 'Switch',
     name: 'link',
-    valuePropName: 'checked',
     label: '是否展示成链接',
   },
   {
@@ -130,6 +125,7 @@ const drawerCellForm = CreateDrawer({
 const cellFields: SchemaProps<{}>[] = [
   {
     type: 'BlockQuote',
+    name: '-',
     props: {
       title: '数据列设置',
     },

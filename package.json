@@ -1,14 +1,14 @@
 {
   "name": "react-core-form-designer",
-  "version": "0.0.28",
-  "description": "基于react-core-form搭建低码相关组件",
+  "version": "1.0.0",
+  "description": "基于 react-core-form 搭建低码相关组件",
   "author": "yunliang-ding",
   "homepage": "http://dev-ops.yunliang.cloud/website/react-core-form-designer",
   "keywords": [
     "react-core-form",
     "form-designer",
     "react-dnd",
-    "antd"
+    "acro.design"
   ],
   "repository": {
     "type": "git",
@@ -45,21 +45,23 @@
   },
   "peerDependencies": {
     "axios": ">=0.21.1",
-    "antd": ">=4.21.0",
     "react": ">=17.0.2",
     "react-dom": ">=17.0.2",
-    "react-core-form": "^1.0.29",
-    "react-core-form-code-editor": "^0.0.1",
-    "react-core-form-tools": "^0.0.7"
+    "react-core-form": "^2.0.1",
+    "react-core-form-tools": "^1.0.0",
+    "react-core-form-store": "^0.0.1",
+    "react-core-form-code-editor": "^0.0.1"
   },
   "devDependencies": {
     "axios": "^0.21.1",
     "antd": "4.21.0",
+    "@arco-design/web-react": "2.55.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-core-form": "^1.0.29",
+    "react-core-form": "^2.0.1",
+    "react-core-form-tools": "^1.0.0",
+    "react-core-form-store": "^0.0.1",
     "react-core-form-code-editor": "^0.0.1",
-    "react-core-form-tools": "^0.0.7",
     "@types/lodash": "4.14.168",
     "@umijs/test": "^3.0.5",
     "@babel/runtime": "7.16.0",
@@ -74,6 +76,9 @@
     "lint-staged": "^10.0.7",
     "prettier": "^2.2.1",
     "yorkie": "^2.0.0",
+    "@types/react": "17.0.2"
+  },
+  "resolutions": {
     "@types/react": "17.0.2"
   },
   "license": "MIT"

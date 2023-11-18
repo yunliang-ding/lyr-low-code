@@ -1,6 +1,6 @@
 import { isEmpty, uuid } from '@/util';
 import { Button } from 'react-core-form';
-import { Input, message, Space, Table } from 'antd';
+import { Input, Message, Space, Table } from '@arco-design/web-react';
 import { useCallback } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
@@ -53,7 +53,7 @@ export default ({
   };
   const remove = (index: number) => {
     if (value.length === 1) {
-      return message.info('至少保留一项');
+      return Message.info('至少保留一项');
     }
     value.splice(index, 1);
     onChange([...value]);
@@ -103,8 +103,8 @@ export default ({
                       allowClear
                       id={`app-table-list-input-${item.dataIndex}-${index}`}
                       value={e}
-                      onChange={({ target }) => {
-                        onCellChange(target.value, item.dataIndex, index);
+                      onChange={(v) => {
+                        onCellChange(v, item.dataIndex, index);
                       }}
                     />
                   );
@@ -134,7 +134,7 @@ export default ({
                     ].map((item) => {
                       return (
                         <Button
-                          type="link"
+                          type="text"
                           key={item.key}
                           confirm={item.confirm}
                           onClick={() => {
@@ -167,7 +167,7 @@ export default ({
               row: DraggableBodyRow,
             },
           }}
-          dataSource={value}
+          data={value}
           onRow={(_, index) => {
             const attr = {
               index,

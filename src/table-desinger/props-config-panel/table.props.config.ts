@@ -13,7 +13,6 @@ const toolPropsConfig = (
     {
       type: 'Switch',
       name: 'spin',
-      valuePropName: 'checked',
       label: '开启loading',
     },
     {
@@ -41,8 +40,8 @@ const toolPropsConfig = (
           : `() => {
   return true
 }`,
-      } as any,
-    },
+      },
+    } as any,
     {
       type: 'RadioGroup',
       name: 'bindFormType',
@@ -321,19 +320,16 @@ export default ({ selectModelOptions }) =>
     {
       type: 'Switch',
       name: 'pagination',
-      valuePropName: 'checked',
       label: '启用分页',
     },
     {
       type: 'Switch',
       name: 'openDefaultTools',
-      valuePropName: 'checked',
       label: '启用默认工具栏',
     },
     {
       type: 'Switch',
       name: 'autoNo',
-      valuePropName: 'checked',
       label: '启用自增序号',
     },
     {
@@ -377,7 +373,6 @@ export default ({ selectModelOptions }) =>
                   {
                     type: 'Switch',
                     name: 'ghost',
-                    valuePropName: 'checked',
                     label: '使用ghost',
                   },
                   ...toolPropsConfig(false, selectModelOptions),
@@ -437,7 +432,6 @@ export default ({ selectModelOptions }) =>
                   {
                     type: 'Switch',
                     name: 'confirm',
-                    valuePropName: 'checked',
                     label: '开启二次确认',
                   },
                   {

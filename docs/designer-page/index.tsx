@@ -1,7 +1,8 @@
 import { PageDesigner } from 'react-core-form-designer';
 import React, { useRef } from 'react';
-import { Button, CodeEditor, CreateDrawer } from 'react-core-form';
-import { message, Space } from 'antd';
+import { Button, CreateDrawer } from 'react-core-form';
+import { CodeEditor } from 'react-core-form-code-editor';
+import { Message, Space } from '@arco-design/web-react';
 import './index.less';
 
 const exportDrawer = CreateDrawer({
@@ -44,7 +45,7 @@ export default () => {
                   },
                 });
               } else {
-                message.info('物料为空');
+                Message.info('物料为空');
               }
             }}
           >
@@ -61,7 +62,7 @@ export default () => {
                     : 'render',
                 );
               } else {
-                message.info('请选择配置项');
+                Message.info('请选择配置项');
               }
             }}
           >
@@ -74,7 +75,7 @@ export default () => {
           <PageDesigner.RegisterWidgets />
           <PageDesigner.PageCanvas
             onCtrlS={() => {
-              message.loading('保存中', 2);
+              Message.loading('保存中');
             }}
           />
           <PageDesigner.PropsConfigPanel />

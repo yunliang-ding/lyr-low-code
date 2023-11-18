@@ -1,5 +1,5 @@
 import { cloneDeep, recursionFind, uuid as Uuid } from '@/util';
-import { Popconfirm } from 'antd';
+import { Popconfirm } from '@arco-design/web-react';
 import { useState, useRef } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 import { deleteCompent } from './util';
@@ -258,7 +258,7 @@ export default ({
           <div className="drag-container-tools">
             {removeConfirm ? (
               <Popconfirm
-                placement="left"
+                position="left"
                 title="确认删除该组件吗?"
                 onConfirm={removeCompent}
                 okText="确定"

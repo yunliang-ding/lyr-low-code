@@ -7,7 +7,6 @@ export const formItemSchema = (
   insertSchema = [
     {
       type: 'Switch',
-      valuePropName: 'checked',
       name: 'required',
       label: '是否必填',
     },
@@ -84,7 +83,7 @@ export const formItemSchema = (
       ],
     },
   },
-  ...insertSchema,
+  ...(insertSchema as any),
   // TODO 没有考虑 FieldSet
   {
     type: 'AsyncSelect',
@@ -132,7 +131,6 @@ export const formItemSchema = (
   {
     type: 'Switch',
     name: 'effectClearField',
-    valuePropName: 'checked',
     label: '依赖变化清空值',
     visible({ effect }) {
       return effect?.length > 0;

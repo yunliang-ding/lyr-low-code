@@ -11,7 +11,7 @@ const schema: SchemaProps<{
     name: 'column',
     label: '占据列数',
     props: {
-      optionType: 'button',
+      type: 'button',
       options: [
         {
           label: '1列',
@@ -37,7 +37,7 @@ const schema: SchemaProps<{
     name: 'layout',
     label: '布局方式',
     props: {
-      optionType: 'button',
+      type: 'button',
       options: [
         {
           label: 'inline',
@@ -53,25 +53,21 @@ const schema: SchemaProps<{
   {
     type: 'Switch',
     name: 'toolReverse',
-    valuePropName: 'checked',
     label: '查询按钮位置互换',
   },
   {
     type: 'Switch',
     name: 'defaultExpand',
-    valuePropName: 'checked',
     label: '默认展开更多',
   },
   {
     type: 'Switch',
     name: 'clearInitialValuesOnReset',
-    valuePropName: 'checked',
     label: '清空是否保留默认值',
   },
   {
     type: 'Switch',
     name: 'hidden',
-    valuePropName: 'checked',
     label: '是否隐藏查询条件',
   },
 ];

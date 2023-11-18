@@ -33,7 +33,7 @@ export default () => {
 ```tsx
 import React from 'react';
 import { FormDesigner } from 'react-core-form-designer';
-import { Space } from 'antd';
+import { Space } from '@arco-design/web-react';
 
 export default () => {
   return (
@@ -62,7 +62,6 @@ export default () => {
             propsConfig: [
               {
                 type: 'Switch',
-                valuePropName: 'checked',
                 name: 'disabled',
                 label: '是否禁用',
               },

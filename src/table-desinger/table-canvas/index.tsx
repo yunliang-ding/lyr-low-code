@@ -4,7 +4,6 @@ import DragContainer from '@/form-designer/form-canvas/drag';
 import { useCallback, useState, useEffect, useContext, useMemo } from 'react';
 import { uuid as Uuid, cloneDeep } from '@/util';
 import { Ctx } from '../store';
-import { Empty } from 'antd';
 import { parseTableColumns, parseTableSchema } from '../util';
 import './index.less';
 

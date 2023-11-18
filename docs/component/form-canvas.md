@@ -13,7 +13,7 @@ toc: menu
 import React from 'react';
 import { FormDesigner } from 'react-core-form-designer';
 import defaultSchema from './schema';
-import { message } from 'antd';
+import { Message } from '@arco-design/web-react';
 
 export default () => {
   return (
@@ -21,7 +21,7 @@ export default () => {
       <FormDesigner.FormCanvas
         column={2}
         onCtrlS={() => {
-          message.loading('保存中', 2);
+          Message.loading('保存中', 2);
         }}
         defaultSchema={defaultSchema}
         defaultSelectKey={defaultSchema[0].key}

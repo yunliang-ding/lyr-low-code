@@ -55,28 +55,6 @@ const schema: SchemaProps<{}>[] = [
   },
   {
     type: 'RadioGroup',
-    name: 'size',
-    label: '尺寸大小',
-    props: {
-      optionType: 'button',
-      options: [
-        {
-          label: 'small',
-          value: 'small',
-        },
-        {
-          label: 'middle',
-          value: 'middle',
-        },
-        {
-          label: 'large',
-          value: 'large',
-        },
-      ],
-    },
-  },
-  {
-    type: 'RadioGroup',
     name: 'actionAlign',
     label: '操作按钮位置',
     props: {

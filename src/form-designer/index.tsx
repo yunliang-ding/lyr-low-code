@@ -15,7 +15,6 @@ const Container = (props: any, ref: any) => {
     title: '默认标题',
     actionAlign: 'end',
     layout: 'vertical',
-    size: 'middle',
   });
   // 统一管理 widgets
   const [widgets, setWidgets] = useState<{

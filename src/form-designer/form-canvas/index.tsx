@@ -171,6 +171,7 @@ export default ({
       window.removeEventListener('keydown', keyboardEvent);
     };
   }, [ctx.formProps, ctx.selectSchema, ctx.schema]);
+  console.log(ctx?.formProps, rest);
   return (
     <div
       ref={drop}

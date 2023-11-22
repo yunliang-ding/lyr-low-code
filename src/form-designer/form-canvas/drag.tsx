@@ -217,12 +217,12 @@ export default ({
     if (position === 'up') {
       containerStyle = {
         ...containerStyle,
-        boxShadow: '0 -3px 0 var(--antd-wave-shadow-color)',
+        boxShadow: '0 -3px 0 rgb(var(--primary-6))',
       };
     } else if (position === 'down') {
       containerStyle = {
         ...containerStyle,
-        boxShadow: '0 3px 0 var(--antd-wave-shadow-color)',
+        boxShadow: '0 3px 0 rgb(var(--primary-6))',
       };
     }
   }

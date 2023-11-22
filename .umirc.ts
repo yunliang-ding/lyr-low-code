@@ -46,16 +46,15 @@ export default defineConfig({
       }
   `,
   ],
-  extraBabelPlugins: [
-    [
-      'import',
-      {
-        libraryName: '@arco-design/web-react',
-        libraryDirectory: 'es',
-        camel2DashComponentName: false,
-        style: true, // 样式按需加载
-      },
-    ],
+  links: [
+    {
+      href: 'https://unpkg.com/@arco-design/web-react@latest/dist/css/arco.min.css',
+      rel: 'stylesheet',
+    },
+    {
+      href: 'https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/index.css',
+      rel: 'stylesheet',
+    },
   ],
   scripts: [
     'https://g.alicdn.com/code/lib/prettier/2.0.3/standalone.min.js',

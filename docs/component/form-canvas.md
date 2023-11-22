@@ -12,8 +12,8 @@ toc: menu
  */
 import React from 'react';
 import { FormDesigner } from 'react-core-form-designer';
-import defaultSchema from './schema';
 import { Message } from '@arco-design/web-react';
+import defaultSchema from './schema';
 
 export default () => {
   return (

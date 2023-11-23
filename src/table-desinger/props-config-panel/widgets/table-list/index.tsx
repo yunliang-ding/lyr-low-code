@@ -82,7 +82,7 @@ export default ({
           rowKey={rowKey}
           columns={[
             {
-              title: '排序',
+              title: '',
               dataIndex: 'sort',
               width: 40,
               render: () => (
@@ -136,6 +136,7 @@ export default ({
                         <Button
                           type="text"
                           key={item.key}
+                          style={{ padding: '0 6px' }}
                           confirm={item.confirm}
                           onClick={() => {
                             if (item.key !== 'remove') {
@@ -151,7 +152,6 @@ export default ({
                               onCellChange(v, key, index);
                             });
                           }}
-                          style={{ paddingLeft: 0 }}
                         >
                           {item.label}
                         </Button>

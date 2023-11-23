@@ -19,7 +19,6 @@ export interface FormCanvasType {
 }
 
 export default ({
-  empty = '点击/拖拽左侧栏的组件进行添加',
   onSchemaSelect = () => {},
   accept = 'left-box',
   defaultSchema = [],
@@ -160,35 +159,28 @@ export default ({
   return (
     <div ref={drop} className={cls.join(' ')} style={style}>
       {isOver && <div className="table-canvas-mask" />}
-      <Table
-        key={reload}
-        table={table}
-        {...parseTableSchema(cloneDeep(ctx?.tableProps))}
-        columns={parseTableColumns(cloneDeep(ctx.columns))}
-        searchSchema={
-          _schema.length > 0 && {
-            ...ctx.formProps,
-            hidden: false,
-            schema: _schema,
-          }
+      <div
+        className={
+          ctx.selectTable ? 'table-canvas-table-selected' : 'table-canvas-table'
         }
-        tableRender={(dom) => {
-          return (
-            <div
-              className={
-                ctx.selectTable
-                  ? 'table-canvas-table-selected'
-                  : 'table-canvas-table'
-              }
-              onClick={() => {
-                ctx.setSelectTable?.(true);
-              }}
-            >
-              {dom}
-            </div>
-          );
+        onClick={() => {
+          ctx.setSelectTable?.(true);
         }}
-      />
+      >
+        <Table
+          key={reload}
+          table={table}
+          {...parseTableSchema(cloneDeep(ctx?.tableProps))}
+          columns={parseTableColumns(cloneDeep(ctx.columns))}
+          searchSchema={
+            _schema.length > 0 && {
+              ...ctx.formProps,
+              hidden: false,
+              schema: _schema,
+            }
+          }
+        />
+      </div>
     </div>
   );
 };

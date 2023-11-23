@@ -2,6 +2,7 @@
  * cell的属性配置
  */
 import { SchemaProps, CreateDrawer } from 'react-core-form';
+import { CodeEditor } from 'react-core-form-code-editor';
 
 const cellDetailFields: SchemaProps<{}>[] = [
   {
@@ -110,15 +111,9 @@ const cellDetailFields: SchemaProps<{}>[] = [
 const drawerCellForm = CreateDrawer({
   width: 400,
   schema: cellDetailFields,
-  footer: false,
-  drawerProps: {
-    headerStyle: {
-      height: 43.5,
-    },
-    style: {
-      top: 65,
-      height: 'calc(100% - 65px)',
-    },
+  footerRender: () => null,
+  widgets: {
+    CodeEditor,
   },
 });
 

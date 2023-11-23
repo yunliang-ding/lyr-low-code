@@ -3,6 +3,7 @@
  */
 import { CreateDrawer, SchemaProps } from 'react-core-form';
 import { encrypt } from '@/util';
+import { CodeEditor } from 'react-core-form-code-editor';
 
 /** 顶部工具栏和操作栏相同部分 */
 const toolPropsConfig = (
@@ -47,7 +48,7 @@ const toolPropsConfig = (
       name: 'bindFormType',
       label: '绑定表单',
       props: {
-        optionType: 'button',
+        type: 'button',
         onChange(e) {
           const v = e.target?.value;
           if (v === 'modal') {
@@ -118,7 +119,7 @@ const toolPropsConfig = (
     ...formProps,
     initialValues: {
       ...record,
-    }
+    },
     async onSubmit(v){
       try {
         await formProps.onSubmit(v);
@@ -228,33 +229,19 @@ const toolPropsConfig = (
 
 /** 顶部工具栏 */
 const drawerToolForm = CreateDrawer({
-  footer: false,
+  footerRender: () => null,
   width: 400,
-  drawerProps: {
-    footer: false,
-    headerStyle: {
-      height: 43.5,
-    },
-    style: {
-      top: 64,
-      height: 'calc(100% - 57px)',
-    },
+  widgets: {
+    CodeEditor,
   },
 });
 
 /** 列操作栏 */
 const drawerMenuForm = CreateDrawer({
-  footer: false,
+  footerRender: () => null,
   width: 400,
-  drawerProps: {
-    footer: false,
-    headerStyle: {
-      height: 43.5,
-    },
-    style: {
-      top: 64,
-      height: 'calc(100% - 57px)',
-    },
+  widgets: {
+    CodeEditor,
   },
 });
 
@@ -276,45 +263,9 @@ export default ({ selectModelOptions }) =>
       label: '空数据提示文案',
     },
     {
-      type: 'RadioGroup',
-      name: 'size',
-      label: '尺寸大小',
-      props: {
-        optionType: 'button',
-        options: [
-          {
-            label: 'small',
-            value: 'small',
-          },
-          {
-            label: 'middle',
-            value: 'middle',
-          },
-        ],
-      },
-    },
-    {
       type: 'BlockQuote',
       props: {
         title: '顶部工具栏设置',
-      },
-    },
-    {
-      type: 'RadioGroup',
-      name: 'toolsAlign',
-      label: '工具栏位置',
-      props: {
-        optionType: 'button',
-        options: [
-          {
-            label: '左对齐',
-            value: 'left',
-          },
-          {
-            label: '右对齐',
-            value: 'right',
-          },
-        ],
       },
     },
     {
@@ -369,11 +320,6 @@ export default ({ selectModelOptions }) =>
                         },
                       ],
                     },
-                  },
-                  {
-                    type: 'Switch',
-                    name: 'ghost',
-                    label: '使用ghost',
                   },
                   ...toolPropsConfig(false, selectModelOptions),
                 ],

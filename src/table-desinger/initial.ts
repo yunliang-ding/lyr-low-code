@@ -7,7 +7,6 @@ export const defaultInitialValues = {
   formProps: {
     column: 3,
     layout: 'inline',
-    size: 'middle',
   },
   schema: [
     {
@@ -41,7 +40,6 @@ export const defaultInitialValues = {
   ],
   tableProps: {
     title: '用户列表',
-    size: 'middle',
     emptyNode: '-',
     scrollX: 1200,
     tools: [

@@ -52,7 +52,7 @@ export default defineConfig({
       rel: 'stylesheet',
     },
     {
-      href: 'https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/index.css',
+      href: 'https://react-core-form.oss-cn-beijing.aliyuncs.com/assets/react-core-form.css',
       rel: 'stylesheet',
     },
   ],

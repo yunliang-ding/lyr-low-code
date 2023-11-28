@@ -4,7 +4,7 @@ import { Ctx } from '../store';
 import { useContext, useEffect, useMemo } from 'react';
 import { uuid as Uuid, cloneDeep } from '@/util';
 import builtInWidget from '../material-config';
-import './index.less';
+import './index.css';
 
 export interface RegisterWidgetsType {
   /** 自定义组件 */
@@ -93,19 +93,21 @@ const RegisterWidgets = ({
         return (
           <div className="widgets-panel-body" key={item.label}>
             <h4>{item.label}</h4>
-            {item.value?.map((widget) => {
-              return (
-                <Drag
-                  widget={widget}
-                  props={widget.props}
-                  type={type}
-                  key={widget.label || widget.name}
-                  onClick={() => {
-                    onClick(widget);
-                  }}
-                />
-              );
-            })}
+            <div className="widgets-panel-body-btns">
+              {item.value?.map((widget) => {
+                return (
+                  <Drag
+                    widget={widget}
+                    props={widget.props}
+                    type={type}
+                    key={widget.label || widget.name}
+                    onClick={() => {
+                      onClick(widget);
+                    }}
+                  />
+                );
+              })}
+            </div>
           </div>
         );
       })}

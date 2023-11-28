@@ -245,7 +245,7 @@ export default ({
       style={
         selected
           ? containerStyle
-          : { ...containerStyle, border: '1px dashed #ccc' }
+          : { ...containerStyle, border: '1px dashed var(--color-fill-3)' }
       }
       onClick={onSchemaClick}
     >

@@ -6,7 +6,7 @@ import { uuid as Uuid, cloneDeep } from '@/util';
 import { Ctx } from '../store';
 import { Empty } from '@arco-design/web-react';
 import { deleteCompent } from './util';
-import './index.less';
+import './index.css';
 
 export interface FormCanvasType {
   /** 空数据展示 */

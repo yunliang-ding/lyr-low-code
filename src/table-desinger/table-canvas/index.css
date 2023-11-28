@@ -1,0 +1,122 @@
+.table-canvas {
+  height: 100%;
+  width: 100%;
+  user-select: none;
+  overflow: auto;
+  position: relative;
+}
+.table-canvas .table-canvas-mask {
+  background-color: #c7dcf14b;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+.table-canvas .arco-form-item-wrapper {
+  transition: 0.3s;
+  pointer-events: none;
+}
+.table-canvas .table-canvas-empty {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.table-canvas .table-form-header {
+  pointer-events: none;
+}
+.table-canvas .table-canvas-table,
+.table-canvas .table-canvas-table-selected {
+  cursor: pointer;
+}
+.table-canvas .table-canvas-table:hover,
+.table-canvas .table-canvas-table-selected:hover {
+  border: 1px dashed rgb(var(--primary-6));
+}
+.table-canvas .table-canvas-table-selected {
+  border: 1px dashed rgb(var(--primary-6));
+}
+.table-canvas .grid-search-btn {
+  align-items: center;
+  top: 0 !important;
+}
+.table-canvas .core-form-grid-1,
+.table-canvas .core-form-grid-2,
+.table-canvas .core-form-grid-3 {
+  height: fit-content;
+}
+.table-canvas .core-form-grid-1 .drag-container,
+.table-canvas .core-form-grid-2 .drag-container,
+.table-canvas .core-form-grid-3 .drag-container {
+  min-height: 80px;
+  padding: 22px 10px;
+}
+.table-canvas .form-canvas-table,
+.table-canvas .form-canvas-table-selected {
+  border: 1px dashed var(--color-fill-3);
+  margin: 20px;
+  cursor: pointer;
+}
+.table-canvas .form-canvas-table:hover,
+.table-canvas .form-canvas-table-selected:hover {
+  opacity: 0.8;
+}
+.table-canvas .form-canvas-table .shine-table-form,
+.table-canvas .form-canvas-table-selected .shine-table-form {
+  pointer-events: none;
+}
+.table-canvas .form-canvas-table-selected {
+  border: 1px dashed rgb(var(--primary-6));
+}
+.table-canvas-hidden-search .core-form-search {
+  opacity: 0.5;
+  pointer-events: none;
+}
+.drag-container {
+  position: relative;
+  border: 1px dashed rgb(var(--primary-6));
+  padding: 20px 10px;
+  padding-bottom: 0px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.drag-container:hover {
+  border: 1px dashed rgb(var(--primary-6)) !important;
+}
+.drag-container .drag-container-key {
+  position: absolute;
+  top: 2px;
+  right: 4px;
+  color: rgb(var(--primary-6));
+  font-size: 12px;
+}
+.drag-container .drag-container-drag {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  cursor: move;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgb(var(--primary-6));
+  color: #fff;
+}
+.drag-container .drag-container-tools {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  width: 50px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: rgb(var(--primary-6));
+  color: #fff;
+  cursor: pointer;
+  z-index: 99;
+  border-top-left-radius: 8px;
+}
+.drag-container .drag-container-tools .spicon-copy {
+  cursor: copy;
+}

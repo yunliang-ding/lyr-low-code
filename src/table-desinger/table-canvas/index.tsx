@@ -5,7 +5,7 @@ import { useCallback, useState, useEffect, useContext, useMemo } from 'react';
 import { uuid as Uuid, cloneDeep } from '@/util';
 import { Ctx } from '../store';
 import { parseTableColumns, parseTableSchema } from '../util';
-import './index.less';
+import './index.css';
 
 export interface FormCanvasType {
   empty?: string; // 空数据展示

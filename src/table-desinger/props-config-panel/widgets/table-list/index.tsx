@@ -6,7 +6,7 @@ import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import update from 'immutability-helper';
 import DraggableBodyRow from './draggable-body-row';
-import './index.less';
+import './index.css';
 
 export interface TableListProps {
   rowKey?: string;

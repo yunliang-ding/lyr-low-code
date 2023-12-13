@@ -1,13 +1,12 @@
 {
-  "type": "UploadImage",
+  "type": "OssFileUpload",
   "label": "图片上传",
   "props": {
     "disabled": false,
     "name": "file",
     "text": "点击上传",
-    "maxCount": 1,
-    "limitSize": 2,
-    "action": "https://www.mocky.io/v2/5cc8019d300000980a055e76"
+    "limit": 1,
+    "limitSize": 100
   },
   "propsConfig": [
     {
@@ -30,11 +29,6 @@
       "type": "InputNumber",
       "name": "limitSize",
       "label": "文件大小限制"
-    },
-    {
-      "type": "Input",
-      "name": "action",
-      "label": "设置url路径"
     },
     {
       "type": "CodeEditor",

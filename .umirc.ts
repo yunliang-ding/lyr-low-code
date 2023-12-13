@@ -6,8 +6,8 @@ export default defineConfig({
   outputPath: 'docs-dist',
   locales: [['zh-CN', '中文']],
   favicon:
-    'https://unpkg.byted-static.com/latest/byted/arco-config/assets/favicon.ico',
-  logo: 'https://unpkg.byted-static.com/latest/byted/arco-config/assets/favicon.ico',
+    'https://react-core-form.oss-cn-beijing.aliyuncs.com/assets/favicon.ico',
+  logo: 'https://react-core-form.oss-cn-beijing.aliyuncs.com/assets/favicon.ico',
   theme: {
     '@c-primary': '#165dff',
   },
@@ -22,7 +22,7 @@ export default defineConfig({
     p,
     label {
       font-size: 12px;
-      font-weight: 500;
+      font-weight: 500 !important;
     }
     h2{
       font-size: 18px !important;
@@ -48,19 +48,19 @@ export default defineConfig({
   ],
   links: [
     {
-      href: 'https://unpkg.com/@arco-design/web-react@latest/dist/css/arco.min.css',
+      href: 'https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/arco.min.css',
       rel: 'stylesheet',
     },
     {
-      href: 'https://react-core-form.oss-cn-beijing.aliyuncs.com/assets/react-core-form.css',
+      href: 'https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/react-core-form.min.css',
       rel: 'stylesheet',
     },
   ],
   scripts: [
-    'https://g.alicdn.com/code/lib/prettier/2.0.3/standalone.min.js',
-    'https://g.alicdn.com/code/lib/prettier/2.0.3/parser-typescript.min.js',
-    'https://g.alicdn.com/code/lib/babel-standalone/7.21.2/babel.min.js',
-    'https://react-core-form.oss-cn-beijing.aliyuncs.com/prism.min.js',
+    'https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/babel-standalone.min.js',
+    'https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/prettier-standalone.min.js',
+    'https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/prettier-parser-typescript.min.js',
+    'https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/prism.min.js',
   ],
   history: { type: 'hash' },
   hash: false,

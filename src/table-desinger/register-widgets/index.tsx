@@ -1,6 +1,6 @@
 import { Ctx } from '../store';
 import RegisterWidgets from '@/form-designer/register-widgets';
-import innerWidgets from '../material-config';
+import innerWidgets from './material-config';
 
 export default (props) => {
   return (

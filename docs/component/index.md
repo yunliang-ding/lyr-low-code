@@ -21,35 +21,14 @@ nav:
 
 ## 依赖 cdn 资源
 
-```html
-<link
-  href="https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/arco.min.css"
-  rel="stylesheet"
-/>
-<link
-  href="https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/react-core-form.min.css"
-  rel="stylesheet"
-/>
-<script
-  defer
-  src="https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/aliyun-oss-sdk.min.js"
-></script>
-<script
-  defer
-  src="https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/babel-standalone.min.js"
-></script>
-<script
-  defer
-  src="https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/prettier-standalone.min.js"
-></script>
-<script
-  defer
-  src="https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/prism.min.js"
-></script>
-<script
-  defer
-  src="https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/prettier-parser-typescript.min.js"
-></script>
+```js
+'https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/arco.min.css';
+'https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/react-core-form.min.css';
+'https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/aliyun-oss-sdk.min.js';
+'https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/babel-standalone.min.js';
+'https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/prettier-standalone.min.js';
+'https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/prettier-parser-typescript.min.js';
+'https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/prism.min.js';
 ```
 
 <Alert>

@@ -57,6 +57,7 @@ export default defineConfig({
     },
   ],
   scripts: [
+    'https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/aliyun-oss-sdk.min.js',
     'https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/babel-standalone.min.js',
     'https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/prettier-standalone.min.js',
     'https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/prettier-parser-typescript.min.js',

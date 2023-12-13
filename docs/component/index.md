@@ -21,11 +21,35 @@ nav:
 
 ## 依赖 cdn 资源
 
-```js
-'https://g.alicdn.com/code/lib/prettier/2.0.3/standalone.min.js',
-'https://g.alicdn.com/code/lib/prettier/2.0.3/parser-typescript.min.js',
-'https://g.alicdn.com/code/lib/babel-standalone/7.21.2/babel.min.js',
-'https://react-core-form.oss-cn-beijing.aliyuncs.com/prism.min.js',
+```html
+<link
+  href="https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/arco.min.css"
+  rel="stylesheet"
+/>
+<link
+  href="https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/react-core-form.min.css"
+  rel="stylesheet"
+/>
+<script
+  defer
+  src="https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/aliyun-oss-sdk.min.js"
+></script>
+<script
+  defer
+  src="https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/babel-standalone.min.js"
+></script>
+<script
+  defer
+  src="https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/prettier-standalone.min.js"
+></script>
+<script
+  defer
+  src="https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/prism.min.js"
+></script>
+<script
+  defer
+  src="https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/prettier-parser-typescript.min.js"
+></script>
 ```
 
 <Alert>

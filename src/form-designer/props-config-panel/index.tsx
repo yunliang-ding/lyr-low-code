@@ -1,12 +1,12 @@
 import { Form } from 'react-core-form';
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { Empty, Radio } from '@arco-design/web-react';
 import ItemPropsConfig from './item.props.config';
 import FormPropsConfig from './form.props.config';
 import { isEmpty, recursionFind } from '@/util';
-import { Ctx } from '@/form-designer/store';
 import { debounce } from 'lodash';
 import { CodeEditor } from 'react-core-form-code-editor';
+import store from '../store';
 import './index.less';
 
 export interface PropsConfigPanelTypes {
@@ -26,43 +26,41 @@ export interface PropsConfigPanelTypes {
 }
 
 export default ({
+  style = {},
   props = {},
   propsConfig = [],
-  style = {},
   onPropsConfigUpdate = () => {},
   debounceTime = 100,
 }: PropsConfigPanelTypes) => {
-  const ctx: any = useContext(Ctx); // 拿到ctx
   const [compontentType, setCompontentType]: any = useState('表单项配置');
-  if (!isEmpty(props)) {
-    ctx.selectSchema = {
-      props,
-    };
-  } else if (ctx.selectSchema && ctx.widgets) {
-    propsConfig = ctx.widgets.__originalConfig__?.find(
-      (widget) => widget.type === ctx.selectSchema.type,
+  const { schema, widgets, selectedSchema, formProps } = store.use();
+  // 在如果是组合使用
+  if (!isEmpty(selectedSchema)) {
+    propsConfig = widgets.__originalConfig__?.find(
+      (widget: any) => widget.type === selectedSchema.type,
     )?.propsConfig;
     /** 更新 schema */
     onPropsConfigUpdate = (values, type) => {
       if (type === 'item') {
         // 更新 selectSchema
-        ctx.selectSchema = { ...ctx.selectSchema, ...values };
-        ctx.setSelectSchema({ ...ctx.selectSchema });
+        store.selectedSchema = { ...store.selectedSchema, ...values };
       }
       if (type === 'widget') {
         // 更新 schemaProps
-        ctx.selectSchema.props = { ...ctx.selectSchema.props, ...values };
-        ctx.setSelectSchema({ ...ctx.selectSchema });
+        store.selectedSchema.props = {
+          ...store.selectedSchema.props,
+          ...values,
+        };
       }
       // 更新 schema
-      const newSchema = recursionFind(ctx.schema, ctx.selectSchema.key);
-      Object.assign(newSchema, ctx.selectSchema);
-      ctx.setSchema([...ctx.schema]);
+      const newSchema = recursionFind(schema, selectedSchema.key);
+      Object.assign(newSchema, selectedSchema);
+      store.schema = [...store.schema];
     };
   }
   /** 防抖0.1s */
   const onFormValuesChange = debounce((_, values) => {
-    ctx.setFormProps?.(values);
+    store.formProps = values;
     onPropsConfigUpdate({ ...values }, 'form');
   }, debounceTime);
   /** 防抖0.1s */
@@ -74,12 +72,8 @@ export default ({
     onPropsConfigUpdate({ ...values }, 'widget');
   }, debounceTime);
   return (
-    <div
-      className="props-config-panel"
-      style={style}
-      key={ctx.selectSchema?.key}
-    >
-      {isEmpty(ctx.selectSchema) ? (
+    <div className="props-config-panel" style={style} key={selectedSchema?.key}>
+      {isEmpty(selectedSchema) && isEmpty(props) ? (
         <Empty
           description="请选择需要设置的表单项"
           className="form-canvas-empty"
@@ -102,7 +96,7 @@ export default ({
           >
             <Form
               schema={FormPropsConfig}
-              initialValues={ctx.formProps}
+              initialValues={formProps}
               onValuesChange={onFormValuesChange}
               widgets={{
                 CodeEditor,
@@ -116,8 +110,8 @@ export default ({
             }}
           >
             <Form
-              schema={ItemPropsConfig(undefined, ctx)}
-              initialValues={ctx.selectSchema || {}}
+              schema={ItemPropsConfig(undefined, schema, selectedSchema)}
+              initialValues={selectedSchema || {}}
               onValuesChange={onItemValuesChange}
               widgets={{
                 CodeEditor,
@@ -132,7 +126,7 @@ export default ({
           >
             <Form
               schema={propsConfig}
-              initialValues={ctx.selectSchema?.props || {}}
+              initialValues={selectedSchema.props || props || {}}
               onValuesChange={onWidgetValuesChange}
               widgets={{
                 CodeEditor,

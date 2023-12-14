@@ -26,10 +26,8 @@ export const formItemSchema = (
       },
     },
   ] as SchemaProps<{}>[],
-  ctx = {
-    schema: [],
-    selectSchema: { key: '', type: '' },
-  },
+  schema = [] as any,
+  selectedSchema = {} as any,
 ): SchemaProps<{}>[] => [
   {
     type: 'Input',
@@ -58,7 +56,7 @@ export const formItemSchema = (
       mode: 'Input',
     },
     visible() {
-      return ['RangeInput', 'RangePicker'].includes(ctx.selectSchema.type);
+      return ['RangeInput', 'RangePicker'].includes(selectedSchema.type);
     },
   },
   {
@@ -92,15 +90,15 @@ export const formItemSchema = (
     props: {
       mode: 'multiple',
       options() {
-        const options = ctx.schema
+        const options = schema
           ?.filter(
             (item) =>
-              item.key !== ctx.selectSchema.key && item.type !== 'BlockQuote',
+              item.key !== selectedSchema.key && item.type !== 'BlockQuote',
           ) // 过滤自己
-          .map((schema) => {
+          .map((item) => {
             return {
-              label: schema.label,
-              value: schema.name,
+              label: item.label,
+              value: item.name,
             };
           });
         return options;

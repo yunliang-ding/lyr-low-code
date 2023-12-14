@@ -1,9 +1,9 @@
 /* eslint-disable no-await-in-loop */
 import Drag from './drag';
-import { Ctx } from '../store';
-import { useContext, useEffect, useMemo } from 'react';
-import { uuid as Uuid, cloneDeep } from '@/util';
+import { useEffect, useMemo } from 'react';
+import { uuid as Uuid, cloneDeep, isEmpty } from '@/util';
 import builtInWidget from './material-config';
+import store from '../store';
 import './index.css';
 
 export interface RegisterWidgetsType {
@@ -17,8 +17,6 @@ export interface RegisterWidgetsType {
   onClick?: Function;
   /** 主容器样式 */
   style?: object;
-  /** 自定义上下文store */
-  context?: any;
   /**
    * 内置组件
    * @default react-core-form 所有表单组件
@@ -31,11 +29,9 @@ const RegisterWidgets = ({
   customWidgetsPropsConfig = [],
   type = 'left-box',
   style = {},
-  context = Ctx,
   innerWidgets = builtInWidget,
   ...rest
 }: RegisterWidgetsType) => {
-  const ctx: any = useContext(context); // 拿到ctx
   const widgetsOptions = useMemo(
     () =>
       [
@@ -58,6 +54,23 @@ const RegisterWidgets = ({
       ].filter((i) => i.value?.length > 0),
     [builtInWidget],
   );
+  const onClick = (widget) => {
+    /** 组合使用 */
+    if (!isEmpty(store.schema)) {
+      const uuid = Uuid(10);
+      store.schema.push({
+        key: uuid,
+        type: widget.type,
+        label: widget.label,
+        span: widget.span === 'fill' ? store.formProps?.column : 1,
+        name: `${widget.type || ''}_${uuid}`,
+        props: cloneDeep(widget.props), // 剔除引用关系
+      });
+      store.schema = [...store.schema];
+    }
+    rest.onClick?.(widget);
+  };
+  /** 组合使用 */
   const startRegisterWidgets = async () => {
     const _widgets: any = customWidgets;
     // 原始的widgets
@@ -67,25 +80,12 @@ const RegisterWidgets = ({
       ...(innerWidgets?.layout || []),
       ...customWidgetsPropsConfig,
     ];
-    ctx.setWidgets(_widgets); // 注入内置组件
-  };
-  const onClick = (widget) => {
-    if (ctx.schema) {
-      const uuid = Uuid(10);
-      ctx.schema.push({
-        key: uuid,
-        type: widget.type,
-        label: widget.label,
-        span: widget.span === 'fill' ? ctx.formProps?.column : 1,
-        name: `${widget.type || ''}_${uuid}`,
-        props: cloneDeep(widget.props), // 剔除引用关系
-      });
-      ctx.setSchema([...ctx.schema]);
-    }
-    rest.onClick?.(widget);
+    store.widgets = _widgets; // 注入内置组件
   };
   useEffect(() => {
-    startRegisterWidgets();
+    if (!isEmpty(store.schema)) {
+      startRegisterWidgets();
+    }
   }, []);
   return (
     <div style={style} className="widgets-panel">

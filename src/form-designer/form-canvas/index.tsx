@@ -1,11 +1,11 @@
 import { useDrop } from 'react-dnd';
 import { CardForm } from 'react-core-form';
 import DragContainer from './drag';
-import { useCallback, useEffect, useContext, useMemo } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import { uuid as Uuid, cloneDeep } from '@/util';
-import { Ctx } from '../store';
 import { Empty } from '@arco-design/web-react';
 import { deleteCompent } from './util';
+import store from '../store';
 import './index.css';
 
 export interface FormCanvasType {
@@ -50,17 +50,15 @@ export default ({
   onCtrlS,
   ...rest
 }: FormCanvasType) => {
-  const ctx: any = useContext(Ctx); // 拿到ctx
-  // update ctx
+  const { widgets, schema, selectedSchema, formProps } = store.use();
   useEffect(() => {
-    ctx.setSchema(defaultSchema);
-    const selectSchema =
+    store.schema = defaultSchema;
+    store.selectedSchema =
       defaultSchema.find((item: any) => item.key === defaultSelectKey) || {};
-    ctx.setSelectSchema(selectSchema);
   }, []);
   useEffect(() => {
-    onSchemaUpdate(ctx.schema);
-  }, [ctx.schema]);
+    onSchemaUpdate(schema);
+  }, [schema]);
   const [{ isOver }, drop] = useDrop(
     () => ({
       accept,
@@ -90,17 +88,17 @@ export default ({
           // 判断是否与已经存在
           if (localStorage.getItem('inner-add') !== '1') {
             delete _schema.isNew; // 删除isNew标识
-            ctx.schema.push({
+            store.schema.push({
               ..._schema,
             });
-            ctx.setSchema([...ctx.schema]); // ctx
+            store.schema = [...store.schema];
           } else {
             localStorage.removeItem('inner-add'); // clear
           }
         });
       },
     }),
-    [ctx.schema, ctx.selectSchema.key],
+    [schema, selectedSchema],
   );
   // 递归处理FieldSet子元素
   const recursionSchemaItem = useCallback(
@@ -113,14 +111,14 @@ export default ({
               removeConfirm={removeConfirm}
               accept={accept}
               itemSchema={itemSchema}
-              schema={ctx.schema}
-              selected={ctx.selectSchema.key === itemSchema.key} // 是否选中
-              onSchemaUpdate={(schema) => {
-                ctx.setSchema(schema); // ctx
+              schema={schema}
+              selected={selectedSchema.key === itemSchema.key} // 是否选中
+              onSchemaUpdate={(value) => {
+                store.schema = value;
               }}
-              setSelectSchema={(i: any) => {
-                ctx.setSelectSchema(i); // ctx
-                onSchemaSelect(i); // 通知外面
+              setSelectSchema={(item) => {
+                store.selectedSchema = item;
+                onSchemaSelect(item); // 通知外面
               }}
             >
               {dom}
@@ -136,11 +134,12 @@ export default ({
         }
       });
     },
-    [ctx.schema, ctx.selectSchema.key],
+    [schema, selectedSchema],
   );
+  /** 拷贝一份 */
   const _schema = useMemo(() => {
-    return cloneDeep(ctx.schema);
-  }, [ctx.schema, ctx.selectSchema.key]);
+    return cloneDeep(schema);
+  }, [schema, selectedSchema]);
   // 生成 itemRender
   recursionSchemaItem(_schema);
   const cls = ['form-canvas'];
@@ -158,10 +157,14 @@ export default ({
     } else if (e.key === 'Backspace' && mouseIsHoveringCanvas) {
       /** 删除该字段 */
       deleteCompent({
-        itemSchema: ctx.selectSchema,
-        schema: ctx.schema,
-        setSelectSchema: ctx.setSelectSchema,
-        onSchemaUpdate: ctx.setSchema,
+        itemSchema: selectedSchema,
+        schema,
+        setSelectSchema: (item) => {
+          store.selectedSchema = item;
+        },
+        onSchemaUpdate: (item) => {
+          store.schema = item;
+        },
       });
     }
   };
@@ -170,8 +173,7 @@ export default ({
     return () => {
       window.removeEventListener('keydown', keyboardEvent);
     };
-  }, [ctx.formProps, ctx.selectSchema, ctx.schema]);
-  console.log(ctx?.formProps, rest);
+  }, [formProps, selectedSchema, schema]);
   return (
     <div
       ref={drop}
@@ -190,10 +192,9 @@ export default ({
       )}
       <CardForm
         schema={_schema}
-        key={ctx.widgets}
-        {...ctx?.formProps}
+        {...formProps}
         {...rest}
-        widgets={ctx.widgets}
+        widgets={widgets}
         actions={[
           {
             label: '取消',

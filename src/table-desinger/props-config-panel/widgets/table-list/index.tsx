@@ -8,6 +8,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import update from 'immutability-helper';
 import DraggableBodyRow from './draggable-body-row';
 import './index.css';
+import { Drag1Icon } from '@/icon';
 
 export interface TableListProps {
   rowKey?: string;
@@ -86,34 +87,7 @@ export default ({
               title: '',
               dataIndex: 'sort',
               width: 40,
-              render: () => (
-                <svg viewBox="0 0 1024 1024" width="22" height="22">
-                  <path
-                    d="M199.68 300.032m-49.152 0a4.8 4.8 0 1 0 98.304 0 4.8 4.8 0 1 0-98.304 0Z"
-                    fill="#707070"
-                  />
-                  <path
-                    d="M402.432 343.04 829.44 343.04c23.552 0 44.032-19.456 44.032-44.032S852.992 256 829.44 256L402.432 256c-23.552 0-44.032 19.456-44.032 44.032S377.856 343.04 402.432 343.04z"
-                    fill="#707070"
-                  />
-                  <path
-                    d="M199.68 512m-49.152 0a4.8 4.8 0 1 0 98.304 0 4.8 4.8 0 1 0-98.304 0Z"
-                    fill="#707070"
-                  />
-                  <path
-                    d="M829.44 468.992 402.432 468.992c-23.552 0-44.032 19.456-44.032 44.032s19.456 44.032 44.032 44.032L829.44 557.056c23.552 0 44.032-19.456 44.032-44.032S852.992 468.992 829.44 468.992z"
-                    fill="#707070"
-                  />
-                  <path
-                    d="M199.68 724.992m-49.152 0a4.8 4.8 0 1 0 98.304 0 4.8 4.8 0 1 0-98.304 0Z"
-                    fill="#707070"
-                  />
-                  <path
-                    d="M829.44 680.96 402.432 680.96c-23.552 0-44.032 19.456-44.032 44.032s19.456 44.032 44.032 44.032L829.44 769.024c23.552 0 44.032-19.456 44.032-44.032S852.992 680.96 829.44 680.96z"
-                    fill="#707070"
-                  />
-                </svg>
-              ),
+              render: () => <Drag1Icon />,
             },
             ...columns.map((item) => {
               return {

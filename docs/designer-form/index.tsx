@@ -27,15 +27,12 @@ export default () => {
   return (
     <div className="form-designer-playground">
       <div className="form-designer-playground-header">
-        <div className="form-designer-playground-header-title">
-          FormDesigner
-        </div>
+        <div className="form-designer-playground-header-title">表单设计器</div>
         <Space>
           <Button
             type="primary"
-            key="export"
             onClick={() => {
-              if (formDesignerRef.current.schema?.length > 0) {
+              if (formDesignerRef.current.getSchema().length > 0) {
                 exportDrawer.open({
                   initialValues: {
                     code: formDesignerRef.current.getStandardSchema(),
@@ -50,9 +47,8 @@ export default () => {
           </Button>
           <Button
             type="primary"
-            key="export"
             onClick={() => {
-              formDesignerRef.current.setSchema([]);
+              formDesignerRef.current.clear();
             }}
           >
             清空

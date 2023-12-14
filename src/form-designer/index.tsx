@@ -5,9 +5,20 @@ import FormCanvas from './form-canvas';
 import RegisterWidgets from './register-widgets';
 import PropsConfigPanel from './props-config-panel';
 import { getStandardSchema as getFormStandardSchema } from '../util';
+import store from './store';
 
 const FormDesigner: any = forwardRef((props, ref) => {
-  useImperativeHandle(ref, () => {});
+  useImperativeHandle(ref, () => ({
+    clear: () => {
+      store.schema = [];
+    },
+    getStandardSchema: () => {
+      return store.getStandardSchema();
+    },
+    getSchema: () => {
+      return store.schema;
+    },
+  }));
   return <DndProvider backend={HTML5Backend}>{props.children}</DndProvider>;
 });
 

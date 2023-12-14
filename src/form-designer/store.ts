@@ -7,6 +7,8 @@ interface _SchemaProps extends SchemaProps {
 }
 
 export default create<{
+  /** 是否组合使用 */
+  __isCombination__?: boolean;
   // 表单属性
   formProps: DrawerFormProps;
   // 组件
@@ -20,6 +22,7 @@ export default create<{
   /** 获取标准的模型 */
   getStandardSchema: () => any;
 }>({
+  __isCombination__: false,
   formProps: {
     column: 2,
     title: '默认标题',
@@ -28,7 +31,7 @@ export default create<{
   },
   widgets: {},
   schema: [],
-  selectedSchema: {},
+  selectedSchema: undefined,
   getStandardSchema() {
     return getFormStandardSchema({
       ...this.formProps,

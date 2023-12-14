@@ -48,18 +48,6 @@ export const formItemSchema = (
     label: '字段名称',
   },
   {
-    type: 'RangeInput',
-    name: 'nameAlise',
-    label: '字段别名',
-    extra: '用于区间组件设置别名',
-    props: {
-      mode: 'Input',
-    },
-    visible() {
-      return ['RangeInput', 'RangePicker'].includes(selectedSchema.type);
-    },
-  },
-  {
     type: 'RadioGroup',
     name: 'span',
     label: '占据列数',

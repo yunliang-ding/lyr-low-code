@@ -34,27 +34,28 @@ export default ({
 }: PropsConfigPanelTypes) => {
   const [compontentType, setCompontentType]: any = useState('表单项配置');
   const { schema, widgets, selectedSchema, formProps } = store.use();
-  // 在如果是组合使用
-  if (!isEmpty(selectedSchema)) {
+  console.log('__isCombination__-->', store.__isCombination__);
+  if (store.__isCombination__) {
     propsConfig = widgets.__originalConfig__?.find(
       (widget: any) => widget.type === selectedSchema.type,
     )?.propsConfig;
-    /** 更新 schema */
+    /** 更新 */
     onPropsConfigUpdate = (values, type) => {
       if (type === 'item') {
-        // 更新 selectSchema
         store.selectedSchema = { ...store.selectedSchema, ...values };
       }
       if (type === 'widget') {
-        // 更新 schemaProps
-        store.selectedSchema.props = {
-          ...store.selectedSchema.props,
-          ...values,
+        store.selectedSchema = {
+          ...store.selectedSchema,
+          props: {
+            ...store.selectedSchema.props,
+            ...values,
+          },
         };
       }
       // 更新 schema
       const newSchema = recursionFind(schema, selectedSchema.key);
-      Object.assign(newSchema, selectedSchema);
+      Object.assign(newSchema, store.selectedSchema);
       store.schema = [...store.schema];
     };
   }
@@ -126,7 +127,7 @@ export default ({
           >
             <Form
               schema={propsConfig}
-              initialValues={selectedSchema.props || props || {}}
+              initialValues={selectedSchema?.props || props || {}}
               onValuesChange={onWidgetValuesChange}
               widgets={{
                 CodeEditor,

@@ -1,7 +1,7 @@
 /* eslint-disable no-await-in-loop */
 import Drag from './drag';
 import { useEffect, useMemo } from 'react';
-import { uuid as Uuid, cloneDeep, isEmpty } from '@/util';
+import { uuid as Uuid, cloneDeep } from '@/util';
 import builtInWidget from './material-config';
 import store from '../store';
 import './index.css';
@@ -55,8 +55,7 @@ const RegisterWidgets = ({
     [builtInWidget],
   );
   const onClick = (widget) => {
-    /** 组合使用 */
-    if (!isEmpty(store.schema)) {
+    if (store.__isCombination__) {
       const uuid = Uuid(10);
       store.schema.push({
         key: uuid,
@@ -70,7 +69,6 @@ const RegisterWidgets = ({
     }
     rest.onClick?.(widget);
   };
-  /** 组合使用 */
   const startRegisterWidgets = async () => {
     const _widgets: any = customWidgets;
     // 原始的widgets
@@ -83,7 +81,7 @@ const RegisterWidgets = ({
     store.widgets = _widgets; // 注入内置组件
   };
   useEffect(() => {
-    if (!isEmpty(store.schema)) {
+    if (store.__isCombination__) {
       startRegisterWidgets();
     }
   }, []);

@@ -51,12 +51,13 @@ const toolPropsConfig = (
         type: 'button',
         onChange(e) {
           const v = e.target?.value;
+          const { form }: any = this;
           if (v === 'modal') {
-            this.form.setFieldsValueTouchOnValuesChange({
+            form.setFieldsValueTouchOnValuesChange({
               drawerFormProps: undefined,
             });
           } else if (v === 'drawer') {
-            this.form.setFieldsValueTouchOnValuesChange({
+            form.setFieldsValueTouchOnValuesChange({
               modalFormProps: undefined,
             });
           }
@@ -101,7 +102,7 @@ const toolPropsConfig = (
       },
       props: {
         onChange() {
-          const { form } = this;
+          const { form }: any = this;
           const { modelId, modelIdType } = form.getFieldsValue(true);
           if (modelIdType && modelId) {
             const key =

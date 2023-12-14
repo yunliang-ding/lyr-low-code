@@ -1,7 +1,6 @@
-import { useContext, useState } from 'react';
-import { isEmpty, recursionFind } from '@/util';
+import { useState } from 'react';
+import { recursionFind } from '@/util';
 import { TableList } from './widgets';
-import { Ctx } from '@/table-desinger/store';
 import ItemPropsConfig from './item.props.config';
 import FormPropsConfig from './form.props.config';
 import TablePropsConfig from './table.props.config';
@@ -9,12 +8,10 @@ import CellPropsConfig from './table.cell.props.config';
 import SearchFormPropsConfig from './search-form-props-config';
 import SearchTablePropsConfig from './search-table-props-config';
 import { debounce } from 'lodash';
+import store from '../store';
 import './index.less';
 
 export interface PropsConfigPanelTypes {
-  props: any; // 组件描述
-  propsConfig: Array<any>; // 属性配置
-  onPropsConfigUpdate: Function; // 配置改变返回新的配置
   style?: any; //
   /** 设置防抖时间 */
   debounceTime?: number;
@@ -23,44 +20,47 @@ export interface PropsConfigPanelTypes {
 }
 
 export default ({
-  props = {},
-  propsConfig = [],
   style = {},
-  onPropsConfigUpdate = () => {},
   debounceTime = 100,
   selectModelOptions = async () => [],
 }: PropsConfigPanelTypes) => {
-  const ctx: any = useContext(Ctx); // 拿到ctx
+  const {
+    formProps,
+    columns,
+    tableProps,
+    selectTable,
+    schema,
+    selectedSchema,
+    widgets,
+  } = store.use(); // 拿到ctx
   const [compontentType, setCompontentType]: any = useState('表单项属性');
   const [tableType, setTableType]: any = useState('表格属性');
-  if (!isEmpty(props)) {
-    ctx.selectSchema = {
-      props,
-    };
-  } else if (ctx.selectSchema && ctx.widgets) {
-    propsConfig = ctx.widgets.__originalConfig__?.find(
-      (widget) => widget.type === ctx.selectSchema.type,
-    )?.propsConfig;
-    onPropsConfigUpdate = (values, type) => {
-      if (type === 'item') {
-        // 更新 selectSchema
-        ctx.selectSchema = { ...ctx.selectSchema, ...values };
-        ctx.setSelectSchema({ ...ctx.selectSchema });
-      }
-      if (type === 'widget') {
-        // 更新 schemaProps
-        ctx.selectSchema.props = { ...ctx.selectSchema.props, ...values };
-        ctx.setSelectSchema({ ...ctx.selectSchema });
-      }
-      // 更新 schema
-      const schema = recursionFind(ctx.schema, ctx.selectSchema.key);
-      Object.assign(schema, ctx.selectSchema);
-      ctx.setSchema([...ctx.schema]);
-    };
-  }
+  const propsConfig = widgets.__originalConfig__?.find(
+    (widget) => widget.type === selectedSchema.type,
+  )?.propsConfig;
+  const onPropsConfigUpdate = (values, type) => {
+    if (type === 'item') {
+      // 更新 selectSchema
+      store.selectedSchema = { ...store.selectedSchema, ...values };
+    }
+    if (type === 'widget') {
+      // 更新 schemaProps
+      store.selectedSchema = {
+        ...store.selectedSchema,
+        props: {
+          ...store.selectedSchema.props,
+          ...values,
+        },
+      };
+    }
+    // 更新 schema
+    const newSchema = recursionFind(schema, selectedSchema.key);
+    Object.assign(newSchema, store.selectedSchema);
+    store.schema = [...store.schema];
+  };
   /** 防抖0.1s */
   const onFormValuesChange = debounce((_, values) => {
-    ctx.setFormProps?.(values);
+    store.formProps = { ...values };
     onPropsConfigUpdate(values, 'form');
   }, debounceTime);
   /** 防抖0.1s */
@@ -76,13 +76,13 @@ export default ({
     // 子表单需要过滤一下
     values.tools = values.tools.filter((i) => i?.label);
     values.menus = values.menus.filter((i) => i?.label);
-    ctx.setTableProps({ ...values });
+    store.tableProps = { ...values };
   }, debounceTime);
   /** 防抖0.1s */
   const onCellValuesChange = debounce((v, values) => {
-    ctx.setColumns([...values.columns]);
+    store.columns = [...values.columns];
   }, debounceTime);
-  const PanelRender = ctx.selectTable ? (
+  const PanelRender = selectTable ? (
     <SearchTablePropsConfig
       {...{
         tableType,
@@ -92,7 +92,8 @@ export default ({
         onTableValuesChange,
         CellPropsConfig,
         onCellValuesChange,
-        ctx,
+        tableProps,
+        columns,
       }}
     />
   ) : (
@@ -106,16 +107,14 @@ export default ({
         onItemValuesChange,
         propsConfig,
         onWidgetValuesChange,
-        ctx,
+        formProps,
+        schema,
+        selectedSchema,
       }}
     />
   );
   return (
-    <div
-      className="props-config-panel"
-      style={style}
-      key={ctx.selectSchema?.key}
-    >
+    <div className="props-config-panel" style={style} key={selectedSchema?.key}>
       {PanelRender}
     </div>
   );

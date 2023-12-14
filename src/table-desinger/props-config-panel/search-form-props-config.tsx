@@ -11,7 +11,9 @@ export default ({
   onItemValuesChange,
   propsConfig,
   onWidgetValuesChange,
-  ctx,
+  formProps,
+  schema,
+  selectedSchema,
 }) => {
   return (
     <>
@@ -31,7 +33,7 @@ export default ({
       >
         <Form
           schema={FormPropsConfig}
-          initialValues={ctx.formProps}
+          initialValues={formProps}
           onValuesChange={onFormValuesChange}
           widgets={{ CodeEditor }}
         />
@@ -43,8 +45,8 @@ export default ({
         }}
       >
         <Form
-          schema={ItemPropsConfig(ctx)}
-          initialValues={ctx.selectSchema || {}}
+          schema={ItemPropsConfig(schema, selectedSchema)}
+          initialValues={selectedSchema || {}}
           onValuesChange={onItemValuesChange}
           widgets={{ CodeEditor }}
         />
@@ -57,7 +59,7 @@ export default ({
       >
         <Form
           schema={propsConfig}
-          initialValues={ctx.selectSchema?.props || {}}
+          initialValues={selectedSchema?.props || {}}
           onValuesChange={onWidgetValuesChange}
           widgets={{ CodeEditor }}
         />

@@ -3,7 +3,7 @@
  */
 import formItemSchema from '@/form-designer/props-config-panel/item.props.config';
 
-export default (ctx) =>
+export default (schema, selectedSchema) =>
   formItemSchema(
     [
       {
@@ -22,5 +22,6 @@ export default (ctx) =>
         label: '改变立即查询',
       },
     ],
-    ctx,
+    schema,
+    selectedSchema,
   );

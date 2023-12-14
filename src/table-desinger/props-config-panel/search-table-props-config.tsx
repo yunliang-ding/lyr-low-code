@@ -10,7 +10,8 @@ export default ({
   onTableValuesChange,
   CellPropsConfig,
   onCellValuesChange,
-  ctx,
+  tableProps,
+  columns,
 }) => {
   return (
     <>
@@ -34,7 +35,7 @@ export default ({
             CodeEditor,
           }}
           schema={TablePropsConfig}
-          initialValues={ctx.tableProps}
+          initialValues={tableProps}
           onValuesChange={onTableValuesChange}
         />
       </div>
@@ -51,7 +52,7 @@ export default ({
           }}
           schema={CellPropsConfig}
           initialValues={{
-            columns: ctx.columns,
+            columns,
           }}
           onValuesChange={onCellValuesChange}
         />

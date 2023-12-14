@@ -1,10 +1,10 @@
 import { useDrop } from 'react-dnd';
-import { Table } from 'react-core-form';
+import { Search, Table } from 'react-core-form';
 import DragContainer from '@/form-designer/form-canvas/drag';
-import { useCallback, useState, useEffect, useContext, useMemo } from 'react';
-import { uuid as Uuid, cloneDeep } from '@/util';
-import { Ctx } from '../store';
+import { useState, useEffect, useMemo } from 'react';
+import { uuid, cloneDeep } from '@/util';
 import { parseTableColumns, parseTableSchema } from '../util';
+import store from '../store';
 import './index.css';
 
 export interface FormCanvasType {
@@ -19,7 +19,6 @@ export interface FormCanvasType {
 }
 
 export default ({
-  onSchemaSelect = () => {},
   accept = 'left-box',
   defaultSchema = [],
   defaultSelectKey = '',
@@ -27,14 +26,20 @@ export default ({
   onCtrlS,
 }: FormCanvasType) => {
   const [reload, setReload] = useState(Math.random());
-  const ctx: any = useContext(Ctx); // 拿到ctx
+  const {
+    selectTable,
+    tableProps,
+    columns,
+    schema,
+    formProps,
+    selectedSchema,
+  } = store.use();
   // update ctx
   useEffect(() => {
     if (defaultSchema.length > 0) {
-      ctx.setSchema(defaultSchema);
-      const selectSchema =
+      store.schema = defaultSchema;
+      store.selectedSchema =
         defaultSchema.find((item: any) => item.key === defaultSelectKey) || {};
-      ctx.setSelectSchema(selectSchema);
     }
   }, []);
   const [{ isOver }, drop] = useDrop(
@@ -54,11 +59,11 @@ export default ({
       // 拖放结束
       drop: ({ dragSchema }) => {
         // 处理下name和key
-        const uuid = Uuid(10);
+        const _uid = uuid(10);
         const _schema = {
           ...dragSchema,
-          key: uuid,
-          name: `${dragSchema.name}_${uuid}`,
+          key: _uid,
+          name: `${dragSchema.name}_${_uid}`,
         };
         // 判断下如果已经放置在小容器，这里跳过
         // 宏任务的目的是等小容器先Push该组件
@@ -66,64 +71,54 @@ export default ({
           // 判断是否与已经存在
           if (localStorage.getItem('inner-add') !== '1') {
             delete _schema.isNew; // 删除isNew标识
-            ctx.schema.push({
+            schema.push({
               ..._schema,
             });
-            ctx.setSchema([...ctx.schema]); // ctx
+            store.schema = [...store.schema];
           } else {
             localStorage.removeItem('inner-add'); // clear
           }
         });
       },
     }),
-    [ctx.schema],
+    [schema],
   );
   // 递归处理FieldSet子元素
-  const recursionSchemaItem = useCallback(
-    (children) => {
-      children?.forEach((itemSchema) => {
-        itemSchema.itemRender = (dom) => {
-          return (
-            <DragContainer
-              key={itemSchema.key}
-              accept={accept}
-              itemSchema={itemSchema}
-              schema={ctx.schema}
-              selected={ctx.selectSchema.key === itemSchema.key} // 是否选中
-              onSchemaUpdate={(schema) => {
-                ctx.setSchema(schema);
-              }}
-              setSelectSchema={(i: any) => {
-                ctx.setSelectSchema(i);
-                onSchemaSelect(i); // 通知外面
-              }}
-            >
-              {dom}
-            </DragContainer>
-          );
-        };
-        // 处理子节点
-        if (
-          itemSchema.type === 'FieldSet' &&
-          itemSchema.props?.children?.length > 0
-        ) {
-          recursionSchemaItem(itemSchema.props.children);
-        }
-      });
-    },
-    [ctx.schema, ctx.selectSchema.key],
-  );
+  const recursionSchemaItem = (children) => {
+    children?.forEach((itemSchema) => {
+      itemSchema.itemRender = (dom) => {
+        return (
+          <DragContainer
+            key={itemSchema.key}
+            accept={accept}
+            itemSchema={itemSchema}
+            schema={schema}
+            selected={selectedSchema.key === itemSchema.key} // 是否选中
+            onSchemaUpdate={(item) => {
+              store.schema = item;
+            }}
+            setSelectSchema={(i: any) => {
+              store.selectedSchema = i;
+              store.selectTable = false;
+            }}
+          >
+            {dom}
+          </DragContainer>
+        );
+      };
+    });
+  };
   const _schema = useMemo(() => {
-    return cloneDeep(ctx.schema);
-  }, [ctx.schema]);
+    return cloneDeep(schema);
+  }, [schema]);
   // 生成 itemRender
   recursionSchemaItem(_schema);
   // 重新创建
   useEffect(() => {
     setReload(Math.random());
-  }, [ctx.widgets, ctx.selectSchema.key, _schema, ctx.columns]);
+  }, [columns]);
   const cls = ['table-canvas'];
-  if (ctx.formProps.hidden) {
+  if (formProps.hidden) {
     cls.push('table-canvas-hidden-search');
   }
   /**
@@ -144,41 +139,47 @@ export default ({
     return () => {
       window.removeEventListener('keydown', keyboardEvent);
     };
-  }, [
-    ctx.formProps,
-    ctx.selectSchema,
-    ctx.schema,
-    ctx.tableProps,
-    ctx.columns,
-  ]);
+  }, [formProps, selectedSchema, schema, tableProps, columns]);
   /** request 变化刷新下 table */
   const [table] = Table.useTable();
+  // 重新创建
+  useEffect(() => {
+    setReload(Math.random());
+  }, [columns]);
   useEffect(() => {
     table.onSearch();
-  }, [ctx.tableProps.request]);
+  }, [tableProps.request]);
   return (
     <div ref={drop} className={cls.join(' ')} style={style}>
       {isOver && <div className="table-canvas-mask" />}
+      {_schema.length > 0 && (
+        <Search
+          key={selectedSchema.key}
+          {...{
+            ...formProps,
+            hidden: false,
+            schema: _schema,
+          }}
+        />
+      )}
       <div
+        style={{
+          margin: '0 18px',
+        }}
         className={
-          ctx.selectTable ? 'table-canvas-table-selected' : 'table-canvas-table'
+          selectTable ? 'table-canvas-table-selected' : 'table-canvas-table'
         }
         onClick={() => {
-          ctx.setSelectTable?.(true);
+          store.selectTable = true;
+          store.selectedSchema = {};
         }}
       >
         <Table
           key={reload}
           table={table}
-          {...parseTableSchema(cloneDeep(ctx?.tableProps))}
-          columns={parseTableColumns(cloneDeep(ctx.columns))}
-          searchSchema={
-            _schema.length > 0 && {
-              ...ctx.formProps,
-              hidden: false,
-              schema: _schema,
-            }
-          }
+          {...parseTableSchema(cloneDeep(tableProps))}
+          columns={parseTableColumns(cloneDeep(columns))}
+          searchSchema={{ hidden: true }}
         />
       </div>
     </div>

@@ -3,7 +3,7 @@ import Drag from './drag';
 import { useEffect, useMemo } from 'react';
 import { uuid as Uuid, cloneDeep } from '@/util';
 import builtInWidget from './material-config';
-import store from '../store';
+import formStore from '../store';
 import './index.css';
 
 export interface RegisterWidgetsType {
@@ -20,6 +20,7 @@ export interface RegisterWidgetsType {
    * @default react-core-form 所有表单组件
    */
   innerWidgets?: any;
+  store?: any;
 }
 
 const RegisterWidgets = ({
@@ -27,6 +28,7 @@ const RegisterWidgets = ({
   customWidgetsPropsConfig = [],
   type = 'left-box',
   style = {},
+  store = formStore,
   innerWidgets = builtInWidget,
 }: RegisterWidgetsType) => {
   const widgetsOptions = useMemo(

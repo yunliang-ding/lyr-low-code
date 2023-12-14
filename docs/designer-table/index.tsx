@@ -27,9 +27,7 @@ export default () => {
   return (
     <div className="table-designer-playground">
       <div className="table-designer-playground-header">
-        <div className="table-designer-playground-header-title">
-          TableDesigner
-        </div>
+        <div className="table-designer-playground-header-title">表格设计器</div>
         <Space>
           <Button
             type="primary"

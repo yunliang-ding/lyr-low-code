@@ -17,13 +17,13 @@
     },
     {
       "type": "Switch",
-      "valuePropName": "checked",
+      "triggerPropName": "checked",
       "name": "disabled",
       "label": "是否禁用"
     },
     {
       "type": "Switch",
-      "valuePropName": "checked",
+      "triggerPropName": "checked",
       "name": "leastOne",
       "label": "至少保留一条"
     },

@@ -8,7 +8,7 @@
   "propsConfig": [
     {
       "type": "Switch",
-      "valuePropName": "checked",
+      "triggerPropName": "checked",
       "name": "disabled",
       "label": "是否禁用"
     },

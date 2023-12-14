@@ -158,8 +158,8 @@ export const getCleanCloneSchema = (schema = []) => {
     if (item.props?.allowClear === true) {
       delete item.props.allowClear;
     }
-    if (item.props?.showCount === false) {
-      delete item.props.showCount;
+    if (item.props?.showWordLimit === false) {
+      delete item.props.showWordLimit;
     }
     if (item.props?.mode === 'default') {
       delete item.props.mode;

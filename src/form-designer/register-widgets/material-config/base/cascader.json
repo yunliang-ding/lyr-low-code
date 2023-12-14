@@ -43,14 +43,14 @@
   "propsConfig": [
     {
       "type": "Switch",
-      "valuePropName": "checked",
+      "triggerPropName": "checked",
       "name": "disabled",
       "label": "是否禁用"
     },
     {
       "type": "Switch",
       "name": "allowClear",
-      "valuePropName": "checked",
+      "triggerPropName": "checked",
       "label": "是否允许清除"
     },
     {

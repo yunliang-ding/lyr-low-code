@@ -39,13 +39,11 @@ export interface FormCanvasType {
 let mouseIsHoveringCanvas = false;
 
 export default ({
+  style = {},
   empty = '点击/拖拽左侧栏的组件进行添加',
-  onSchemaSelect = () => {},
-  onSchemaUpdate = () => {},
   accept = 'left-box',
   defaultSchema = [],
   defaultSelectKey = '',
-  style = {},
   removeConfirm = false,
   onCtrlS,
   ...rest
@@ -56,9 +54,6 @@ export default ({
     store.selectedSchema =
       defaultSchema.find((item: any) => item.key === defaultSelectKey) || {};
   }, []);
-  useEffect(() => {
-    onSchemaUpdate(schema);
-  }, [schema]);
   const [{ isOver }, drop] = useDrop(
     () => ({
       accept,
@@ -118,7 +113,6 @@ export default ({
               }}
               setSelectSchema={(item) => {
                 store.selectedSchema = item;
-                onSchemaSelect(item); // 通知外面
               }}
             >
               {dom}

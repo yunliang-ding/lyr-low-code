@@ -10,12 +10,6 @@ import store from '../store';
 import './index.less';
 
 export interface PropsConfigPanelTypes {
-  /** 组件属性 */
-  props: any;
-  /** 组件属性配置 */
-  propsConfig: Array<any>;
-  /** 配置改变钩子 */
-  onPropsConfigUpdate?: Function;
   /**
    * 设置防抖时间 (ms)
    * @default 100
@@ -25,40 +19,31 @@ export interface PropsConfigPanelTypes {
   style?: any;
 }
 
-export default ({
-  style = {},
-  props = {},
-  propsConfig = [],
-  onPropsConfigUpdate = () => {},
-  debounceTime = 100,
-}: PropsConfigPanelTypes) => {
+export default ({ style = {}, debounceTime = 100 }: PropsConfigPanelTypes) => {
   const [compontentType, setCompontentType]: any = useState('表单项配置');
   const { schema, widgets, selectedSchema, formProps } = store.use();
-  console.log('__isCombination__-->', store.__isCombination__);
-  if (store.__isCombination__) {
-    propsConfig = widgets.__originalConfig__?.find(
-      (widget: any) => widget.type === selectedSchema.type,
-    )?.propsConfig;
-    /** 更新 */
-    onPropsConfigUpdate = (values, type) => {
-      if (type === 'item') {
-        store.selectedSchema = { ...store.selectedSchema, ...values };
-      }
-      if (type === 'widget') {
-        store.selectedSchema = {
-          ...store.selectedSchema,
-          props: {
-            ...store.selectedSchema.props,
-            ...values,
-          },
-        };
-      }
-      // 更新 schema
-      const newSchema = recursionFind(schema, selectedSchema.key);
-      Object.assign(newSchema, store.selectedSchema);
-      store.schema = [...store.schema];
-    };
-  }
+  const propsConfig = widgets.__originalConfig__?.find(
+    (widget: any) => widget.type === selectedSchema.type,
+  )?.propsConfig;
+  /** 更新 */
+  const onPropsConfigUpdate = (values, type) => {
+    if (type === 'item') {
+      store.selectedSchema = { ...store.selectedSchema, ...values };
+    }
+    if (type === 'widget') {
+      store.selectedSchema = {
+        ...store.selectedSchema,
+        props: {
+          ...store.selectedSchema.props,
+          ...values,
+        },
+      };
+    }
+    // 更新 schema
+    const newSchema = recursionFind(schema, selectedSchema.key);
+    Object.assign(newSchema, store.selectedSchema);
+    store.schema = [...store.schema];
+  };
   /** 防抖0.1s */
   const onFormValuesChange = debounce((_, values) => {
     store.formProps = values;
@@ -74,7 +59,7 @@ export default ({
   }, debounceTime);
   return (
     <div className="props-config-panel" style={style} key={selectedSchema?.key}>
-      {isEmpty(selectedSchema) && isEmpty(props) ? (
+      {isEmpty(selectedSchema) ? (
         <Empty
           description="请选择需要设置的表单项"
           className="form-canvas-empty"
@@ -127,7 +112,7 @@ export default ({
           >
             <Form
               schema={propsConfig}
-              initialValues={selectedSchema?.props || props || {}}
+              initialValues={selectedSchema?.props || {}}
               onValuesChange={onWidgetValuesChange}
               widgets={{
                 CodeEditor,

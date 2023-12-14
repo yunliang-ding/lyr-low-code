@@ -13,8 +13,6 @@ export interface RegisterWidgetsType {
   customWidgetsPropsConfig?: any;
   /** 接受的拖拽元素 */
   type?: string;
-  /** 点击的钩子 */
-  onClick?: Function;
   /** 主容器样式 */
   style?: object;
   /**
@@ -30,7 +28,6 @@ const RegisterWidgets = ({
   type = 'left-box',
   style = {},
   innerWidgets = builtInWidget,
-  ...rest
 }: RegisterWidgetsType) => {
   const widgetsOptions = useMemo(
     () =>
@@ -55,19 +52,16 @@ const RegisterWidgets = ({
     [builtInWidget],
   );
   const onClick = (widget) => {
-    if (store.__isCombination__) {
-      const uuid = Uuid(10);
-      store.schema.push({
-        key: uuid,
-        type: widget.type,
-        label: widget.label,
-        span: widget.span === 'fill' ? store.formProps?.column : 1,
-        name: `${widget.type || ''}_${uuid}`,
-        props: cloneDeep(widget.props), // 剔除引用关系
-      });
-      store.schema = [...store.schema];
-    }
-    rest.onClick?.(widget);
+    const uuid = Uuid(10);
+    store.schema.push({
+      key: uuid,
+      type: widget.type,
+      label: widget.label,
+      span: widget.span === 'fill' ? store.formProps?.column : 1,
+      name: `${widget.type || ''}_${uuid}`,
+      props: cloneDeep(widget.props), // 剔除引用关系
+    });
+    store.schema = [...store.schema];
   };
   const startRegisterWidgets = async () => {
     const _widgets: any = customWidgets;
@@ -81,9 +75,7 @@ const RegisterWidgets = ({
     store.widgets = _widgets; // 注入内置组件
   };
   useEffect(() => {
-    if (store.__isCombination__) {
-      startRegisterWidgets();
-    }
+    startRegisterWidgets();
   }, []);
   return (
     <div style={style} className="widgets-panel">

@@ -31,16 +31,43 @@ nav:
 'https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/prism.min.js';
 ```
 
-<Alert>
+## 注册业务组件
 
-- 核心拖拽层 `FormCanvas` Form 表单 主设计拖拽区域
-
-- 核心拖拽层 `TableCanvas` Table 表格 主设计拖拽区域
-
-- 组件注册层 `RegisterWidgets` 用于注册生成可拖拽的小部件
-
-- 属性设置层 `PropsConfigPanel` 每个 widgets 属性配置区域
-
-- 组件模型渲染 `CrudModelRender` 渲染相关的模型
-
-</Alert>
+```jsx | pure
+<FormDesigner.RegisterWidgets
+  customWidgets={{
+    CustomInput: () => {
+      return (
+        <div>
+          自定义组件
+          <input {...props} />
+        </div>
+      );
+    },
+  }}
+  customWidgetsPropsConfig={[
+    {
+      type: 'CustomInput',
+      label: '自定义组件',
+      props: {
+        placeholder: '请选择',
+        allowClear: true,
+        disabled: false,
+        mode: '',
+      },
+      propsConfig: [
+        {
+          type: 'Switch',
+          name: 'disabled',
+          label: '是否禁用',
+        },
+        {
+          type: 'Input',
+          name: 'placeholder',
+          label: '提示文案',
+        },
+      ],
+    },
+  ]}
+/>
+```

@@ -25,7 +25,7 @@ export default create<{
       };
   getStandardSchema(): any;
 }>({
-  selectTable: false,
+  selectTable: true,
   formProps: {
     column: 2,
     layout: 'inline',
@@ -65,7 +65,7 @@ export default create<{
   tableProps: {
     title: '用户列表',
     emptyNode: '-',
-    scrollX: 1200,
+    scrollX: 800,
     tools: [
       {
         label: '新增用户',
@@ -75,7 +75,7 @@ export default create<{
     ],
     pageSize: 10,
     showMore: 4,
-    width: 180,
+    width: 150,
     pagination: true,
     rowKey: 'id',
     openDefaultTools: true,

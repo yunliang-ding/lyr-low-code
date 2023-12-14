@@ -9,9 +9,17 @@ import {
   parseTableSchema,
 } from './util';
 import './index.less';
+import store from './store';
 
 const TableDesigner: any = forwardRef((props, ref) => {
-  useImperativeHandle(ref, () => {}); // api挂载到ref
+  useImperativeHandle(ref, () => ({
+    getStandardSchema: () => {
+      return store.getStandardSchema();
+    },
+    getColumn: () => {
+      return store.columns;
+    },
+  })); // api挂载到ref
   return <DndProvider backend={HTML5Backend}>{props.children}</DndProvider>;
 }); // 接受ref
 TableDesigner.TableCanvas = TableCanvas;

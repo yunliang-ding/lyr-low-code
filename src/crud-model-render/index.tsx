@@ -75,6 +75,10 @@ const CrudModelRender = ({
           }
         } catch (error) {
           console.log(error);
+          setStandRes({
+            type: 'error',
+            msg: String(error),
+          });
         } finally {
           setSpin(false);
         }

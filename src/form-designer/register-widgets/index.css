@@ -3,26 +3,28 @@
   color: var(--color-neutral-10);
   height: 100%;
   width: 100%;
-  min-width: 280px;
+  min-width: 240px;
   overflow: auto;
 }
+
 .widgets-panel .widgets-panel-body {
   height: fit-content;
   overflow: auto;
   padding: 12px;
 }
 
-.widgets-panel-body-btns{
+.widgets-panel-body-btns {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .widgets-panel .widgets-panel-body .arco-btn {
-  width: 128px;
-  height: 38px;
+  width: 100px;
+  padding: 0 4px;
 }
+
 .widgets-panel .widgets-panel-body .arco-btn:hover {
   cursor: move;
 }

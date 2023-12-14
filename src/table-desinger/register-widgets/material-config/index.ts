@@ -6,7 +6,6 @@ import radio from '../../../form-designer/register-widgets/material-config/base/
 import checked from '../../../form-designer/register-widgets/material-config/base/checked.json';
 import datePicker from '../../../form-designer/register-widgets/material-config/base/date-picker.json';
 import dateRangePicker from '../../../form-designer/register-widgets/material-config/base/date-range-picker.json';
-import Switch from '../../../form-designer/register-widgets/material-config/base/switch.json';
 import cascader from '../../../form-designer/register-widgets/material-config/base/cascader.json';
 import treeselect from '../../../form-designer/register-widgets/material-config/base/tree-select.json';
 /** 高级组件 */
@@ -24,7 +23,6 @@ export default {
     select,
     datePicker,
     dateRangePicker,
-    Switch,
     cascader,
     treeselect,
   ],

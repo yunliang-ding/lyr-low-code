@@ -16,7 +16,10 @@ const FormDesigner: any = forwardRef((props, ref) => {
       return store.getStandardSchema();
     },
     getSchema: () => {
-      return store.schema;
+      return [...store.schema];
+    },
+    getStore: () => {
+      return { ...store };
     },
     update: (newStore) => {
       Object.assign(store, newStore);

@@ -17,7 +17,10 @@ const TableDesigner: any = forwardRef((props, ref) => {
       return store.getStandardSchema();
     },
     getColumn: () => {
-      return store.columns;
+      return [...store.columns];
+    },
+    getStore: () => {
+      return { ...store };
     },
     update: (newStore) => {
       Object.assign(store, newStore);

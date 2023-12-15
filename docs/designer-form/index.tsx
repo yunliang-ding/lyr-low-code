@@ -32,7 +32,7 @@ export default () => {
           <Button
             type="primary"
             onClick={() => {
-              if (formDesignerRef.current.getSchema().length > 0) {
+              if (formDesignerRef.current.getStore().schema.length > 0) {
                 exportDrawer.open({
                   initialValues: {
                     code: formDesignerRef.current.getStandardSchema(),
@@ -48,7 +48,9 @@ export default () => {
           <Button
             type="primary"
             onClick={() => {
-              formDesignerRef.current.clear();
+              formDesignerRef.current.setStore({
+                schema: [],
+              });
             }}
           >
             清空

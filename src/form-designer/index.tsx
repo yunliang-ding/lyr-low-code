@@ -9,19 +9,17 @@ import store from './store';
 
 const FormDesigner: any = forwardRef((props, ref) => {
   useImperativeHandle(ref, () => ({
-    clear: () => {
-      store.schema = [];
-    },
     getStandardSchema: () => {
       return store.getStandardSchema();
     },
-    getSchema: () => {
-      return [...store.schema];
-    },
     getStore: () => {
-      return { ...store };
+      return {
+        schema: store.schema,
+        formProps: store.formProps,
+        selectedSchema: store.selectedSchema,
+      };
     },
-    update: (newStore) => {
+    setStore: (newStore) => {
       Object.assign(store, newStore);
     },
   }));

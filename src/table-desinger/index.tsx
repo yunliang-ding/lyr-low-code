@@ -16,13 +16,17 @@ const TableDesigner: any = forwardRef((props, ref) => {
     getStandardSchema: () => {
       return store.getStandardSchema();
     },
-    getColumn: () => {
-      return [...store.columns];
-    },
     getStore: () => {
-      return { ...store };
+      return {
+        schema: store.schema,
+        formProps: store.formProps,
+        selectedSchema: store.selectedSchema,
+        columns: store.columns,
+        selectTable: store.selectTable,
+        tableProps: store.tableProps,
+      };
     },
-    update: (newStore) => {
+    setStore: (newStore) => {
       Object.assign(store, newStore);
     },
   })); // api挂载到ref

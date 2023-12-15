@@ -37,9 +37,8 @@ export default () => {
         <Space>
           <Button
             type="primary"
-            key="export"
             onClick={() => {
-              if (tableDesignerRef.current.getColumn()?.length > 0) {
+              if (tableDesignerRef.current.getStore().columns.length > 0) {
                 exportDrawer.open({
                   initialValues: {
                     code: tableDesignerRef.current.getStandardSchema(),

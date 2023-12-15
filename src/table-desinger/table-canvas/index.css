@@ -54,8 +54,15 @@
 .table-canvas .form-canvas-table,
 .table-canvas .form-canvas-table-selected {
   border: 1px dashed var(--color-fill-3);
-  margin: 20px;
   cursor: pointer;
+  background-color: var(--color-menu-light-bg);
+}
+.table-canvas-table > .arco-spin,
+.table-canvas-table-selected > .arco-spin {
+  display: none;
+}
+.table-canvas .core-form-table{
+  margin-bottom: 0;
 }
 .table-canvas .form-canvas-table:hover,
 .table-canvas .form-canvas-table-selected:hover {

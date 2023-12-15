@@ -160,8 +160,7 @@ export default ({
     },
   });
   // 删除
-  const removeCompent = (e) => {
-    e.stopPropagation(); // stop
+  const removeCompent = () => {
     deleteCompent({
       itemSchema,
       schema,
@@ -261,14 +260,14 @@ export default ({
               <Popconfirm
                 position="left"
                 title="确认删除该组件吗?"
-                onConfirm={removeCompent}
+                onOk={removeCompent}
                 okText="确定"
                 cancelText="取消"
               >
                 <DeleteIcon />
               </Popconfirm>
             ) : (
-              <DeleteIcon onClick={deleteCompent} />
+              <DeleteIcon onClick={removeCompent} />
             )}
             <CopyIcon onClick={copyCompent} />
           </div>

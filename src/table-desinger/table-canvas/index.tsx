@@ -163,9 +163,6 @@ export default ({
         />
       )}
       <div
-        style={{
-          margin: '0 18px',
-        }}
         className={
           selectTable ? 'table-canvas-table-selected' : 'table-canvas-table'
         }

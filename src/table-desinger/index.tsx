@@ -19,6 +19,9 @@ const TableDesigner: any = forwardRef((props, ref) => {
     getColumn: () => {
       return store.columns;
     },
+    update: (newStore) => {
+      Object.assign(store, newStore);
+    },
   })); // api挂载到ref
   return <DndProvider backend={HTML5Backend}>{props.children}</DndProvider>;
 }); // 接受ref

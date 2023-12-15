@@ -18,6 +18,9 @@ const FormDesigner: any = forwardRef((props, ref) => {
     getSchema: () => {
       return store.schema;
     },
+    update: (newStore) => {
+      Object.assign(store, newStore);
+    },
   }));
   return <DndProvider backend={HTML5Backend}>{props.children}</DndProvider>;
 });

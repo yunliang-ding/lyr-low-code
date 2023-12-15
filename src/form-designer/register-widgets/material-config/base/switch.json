@@ -3,8 +3,8 @@
   "label": "开关",
   "props": {
     "disabled": false,
-    "checkedChildren": "打开",
-    "unCheckedChildren": "关闭"
+    "checkedText": "打开",
+    "uncheckedText": "关闭"
   },
   "propsConfig": [
     {
@@ -15,12 +15,12 @@
     },
     {
       "type": "Input",
-      "name": "checkedChildren",
+      "name": "checkedText",
       "label": "打开文案"
     },
     {
       "type": "Input",
-      "name": "unCheckedChildren",
+      "name": "uncheckedText",
       "label": "关闭文案"
     },
     {

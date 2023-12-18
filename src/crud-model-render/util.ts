@@ -9,9 +9,13 @@ import axios from 'axios';
 const parseStandardSchemaStrategy = {
   form: (data) => {
     const { getStandardSchema } = FormDesigner.useTools();
-    return babelParse({
+    const result = babelParse({
       code: getStandardSchema(data),
     });
+    return {
+      ...result.formProps,
+      schema: result.schema,
+    };
   },
   table: (data) => {
     const { getStandardSchema } = TableDesigner.useTools();

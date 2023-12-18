@@ -6,13 +6,13 @@
     "allowClear": true,
     "disabled": false,
     "maxLength": 64,
-    "showCount": false
+    "showWordLimit": false
   },
   "propsConfig": [
     {
       "type": "Switch",
       "valuePropName": "checked",
-      "name": "showCount",
+      "name": "showWordLimit",
       "label": "是否展示计数"
     },
     {

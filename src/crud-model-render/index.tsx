@@ -1,11 +1,11 @@
 /* eslint-disable react-hooks/rules-of-hooks */
+import axios from 'axios';
 import { ReactNode, useEffect, useState } from 'react';
 import { Table, CardForm } from 'react-core-form';
 import { queryModelBySchemaId, registerGlobalApi } from './util';
 import { isEmpty } from '@/util';
-import { Empty } from '@arco-design/web-react';
-import MaterialRender from '@/page-designer/material-render';
-import axios from 'axios';
+import { Empty, Result } from '@arco-design/web-react';
+import PageRender from '@/page-designer/material-render';
 import { decode } from 'react-core-form-tools';
 
 let axiosInstance = null;
@@ -68,6 +68,12 @@ const CrudModelRender = ({
             data: { code, data, msg },
           } = await getAxiosInstance().get(`/crud/detail?id=${schemaId}`);
           if (code === 200) {
+            if (isEmpty(data)) {
+              return setStandRes({
+                type: 'error',
+                msg: '不存在该模型',
+              });
+            }
             // 注册接口服务
             registerGlobalApi(data.services && decode(data.services), require);
             /** 解析模型 */
@@ -99,9 +105,9 @@ const CrudModelRender = ({
   } else if (standRes.type === 'table') {
     return <Table {...standRes.schema} />;
   } else if (standRes.type === 'page') {
-    return <MaterialRender schema={standRes.schema} />;
+    return <PageRender schema={standRes.schema} />;
   } else if (standRes.type === 'error') {
-    return standRes.msg;
+    return <Result status="error" title={standRes.msg} />;
   }
   return null;
 };

@@ -40,9 +40,15 @@ const CrudModelRender = ({
   schemaId,
   loadingText = 'loading...',
   require,
-  appId = 1,
+  appId = 2, // 默认需要登录 dev-ops
   baseURL = 'http://dev-ops.yunliang.cloud',
 }: CrudModelRenderProps): any => {
+  if (isEmpty(schemaId)) {
+    return <Empty description="缺少模型ID" />;
+  }
+  if (isEmpty(appId)) {
+    return <Empty description="缺少应用ID" />;
+  }
   // 绑定应用
   setAxiosInstance({
     baseURL,
@@ -85,12 +91,6 @@ const CrudModelRender = ({
       })();
     }
   }, [schemaId]);
-  if (isEmpty(schemaId)) {
-    return <Empty description="缺少模型ID" />;
-  }
-  if (isEmpty(appId)) {
-    return <Empty description="缺少应用ID" />;
-  }
   if (spin) {
     return loadingText;
   }

@@ -2,7 +2,7 @@ import { CSSProperties, useContext, useState } from 'react';
 import { Empty, Radio } from '@arco-design/web-react';
 import { encrypt, isEmpty, recursionFind } from '@/util';
 import { Ctx } from '../store';
-import { debounce } from 'lodash';
+import debounce from 'lodash.debounce';
 import { Form } from 'react-core-form';
 import pageConfig from './page.config';
 import { CodeEditor } from 'react-core-form-code-editor';

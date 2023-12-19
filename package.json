@@ -1,6 +1,6 @@
 {
   "name": "react-core-form-designer",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "基于 react-core-form 搭建低码相关组件",
   "author": "yunliang-ding",
   "homepage": "http://dev-ops.yunliang.cloud/website/react-core-form-designer",
@@ -38,7 +38,8 @@
     ]
   },
   "dependencies": {
-    "lodash": "4.17.21",
+    "lodash.clonedeep": "4.5.0",
+    "lodash.debounce": "4.0.8",
     "react-dnd": "14.0.2",
     "react-dnd-html5-backend": "14.0.0",
     "immutability-helper": "3.1.1",
@@ -62,7 +63,8 @@
     "react-core-form": "^2.1.0",
     "react-core-form-tools": "^1.0.1",
     "react-core-form-code-editor": "^1.0.1",
-    "@types/lodash": "4.14.168",
+    "@types/lodash.clonedeep": "4.5.9",
+    "@types/lodash.debounce": "4.0.9",
     "@umijs/test": "^3.0.5",
     "@babel/runtime": "7.16.0",
     "babel-plugin-import": "1.13.3",

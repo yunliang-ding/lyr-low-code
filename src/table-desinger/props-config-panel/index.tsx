@@ -7,7 +7,7 @@ import TablePropsConfig from './table.props.config';
 import CellPropsConfig from './table.cell.props.config';
 import SearchFormPropsConfig from './search-form-props-config';
 import SearchTablePropsConfig from './search-table-props-config';
-import { debounce } from 'lodash';
+import debounce from 'lodash.debounce';
 import store from '../store';
 import './index.less';
 

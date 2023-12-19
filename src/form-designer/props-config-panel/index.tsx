@@ -4,7 +4,7 @@ import { Empty, Radio } from '@arco-design/web-react';
 import ItemPropsConfig from './item.props.config';
 import FormPropsConfig from './form.props.config';
 import { isEmpty, recursionFind } from '@/util';
-import { debounce } from 'lodash';
+import debounce from 'lodash.debounce';
 import { CodeEditor } from 'react-core-form-code-editor';
 import store from '../store';
 import './index.less';

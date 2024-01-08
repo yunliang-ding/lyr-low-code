@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/method-signature-style */
-import { SchemaProps, TableProps } from 'react-core-form';
-import { create } from 'react-core-form-store';
-import { SearchProps } from 'react-core-form/dist/search/types';
-import { TableColumnType } from 'react-core-form/dist/table/type.column';
+import { SchemaProps, TableProps } from 'lyr-design';
+import { create } from 'lyr-store';
+import { SearchProps } from 'lyr-design/dist/search/types';
+import { TableColumnType } from 'lyr-design/dist/table/type.column';
 import { getStandardSchema as getTableStandardSchema } from './util';
 import { encrypt } from '@/util';
 

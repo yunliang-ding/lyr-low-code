@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import { isEmpty, uuid } from '@/util';
-import { Button } from 'react-core-form';
+import { Button } from 'lyr-design';
 import { Input, Message, Space, Table } from '@arco-design/web-react';
 import { useCallback } from 'react';
 import { DndProvider } from 'react-dnd';

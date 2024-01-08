@@ -2,7 +2,7 @@
 /* eslint-disable @iceworks/best-practices/recommend-polyfill */
 /* eslint-disable react-hooks/rules-of-hooks */
 import cloneDeep from 'lodash.clonedeep';
-import { isEmpty, uuid } from 'react-core-form-tools';
+import { isEmpty, uuid } from 'lyr-extra';
 
 // 查找指定key
 export const recursionFind = (schema: any, key: string) => {

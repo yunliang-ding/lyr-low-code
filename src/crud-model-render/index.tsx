@@ -1,12 +1,12 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import axios from 'axios';
 import { ReactNode, useEffect, useState } from 'react';
-import { Table, CardForm } from 'react-core-form';
+import { Table, CardForm } from 'lyr-design';
 import { queryModelBySchemaId, registerGlobalApi } from './util';
 import { isEmpty } from '@/util';
 import { Empty, Result } from '@arco-design/web-react';
 import PageRender from '@/page-designer/material-render';
-import { decode } from 'react-core-form-tools';
+import { decode } from 'lyr-extra';
 
 let axiosInstance = null;
 

@@ -3,9 +3,9 @@ import { Empty, Radio } from '@arco-design/web-react';
 import { encrypt, isEmpty, recursionFind } from '@/util';
 import { Ctx } from '../store';
 import debounce from 'lodash.debounce';
-import { Form } from 'react-core-form';
+import { Form } from 'lyr-design';
 import pageConfig from './page.config';
-import { CodeEditor } from 'react-core-form-code-editor';
+import { CodeEditor } from 'lyr-code-editor';
 import './index.less';
 
 export interface PropsConfigPanelTypes {

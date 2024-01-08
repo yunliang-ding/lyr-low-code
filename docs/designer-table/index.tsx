@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
-import { CreateDrawer } from 'react-core-form';
-import { CodeEditor } from 'react-core-form-code-editor';
-import { TableDesigner } from 'react-core-form-designer';
+import { CreateDrawer } from 'lyr-design';
+import { CodeEditor } from 'lyr-code-editor';
+import { TableDesigner } from 'lyr-low-code';
 import { Button, Message, Space, Spin } from '@arco-design/web-react';
 import './index.less';
 

@@ -1,5 +1,5 @@
-import { create } from 'react-core-form-store';
-import { DrawerFormProps, SchemaProps } from 'react-core-form';
+import { create } from 'lyr-store';
+import { DrawerFormProps, SchemaProps } from 'lyr-design';
 import { getStandardSchema as getFormStandardSchema } from '../util';
 
 interface _SchemaProps extends SchemaProps {

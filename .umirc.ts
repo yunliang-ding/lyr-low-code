@@ -2,12 +2,11 @@ import { defineConfig } from 'dumi';
 
 export default defineConfig({
   mode: 'site',
-  title: 'react-core-form-designer',
+  title: 'lyr-low-code',
   outputPath: 'docs-dist',
   locales: [['zh-CN', '中文']],
-  favicon:
-    'https://react-core-form.oss-cn-beijing.aliyuncs.com/assets/favicon.ico',
-  logo: 'https://react-core-form.oss-cn-beijing.aliyuncs.com/assets/favicon.ico',
+  favicon: 'https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/assets/favicon.ico',
+  logo: 'https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/assets/favicon.ico',
   theme: {
     '@c-primary': '#165dff',
   },
@@ -48,20 +47,20 @@ export default defineConfig({
   ],
   links: [
     {
-      href: 'https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/arco.min.css',
+      href: 'https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/arco.min.css',
       rel: 'stylesheet',
     },
     {
-      href: 'https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/react-core-form.min.css',
+      href: 'https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/lyr-design.min.css',
       rel: 'stylesheet',
     },
   ],
   scripts: [
-    'https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/aliyun-oss-sdk.min.js',
-    'https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/babel-standalone.min.js',
-    'https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/prettier-standalone.min.js',
-    'https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/prettier-parser-typescript.min.js',
-    'https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/prism.min.js',
+    'https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/aliyun-oss-sdk.min.js',
+    'https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/babel-standalone.min.js',
+    'https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/prettier-standalone.min.js',
+    'https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/prettier-parser-typescript.min.js',
+    'https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/prism.min.js',
   ],
   history: { type: 'hash' },
   hash: false,
@@ -69,7 +68,7 @@ export default defineConfig({
     null, // null 值代表保留约定式生成的导航，只做增量配置
     {
       title: 'GitHub',
-      path: 'https://github.com/yunliang-ding/react-core-form-designer',
+      path: 'https://github.com/yunliang-ding/lyr-low-code',
     },
   ],
   // more config: https://d.umijs.org/config

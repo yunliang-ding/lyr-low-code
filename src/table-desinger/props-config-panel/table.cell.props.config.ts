@@ -1,8 +1,8 @@
 /**
  * cell的属性配置
  */
-import { SchemaProps, CreateDrawer } from 'react-core-form';
-import { CodeEditor } from 'react-core-form-code-editor';
+import { SchemaProps, CreateDrawer } from 'lyr-design';
+import { CodeEditor } from 'lyr-code-editor';
 
 const cellDetailFields: SchemaProps<{}>[] = [
   {

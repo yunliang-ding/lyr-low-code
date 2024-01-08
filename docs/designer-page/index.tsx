@@ -1,7 +1,7 @@
-// import { PageDesigner } from 'react-core-form-designer';
+// import { PageDesigner } from 'lyr-low-code';
 // import React, { useRef } from 'react';
-// import { Button, CreateDrawer } from 'react-core-form';
-// import { CodeEditor } from 'react-core-form-code-editor';
+// import { Button, CreateDrawer } from 'lyr-design';
+// import { CodeEditor } from 'lyr-code-editor'
 // import { Message, Space } from '@arco-design/web-react';
 // import './index.less';
 

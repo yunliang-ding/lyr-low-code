@@ -17,7 +17,7 @@ export interface RegisterWidgetsType {
   style?: object;
   /**
    * 内置组件
-   * @default react-core-form 所有表单组件
+   * @default lyr-design 所有表单组件
    */
   innerWidgets?: any;
   store?: any;

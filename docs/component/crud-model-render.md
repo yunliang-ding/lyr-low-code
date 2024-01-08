@@ -11,7 +11,7 @@ toc: menu
  * background: '#f8f8f8'
  */
 import React from 'react';
-import { CrudModelRender } from 'react-core-form-designer';
+import { CrudModelRender } from 'lyr-low-code';
 
 export default () => {
   return <CrudModelRender schemaId={5} />;
@@ -25,7 +25,7 @@ export default () => {
  * background: '#f8f8f8'
  */
 import React from 'react';
-import { CrudModelRender } from 'react-core-form-designer';
+import { CrudModelRender } from 'lyr-low-code';
 
 export default () => {
   return (

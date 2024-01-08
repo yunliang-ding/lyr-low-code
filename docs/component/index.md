@@ -8,27 +8,27 @@ nav:
 ---
 
 <div style="display:flex;align-items:center;margin-bottom:24px">
-  <span style="font-size:30px;font-weight:600;display:inline-block;">react-core-form-designer</span>
+  <span style="font-size:30px;font-weight:600;display:inline-block;">lyr-low-code</span>
 </div>
 <p style="display:flex;justify-content:space-between;width:220px">
-  <a href="https://npmmirror.com/package/react-core-form-designer">
-    <img alt="npm" src="http://center.yunliang.cloud/npm/version?package=react-core-form-designer">
+  <a href="https://npmmirror.com/package/lyr-low-code">
+    <img alt="npm" src="http://center.yunliang.cloud/npm/version?package=lyr-low-code">
   </a>
-  <a href="https://npmmirror.com/package/react-core-form-designer">
-    <img alt="npm" src="http://center.yunliang.cloud/npm/downloads?package=react-core-form-designer">
+  <a href="https://npmmirror.com/package/lyr-low-code">
+    <img alt="npm" src="http://center.yunliang.cloud/npm/downloads?package=lyr-low-code">
   </a>
 </p>
 
 ## 依赖 cdn 资源
 
 ```js
-'https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/arco.min.css';
-'https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/react-core-form.min.css';
-'https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/aliyun-oss-sdk.min.js';
-'https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/babel-standalone.min.js';
-'https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/prettier-standalone.min.js';
-'https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/prettier-parser-typescript.min.js';
-'https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/prism.min.js';
+'https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/arco.min.css';
+'https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/lyr-design.min.css';
+'https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/aliyun-oss-sdk.min.js';
+'https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/babel-standalone.min.js';
+'https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/prettier-standalone.min.js';
+'https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/prettier-parser-typescript.min.js';
+'https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/prism.min.js';
 ```
 
 ## 注册业务组件

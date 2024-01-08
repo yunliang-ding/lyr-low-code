@@ -1,5 +1,5 @@
 import { useDrop } from 'react-dnd';
-import { Search, Table } from 'react-core-form';
+import { Search, Table } from 'lyr-design';
 import DragContainer from '@/form-designer/form-canvas/drag';
 import { useState, useEffect, useMemo } from 'react';
 import { uuid, cloneDeep } from '@/util';

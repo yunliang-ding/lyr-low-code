@@ -1,18 +1,16 @@
 {
-  "name": "react-core-form-designer",
-  "version": "1.0.6",
-  "description": "基于 react-core-form 搭建低码相关组件",
+  "name": "lyr-low-code",
+  "version": "0.0.1",
+  "description": "低码相关组件",
   "author": "yunliang-ding",
-  "homepage": "http://dev-ops.yunliang.cloud/website/react-core-form-designer",
+  "homepage": "http://dev-ops.yunliang.cloud/website/lyr-low-code",
   "keywords": [
-    "react-core-form",
-    "form-designer",
-    "react-dnd",
-    "acro.design"
+    "lyr-design",
+    "low-code"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/yunliang-ding/react-core-form-designer"
+    "url": "https://github.com/yunliang-ding/lyr-low-code"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
@@ -38,21 +36,20 @@
     ]
   },
   "dependencies": {
+    "lyr-store": "0.0.1",
+    "react-dnd": "14.0.2",
     "lodash.clonedeep": "4.5.0",
     "lodash.debounce": "4.0.8",
-    "react-dnd": "14.0.2",
     "react-dnd-html5-backend": "14.0.0",
-    "immutability-helper": "3.1.1",
-    "react-core-form-store": "^0.0.4"
+    "immutability-helper": "3.1.1"
   },
   "peerDependencies": {
     "axios": ">=0.21.1",
     "react": ">=17.0.2",
     "react-dom": ">=17.0.2",
-    "react-core-form": "^2.1.0",
-    "react-core-form-tools": "^1.0.1",
-    "react-core-form-store": "^0.0.4",
-    "react-core-form-code-editor": "^1.0.1",
+    "lyr-extra": ">=0.0.1",
+    "lyr-design": ">=0.0.0",
+    "lyr-code-editor": ">=0.0.1",
     "@arco-design/web-react": ">=2.56.0"
   },
   "devDependencies": {
@@ -60,9 +57,9 @@
     "@arco-design/web-react": "^2.56.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-core-form": "^2.1.0",
-    "react-core-form-tools": "^1.0.1",
-    "react-core-form-code-editor": "^1.0.1",
+    "lyr-design": ">=0.0.0",
+    "lyr-extra": ">=0.0.1",
+    "lyr-code-editor": ">=0.0.1",
     "@types/lodash.clonedeep": "4.5.9",
     "@types/lodash.debounce": "4.0.9",
     "@umijs/test": "^3.0.5",

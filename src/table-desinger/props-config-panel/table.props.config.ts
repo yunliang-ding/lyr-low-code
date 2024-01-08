@@ -1,9 +1,9 @@
 /**
  * Table的属性配置
  */
-import { CreateDrawer, SchemaProps } from 'react-core-form';
+import { CreateDrawer, SchemaProps } from 'lyr-design';
 import { encrypt } from '@/util';
-import { CodeEditor } from 'react-core-form-code-editor';
+import { CodeEditor } from 'lyr-code-editor';
 
 /** 顶部工具栏和操作栏相同部分 */
 const toolPropsConfig = (

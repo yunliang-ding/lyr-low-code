@@ -1,6 +1,6 @@
-import { Form } from 'react-core-form';
+import { Form } from 'lyr-design';
 import { Radio } from '@arco-design/web-react';
-import { CodeEditor } from 'react-core-form-code-editor';
+import { CodeEditor } from 'lyr-code-editor';
 
 export default ({
   setCompontentType,

@@ -1,11 +1,11 @@
-import { Form } from 'react-core-form';
+import { Form } from 'lyr-design';
 import { useState } from 'react';
 import { Empty, Radio } from '@arco-design/web-react';
 import ItemPropsConfig from './item.props.config';
 import FormPropsConfig from './form.props.config';
 import { isEmpty, recursionFind } from '@/util';
 import debounce from 'lodash.debounce';
-import { CodeEditor } from 'react-core-form-code-editor';
+import { CodeEditor } from 'lyr-code-editor';
 import store from '../store';
 import './index.less';
 

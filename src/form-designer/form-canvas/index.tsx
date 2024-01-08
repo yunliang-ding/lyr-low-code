@@ -1,5 +1,5 @@
 import { useDrop } from 'react-dnd';
-import { CardForm } from 'react-core-form';
+import { CardForm } from 'lyr-design';
 import DragContainer from './drag';
 import { useCallback, useEffect, useMemo } from 'react';
 import { uuid as Uuid, cloneDeep } from '@/util';

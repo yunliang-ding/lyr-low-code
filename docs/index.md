@@ -1,7 +1,7 @@
 ---
-title: react-core-form-designer
+title: lyr-low-code
 hero:
-  title: react-core-form-designer
+  title: lyr-low-code
   actions:
     - text: 开始使用
       link: /component

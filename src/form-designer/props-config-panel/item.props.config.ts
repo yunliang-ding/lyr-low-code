@@ -1,7 +1,7 @@
 /**
  * Item的属性配置
  */
-import { SchemaProps } from 'react-core-form';
+import { SchemaProps } from 'lyr-design';
 
 export const formItemSchema = (
   insertSchema = [

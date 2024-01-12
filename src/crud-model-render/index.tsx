@@ -12,19 +12,16 @@ let axiosInstance = null;
 
 export const getAxiosInstance = () => axiosInstance;
 
-const setAxiosInstance = ({ appId, baseURL }) => {
+const setAxiosInstance = ({ baseURL }) => {
   axiosInstance = axios.create({
     baseURL,
-    withCredentials: true,
     headers: {
-      appId,
+      token: localStorage.getItem('token'),
     },
   });
 };
 
 interface CrudModelRenderProps {
-  /** 应用Id */
-  appId?: number;
   /** 应用Id */
   baseURL?: string;
   /** 模型Id */
@@ -40,19 +37,14 @@ const CrudModelRender = ({
   schemaId,
   loadingText = 'loading...',
   require,
-  appId = 2, // 默认需要登录 dev-ops
   baseURL = 'http://dev-ops.yunliang.cloud',
 }: CrudModelRenderProps): any => {
   if (isEmpty(schemaId)) {
     return <Empty description="缺少模型ID" />;
   }
-  if (isEmpty(appId)) {
-    return <Empty description="缺少应用ID" />;
-  }
   // 绑定应用
   setAxiosInstance({
     baseURL,
-    appId,
   });
   const [standRes, setStandRes]: any = useState({
     type: 'form',

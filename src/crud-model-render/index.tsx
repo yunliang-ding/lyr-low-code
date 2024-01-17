@@ -37,7 +37,7 @@ const CrudModelRender = ({
   schemaId,
   loadingText = 'loading...',
   require,
-  baseURL = 'http://dev-ops.yunliang.cloud',
+  baseURL = 'https://dev-ops.yunliang.cloud',
 }: CrudModelRenderProps): any => {
   if (isEmpty(schemaId)) {
     return <Empty description="缺少模型ID" />;

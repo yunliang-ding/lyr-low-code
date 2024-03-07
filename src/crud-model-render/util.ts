@@ -1,23 +1,23 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import FormDesigner from '@/form-designer';
 import TableDesigner from '@/table-desinger';
-import { decode, babelParse } from 'lyr-extra';
-import { decrypt, isEmpty } from '@/util';
-import { getAxiosInstance } from '.';
+import { babelParse } from 'lyr-extra';
+import { decrypt } from '@/util';
 import axios from 'axios';
 
-const parseStandardSchemaStrategy = {
-  form: (data) => {
+export const parseStandardSchemaStrategy = {
+  form: (data, require) => {
     const { getStandardSchema } = FormDesigner.useTools();
     const result = babelParse({
       code: getStandardSchema(data),
+      require,
     });
     return {
       ...result.formProps,
       schema: result.schema,
     };
   },
-  table: (data) => {
+  table: (data, require) => {
     const { getStandardSchema } = TableDesigner.useTools();
     return babelParse({
       code: getStandardSchema({
@@ -30,6 +30,7 @@ const parseStandardSchemaStrategy = {
           columns: data.columns,
         },
       }),
+      require,
     });
   },
 };
@@ -53,31 +54,7 @@ export const registerGlobalApi = async (services, require: any = {}) => {
         exportDefault: false,
       });
     }
-    // 通过模型Id 获取 模型信息
-    Window.getCrudModelById = async (schemaId: number) => {
-      const result = await queryModelBySchemaId(schemaId);
-      return result?.schema;
-    };
   } catch (error) {
     console.log(error);
   }
-};
-
-/** 解析模型 */
-export const queryModelBySchemaId = async (schemaId, entity = undefined) => {
-  if (isEmpty(entity)) {
-    const {
-      data: { code, data },
-    } = await getAxiosInstance().get(`/crud/detail?id=${schemaId}`);
-    if (code === 200) {
-      entity = data;
-    } else {
-      return {};
-    }
-  }
-  const object = JSON.parse(decode(entity.schema));
-  return {
-    type: entity.type,
-    schema: parseStandardSchemaStrategy[entity.type](object),
-  };
 };

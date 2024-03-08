@@ -3,6 +3,8 @@ import { CreateDrawer } from 'lyr-design';
 import { CodeEditor } from 'lyr-code-editor';
 import { TableDesigner } from 'lyr-low-code';
 import { Button, Message, Space, Spin } from '@arco-design/web-react';
+import { encode, getUrlSearchParams } from 'lyr-extra';
+import Preview from './preview';
 import './index.less';
 
 const exportDrawer = CreateDrawer({
@@ -23,6 +25,10 @@ const exportDrawer = CreateDrawer({
 });
 
 export default () => {
+  const { schema } = getUrlSearchParams(location.hash);
+  if (schema) {
+    return <Preview schema={schema} />;
+  }
   const tableDesignerRef: any = useRef({});
   const [spin, setSpin] = React.useState(true);
   useEffect(() => {
@@ -35,6 +41,22 @@ export default () => {
       <div className="table-designer-playground-header">
         <div className="table-designer-playground-header-title">表格设计器</div>
         <Space>
+          <Button
+            type="primary"
+            onClick={() => {
+              if (tableDesignerRef.current.getStore().schema.length > 0) {
+                window.open(
+                  `/#/~demos/docs-designer-table?schema=${encode(
+                    JSON.stringify(tableDesignerRef.current.getStore()),
+                  )}`,
+                );
+              } else {
+                Message.info('暂无数据');
+              }
+            }}
+          >
+            新窗口预览
+          </Button>
           <Button
             type="primary"
             onClick={() => {

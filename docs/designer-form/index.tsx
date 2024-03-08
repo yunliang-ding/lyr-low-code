@@ -3,6 +3,8 @@ import { Button, CreateDrawer } from 'lyr-design';
 import { CodeEditor } from 'lyr-code-editor';
 import { FormDesigner } from 'lyr-low-code';
 import { Message, Space } from '@arco-design/web-react';
+import { encode, getUrlSearchParams } from 'lyr-extra';
+import Preview from './preview';
 import './index.less';
 
 const exportDrawer = CreateDrawer({
@@ -23,12 +25,32 @@ const exportDrawer = CreateDrawer({
 });
 
 export default () => {
+  const { schema } = getUrlSearchParams(location.hash);
+  if (schema) {
+    return <Preview schema={schema} />;
+  }
   const formDesignerRef: any = useRef({});
   return (
     <div className="form-designer-playground">
       <div className="form-designer-playground-header">
         <div className="form-designer-playground-header-title">表单设计器</div>
         <Space>
+          <Button
+            type="primary"
+            onClick={() => {
+              if (formDesignerRef.current.getStore().schema.length > 0) {
+                window.open(
+                  `/#/~demos/docs-designer-form?schema=${encode(
+                    JSON.stringify(formDesignerRef.current.getStore()),
+                  )}`,
+                );
+              } else {
+                Message.info('暂无数据');
+              }
+            }}
+          >
+            新窗口预览
+          </Button>
           <Button
             type="primary"
             onClick={() => {

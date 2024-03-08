@@ -46,7 +46,9 @@ export default () => {
             onClick={() => {
               if (tableDesignerRef.current.getStore().schema.length > 0) {
                 window.open(
-                  `/#/~demos/docs-designer-table?schema=${encode(
+                  `${
+                    location.pathname
+                  }#/~demos/docs-designer-table?schema=${encode(
                     JSON.stringify(tableDesignerRef.current.getStore()),
                   )}`,
                 );

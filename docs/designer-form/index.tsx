@@ -40,7 +40,9 @@ export default () => {
             onClick={() => {
               if (formDesignerRef.current.getStore().schema.length > 0) {
                 window.open(
-                  `/#/~demos/docs-designer-form?schema=${encode(
+                  `${
+                    location.pathname
+                  }#/~demos/docs-designer-form?schema=${encode(
                     JSON.stringify(formDesignerRef.current.getStore()),
                   )}`,
                 );

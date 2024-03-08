@@ -28,8 +28,10 @@ export const deleteCompent = ({
     nextSchema = schema[0] || {}; // 切换到第一个
   }
   if (nextSchema) {
-    // 设置下一个选中Schema
-    setSelectSchema(nextSchema); // 选中
+    // 不延迟有问题??
+    setTimeout(() => {
+      setSelectSchema(nextSchema); // 选中
+    });
   }
   onSchemaUpdate([...schema]); // 返回组装好schema
 };

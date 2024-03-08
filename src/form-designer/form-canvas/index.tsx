@@ -73,7 +73,7 @@ export default ({
         // 处理下name和key
         const uuid = Uuid(10);
         const _schema = {
-          ...dragSchema,
+          ...cloneDeep(dragSchema),
           key: uuid,
           name: `${dragSchema.name}_${uuid}`,
         };

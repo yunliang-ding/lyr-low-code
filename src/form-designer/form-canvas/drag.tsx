@@ -33,28 +33,37 @@ export default ({
   const [{ canDrop, isOver }, dropRef] = useDrop({
     accept: ['inner-box', accept], // 接受内部的box和侧边栏的left-box
     drop: async ({ dragSchema, dropSchema }: any) => {
+      // 上锁0.1s，不知道为啥会触发两次??
+      if (localStorage.getItem('dragLock')) {
+        return;
+      }
+      localStorage.setItem('dragLock', '1');
+      setTimeout(() => {
+        localStorage.removeItem('dragLock');
+      }, 100);
       const uuid = Uuid(10);
+      const dragItem = cloneDeep(dragSchema);
       if (dragSchema.isNew) {
-        dragSchema.key = uuid;
-        dragSchema.name = `${dragSchema.name}_${uuid}`;
+        dragItem.key = uuid;
+        dragItem.name = `${dragItem.name}_${uuid}`;
       }
       // 需要调整位置
-      if (dropSchema.key !== dragSchema.key) {
+      if (dropSchema.key !== dragItem.key) {
         // 如果不是新增的则删除起点
-        if (!dragSchema.isNew) {
+        if (!dragItem.isNew) {
           /**
            * 1: 删除
            */
           // 判断起点是否有父元素
-          if (dragSchema.__parentKey__) {
+          if (dragItem.__parentKey__) {
             // 更新 schema
-            const root = recursionFind(schema, dragSchema.__parentKey__);
+            const root = recursionFind(schema, dragItem.__parentKey__);
             if (root.props.children === undefined) {
               return;
             }
             // 起点
             const startIndex = root.props.children.findIndex(
-              (i: any) => i.key === dragSchema.key,
+              (i: any) => i.key === dragItem.key,
             );
             // 删除起点
             root.props.children.splice(startIndex, 1);
@@ -63,9 +72,7 @@ export default ({
             }
           } else {
             // 找到起点
-            const startIndex = schema.findIndex(
-              (i) => i.key === dragSchema.key,
-            );
+            const startIndex = schema.findIndex((i) => i.key === dragItem.key);
             // 删除起点
             schema.splice(startIndex, 1);
           }
@@ -77,14 +84,14 @@ export default ({
         if (
           dropSchema.type === 'FieldSet' &&
           dropSchema.props?.children === undefined &&
-          dragSchema.key !== dropSchema.key
+          dragItem.key !== dropSchema.key
         ) {
           // 节点元素，递归查找
           const root = recursionFind(schema, dropSchema.key);
           // 添加 children
           if (root.props) {
             const newChildren = {
-              ...dragSchema,
+              ...dragItem,
               __parentKey__: dropSchema.key, // 添加父节点id
             };
             delete newChildren.isNew; // 删除标识
@@ -99,30 +106,30 @@ export default ({
             if (root) {
               _schema = root.props?.children || [];
             }
-            dragSchema.__parentKey__ = dropSchema.__parentKey__; // 更新父节点id
+            dragItem.__parentKey__ = dropSchema.__parentKey__; // 更新父节点id
           } else {
-            delete dragSchema.__parentKey__; // 移除父节点id
+            delete dragItem.__parentKey__; // 移除父节点id
           }
           // 落点
           const endIndex: number = _schema.findIndex(
             (i) => i.key === dropSchema.key,
           );
-          if (dragSchema.isNew) {
+          if (dragItem.isNew) {
             // 去掉isNew标识
-            delete dragSchema.isNew;
+            delete dragItem.isNew;
             localStorage.setItem('inner-add', '1'); // 通知外部大容器不要再次添加了
           }
           // 插入落点
           if (position === 'up') {
             // 前序插入
-            _schema.splice(endIndex, 0, dragSchema);
+            _schema.splice(endIndex, 0, dragItem);
           } else if (position === 'down') {
             // 后序插入
-            _schema.splice(endIndex + 1, 0, dragSchema);
+            _schema.splice(endIndex + 1, 0, dragItem);
           }
         }
-        setSelectSchema(dragSchema);
-        onSchemaUpdate([...schema]); // 返回组装好schema
+        setSelectSchema(dragItem);
+        onSchemaUpdate(cloneDeep(schema)); // 返回组装好schema
       }
     },
     hover: (item: any, monitor: any) => {
@@ -169,26 +176,27 @@ export default ({
     });
   };
   // 拷贝
-  const copyCompent = (e) => {
-    e.stopPropagation(); // stop
+  const copyCompent = () => {
     const uuid = Uuid(10);
     const targetSchema = cloneDeep(itemSchema);
+    const copySchema = {
+      ...targetSchema,
+      key: `key_${uuid}`,
+      name: `${targetSchema.type}_${uuid}`,
+    };
     // TODO 暂只做了一层
     if (targetSchema.type === 'FieldSet') {
       targetSchema.props.children = targetSchema.props?.children?.map(
         (item) => {
           return {
             ...item,
+            name: `${targetSchema.type}_${Uuid(10)}`,
             key: `key_${Uuid(10)}`,
+            __parentKey__: copySchema.key,
           };
         },
       );
     }
-    const copySchema = {
-      ...targetSchema,
-      key: `key_${uuid}`,
-      name: `${targetSchema.type}_${uuid}`,
-    };
     const index: number = schema.findIndex(
       ({ key }) => key === targetSchema.key,
     );

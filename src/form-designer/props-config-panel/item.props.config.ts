@@ -141,40 +141,6 @@ export const formItemSchema = (
   },
   {
     type: 'CodeEditor',
-    name: 'beforeReceive',
-    label: '设置beforeReceive',
-    props: {
-      style: {
-        height: 160,
-        width: 360,
-      },
-      mode: 'function',
-      useEncrypt: true,
-      noChangeClearCode: true,
-      defaultCode: `(values) => {
- 
-}`,
-    },
-  },
-  {
-    type: 'CodeEditor',
-    name: 'transfrom',
-    label: '设置transfrom',
-    props: {
-      style: {
-        height: 160,
-        width: 360,
-      },
-      mode: 'function',
-      useEncrypt: true,
-      noChangeClearCode: true,
-      defaultCode: `(values) => {
- 
-}`,
-    },
-  },
-  {
-    type: 'CodeEditor',
     name: 'innerItemRender',
     label: '设置itemRender',
     props: {

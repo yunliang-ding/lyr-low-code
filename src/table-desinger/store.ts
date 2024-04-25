@@ -1,28 +1,49 @@
 /* eslint-disable @typescript-eslint/method-signature-style */
 import { SchemaProps, TableProps } from 'lyr-design';
-import { create } from 'lyr-store';
+import { create } from 'lyr-hooks';
 import { SearchProps } from 'lyr-design/dist/search/types';
 import { TableColumnType } from 'lyr-design/dist/table/type.column';
 import { getStandardSchema as getTableStandardSchema } from './util';
+import materialConfig from './register-widgets/material-config';
 import { encrypt } from '@/util';
+import { ReactNode } from 'react';
+
+interface DesignerSchemaProps extends SchemaProps {
+  key: string;
+  propsConfig?: any;
+}
+
+export interface CustomWidgetsProps {
+  [key: string]: {
+    label: string;
+    props: any;
+    propsConfig: any[];
+    render: () => ReactNode;
+  };
+}
 
 export default create<{
-  // 组件
-  widgets: {
-    __originalConfig__?: any[]; // 部件的配置项模型
-  };
+  /** 表单属性 */
   formProps: SearchProps;
-  schema: SchemaProps[];
-  selectedSchema: SchemaProps & {
-    key?: string;
-  };
+  /** 表单模型 */
+  schema: DesignerSchemaProps[];
+  /** 内置组件 */
+  builtInWidget: any[];
+  /** 自定义组件 */
+  customWidgets: any;
+  /** 选中的模型 */
+  selectedSchema?: DesignerSchemaProps;
+  /** 表格模型 */
   columns: TableColumnType[];
+  /** 选中表格 */
   selectTable: boolean;
+  /** 表格属性 */
   tableProps:
     | TableProps
     | {
         [key: string]: any;
       };
+  /** 获取模型 */
   getStandardSchema(): any;
 }>({
   selectTable: true,
@@ -30,16 +51,19 @@ export default create<{
     column: 2,
     layout: 'inline',
   },
-  widgets: {},
-  schema: [
+  customWidgets: undefined,
+  builtInWidget: [
     {
-      key: 'userName',
-      type: 'Input',
-      label: '用户姓名',
-      name: 'userName',
+      label: '基础组件',
+      value: materialConfig.base,
+    },
+    {
+      label: '高级组件',
+      value: materialConfig.advance,
     },
   ],
-  selectedSchema: {},
+  schema: undefined,
+  selectedSchema: undefined,
   columns: [
     {
       title: '用户姓名',

@@ -1,7 +1,8 @@
 /**
  * Item的属性配置
  */
-import formItemSchema from '@/form-designer/props-config-panel/item.props.config';
+
+import formItemSchema from '@/form-designer/props-config-panel/config/props-item';
 
 export default (schema, selectedSchema) =>
   formItemSchema(

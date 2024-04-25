@@ -1,44 +1,43 @@
-// import { forwardRef, useImperativeHandle } from 'react';
-// import TableCanvas from './table-canvas';
-// import RegisterWidgets from './register-widgets';
-// import PropsConfigPanel from './props-config-panel';
-// import { HTML5Backend } from 'react-dnd-html5-backend';
-// import { DndProvider } from 'react-dnd';
-// import {
-//   getStandardSchema as getTableStandardSchema,
-//   parseTableSchema,
-// } from './util';
-// import './index.less';
-// import store from './store';
+import { forwardRef, useImperativeHandle } from 'react';
+import TableCanvas from './table-canvas';
+import RegisterWidgets from './register-widgets';
+import PropsConfigPanel from './props-config-panel';
+import {
+  getStandardSchema as getTableStandardSchema,
+  parseTableSchema,
+} from './util';
+import './index.less';
+import store from './store';
 
-// const TableDesigner: any = forwardRef((props, ref) => {
-//   useImperativeHandle(ref, () => ({
-//     getStandardSchema: () => {
-//       return store.getStandardSchema();
-//     },
-//     getStore: () => {
-//       return {
-//         schema: store.schema,
-//         formProps: store.formProps,
-//         selectedSchema: store.selectedSchema,
-//         columns: store.columns,
-//         selectTable: store.selectTable,
-//         tableProps: store.tableProps,
-//       };
-//     },
-//     setStore: (newStore) => {
-//       Object.assign(store, newStore);
-//     },
-//   })); // api挂载到ref
-//   return <DndProvider backend={HTML5Backend}>{props.children}</DndProvider>;
-// }); // 接受ref
-// TableDesigner.TableCanvas = TableCanvas;
-// TableDesigner.RegisterWidgets = RegisterWidgets;
-// TableDesigner.PropsConfigPanel = PropsConfigPanel;
-// TableDesigner.useTools = () => {
-//   return {
-//     parseTableSchema,
-//     getStandardSchema: getTableStandardSchema,
-//   };
-// };
-// export default TableDesigner;
+const TableDesigner: any = forwardRef((props, ref) => {
+  useImperativeHandle(ref, () => ({
+    getStandardSchema: () => {
+      return store.getStandardSchema();
+    },
+    getStore: () => {
+      return {
+        schema: store.schema,
+        formProps: store.formProps,
+        selectedSchema: store.selectedSchema,
+        columns: store.columns,
+        selectTable: store.selectTable,
+        tableProps: store.tableProps,
+      };
+    },
+    setStore: (newStore) => {
+      Object.assign(store, newStore);
+    },
+  }));
+  return <div className="table-designer">{props.children}</div>;
+});
+
+TableDesigner.TableCanvas = TableCanvas;
+TableDesigner.RegisterWidgets = RegisterWidgets;
+TableDesigner.PropsConfigPanel = PropsConfigPanel;
+TableDesigner.useTools = () => {
+  return {
+    parseTableSchema,
+    getStandardSchema: getTableStandardSchema,
+  };
+};
+export default TableDesigner;

@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { recursionFind } from '@/util';
-import { TableList } from './widgets';
 import ItemPropsConfig from './item.props.config';
 import FormPropsConfig from './form.props.config';
 import TablePropsConfig from './table.props.config';
@@ -9,7 +8,6 @@ import SearchFormPropsConfig from './search-form-props-config';
 import SearchTablePropsConfig from './search-table-props-config';
 import debounce from 'lodash.debounce';
 import store from '../store';
-import './index.less';
 
 export interface PropsConfigPanelTypes {
   style?: any; //
@@ -31,13 +29,10 @@ export default ({
     selectTable,
     schema,
     selectedSchema,
-    widgets,
-  } = store.use(); // 拿到ctx
+  } = store.useSnapshot(); // 拿到ctx
   const [compontentType, setCompontentType]: any = useState('表单项属性');
   const [tableType, setTableType]: any = useState('表格属性');
-  const propsConfig = widgets.__originalConfig__?.find(
-    (widget) => widget.type === selectedSchema.type,
-  )?.propsConfig;
+  const propsConfig = selectedSchema?.propsConfig;
   const onPropsConfigUpdate = (values, type) => {
     if (type === 'item') {
       // 更新 selectSchema
@@ -87,7 +82,6 @@ export default ({
       {...{
         tableType,
         setTableType,
-        TableList,
         TablePropsConfig: TablePropsConfig({ selectModelOptions }),
         onTableValuesChange,
         CellPropsConfig,

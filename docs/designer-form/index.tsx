@@ -103,6 +103,7 @@ export default () => {
             onClick={() => {
               formDesignerRef.current.setStore({
                 schema: undefined,
+                selectedSchema: undefined,
               });
             }}
           >
@@ -113,11 +114,7 @@ export default () => {
       <div className="form-designer-playground-body">
         <FormDesigner ref={formDesignerRef}>
           <FormDesigner.RegisterWidgets />
-          <FormDesigner.FormCanvas
-            onCtrlS={() => {
-              Message.loading('保存中');
-            }}
-          />
+          <FormDesigner.FormCanvas />
           <FormDesigner.PropsConfigPanel />
         </FormDesigner>
       </div>

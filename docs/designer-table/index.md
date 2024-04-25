@@ -9,4 +9,4 @@ sidemenu: false
 gapless: true
 ---
 
-<!-- <code src='./index.tsx' /> -->
+<code src='./index.tsx' />

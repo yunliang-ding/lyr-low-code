@@ -29,7 +29,7 @@ export const recursionLoopFind = (schema: any, key: string, currentField) => {
     if (item.key === key) {
       currentField.field = item;
       break;
-    } else if (!isEmptyWrap(item)) {
+    } else if (isWrap(item) && !isEmptyWrap(item)) {
       recursionLoopFind(item.props.children, key, currentField);
     }
   }

@@ -25,9 +25,9 @@ export default create<{
   builtInWidget: any[];
   /** 自定义组件 */
   customWidgets: any;
-  // 数据模型
+  /** 数据模型 */
   schema: DesignerSchemaProps[];
-  // 选中的模型
+  /** 选中的模型 */
   selectedSchema: DesignerSchemaProps;
   /** 获取标准的模型 */
   getStandardSchema: () => any;

@@ -93,11 +93,7 @@ export default () => {
         ) : (
           <TableDesigner ref={tableDesignerRef}>
             <TableDesigner.RegisterWidgets />
-            <TableDesigner.TableCanvas
-              onCtrlS={() => {
-                Message.loading('保存中');
-              }}
-            />
+            <TableDesigner.TableCanvas />
             <TableDesigner.PropsConfigPanel
               selectModelOptions={async () => [
                 {

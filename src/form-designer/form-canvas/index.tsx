@@ -4,7 +4,6 @@ import store from '../store';
 
 export default () => {
   const { schema, formProps, customWidgets } = store.useSnapshot();
-  console.log(customWidgets);
   return (
     <div className="form-canvas">
       <DragForm

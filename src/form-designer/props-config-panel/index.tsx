@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Empty, Radio } from '@arco-design/web-react';
 import FormPropsConfig from './config/props-form';
 import ItemPropsConfig from './config/props-item';
-import { isEmpty, recursionFind } from '@/util';
+import { isEmpty } from '@/util';
 import debounce from 'lodash.debounce';
 import { CodeEditor } from 'lyr-code-editor';
 import store from '../store';
@@ -20,41 +20,21 @@ export interface PropsConfigPanelTypes {
 
 export default ({ style = {}, debounceTime = 100 }: PropsConfigPanelTypes) => {
   const [compontentType, setCompontentType]: any = useState('表单项配置');
-  const { schema, globalPropsConfig, selectedSchema, formProps } =
-    store.useSnapshot();
-  const propsConfig = globalPropsConfig.find(
-    (widget: any) => widget.type === selectedSchema?.type,
-  )?.propsConfig;
-  /** 更新 */
-  const onPropsConfigUpdate = (values, type) => {
-    if (type === 'item') {
-      store.selectedSchema = { ...store.selectedSchema, ...values };
-    }
-    if (type === 'widget') {
-      store.selectedSchema = {
-        ...store.selectedSchema,
-        props: {
-          ...store.selectedSchema.props,
-          ...values,
-        },
-      };
-    }
-    // 更新 schema
-    const newSchema = recursionFind(schema, selectedSchema.key);
-    Object.assign(newSchema, store.selectedSchema);
-    store.schema = [...store.schema];
-  };
+  const { schema, selectedSchema, formProps } = store.useSnapshot();
+  const propsConfig = selectedSchema?.propsConfig;
   /** 防抖0.1s */
   const onFormValuesChange = debounce((_, values) => {
     store.formProps = values;
   }, debounceTime);
   /** 防抖0.1s */
-  const onItemValuesChange = debounce((_, values) => {
-    onPropsConfigUpdate({ ...values }, 'item');
+  const onItemValuesChange = debounce((value) => {
+    Object.assign(store.selectedSchema, value);
+    store.schema = [...store.schema];
   }, debounceTime);
   /** 防抖0.1s */
-  const onWidgetValuesChange = debounce((_, values) => {
-    onPropsConfigUpdate({ ...values }, 'widget');
+  const onPropsValuesChange = debounce((value) => {
+    Object.assign(store.selectedSchema.props, value);
+    store.schema = [...store.schema];
   }, debounceTime);
   return (
     <div className="props-config-panel" style={style} key={selectedSchema?.key}>
@@ -96,7 +76,7 @@ export default ({ style = {}, debounceTime = 100 }: PropsConfigPanelTypes) => {
           >
             <Form
               schema={ItemPropsConfig(undefined, schema, selectedSchema)}
-              initialValues={selectedSchema || {}}
+              initialValues={selectedSchema}
               onValuesChange={onItemValuesChange}
               widgets={{
                 CodeEditor,
@@ -112,7 +92,7 @@ export default ({ style = {}, debounceTime = 100 }: PropsConfigPanelTypes) => {
             <Form
               schema={propsConfig}
               initialValues={selectedSchema?.props || {}}
-              onValuesChange={onWidgetValuesChange}
+              onValuesChange={onPropsValuesChange}
               widgets={{
                 CodeEditor,
               }}

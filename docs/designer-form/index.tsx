@@ -34,7 +34,7 @@ export default () => {
   useEffect(() => {
     formDesignerRef.current.startRegisterWidgets({
       CustomInput: {
-        label: '自定义组件',
+        label: '原生输入框',
         props: {
           placeholder: '请选择',
           allowClear: true,
@@ -54,12 +54,7 @@ export default () => {
           },
         ],
         render: (props) => {
-          return (
-            <div>
-              自定义组件
-              <input {...props} />
-            </div>
-          );
+          return <input {...props} />;
         },
       },
     });
@@ -72,7 +67,7 @@ export default () => {
           <Button
             type="primary"
             onClick={() => {
-              if (formDesignerRef.current.getStore().schema.length > 0) {
+              if (formDesignerRef.current.getStore().schema?.length > 0) {
                 window.open(
                   `${
                     location.pathname
@@ -90,7 +85,7 @@ export default () => {
           <Button
             type="primary"
             onClick={() => {
-              if (formDesignerRef.current.getStore().schema.length > 0) {
+              if (formDesignerRef.current.getStore().schema?.length > 0) {
                 exportDrawer.open({
                   initialValues: {
                     code: formDesignerRef.current.getStandardSchema(),
@@ -107,7 +102,7 @@ export default () => {
             type="primary"
             onClick={() => {
               formDesignerRef.current.setStore({
-                schema: [],
+                schema: undefined,
               });
             }}
           >

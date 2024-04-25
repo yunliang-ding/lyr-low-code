@@ -48,7 +48,7 @@ nav:
 ## 注册自定义组件
 
 ```jsx | pure
-formDesignerRef.current.startRegisterWidgets.start(
+formDesignerRef.current.startRegisterWidgets({
   CustomInput: {
     label: '自定义组件',
     props: {
@@ -78,5 +78,5 @@ formDesignerRef.current.startRegisterWidgets.start(
       );
     },
   },
-);
+});
 ```

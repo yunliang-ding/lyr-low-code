@@ -6,6 +6,7 @@ import { ReactNode } from 'react';
 
 interface DesignerSchemaProps extends SchemaProps {
   key: string;
+  propsConfig?: any;
 }
 
 export interface CustomWidgetsProps {
@@ -20,8 +21,6 @@ export interface CustomWidgetsProps {
 export default create<{
   /** 表单属性 */
   formProps: CardFormProps;
-  /** 全局组件配置集合 */
-  globalPropsConfig: any[];
   /** 内置组件 */
   builtInWidget: any[];
   /** 自定义组件 */
@@ -40,11 +39,6 @@ export default create<{
     layout: 'vertical',
   },
   customWidgets: {},
-  globalPropsConfig: [
-    ...materialConfig.base,
-    ...materialConfig.advance,
-    ...materialConfig.layout,
-  ],
   builtInWidget: [
     {
       label: '基础组件',

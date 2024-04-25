@@ -7,7 +7,8 @@
     "disabled": false,
     "maxCount": 9999,
     "leastOne": false,
-    "label": ""
+    "label": "",
+    "children": []
   },
   "propsConfig": [
     {

@@ -30,7 +30,6 @@ const FormDesigner: any = forwardRef((props, ref) => {
           value,
         },
       ];
-      store.globalPropsConfig = [...store.globalPropsConfig, ...value];
     },
     getStore: () => {
       return {

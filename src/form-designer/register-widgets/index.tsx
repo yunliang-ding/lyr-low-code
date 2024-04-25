@@ -1,4 +1,5 @@
 import { Button, DragWrapper } from 'lyr-design';
+import { uuid } from 'lyr-extra';
 import formStore from '../store';
 
 export interface RegisterWidgetsType {
@@ -19,9 +20,13 @@ export default ({ style = {}, store = formStore }: RegisterWidgetsType) => {
               <DragWrapper
                 accept={false}
                 items={item.value?.map((widget: any) => {
+                  const key = uuid(8);
                   return {
-                    key: widget.key,
+                    key,
                     schema: {
+                      type: widget.type,
+                      label: widget.label,
+                      name: `name-${key}`,
                       ...widget,
                       span:
                         widget.span === 'fill' ? store.formProps?.column : 1,

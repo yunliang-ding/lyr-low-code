@@ -3,14 +3,20 @@
   "label": "编辑表格",
   "span": "fill",
   "props": {
-    "disabled": false
+    "disabled": false,
+    "showNo": false,
+    "children": []
   },
   "propsConfig": [
     {
       "type": "Switch",
-      "triggerPropName": "checked",
       "name": "disabled",
       "label": "是否禁用"
+    },
+    {
+      "type": "Switch",
+      "name": "showNo",
+      "label": "展示序号"
     }
   ]
 }

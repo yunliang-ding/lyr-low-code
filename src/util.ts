@@ -112,6 +112,7 @@ export const getCleanCloneSchema = (schema = []) => {
     delete item.__parentKey__;
     delete item.isNew;
     delete item.selectField;
+    delete item.propsConfig;
     if (item.actionAlign === 'end') {
       delete item.actionAlign;
     }

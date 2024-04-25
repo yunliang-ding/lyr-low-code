@@ -110,8 +110,8 @@ export const formItemSchema = (
       useEncrypt: true,
       noChangeClearCode: true,
       defaultCode: `async (name, form) => {
- 
-}`,
+  
+ }`,
     },
   },
   {
@@ -135,8 +135,8 @@ export const formItemSchema = (
       useEncrypt: true,
       noChangeClearCode: true,
       defaultCode: `(values) => {
-  return true;
-}`,
+   return true;
+ }`,
     },
   },
   {
@@ -152,8 +152,8 @@ export const formItemSchema = (
       useEncrypt: true,
       mode: 'function',
       defaultCode: `(dom, { form }) => {
- 
-}`,
+  
+ }`,
     },
   },
 ];

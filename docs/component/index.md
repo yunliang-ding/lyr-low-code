@@ -45,12 +45,31 @@ nav:
 <script src="https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/prettier-parser-typescript.min.js"></script>
 ```
 
-## 注册业务组件
+## 注册自定义组件
 
 ```jsx | pure
-<FormDesigner.RegisterWidgets
-  customWidgets={{
-    CustomInput: () => {
+formDesignerRef.current.startRegisterWidgets.start(
+  CustomInput: {
+    label: '自定义组件',
+    props: {
+      placeholder: '请选择',
+      allowClear: true,
+      disabled: false,
+      mode: '',
+    },
+    propsConfig: [
+      {
+        type: 'Switch',
+        name: 'disabled',
+        label: '是否禁用',
+      },
+      {
+        type: 'Input',
+        name: 'placeholder',
+        label: '提示文案',
+      },
+    ],
+    render: (props) => {
       return (
         <div>
           自定义组件
@@ -58,30 +77,6 @@ nav:
         </div>
       );
     },
-  }}
-  customWidgetsPropsConfig={[
-    {
-      type: 'CustomInput',
-      label: '自定义组件',
-      props: {
-        placeholder: '请选择',
-        allowClear: true,
-        disabled: false,
-        mode: '',
-      },
-      propsConfig: [
-        {
-          type: 'Switch',
-          name: 'disabled',
-          label: '是否禁用',
-        },
-        {
-          type: 'Input',
-          name: 'placeholder',
-          label: '提示文案',
-        },
-      ],
-    },
-  ]}
-/>
+  },
+);
 ```

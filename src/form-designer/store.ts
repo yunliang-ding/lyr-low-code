@@ -1,33 +1,65 @@
-import { create } from 'lyr-store';
-import { DrawerFormProps, SchemaProps } from 'lyr-design';
+import { create } from 'lyr-hooks';
+import { CardFormProps, SchemaProps } from 'lyr-design';
 import { getStandardSchema as getFormStandardSchema } from '../util';
+import materialConfig from './register-widgets/material-config';
+import { ReactNode } from 'react';
 
-interface _SchemaProps extends SchemaProps {
+interface DesignerSchemaProps extends SchemaProps {
   key: string;
 }
 
-export default create<{
-  // 表单属性
-  formProps: DrawerFormProps;
-  // 组件
-  widgets: {
-    __originalConfig__?: any[]; // 部件的配置项模型
+export interface CustomWidgetsProps {
+  [key: string]: {
+    label: string;
+    props: any;
+    propsConfig: any[];
+    render: () => ReactNode;
   };
+}
+
+export default create<{
+  /** 表单属性 */
+  formProps: CardFormProps;
+  /** 全局组件配置集合 */
+  globalPropsConfig: any[];
+  /** 内置组件 */
+  builtInWidget: any[];
+  /** 自定义组件 */
+  customWidgets: any;
   // 数据模型
-  schema: _SchemaProps[];
+  schema: DesignerSchemaProps[];
   // 选中的模型
-  selectedSchema: _SchemaProps;
+  selectedSchema: DesignerSchemaProps;
   /** 获取标准的模型 */
   getStandardSchema: () => any;
 }>({
   formProps: {
     column: 2,
-    title: '默认标题',
+    title: '新建表单',
     actionAlign: 'end',
     layout: 'vertical',
   },
-  widgets: {},
-  schema: [],
+  customWidgets: {},
+  globalPropsConfig: [
+    ...materialConfig.base,
+    ...materialConfig.advance,
+    ...materialConfig.layout,
+  ],
+  builtInWidget: [
+    {
+      label: '基础组件',
+      value: materialConfig.base,
+    },
+    {
+      label: '高级组件',
+      value: materialConfig.advance,
+    },
+    {
+      label: '布局组件',
+      value: materialConfig.layout,
+    },
+  ],
+  schema: undefined,
   selectedSchema: undefined,
   getStandardSchema() {
     return getFormStandardSchema({

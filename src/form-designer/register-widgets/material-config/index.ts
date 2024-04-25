@@ -27,7 +27,7 @@ import asyncRender from './advance/async-render.json';
 import fieldSet from './layout/field-set.json';
 import formList from './layout/form-list.json';
 import blockQuote from './layout/block-quote.json';
-import editableTable from './layout/editable-table.json';
+import tableList from './layout/table-list.json';
 
 export default {
   base: [
@@ -57,5 +57,5 @@ export default {
     render,
     asyncRender,
   ],
-  layout: [blockQuote, fieldSet, formList, editableTable],
+  layout: [blockQuote, fieldSet, formList, tableList],
 };

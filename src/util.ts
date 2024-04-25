@@ -3,6 +3,17 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import cloneDeep from 'lodash.clonedeep';
 import { isEmpty, uuid } from 'lyr-extra';
+/**
+ * 判断容器
+ */
+export const isWrap = ({ type }) =>
+  ['FieldSet', 'FormList', 'TableList'].includes(type);
+/**
+ * 判读空容器
+ */
+export const isEmptyWrap = ({ type, props }) => {
+  return isWrap({ type }) && isEmpty(props?.children);
+};
 
 // 查找指定key
 export const recursionFind = (schema: any, key: string) => {
@@ -13,12 +24,12 @@ export const recursionFind = (schema: any, key: string) => {
 
 // 递归查找指定key
 export const recursionLoopFind = (schema: any, key: string, currentField) => {
-  for (let i = 0; i < schema.length; i++) {
+  for (let i = 0; i < schema?.length; i++) {
     const item = schema[i];
     if (item.key === key) {
       currentField.field = item;
       break;
-    } else if (item.type === 'FieldSet' && item.props.children) {
+    } else if (!isEmptyWrap(item)) {
       recursionLoopFind(item.props.children, key, currentField);
     }
   }
@@ -118,7 +129,7 @@ export const getCleanCloneSchema = (schema = []) => {
       delete item.span;
       delete item.name;
     }
-    if (item.type === 'FieldSet') {
+    if (isWrap(item)) {
       getCleanCloneSchema(item.props.children);
     }
     delete item.message;

@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Button, CreateDrawer } from 'lyr-design';
 import { CodeEditor } from 'lyr-code-editor';
 import { FormDesigner } from 'lyr-low-code';
@@ -25,11 +25,45 @@ const exportDrawer = CreateDrawer({
 });
 
 export default () => {
+  const formDesignerRef: any = useRef({});
   const { schema } = getUrlSearchParams(location.hash);
   if (schema) {
     return <Preview schema={schema} />;
   }
-  const formDesignerRef: any = useRef({});
+  /** 注册业务组件 */
+  useEffect(() => {
+    formDesignerRef.current.startRegisterWidgets({
+      CustomInput: {
+        label: '自定义组件',
+        props: {
+          placeholder: '请选择',
+          allowClear: true,
+          disabled: false,
+          mode: '',
+        },
+        propsConfig: [
+          {
+            type: 'Switch',
+            name: 'disabled',
+            label: '是否禁用',
+          },
+          {
+            type: 'Input',
+            name: 'placeholder',
+            label: '提示文案',
+          },
+        ],
+        render: (props) => {
+          return (
+            <div>
+              自定义组件
+              <input {...props} />
+            </div>
+          );
+        },
+      },
+    });
+  }, []);
   return (
     <div className="form-designer-playground">
       <div className="form-designer-playground-header">

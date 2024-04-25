@@ -1,16 +1,36 @@
 import { forwardRef, useImperativeHandle } from 'react';
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
-import FormCanvas from './form-canvas';
 import RegisterWidgets from './register-widgets';
 import PropsConfigPanel from './props-config-panel';
+import FormCanvas from './form-canvas';
 import { getStandardSchema as getFormStandardSchema } from '../util';
-import store from './store';
+import store, { CustomWidgetsProps } from './store';
+import './index.less';
 
 const FormDesigner: any = forwardRef((props, ref) => {
   useImperativeHandle(ref, () => ({
     getStandardSchema: () => {
       return store.getStandardSchema();
+    },
+    startRegisterWidgets: (custom: CustomWidgetsProps) => {
+      const value = [];
+      const customWidgets = {};
+      Object.keys(custom).forEach((key: string) => {
+        customWidgets[key] = custom[key].render;
+        delete custom[key].render;
+        value.push({
+          ...custom[key],
+          type: key,
+        });
+      });
+      store.customWidgets = customWidgets;
+      store.builtInWidget = [
+        ...store.builtInWidget,
+        {
+          label: '自定义组件',
+          value,
+        },
+      ];
+      store.globalPropsConfig = [...store.globalPropsConfig, ...value];
     },
     getStore: () => {
       return {
@@ -23,7 +43,7 @@ const FormDesigner: any = forwardRef((props, ref) => {
       Object.assign(store, newStore);
     },
   }));
-  return <DndProvider backend={HTML5Backend}>{props.children}</DndProvider>;
+  return <div className="form-designer">{props.children}</div>;
 });
 
 FormDesigner.FormCanvas = FormCanvas;
@@ -35,4 +55,5 @@ FormDesigner.useTools = () => {
     getStandardSchema: getFormStandardSchema,
   };
 };
+
 export default FormDesigner;

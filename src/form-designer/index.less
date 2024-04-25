@@ -1,0 +1,90 @@
+.form-designer {
+  display: flex;
+  gap: 0px;
+  height: 100%;
+  width: 100%;
+  .register-widgets {
+    width: 250px;
+    height: 100%;
+    overflow: auto;
+    border: 1px solid #eee;
+    padding: 10px 0;
+    box-sizing: border-box;
+    border-right-width: 0;
+    background-color: var(--color-menu-light-bg);
+    .widgets-panel {
+      background-color: var(--color-menu-light-bg);
+      color: var(--color-neutral-10);
+      height: 100%;
+      width: 100%;
+      min-width: 250px;
+      overflow: auto;
+    }
+    .widgets-panel .widgets-panel-body {
+      height: fit-content;
+      overflow: auto;
+      padding: 12px;
+    }
+    .widgets-panel-body-btns {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      padding: 0 10px;
+    }
+    h4 {
+      padding: 0 10px;
+    }
+    .arco-btn {
+      width: 100px;
+      padding: 0 4px;
+    }
+  }
+  .form-canvas {
+    width: calc(100% - 650px);
+    .card-form-start,
+    .card-form-center,
+    .card-form-end {
+      height: 100%;
+    }
+    .arco-card {
+      height: 100%;
+      .arco-card-body {
+        height: calc(100% - 101px);
+        overflow: auto;
+      }
+    }
+  }
+  .props-config-panel {
+    width: 400px;
+    border: 1px solid #eee;
+    border-left-width: 0;
+    background-color: var(--color-menu-light-bg);
+    overflow: hidden;
+    position: relative;
+    &-empty {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+    &-header {
+      width: 100%;
+      .arco-radio-group {
+        width: 100%;
+        display: flex;
+        background-color: var(--color-menu-light-bg);
+        .arco-radio-button {
+          flex: 3;
+          text-align: center;
+        }
+      }
+    }
+    &-body {
+      height: calc(100% - 32px);
+      overflow: auto;
+      padding: 12px 16px;
+      background-color: var(--color-menu-light-bg);
+    }
+  }
+}

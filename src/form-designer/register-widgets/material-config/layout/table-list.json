@@ -1,6 +1,6 @@
 {
-  "type": "EditableTable",
-  "label": "可编辑表格",
+  "type": "TableList",
+  "label": "编辑表格",
   "span": "fill",
   "props": {
     "disabled": false

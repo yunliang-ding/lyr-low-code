@@ -1,13 +1,12 @@
 import { Form } from 'lyr-design';
 import { useState } from 'react';
 import { Empty, Radio } from '@arco-design/web-react';
-import ItemPropsConfig from './item.props.config';
-import FormPropsConfig from './form.props.config';
+import FormPropsConfig from './config/props-form';
+import ItemPropsConfig from './config/props-item';
 import { isEmpty, recursionFind } from '@/util';
 import debounce from 'lodash.debounce';
 import { CodeEditor } from 'lyr-code-editor';
 import store from '../store';
-import './index.less';
 
 export interface PropsConfigPanelTypes {
   /**
@@ -21,9 +20,10 @@ export interface PropsConfigPanelTypes {
 
 export default ({ style = {}, debounceTime = 100 }: PropsConfigPanelTypes) => {
   const [compontentType, setCompontentType]: any = useState('表单项配置');
-  const { schema, widgets, selectedSchema, formProps } = store.use();
-  const propsConfig = widgets.__originalConfig__?.find(
-    (widget: any) => widget.type === selectedSchema.type,
+  const { schema, globalPropsConfig, selectedSchema, formProps } =
+    store.useSnapshot();
+  const propsConfig = globalPropsConfig.find(
+    (widget: any) => widget.type === selectedSchema?.type,
   )?.propsConfig;
   /** 更新 */
   const onPropsConfigUpdate = (values, type) => {
@@ -47,7 +47,6 @@ export default ({ style = {}, debounceTime = 100 }: PropsConfigPanelTypes) => {
   /** 防抖0.1s */
   const onFormValuesChange = debounce((_, values) => {
     store.formProps = values;
-    onPropsConfigUpdate({ ...values }, 'form');
   }, debounceTime);
   /** 防抖0.1s */
   const onItemValuesChange = debounce((_, values) => {
@@ -62,7 +61,7 @@ export default ({ style = {}, debounceTime = 100 }: PropsConfigPanelTypes) => {
       {isEmpty(selectedSchema) ? (
         <Empty
           description="请选择需要设置的表单项"
-          className="form-canvas-empty"
+          className="props-config-panel-empty"
         />
       ) : (
         <>

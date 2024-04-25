@@ -84,8 +84,8 @@ const schema: SchemaProps<{}>[] = [
       mode: 'function',
       useEncrypt: true,
       defaultCode: `async (values) => {
-
-}`,
+ 
+ }`,
     },
   } as any,
 ];

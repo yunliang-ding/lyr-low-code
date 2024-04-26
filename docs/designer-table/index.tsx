@@ -43,7 +43,7 @@ export default () => {
                   `${
                     location.pathname
                   }#/~demos/docs-designer-table?schema=${encode(
-                    JSON.stringify(tableDesignerRef.current.getStore()),
+                    tableDesignerRef.current.getStandardSchema(),
                   )}`,
                 );
               } else {

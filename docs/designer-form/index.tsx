@@ -72,7 +72,7 @@ export default () => {
                   `${
                     location.pathname
                   }#/~demos/docs-designer-form?schema=${encode(
-                    JSON.stringify(formDesignerRef.current.getStore()),
+                    formDesignerRef.current.getStandardSchema(),
                   )}`,
                 );
               } else {

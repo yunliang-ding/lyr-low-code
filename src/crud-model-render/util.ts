@@ -1,15 +1,11 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-import FormDesigner from '@/form-designer';
-import TableDesigner from '@/table-desinger';
+import axios from 'axios';
 import { babelParse } from 'lyr-extra';
 import { decrypt } from '@/util';
-import axios from 'axios';
 
 export const parseStandardSchemaStrategy = {
-  form: (data, require) => {
-    const { getStandardSchema } = FormDesigner.useTools();
+  form: (code: string, require: any) => {
     const result = babelParse({
-      code: getStandardSchema(data),
+      code,
       require,
     });
     return {
@@ -17,19 +13,9 @@ export const parseStandardSchemaStrategy = {
       schema: result.schema,
     };
   },
-  table: (data, require) => {
-    const { getStandardSchema } = TableDesigner.useTools();
+  table: (code: string, require: any) => {
     return babelParse({
-      code: getStandardSchema({
-        searchSchema: {
-          ...data.formProps,
-          schema: data.schema,
-        },
-        tableSchema: {
-          ...data.tableProps,
-          columns: data.columns,
-        },
-      }),
+      code,
       require,
     });
   },

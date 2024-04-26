@@ -32,7 +32,7 @@ export default ({
   }
   try {
     const parseSchema: any = parseStandardSchemaStrategy[type](
-      JSON.parse(decode(schema)),
+      decode(schema),
       require,
     );
     if (type === 'form') {

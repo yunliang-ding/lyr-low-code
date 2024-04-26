@@ -1,8 +1,8 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import { CreateDrawer } from 'lyr-design';
 import { CodeEditor } from 'lyr-code-editor';
 import { TableDesigner } from 'lyr-low-code';
-import { Button, Message, Space, Spin } from '@arco-design/web-react';
+import { Button, Message, Space } from '@arco-design/web-react';
 import { encode, getUrlSearchParams } from 'lyr-extra';
 import Preview from './preview';
 import './index.less';
@@ -30,12 +30,6 @@ export default () => {
     return <Preview schema={schema} />;
   }
   const tableDesignerRef: any = useRef({});
-  const [spin, setSpin] = React.useState(true);
-  useEffect(() => {
-    setTimeout(() => {
-      setSpin(false);
-    }, 500);
-  }, []);
   return (
     <div className="table-designer-playground">
       <div className="table-designer-playground-header">
@@ -78,36 +72,22 @@ export default () => {
         </Space>
       </div>
       <div className="table-designer-playground-body">
-        {spin ? (
-          <Spin
-            style={{
-              height: '100%',
-              width: '100%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-            loading
-            size={40}
+        <TableDesigner ref={tableDesignerRef}>
+          <TableDesigner.RegisterWidgets />
+          <TableDesigner.TableCanvas />
+          <TableDesigner.PropsConfigPanel
+            selectModelOptions={async () => [
+              {
+                label: '新增用户',
+                value: 1,
+              },
+              {
+                label: '新增角色',
+                value: 2,
+              },
+            ]}
           />
-        ) : (
-          <TableDesigner ref={tableDesignerRef}>
-            <TableDesigner.RegisterWidgets />
-            <TableDesigner.TableCanvas />
-            <TableDesigner.PropsConfigPanel
-              selectModelOptions={async () => [
-                {
-                  label: '新增用户',
-                  value: 1,
-                },
-                {
-                  label: '新增角色',
-                  value: 2,
-                },
-              ]}
-            />
-          </TableDesigner>
-        )}
+        </TableDesigner>
       </div>
     </div>
   );

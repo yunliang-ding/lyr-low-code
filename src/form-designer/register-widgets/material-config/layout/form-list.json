@@ -27,7 +27,7 @@
       "label": "至少保留一条"
     },
     {
-      "type": "InputNumnber",
+      "type": "InputNumber",
       "name": "maxCount",
       "label": "最大条数限制"
     },

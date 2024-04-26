@@ -1,15 +1,32 @@
 {
   "type": "RangeInput",
-  "label": "区间输入框",
+  "label": "区间范围",
   "props": {
-    "disabled": false
+    "disabled": false,
+    "mode": "Number"
   },
   "propsConfig": [
     {
       "type": "Switch",
-      "triggerPropName": "checked",
       "name": "disabled",
       "label": "是否禁用"
+    },
+    {
+      "type": "RadioGroup",
+      "name": "mode",
+      "label": "模式",
+      "props": {
+        "options": [
+          {
+            "label": "文本区间",
+            "value": "Input"
+          },
+          {
+            "label": "数值区间",
+            "value": "Number"
+          }
+        ]
+      }
     },
     {
       "type": "CodeEditor",

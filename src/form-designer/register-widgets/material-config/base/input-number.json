@@ -1,19 +1,12 @@
 {
-  "type": "Input",
-  "label": "输入框",
+  "type": "InputNumber",
+  "label": "数字框",
   "props": {
     "placeholder": "请输入",
     "allowClear": true,
-    "disabled": false,
-    "maxLength": 64,
-    "showWordLimit": false
+    "disabled": false
   },
   "propsConfig": [
-    {
-      "type": "Switch",
-      "name": "showWordLimit",
-      "label": "是否展示计数"
-    },
     {
       "type": "Switch",
       "name": "disabled",
@@ -31,8 +24,13 @@
     },
     {
       "type": "InputNumber",
-      "name": "maxLength",
-      "label": "最大长度"
+      "name": "min",
+      "label": "最小值"
+    },
+    {
+      "type": "InputNumber",
+      "name": "max",
+      "label": "最大值"
     },
     {
       "type": "CodeEditor",

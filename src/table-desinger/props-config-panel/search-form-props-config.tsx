@@ -59,6 +59,7 @@ export default ({
       >
         <Form
           schema={propsConfig}
+          autoComplete="off"
           initialValues={selectedSchema?.props || {}}
           onValuesChange={onWidgetValuesChange}
           widgets={{ CodeEditor }}

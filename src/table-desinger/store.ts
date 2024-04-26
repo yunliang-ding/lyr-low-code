@@ -4,9 +4,9 @@ import { create } from 'lyr-hooks';
 import { SearchProps } from 'lyr-design/dist/search/types';
 import { TableColumnType } from 'lyr-design/dist/table/type.column';
 import { getStandardSchema as getTableStandardSchema } from './util';
-import materialConfig from './register-widgets/material-config';
 import { encrypt } from '@/util';
 import { ReactNode } from 'react';
+import materialConfig from '@/form-designer/register-widgets/material-config';
 
 interface DesignerSchemaProps extends SchemaProps {
   key: string;

@@ -1,5 +1,6 @@
 /** 基础组件 */
 import input from './base/input.json';
+import inputNumber from './base/input-number.json';
 import rangeInput from './base/range-input.json';
 import textArea from './base/text-area.json';
 import select from './base/select.json';
@@ -32,6 +33,7 @@ import tableList from './layout/table-list.json';
 export default {
   base: [
     input,
+    inputNumber,
     rangeInput,
     textArea,
     radio,

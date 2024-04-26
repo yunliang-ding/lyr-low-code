@@ -5,9 +5,9 @@ import { CodeEditor } from 'lyr-code-editor';
 export default ({
   tableType,
   setTableType,
-  TablePropsConfig,
+  tablePropsConfig,
   onTableValuesChange,
-  CellPropsConfig,
+  cellPropsConfig,
   onCellValuesChange,
   tableProps,
   columns,
@@ -32,7 +32,7 @@ export default ({
           widgets={{
             CodeEditor,
           }}
-          schema={TablePropsConfig}
+          schema={tablePropsConfig}
           initialValues={tableProps}
           onValuesChange={onTableValuesChange}
         />
@@ -47,7 +47,7 @@ export default ({
           widgets={{
             CodeEditor,
           }}
-          schema={CellPropsConfig}
+          schema={cellPropsConfig}
           initialValues={{
             columns,
           }}

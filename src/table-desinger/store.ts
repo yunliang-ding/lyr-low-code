@@ -93,7 +93,6 @@ export default create<{
     tools: [
       {
         label: '新增用户',
-        key: 'add',
         btnType: 'primary',
       },
     ],

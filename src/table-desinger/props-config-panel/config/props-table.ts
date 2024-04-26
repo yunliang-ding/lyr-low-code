@@ -12,6 +12,11 @@ const toolPropsConfig = (
 ): SchemaProps<{}>[] => {
   return [
     {
+      type: 'Input',
+      name: 'label',
+      label: '标签名',
+    },
+    {
       type: 'Switch',
       name: 'spin',
       label: '开启loading',
@@ -177,10 +182,10 @@ const toolPropsConfig = (
         noChangeClearCode: true,
         defaultCode: isRowOperation
           ? `async ({ onRefresh }, record) => {
-
+ 
 }`
           : `async ({ onSearch }) => {
-
+ 
 }`,
       } as any,
     },
@@ -201,10 +206,10 @@ const toolPropsConfig = (
         useEncrypt: true,
         defaultCode: isRowOperation
           ? `async ({ onRefresh }, record) => {
-
+ 
 }`
           : `async ({ onSearch }) => {
-
+ 
 }`,
       } as any,
     },
@@ -218,10 +223,10 @@ const toolPropsConfig = (
         useEncrypt: true,
         defaultCode: isRowOperation
           ? `async (record, { onRefresh }) => {
-
+ 
 }`
           : `async (params, { onSearch }) => {
-
+ 
 }`,
       } as any,
     },
@@ -294,52 +299,61 @@ export default ({ selectModelOptions }) =>
       name: 'tools',
       label: '工具栏集合',
       props: {
-        openConfirm: false,
-        focusName: 'label',
+        showNo: false,
+        sortable: true,
+        removeConfirm: true,
+        copy: false,
+        defaultAddValue: {
+          label: '新增',
+        },
+        children: [
+          {
+            type: 'Input',
+            name: 'label',
+            label: '展示文案',
+            props: {
+              readOnly: true,
+            },
+          },
+        ],
         actions: [
           {
             key: 'edit',
-            label: '修改',
+            label: '配置',
+            type: 'text',
             onClick: (record, onCellChange) => {
               drawerToolForm.open({
                 title: record.label,
                 initialValues: record,
                 schema: [
                   {
-                    type: 'Select',
+                    type: 'RadioGroup',
                     name: 'btnType',
                     label: '按钮主题',
                     props: {
                       options: [
                         {
-                          label: '默认',
-                          value: 'default',
+                          label: 'Secondary',
+                          value: 'secondary',
                         },
                         {
-                          label: '主题色',
+                          label: 'Primary',
                           value: 'primary',
+                        },
+                        {
+                          label: 'Outline',
+                          value: 'outline',
                         },
                       ],
                     },
                   },
                   ...toolPropsConfig(false, selectModelOptions),
                 ],
-                onValuesChange: (v: any) => {
-                  const k = Object.keys(v)[0];
-                  onCellChange(v[k], k);
+                onValuesChange: (v) => {
+                  onCellChange(v);
                 },
               });
             },
-          },
-        ],
-        columns: [
-          {
-            title: '标签名',
-            dataIndex: 'label',
-          },
-          {
-            title: '唯一标识',
-            dataIndex: 'key',
           },
         ],
       },
@@ -365,12 +379,30 @@ export default ({ selectModelOptions }) =>
       name: 'menus',
       label: '操作栏列集合',
       props: {
-        openConfirm: false,
-        focusName: 'label',
+        showNo: false,
+        sortable: true,
+        removeConfirm: true,
+        copy: false,
+        defaultAddValue: () => {
+          return {
+            label: '新增',
+          };
+        },
+        children: [
+          {
+            type: 'Input',
+            name: 'label',
+            label: '展示文案',
+            props: {
+              readOnly: true,
+            },
+          },
+        ],
         actions: [
           {
             key: 'edit',
-            label: '修改',
+            label: '配置',
+            type: 'text',
             onClick: (record, onCellChange) => {
               drawerMenuForm.open({
                 title: record.label,
@@ -393,21 +425,10 @@ export default ({ selectModelOptions }) =>
                   ...toolPropsConfig(true, selectModelOptions),
                 ],
                 onValuesChange: (v: any) => {
-                  const k = Object.keys(v)[0];
-                  onCellChange(v[k], k);
+                  onCellChange(v);
                 },
               });
             },
-          },
-        ],
-        columns: [
-          {
-            title: '标签名',
-            dataIndex: 'label',
-          },
-          {
-            title: '唯一标识',
-            dataIndex: 'key',
           },
         ],
       },

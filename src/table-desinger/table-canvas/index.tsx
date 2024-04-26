@@ -2,6 +2,7 @@ import { cloneDeep, recursionFind } from '@/util';
 import { DragForm, Table } from 'lyr-design';
 import { parseTableColumns, parseTableSchema } from '../util';
 import store from '../store';
+import { useEffect, useState } from 'react';
 
 export default () => {
   const {
@@ -13,7 +14,11 @@ export default () => {
     selectedSchema,
   } = store.useSnapshot();
   /** request 变化刷新下 table */
+  const [refreshTable, setRefreshTable] = useState(Math.random());
   const [table] = Table.useTable();
+  useEffect(() => {
+    setRefreshTable(Math.random());
+  }, [columns]);
   return (
     <div className="table-canvas">
       <DragForm
@@ -30,11 +35,6 @@ export default () => {
         }}
       />
       <div
-        style={{
-          border: selectTable
-            ? '2px dashed rgb(var(--primary-6))'
-            : '2px dashed #ccc',
-        }}
         onClick={() => {
           store.selectTable = true;
           store.selectedSchema = undefined;
@@ -42,6 +42,12 @@ export default () => {
       >
         <Table
           table={table}
+          key={refreshTable}
+          style={{
+            border: selectTable
+              ? '2px dashed rgb(var(--primary-6))'
+              : '2px dashed #ccc',
+          }}
           {...parseTableSchema(cloneDeep(tableProps))}
           columns={parseTableColumns(cloneDeep(columns))}
           searchSchema={{ hidden: true }}

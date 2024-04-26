@@ -10,6 +10,7 @@
     "sourceMap": true,
     "baseUrl": "./",
     "strict": false,
+    "resolveJsonModule": true,
     "paths": {
       "@/*": ["src/*"],
       "@@/*": ["src/.umi/*"]

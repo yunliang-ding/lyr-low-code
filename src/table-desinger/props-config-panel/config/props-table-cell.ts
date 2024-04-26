@@ -100,8 +100,8 @@ const cellDetailFields: SchemaProps<{}>[] = [
       mode: 'function',
       useEncrypt: true,
       defaultCode: `(item, record, index) => {
-  return item
-}`,
+   return item
+ }`,
     },
   },
 ];
@@ -129,30 +129,45 @@ const cellFields: SchemaProps<{}>[] = [
     type: 'TableList',
     name: 'columns',
     props: {
+      showNo: false,
+      sortable: true,
+      removeConfirm: true,
+      copy: false,
+      defaultAddValue: {
+        label: '新增',
+      },
+      children: [
+        {
+          type: 'Input',
+          name: 'title',
+          label: '名称',
+          props: {
+            readOnly: true,
+          },
+        },
+        {
+          type: 'Input',
+          name: 'dataIndex',
+          label: '唯一标识',
+          props: {
+            readOnly: true,
+          },
+        },
+      ],
       actions: [
         {
           key: 'edit',
-          label: '修改',
+          label: '配置',
+          type: 'text',
           onClick: (record, onCellChange) => {
             drawerCellForm.open({
               title: record.title,
               initialValues: record,
-              onValuesChange: (v: any) => {
-                const k = Object.keys(v)[0];
-                onCellChange(v[k], k);
+              onValuesChange: (v: any, values) => {
+                onCellChange(values);
               },
             });
           },
-        },
-      ],
-      columns: [
-        {
-          title: '列标签',
-          dataIndex: 'title',
-        },
-        {
-          title: '列标识',
-          dataIndex: 'dataIndex',
         },
       ],
     },

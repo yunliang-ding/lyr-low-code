@@ -13,7 +13,7 @@ export const getStandardSchema = (scurce = {}) => {
   if (schema.searchSchema.size === 'middle') {
     delete schema.searchSchema.size;
   }
-  if (schema.searchSchema.schema?.length === 0) {
+  if (schema.searchSchema.schema === undefined) {
     delete schema.searchSchema;
   }
   if (schema.tableSchema.emptyNode === '-') {

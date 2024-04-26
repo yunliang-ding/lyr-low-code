@@ -44,7 +44,7 @@ export default () => {
           <Button
             type="primary"
             onClick={() => {
-              if (tableDesignerRef.current.getStore().schema.length > 0) {
+              if (tableDesignerRef.current.getStore().columns?.length > 0) {
                 window.open(
                   `${
                     location.pathname
@@ -62,7 +62,7 @@ export default () => {
           <Button
             type="primary"
             onClick={() => {
-              if (tableDesignerRef.current.getStore().columns.length > 0) {
+              if (tableDesignerRef.current.getStore().columns?.length > 0) {
                 exportDrawer.open({
                   initialValues: {
                     code: tableDesignerRef.current.getStandardSchema(),

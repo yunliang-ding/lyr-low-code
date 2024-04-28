@@ -4,14 +4,10 @@ import { decrypt } from '@/util';
 
 export const parseStandardSchemaStrategy = {
   form: (code: string, require: any) => {
-    const result = babelParse({
+    return babelParse({
       code,
       require,
     });
-    return {
-      ...result.formProps,
-      schema: result.schema,
-    };
   },
   table: (code: string, require: any) => {
     return babelParse({

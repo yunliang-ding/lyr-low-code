@@ -31,6 +31,8 @@ export default create<{
   selectedSchema: DesignerSchemaProps;
   /** 获取标准的模型 */
   getStandardSchema: () => any;
+  /** 获取选中的属性配置 */
+  getPropsConfig: () => any;
 }>({
   formProps: {
     column: 2,
@@ -55,6 +57,20 @@ export default create<{
   ],
   schema: undefined,
   selectedSchema: undefined,
+  getPropsConfig() {
+    if (this.selectedSchema) {
+      let propsConfig = undefined;
+      this.builtInWidget.forEach((item) => {
+        const widget = item.value.find(
+          (i) => i.type === this.selectedSchema.type,
+        );
+        if (widget) {
+          propsConfig = widget.propsConfig;
+        }
+      });
+      return propsConfig;
+    }
+  },
   getStandardSchema() {
     return getFormStandardSchema({
       ...this.formProps,

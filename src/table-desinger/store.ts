@@ -45,6 +45,8 @@ export default create<{
       };
   /** 获取模型 */
   getStandardSchema(): any;
+  /** 获取选中的属性配置 */
+  getPropsConfig: () => any;
 }>({
   selectTable: true,
   formProps: {
@@ -143,5 +145,19 @@ export default create<{
         columns: this.columns,
       },
     });
+  },
+  getPropsConfig() {
+    if (this.selectedSchema) {
+      let propsConfig = undefined;
+      this.builtInWidget.forEach((item) => {
+        const widget = item.value.find(
+          (i) => i.type === this.selectedSchema.type,
+        );
+        if (widget) {
+          propsConfig = widget.propsConfig;
+        }
+      });
+      return propsConfig;
+    }
   },
 });

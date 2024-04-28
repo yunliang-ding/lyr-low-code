@@ -94,8 +94,12 @@ export const decrypt = (str: string, quotation = true) => {
  * 获取纯净的模型
  */
 export const getCleanCloneSchema = (schema = []) => {
-  schema.forEach((item) => {
+  schema.forEach((item, index) => {
     deleteEmptyObjProps(item);
+    // 删除虚拟节点
+    if (item.virtual === true) {
+      schema.splice(index, 1);
+    }
     /** 移除函数字符串_is_code 结尾的 */
     Object.keys(item).forEach((key) => {
       if (key.endsWith('_is_code')) {
@@ -112,7 +116,6 @@ export const getCleanCloneSchema = (schema = []) => {
     delete item.__parentKey__;
     delete item.isNew;
     delete item.selectField;
-    delete item.propsConfig;
     if (item.actionAlign === 'end') {
       delete item.actionAlign;
     }
@@ -158,7 +161,7 @@ export const getCleanCloneSchema = (schema = []) => {
     // innerVisible -> visible
     if (item.innerVisible) {
       item.visible = item.innerVisible;
-      delete item.visible;
+      delete item.innerVisible;
     }
     /** props */
     if (

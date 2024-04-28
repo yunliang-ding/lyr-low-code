@@ -31,7 +31,7 @@ export default ({
   } = store.useSnapshot(); // 拿到ctx
   const [compontentType, setCompontentType]: any = useState('表单项属性');
   const [tableType, setTableType]: any = useState('表格属性');
-  const propsConfig = selectedSchema?.propsConfig;
+  const propsConfig = store.getPropsConfig();
   /** 防抖0.1s */
   const onFormValuesChange = debounce((_, values) => {
     store.formProps = values;

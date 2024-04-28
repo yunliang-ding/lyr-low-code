@@ -21,7 +21,7 @@ export interface PropsConfigPanelTypes {
 export default ({ style = {}, debounceTime = 100 }: PropsConfigPanelTypes) => {
   const [compontentType, setCompontentType]: any = useState('表单项配置');
   const { schema, selectedSchema, formProps } = store.useSnapshot();
-  const propsConfig = selectedSchema?.propsConfig;
+  const propsConfig = store.getPropsConfig();
   /** 防抖0.1s */
   const onFormValuesChange = debounce((_, values) => {
     store.formProps = values;

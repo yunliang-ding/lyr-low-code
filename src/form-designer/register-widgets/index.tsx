@@ -20,18 +20,39 @@ export default ({ style = {}, store = formStore }: RegisterWidgetsType) => {
               <DragWrapper
                 accept={false}
                 items={item.value?.map((widget: any) => {
-                  const key = uuid(8);
+                  const schema = {
+                    type: widget.type,
+                    label: widget.label,
+                    name: uuid(4),
+                    ...widget,
+                    propsConfig: undefined,
+                    span: widget.span === 'fill' ? store.formProps?.column : 1,
+                  };
                   return {
-                    key,
-                    schema: {
-                      type: widget.type,
-                      label: widget.label,
-                      name: `name-${key}`,
-                      ...widget,
-                      span:
-                        widget.span === 'fill' ? store.formProps?.column : 1,
-                    },
-                    content: <Button>{widget.label || widget.name}</Button>,
+                    key: schema.name,
+                    schema,
+                    content: (
+                      <Button
+                        onClick={() => {
+                          if (Array.isArray(store.schema)) {
+                            store.schema.push({
+                              ...schema,
+                              key: uuid(8),
+                            });
+                            store.schema = [...store.schema];
+                          } else {
+                            store.schema = [
+                              {
+                                ...schema,
+                                key: uuid(8),
+                              },
+                            ];
+                          }
+                        }}
+                      >
+                        {widget.label || widget.name}
+                      </Button>
+                    ),
                   };
                 })}
               />

@@ -1,4 +1,4 @@
-import { Button, DragWrapper } from 'lyr-design';
+import { Button, DragWrapper } from 'lyr-component';
 import { uuid } from 'lyr-extra';
 import formStore from '../store';
 

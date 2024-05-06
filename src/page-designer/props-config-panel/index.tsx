@@ -3,7 +3,7 @@ import { Empty, Radio } from '@arco-design/web-react';
 import { encrypt, isEmpty, recursionFind } from '@/util';
 import { Ctx } from '../store';
 import debounce from 'lodash.debounce';
-import { Form } from 'lyr-design';
+import { Form } from 'lyr-component';
 import pageConfig from './page.config';
 import { CodeEditor } from 'lyr-code-editor';
 import './index.less';

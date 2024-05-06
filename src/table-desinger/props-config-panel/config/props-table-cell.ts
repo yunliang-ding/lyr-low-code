@@ -1,7 +1,7 @@
 /**
  * cell的属性配置
  */
-import { SchemaProps, CreateDrawer } from 'lyr-design';
+import { SchemaProps, CreateDrawer } from 'lyr-component';
 import { CodeEditor } from 'lyr-code-editor';
 
 const cellDetailFields: SchemaProps<{}>[] = [

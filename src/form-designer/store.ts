@@ -1,5 +1,5 @@
 import { create } from 'lyr-hooks';
-import { CardFormProps, SchemaProps } from 'lyr-design';
+import { CardFormProps, SchemaProps } from 'lyr-component';
 import { getStandardSchema as getFormStandardSchema } from '../util';
 import materialConfig from './register-widgets/material-config';
 import { ReactNode } from 'react';

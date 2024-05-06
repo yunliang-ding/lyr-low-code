@@ -1,7 +1,7 @@
 /**
  * Table的属性配置
  */
-import { CreateDrawer, SchemaProps } from 'lyr-design';
+import { CreateDrawer, SchemaProps } from 'lyr-component';
 import { encrypt } from '@/util';
 import { CodeEditor } from 'lyr-code-editor';
 

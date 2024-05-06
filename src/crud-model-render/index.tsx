@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { Table, CardForm } from 'lyr-design';
+import { Table, CardForm } from 'lyr-component';
 import { isEmpty } from '@/util';
 import { parseStandardSchemaStrategy, registerGlobalApi } from './util';
 import { Empty, Result } from '@arco-design/web-react';

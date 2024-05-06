@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { CreateDrawer } from 'lyr-design';
+import { CreateDrawer } from 'lyr-component';
 import { CodeEditor } from 'lyr-code-editor';
 import { TableDesigner } from 'lyr-low-code';
 import { Button, Message, Space } from '@arco-design/web-react';

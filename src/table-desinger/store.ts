@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/method-signature-style */
-import { SchemaProps, TableProps } from 'lyr-design';
+import { SchemaProps, TableProps } from 'lyr-component';
 import { create } from 'lyr-hooks';
-import { SearchProps } from 'lyr-design/dist/search/types';
-import { TableColumnType } from 'lyr-design/dist/table/type.column';
+import { SearchProps } from 'lyr-component/dist/search/types';
+import { TableColumnType } from 'lyr-component/dist/table/type.column';
 import { getStandardSchema as getTableStandardSchema } from './util';
 import { encrypt } from '@/util';
 import { ReactNode } from 'react';

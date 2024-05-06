@@ -1,7 +1,7 @@
 /**
  * Form的属性配置
  */
-import { SchemaProps } from 'lyr-design';
+import { SchemaProps } from 'lyr-component';
 
 const schema: SchemaProps<{
   path: string;

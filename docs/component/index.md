@@ -35,9 +35,9 @@ nav:
 <!-- window.lyr -->
 <link
   rel="stylesheet"
-  href="https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/lyr-design.min.css"
+  href="https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/lyr-component.min.css"
 />
-<script src="https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/lyr-design.min.js"></script>
+<script src="https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/lyr-component.min.js"></script>
 <!-- dark+ 主题 -->
 <script src="https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/prism.min.js"></script>
 <!-- code 格式化 -->

@@ -1,4 +1,4 @@
-import { Form } from 'lyr-design';
+import { Form } from 'lyr-component';
 import { Radio } from '@arco-design/web-react';
 import { CodeEditor } from 'lyr-code-editor';
 

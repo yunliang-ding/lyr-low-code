@@ -5,7 +5,7 @@
   "author": "yunliang-ding",
   "homepage": "http://dev-ops.yunliang.cloud/website/lyr-low-code",
   "keywords": [
-    "lyr-design",
+    "lyr-component",
     "low-code"
   ],
   "repository": {
@@ -45,13 +45,13 @@
     "react": ">=17.0.2",
     "react-dom": ">=17.0.2",
     "lyr-extra": ">=0.0.1",
-    "lyr-design": ">=0.0.4",
+    "lyr-component": ">=1.0.0",
     "lyr-code-editor": ">=0.0.1",
     "@arco-design/web-react": ">=2.61.3"
   },
   "devDependencies": {
     "axios": "^0.21.1",
-    "lyr-design": "^0.0.4",
+    "lyr-component": "^1.0.0",
     "lyr-extra": "^0.0.1",
     "lyr-code-editor": "^0.0.1",
     "@arco-design/web-react": "^2.61.3",

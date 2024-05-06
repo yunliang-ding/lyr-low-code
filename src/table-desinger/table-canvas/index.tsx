@@ -1,5 +1,5 @@
 import { cloneDeep, recursionFind } from '@/util';
-import { DragForm, Table } from 'lyr-design';
+import { DragForm, Table } from 'lyr-component';
 import { parseTableColumns, parseTableSchema } from '../util';
 import store from '../store';
 import { useEffect, useState } from 'react';

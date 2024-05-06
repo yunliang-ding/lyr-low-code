@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/restrict-plus-operands */
 import { Breadcrumb, Descriptions, Tabs } from '@arco-design/web-react';
 import { useEffect } from 'react';
-import { Button } from 'lyr-design';
+import { Button } from 'lyr-component';
 import './index.less';
 
 const $ = document.querySelector.bind(document);

@@ -1,5 +1,5 @@
 import { recursionFind } from '@/util';
-import { DragForm } from 'lyr-design';
+import { DragForm } from 'lyr-component';
 import store from '../store';
 
 export default () => {

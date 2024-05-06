@@ -51,7 +51,7 @@ export default defineConfig({
       rel: 'stylesheet',
     },
     {
-      href: 'https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/lyr-design.min.css',
+      href: 'https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/lyr-component.min.css',
       rel: 'stylesheet',
     },
   ],

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Button, CreateDrawer } from 'lyr-design';
+import { Button, CreateDrawer } from 'lyr-component';
 import { CodeEditor } from 'lyr-code-editor';
 import { FormDesigner } from 'lyr-low-code';
 import { Message, Space } from '@arco-design/web-react';

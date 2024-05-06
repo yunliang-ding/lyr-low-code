@@ -23,7 +23,6 @@ export default ({ style = {}, store = formStore }: RegisterWidgetsType) => {
                   const schema = {
                     type: widget.type,
                     label: widget.label,
-                    name: uuid(4),
                     ...widget,
                     propsConfig: undefined,
                     span: widget.span === 'fill' ? store.formProps?.column : 1,
@@ -34,17 +33,20 @@ export default ({ style = {}, store = formStore }: RegisterWidgetsType) => {
                     content: (
                       <Button
                         onClick={() => {
+                          const unikey = uuid(8);
                           if (Array.isArray(store.schema)) {
                             store.schema.push({
                               ...schema,
-                              key: uuid(8),
+                              key: unikey,
+                              name: unikey,
                             });
                             store.schema = [...store.schema];
                           } else {
                             store.schema = [
                               {
                                 ...schema,
-                                key: uuid(8),
+                                key: unikey,
+                                name: unikey,
                               },
                             ];
                           }

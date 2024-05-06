@@ -1,9 +1,10 @@
+/* eslint-disable @iceworks/best-practices/recommend-polyfill */
 /* eslint-disable react-hooks/rules-of-hooks */
 import { Table, CardForm } from 'lyr-component';
 import { isEmpty } from '@/util';
 import { parseStandardSchemaStrategy, registerGlobalApi } from './util';
 import { Empty, Result } from '@arco-design/web-react';
-import PageRender from '@/page-designer/material-render';
+// import PageRender from '@/page-designer/material-render';
 import { decode } from 'lyr-extra';
 
 export interface CrudModelRenderProps {
@@ -39,9 +40,10 @@ export default ({
       return <CardForm {...parseSchema} />;
     } else if (type === 'table') {
       return <Table {...parseSchema} />;
-    } else if (type === 'page') {
-      return <PageRender schema={parseSchema} />;
     }
+    //  else if (type === 'page') {
+    //   return <PageRender schema={parseSchema} />;
+    // }
   } catch (error) {
     return <Result status="error" title={error?.toString()} />;
   }

@@ -28,6 +28,6 @@
     "**/__test__",
     "test",
     "docs",
-    "tests"
+    "src/page-designer"
   ]
 }

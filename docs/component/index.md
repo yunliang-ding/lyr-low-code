@@ -12,7 +12,7 @@ nav:
 </div>
 <p style="display:flex;justify-content:space-between;width:220px">
   <a href="https://npmmirror.com/package/lyr-low-code">
-    <img alt="npm" src="https://img.shields.io/npm/dw/lyr-low-code">
+    <img alt="npm" src="https://img.shields.io/npm/dt/lyr-low-code.svg">
   </a>
   <a href="https://npmmirror.com/package/lyr-low-code">
     <img alt="NPM downloads" src="https://img.shields.io/npm/v/lyr-low-code.svg">

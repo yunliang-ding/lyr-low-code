@@ -7,6 +7,8 @@ import SearchFormPropsConfig from './search-form-props-config';
 import SearchTablePropsConfig from './search-table-props-config';
 import debounce from 'lodash.debounce';
 import store from '../store';
+import { Empty } from '@arco-design/web-react';
+import { isEmpty } from '@/util';
 
 export interface PropsConfigPanelTypes {
   style?: any; //
@@ -66,6 +68,11 @@ export default ({
         tableProps,
         columns,
       }}
+    />
+  ) : isEmpty(selectedSchema) ? (
+    <Empty
+      description="请选择需要设置的表单项"
+      className="props-config-panel-empty"
     />
   ) : (
     <SearchFormPropsConfig

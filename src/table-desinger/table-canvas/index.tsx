@@ -28,7 +28,7 @@ export default () => {
         onChange={(value) => {
           store.schema = value;
         }}
-        defaultSelectedKey={selectedSchema?.key}
+        selectedKey={selectedSchema?.key}
         onSelected={(key: string) => {
           store.selectTable = false;
           store.selectedSchema = recursionFind(schema, key);

@@ -21,7 +21,7 @@ export default ({ style = {}, store = formStore }: RegisterWidgetsType) => {
                 accept={false}
                 items={item.value?.map((widget: any) => {
                   const schema = {
-                    type: widget.type,
+                    widget: widget.widget,
                     label: widget.label,
                     ...widget,
                     propsConfig: undefined,

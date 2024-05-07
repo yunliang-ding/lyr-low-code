@@ -1,5 +1,5 @@
 {
-  "type": "Select",
+  "widget": "Select",
   "label": "下拉选",
   "props": {
     "placeholder": "请选择",
@@ -22,22 +22,22 @@
   },
   "propsConfig": [
     {
-      "type": "Switch",
+      "widget": "Switch",
       "name": "disabled",
       "label": "是否禁用"
     },
     {
-      "type": "Switch",
+      "widget": "Switch",
       "name": "allowClear",
       "label": "是否允许清除"
     },
     {
-      "type": "Input",
+      "widget": "Input",
       "name": "placeholder",
       "label": "提示文案"
     },
     {
-      "type": "Select",
+      "widget": "Select",
       "name": "mode",
       "label": "模式",
       "props": {
@@ -55,7 +55,7 @@
       }
     },
     {
-      "type": "CodeEditor",
+      "widget": "CodeEditor",
       "label": "设置数据源",
       "name": "options",
       "tooltip": "仅支持json",
@@ -64,7 +64,7 @@
       }
     },
     {
-      "type": "CodeEditor",
+      "widget": "CodeEditor",
       "name": "onChange",
       "label": "设置onChange",
       "props": {

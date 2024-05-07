@@ -1,5 +1,5 @@
 {
-  "type": "Link",
+  "widget": "Link",
   "label": "链接",
   "props": {
     "href": "https://www.baidu.com/",
@@ -8,18 +8,18 @@
   },
   "propsConfig": [
     {
-      "type": "Input",
+      "widget": "Input",
       "name": "href",
       "label": "链接地址"
     },
     {
-      "type": "Switch",
+      "widget": "Switch",
       "valuePropName": "checked",
       "name": "target",
       "label": "是否新开窗口"
     },
     {
-      "type": "Input",
+      "widget": "Input",
       "name": "title",
       "label": "文案"
     }

@@ -1,5 +1,5 @@
 {
-  "type": "RadioGroup",
+  "widget": "RadioGroup",
   "label": "单选组",
   "props": {
     "disabled": false,
@@ -20,12 +20,12 @@
   },
   "propsConfig": [
     {
-      "type": "Switch",
+      "widget": "Switch",
       "name": "disabled",
       "label": "是否禁用"
     },
     {
-      "type": "CodeEditor",
+      "widget": "CodeEditor",
       "label": "设置数据源",
       "name": "options",
       "tooltip": "仅支持json",
@@ -34,7 +34,7 @@
       }
     },
     {
-      "type": "CodeEditor",
+      "widget": "CodeEditor",
       "name": "onChange",
       "label": "设置onChange",
       "props": {

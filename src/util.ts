@@ -6,13 +6,13 @@ import { isEmpty, uuid } from 'lyr-extra';
 /**
  * 判断容器
  */
-export const isWrap = ({ type }) =>
-  ['FieldSet', 'FormList', 'TableList'].includes(type);
+export const isWrap = ({ widget }) =>
+  ['FieldSet', 'FormList', 'TableList'].includes(widget);
 /**
  * 判读空容器
  */
-export const isEmptyWrap = ({ type, props }) => {
-  return isWrap({ type }) && isEmpty(props?.children);
+export const isEmptyWrap = ({ widget, props }) => {
+  return isWrap({ widget }) && isEmpty(props?.children);
 };
 
 // 查找指定key
@@ -129,7 +129,7 @@ export const getCleanCloneSchema = (schema = []) => {
       item.expand = true;
     }
     delete item.isExpand;
-    if (['BlockQuote'].includes(item.type)) {
+    if (['BlockQuote'].includes(item.widget)) {
       delete item.span;
       delete item.name;
     }
@@ -165,7 +165,7 @@ export const getCleanCloneSchema = (schema = []) => {
     }
     /** props */
     if (
-      InputOrSelect.includes(item.type) &&
+      InputOrSelect.includes(item.widget) &&
       ['请输入', '请选择'].includes(item.props?.placeholder)
     ) {
       delete item.props.placeholder;

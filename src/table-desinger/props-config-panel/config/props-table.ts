@@ -12,23 +12,23 @@ const toolPropsConfig = (
 ): SchemaProps<{}>[] => {
   return [
     {
-      type: 'Input',
+      widget: 'Input',
       name: 'label',
       label: '标签名',
     },
     {
-      type: 'Switch',
+      widget: 'Switch',
       name: 'spin',
       label: '开启loading',
     },
     {
-      type: 'Input',
+      widget: 'Input',
       name: 'auth',
       label: '配置权限标识',
       tooltip: '控制按钮权限',
     },
     {
-      type: 'CodeEditor',
+      widget: 'CodeEditor',
       name: 'visible',
       label: '是否展示',
       props: {
@@ -49,7 +49,7 @@ const toolPropsConfig = (
       },
     } as any,
     {
-      type: 'RadioGroup',
+      widget: 'RadioGroup',
       name: 'bindFormType',
       label: '绑定表单',
       props: {
@@ -84,7 +84,7 @@ const toolPropsConfig = (
       },
     },
     {
-      type: 'AsyncSelect',
+      widget: 'AsyncSelect',
       label: '选择表单模型',
       name: 'modelId',
       effect: ['bindFormType'],
@@ -97,7 +97,7 @@ const toolPropsConfig = (
       },
     },
     {
-      type: 'RadioGroup',
+      widget: 'RadioGroup',
       name: 'modelIdType',
       label: '展示形式',
       effect: ['modelId', 'bindFormType'],
@@ -166,7 +166,7 @@ const toolPropsConfig = (
       },
     },
     {
-      type: 'CodeEditor',
+      widget: 'CodeEditor',
       name: 'drawerFormProps',
       label: '绑定DrawerForm',
       effect: ['bindFormType', 'modelIdType'],
@@ -190,7 +190,7 @@ const toolPropsConfig = (
       } as any,
     },
     {
-      type: 'CodeEditor',
+      widget: 'CodeEditor',
       name: 'modalFormProps',
       label: '绑定ModalForm',
       effect: ['bindFormType', 'modelIdType'],
@@ -214,7 +214,7 @@ const toolPropsConfig = (
       } as any,
     },
     {
-      type: 'CodeEditor',
+      widget: 'CodeEditor',
       name: 'onClick',
       label: '点击事件',
       props: {
@@ -254,48 +254,48 @@ const drawerMenuForm = CreateDrawer({
 export default ({ selectModelOptions }) =>
   [
     {
-      type: 'Input',
+      widget: 'Input',
       name: 'rowKey',
       label: '唯一标识',
     },
     {
-      type: 'Input',
+      widget: 'Input',
       name: 'title',
       label: '列表标题',
     },
     {
-      type: 'Input',
+      widget: 'Input',
       name: 'emptyNode',
       label: '空数据提示文案',
     },
     {
-      type: 'BlockQuote',
+      widget: 'BlockQuote',
       props: {
         title: '顶部工具栏设置',
       },
     },
     {
-      type: 'Switch',
+      widget: 'Switch',
       name: 'pagination',
       label: '启用分页',
     },
     {
-      type: 'Switch',
+      widget: 'Switch',
       name: 'openDefaultTools',
       label: '启用默认工具栏',
     },
     {
-      type: 'Switch',
+      widget: 'Switch',
       name: 'autoNo',
       label: '启用自增序号',
     },
     {
-      type: 'InputNumber',
+      widget: 'InputNumber',
       name: 'scrollX',
       label: '容器水平宽度',
     },
     {
-      type: 'TableList',
+      widget: 'TableList',
       name: 'tools',
       label: '工具栏集合',
       props: {
@@ -308,7 +308,7 @@ export default ({ selectModelOptions }) =>
         },
         children: [
           {
-            type: 'Input',
+            widget: 'Input',
             name: 'label',
             label: '展示文案',
             props: {
@@ -327,7 +327,7 @@ export default ({ selectModelOptions }) =>
                 initialValues: record,
                 schema: [
                   {
-                    type: 'RadioGroup',
+                    widget: 'RadioGroup',
                     name: 'btnType',
                     label: '按钮主题',
                     props: {
@@ -359,23 +359,23 @@ export default ({ selectModelOptions }) =>
       },
     },
     {
-      type: 'BlockQuote',
+      widget: 'BlockQuote',
       props: {
         title: '列操作栏设置',
       },
     },
     {
-      type: 'InputNumber',
+      widget: 'InputNumber',
       name: 'showMore',
       label: '操作栏超过几条展示更多',
     },
     {
-      type: 'InputNumber',
+      widget: 'InputNumber',
       name: 'width',
       label: '操作栏宽度',
     },
     {
-      type: 'TableList',
+      widget: 'TableList',
       name: 'menus',
       label: '操作栏列集合',
       props: {
@@ -390,7 +390,7 @@ export default ({ selectModelOptions }) =>
         },
         children: [
           {
-            type: 'Input',
+            widget: 'Input',
             name: 'label',
             label: '展示文案',
             props: {
@@ -409,12 +409,12 @@ export default ({ selectModelOptions }) =>
                 initialValues: record,
                 schema: [
                   {
-                    type: 'Switch',
+                    widget: 'Switch',
                     name: 'confirm',
                     label: '开启二次确认',
                   },
                   {
-                    type: 'Input',
+                    widget: 'Input',
                     name: 'content',
                     label: '提示内容',
                     effect: ['confirm'],
@@ -434,24 +434,24 @@ export default ({ selectModelOptions }) =>
       },
     },
     {
-      type: 'BlockQuote',
+      widget: 'BlockQuote',
       props: {
         title: '分页设置',
       },
     },
     {
-      type: 'InputNumber',
+      widget: 'InputNumber',
       name: 'pageSize',
       label: '默认每页大小',
     },
     {
-      type: 'BlockQuote',
+      widget: 'BlockQuote',
       props: {
         title: '事件绑定',
       },
     },
     {
-      type: 'CodeEditor',
+      widget: 'CodeEditor',
       name: 'request',
       label: '数据查询事件',
       props: {

@@ -1,5 +1,5 @@
 {
-  "type": "Switch",
+  "widget": "Switch",
   "label": "开关",
   "props": {
     "disabled": false,
@@ -8,22 +8,22 @@
   },
   "propsConfig": [
     {
-      "type": "Switch",
+      "widget": "Switch",
       "name": "disabled",
       "label": "是否禁用"
     },
     {
-      "type": "Input",
+      "widget": "Input",
       "name": "checkedText",
       "label": "打开文案"
     },
     {
-      "type": "Input",
+      "widget": "Input",
       "name": "uncheckedText",
       "label": "关闭文案"
     },
     {
-      "type": "CodeEditor",
+      "widget": "CodeEditor",
       "name": "onChange",
       "label": "设置onChange",
       "props": {

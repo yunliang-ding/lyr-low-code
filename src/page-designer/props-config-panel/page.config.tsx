@@ -2,7 +2,7 @@ import { SchemaProps } from 'lyr-component';
 
 export default [
   {
-    type: 'CodeEditor',
+    widget: 'CodeEditor',
     name: 'onMount',
     label: '页面加载完钩子',
     props: {
@@ -11,13 +11,13 @@ export default [
     },
   },
   {
-    type: 'BlockQuote',
+    widget: 'BlockQuote',
     props: {
       title: '头部信息设置',
     },
   },
   {
-    type: 'CodeEditor',
+    widget: 'CodeEditor',
     name: 'title',
     label: '标题渲染',
     extra: '仅在渲染阶段生效',
@@ -27,7 +27,7 @@ export default [
     },
   },
   {
-    type: 'CodeEditor',
+    widget: 'CodeEditor',
     name: 'breadcrumb',
     label: '设置面包屑',
     props: {
@@ -35,7 +35,7 @@ export default [
     },
   },
   {
-    type: 'CodeEditor',
+    widget: 'CodeEditor',
     name: 'extra',
     label: '设置操作按钮',
     props: {
@@ -43,7 +43,7 @@ export default [
     },
   },
   {
-    type: 'CodeEditor',
+    widget: 'CodeEditor',
     name: 'descriptions',
     label: '设置描述信息',
     props: {
@@ -51,7 +51,7 @@ export default [
     },
   },
   {
-    type: 'CodeEditor',
+    widget: 'CodeEditor',
     name: 'tabList',
     label: '选项卡设置',
     props: {
@@ -59,12 +59,12 @@ export default [
     },
   },
   {
-    type: 'Input',
+    widget: 'Input',
     name: 'activeKey',
     label: '选项卡选中值',
   },
   {
-    type: 'CodeEditor',
+    widget: 'CodeEditor',
     label: '切换选项卡回调',
     name: 'onTabChange',
     props: {
@@ -73,7 +73,7 @@ export default [
     },
   },
   {
-    type: 'CodeEditor',
+    widget: 'CodeEditor',
     name: 'footer',
     label: '底部操作按钮',
     props: {

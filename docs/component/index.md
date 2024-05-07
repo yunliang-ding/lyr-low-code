@@ -59,12 +59,12 @@ formDesignerRef.current.startRegisterWidgets({
     },
     propsConfig: [
       {
-        type: 'Switch',
+        widget: 'Switch',
         name: 'disabled',
         label: '是否禁用',
       },
       {
-        type: 'Input',
+        widget: 'Input',
         name: 'placeholder',
         label: '提示文案',
       },

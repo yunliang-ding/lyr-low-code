@@ -1,5 +1,5 @@
 {
-  "type": "Breadcrumb",
+  "widget": "Breadcrumb",
   "label": "面包屑",
   "props": {
     "items": [
@@ -20,7 +20,7 @@
   },
   "propsConfig": [
     {
-      "type": "CodeEditor",
+      "widget": "CodeEditor",
       "label": "设置数据源",
       "name": "items",
       "tooltip": "仅支持json",
@@ -29,12 +29,12 @@
       }
     },
     {
-      "type": "Input",
+      "widget": "Input",
       "label": "分隔符",
       "name": "separator"
     },
     {
-      "type": "CodeEditor",
+      "widget": "CodeEditor",
       "name": "onClick",
       "label": "设置onClick",
       "props": {

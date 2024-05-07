@@ -1,5 +1,5 @@
 {
-  "type": "AsyncSelect",
+  "widget": "AsyncSelect",
   "label": "异步选择框",
   "props": {
     "placeholder": "请选择",
@@ -8,22 +8,22 @@
   },
   "propsConfig": [
     {
-      "type": "Switch",
+      "widget": "Switch",
       "name": "disabled",
       "label": "是否禁用"
     },
     {
-      "type": "Switch",
+      "widget": "Switch",
       "name": "allowClear",
       "label": "是否允许清除"
     },
     {
-      "type": "Input",
+      "widget": "Input",
       "name": "placeholder",
       "label": "提示文案"
     },
     {
-      "type": "Select",
+      "widget": "Select",
       "name": "mode",
       "label": "模式",
       "props": {
@@ -41,7 +41,7 @@
       }
     },
     {
-      "type": "CodeEditor",
+      "widget": "CodeEditor",
       "label": "设置options",
       "name": "options",
       "props": {
@@ -51,7 +51,7 @@
       }
     },
     {
-      "type": "CodeEditor",
+      "widget": "CodeEditor",
       "name": "onChange",
       "label": "设置onChange",
       "props": {

@@ -8,17 +8,17 @@ export default (schema, selectedSchema) =>
   formItemSchema(
     [
       {
-        type: 'InputNumber',
+        widget: 'InputNumber',
         name: 'labelWidth',
         label: '字段宽度',
       },
       {
-        type: 'Switch',
+        widget: 'Switch',
         name: 'isExpand',
         label: '更多才展示',
       },
       {
-        type: 'Switch',
+        widget: 'Switch',
         name: 'autosearch',
         label: '改变立即查询',
       },

@@ -5,12 +5,12 @@ import { SchemaProps } from 'lyr-component';
 
 const schema: SchemaProps<{}>[] = [
   {
-    type: 'Input',
+    widget: 'Input',
     name: 'title',
     label: '表单标题',
   },
   {
-    type: 'RadioGroup',
+    widget: 'RadioGroup',
     name: 'column',
     label: '容器排版',
     props: {
@@ -32,7 +32,7 @@ const schema: SchemaProps<{}>[] = [
     },
   },
   {
-    type: 'RadioGroup',
+    widget: 'RadioGroup',
     name: 'layout',
     label: '布局方式',
     props: {
@@ -54,7 +54,7 @@ const schema: SchemaProps<{}>[] = [
     },
   },
   {
-    type: 'RadioGroup',
+    widget: 'RadioGroup',
     name: 'actionAlign',
     label: '操作按钮位置',
     props: {
@@ -76,7 +76,7 @@ const schema: SchemaProps<{}>[] = [
     },
   },
   {
-    type: 'CodeEditor',
+    widget: 'CodeEditor',
     name: 'onSubmit',
     label: '表单提交',
     props: {

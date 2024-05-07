@@ -1,5 +1,5 @@
 {
-  "type": "divider",
+  "widget": "divider",
   "label": "分割线",
   "props": {
     "placeholder": "请输入",
@@ -10,35 +10,35 @@
   },
   "propsConfig": [
     {
-      "type": "Switch",
+      "widget": "Switch",
       "valuePropName": "checked",
       "name": "showWordLimit",
       "label": "是否展示计数"
     },
     {
-      "type": "Switch",
+      "widget": "Switch",
       "valuePropName": "checked",
       "name": "disabled",
       "label": "是否禁用"
     },
     {
-      "type": "Switch",
+      "widget": "Switch",
       "name": "allowClear",
       "valuePropName": "checked",
       "label": "是否允许清除"
     },
     {
-      "type": "Input",
+      "widget": "Input",
       "name": "placeholder",
       "label": "提示文案"
     },
     {
-      "type": "InputNumber",
+      "widget": "InputNumber",
       "name": "maxLength",
       "label": "最大长度"
     },
     {
-      "type": "CodeEditor",
+      "widget": "CodeEditor",
       "name": "onChange",
       "label": "设置onChange",
       "props": {

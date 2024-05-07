@@ -1,17 +1,17 @@
 {
-  "type": "Slider",
+  "widget": "Slider",
   "label": "滑块控件",
   "props": {
     "disabled": false
   },
   "propsConfig": [
     {
-      "type": "Switch",
+      "widget": "Switch",
       "name": "disabled",
       "label": "是否禁用"
     },
     {
-      "type": "CodeEditor",
+      "widget": "CodeEditor",
       "name": "onChange",
       "label": "设置onChange",
       "props": {

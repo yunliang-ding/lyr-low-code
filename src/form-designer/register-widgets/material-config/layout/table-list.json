@@ -1,5 +1,5 @@
 {
-  "type": "TableList",
+  "widget": "TableList",
   "label": "编辑表格",
   "span": "fill",
   "props": {
@@ -9,12 +9,12 @@
   },
   "propsConfig": [
     {
-      "type": "Switch",
+      "widget": "Switch",
       "name": "disabled",
       "label": "是否禁用"
     },
     {
-      "type": "Switch",
+      "widget": "Switch",
       "name": "showNo",
       "label": "展示序号"
     }

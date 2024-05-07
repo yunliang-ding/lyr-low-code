@@ -6,12 +6,12 @@ import { SchemaProps } from 'lyr-component';
 export const formItemSchema = (
   insertSchema = [
     {
-      type: 'Switch',
+      widget: 'Switch',
       name: 'required',
       label: '是否必填',
     },
     {
-      type: 'CodeEditor',
+      widget: 'CodeEditor',
       name: 'rules_is_code',
       label: '规则校验',
       props: {
@@ -30,7 +30,7 @@ export const formItemSchema = (
   selectedSchema = {} as any,
 ): SchemaProps<{}>[] => [
   {
-    type: 'Input',
+    widget: 'Input',
     name: 'key',
     label: '唯一标识',
     props: {
@@ -38,17 +38,17 @@ export const formItemSchema = (
     },
   },
   {
-    type: 'Input',
+    widget: 'Input',
     name: 'label',
     label: '字段标签',
   },
   {
-    type: 'Input',
+    widget: 'Input',
     name: 'name',
     label: '字段名称',
   },
   {
-    type: 'RadioGroup',
+    widget: 'RadioGroup',
     name: 'span',
     label: '占据列数',
     props: {
@@ -72,7 +72,7 @@ export const formItemSchema = (
   ...(insertSchema as any),
   // TODO 没有考虑 FieldSet
   {
-    type: 'AsyncSelect',
+    widget: 'AsyncSelect',
     name: 'effect',
     label: '设置effect',
     props: {
@@ -81,7 +81,7 @@ export const formItemSchema = (
         const options = schema
           ?.filter(
             (item) =>
-              item.key !== selectedSchema.key && item.type !== 'BlockQuote',
+              item.key !== selectedSchema.key && item.widget !== 'BlockQuote',
           ) // 过滤自己
           .map((item) => {
             return {
@@ -94,7 +94,7 @@ export const formItemSchema = (
     },
   },
   {
-    type: 'CodeEditor',
+    widget: 'CodeEditor',
     name: 'onEffect',
     label: '设置onEffect',
     effect: ['effect'],
@@ -115,7 +115,7 @@ export const formItemSchema = (
     },
   },
   {
-    type: 'Switch',
+    widget: 'Switch',
     name: 'effectClearField',
     label: '依赖变化清空值',
     visible({ effect }) {
@@ -123,7 +123,7 @@ export const formItemSchema = (
     },
   },
   {
-    type: 'CodeEditor',
+    widget: 'CodeEditor',
     name: 'visible',
     label: '设置visible',
     props: {
@@ -140,7 +140,7 @@ export const formItemSchema = (
     },
   },
   {
-    type: 'CodeEditor',
+    widget: 'CodeEditor',
     name: 'innerItemRender',
     label: '设置itemRender',
     props: {

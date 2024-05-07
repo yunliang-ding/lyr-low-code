@@ -1,5 +1,5 @@
 {
-  "type": "Avatar",
+  "widget": "Avatar",
   "label": "头像",
   "props": {
     "shape": "circle",
@@ -9,7 +9,7 @@
   },
   "propsConfig": [
     {
-      "type": "RadioGroup",
+      "widget": "RadioGroup",
       "name": "shape",
       "label": "形状",
       "props": {
@@ -26,17 +26,17 @@
       }
     },
     {
-      "type": "InputNumber",
+      "widget": "InputNumber",
       "name": "size",
       "label": "尺寸"
     },
     {
-      "type": "InputNumber",
+      "widget": "InputNumber",
       "name": "gap",
       "label": "间隙"
     },
     {
-      "type": "Input",
+      "widget": "Input",
       "name": "src",
       "label": "资源地址"
     }

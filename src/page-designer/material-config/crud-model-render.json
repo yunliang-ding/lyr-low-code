@@ -1,10 +1,10 @@
 {
-  "type": "CrudModelRender",
+  "widget": "CrudModelRender",
   "label": "我的模型",
   "props": {},
   "propsConfig": [
     {
-      "type": "Select",
+      "widget": "Select",
       "name": "schemaId",
       "label": "我的模型",
       "props": {

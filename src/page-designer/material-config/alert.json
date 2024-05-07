@@ -1,16 +1,16 @@
 {
-  "type": "Alert",
+  "widget": "Alert",
   "label": "提示框",
   "props": {
-    "type": "success",
+    "widget": "success",
     "closable": true,
     "message": "标题",
     "description": "提示内容"
   },
   "propsConfig": [
     {
-      "type": "RadioGroup",
-      "name": "type",
+      "widget": "RadioGroup",
+      "name": "widget",
       "label": "类型",
       "props": {
         "options": [
@@ -34,23 +34,23 @@
       }
     },
     {
-      "type": "Switch",
+      "widget": "Switch",
       "valuePropName": "checked",
       "name": "closable",
       "label": "支持关闭"
     },
     {
-      "type": "Input",
+      "widget": "Input",
       "name": "message",
       "label": "标题"
     },
     {
-      "type": "Input",
+      "widget": "Input",
       "name": "description",
       "label": "描述"
     },
     {
-      "type": "CodeEditor",
+      "widget": "CodeEditor",
       "name": "onClose",
       "label": "设置onClose",
       "props": {

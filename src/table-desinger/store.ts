@@ -151,7 +151,7 @@ export default create<{
       let propsConfig = undefined;
       this.builtInWidget.forEach((item) => {
         const widget = item.value.find(
-          (i) => i.type === this.selectedSchema.type,
+          (i) => i.widget === this.selectedSchema.widget,
         );
         if (widget) {
           propsConfig = widget.propsConfig;

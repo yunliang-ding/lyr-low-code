@@ -7,7 +7,7 @@ const schema: SchemaProps<{
   path: string;
 }>[] = [
   {
-    type: 'RadioGroup',
+    widget: 'RadioGroup',
     name: 'column',
     label: '占据列数',
     props: {
@@ -33,7 +33,7 @@ const schema: SchemaProps<{
     },
   },
   {
-    type: 'RadioGroup',
+    widget: 'RadioGroup',
     name: 'layout',
     label: '布局方式',
     props: {
@@ -51,22 +51,22 @@ const schema: SchemaProps<{
     },
   },
   {
-    type: 'Switch',
+    widget: 'Switch',
     name: 'toolReverse',
     label: '查询按钮位置互换',
   },
   {
-    type: 'Switch',
+    widget: 'Switch',
     name: 'defaultExpand',
     label: '默认展开更多',
   },
   {
-    type: 'Switch',
+    widget: 'Switch',
     name: 'clearInitialValuesOnReset',
     label: '清空是否保留默认值',
   },
   {
-    type: 'Switch',
+    widget: 'Switch',
     name: 'hidden',
     label: '是否隐藏查询条件',
   },

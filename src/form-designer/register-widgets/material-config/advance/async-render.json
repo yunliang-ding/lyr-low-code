@@ -1,10 +1,10 @@
 {
-  "type": "AsyncRender",
+  "widget": "AsyncRender",
   "label": "异步自定义渲染",
   "props": {},
   "propsConfig": [
     {
-      "type": "CodeEditor",
+      "widget": "CodeEditor",
       "label": "渲染函数",
       "name": "render",
       "props": {

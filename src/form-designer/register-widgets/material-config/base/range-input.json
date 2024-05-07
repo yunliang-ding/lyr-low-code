@@ -1,5 +1,5 @@
 {
-  "type": "RangeInput",
+  "widget": "RangeInput",
   "label": "区间范围",
   "props": {
     "disabled": false,
@@ -7,12 +7,12 @@
   },
   "propsConfig": [
     {
-      "type": "Switch",
+      "widget": "Switch",
       "name": "disabled",
       "label": "是否禁用"
     },
     {
-      "type": "RadioGroup",
+      "widget": "RadioGroup",
       "name": "mode",
       "label": "模式",
       "props": {
@@ -29,7 +29,7 @@
       }
     },
     {
-      "type": "CodeEditor",
+      "widget": "CodeEditor",
       "name": "onChange",
       "label": "设置onChange",
       "props": {

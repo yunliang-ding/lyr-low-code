@@ -1,5 +1,5 @@
 {
-  "type": "InputNumber",
+  "widget": "InputNumber",
   "label": "数字框",
   "props": {
     "placeholder": "请输入",
@@ -8,32 +8,32 @@
   },
   "propsConfig": [
     {
-      "type": "Switch",
+      "widget": "Switch",
       "name": "disabled",
       "label": "是否禁用"
     },
     {
-      "type": "Switch",
+      "widget": "Switch",
       "name": "allowClear",
       "label": "是否允许清除"
     },
     {
-      "type": "Input",
+      "widget": "Input",
       "name": "placeholder",
       "label": "提示文案"
     },
     {
-      "type": "InputNumber",
+      "widget": "InputNumber",
       "name": "min",
       "label": "最小值"
     },
     {
-      "type": "InputNumber",
+      "widget": "InputNumber",
       "name": "max",
       "label": "最大值"
     },
     {
-      "type": "CodeEditor",
+      "widget": "CodeEditor",
       "name": "onChange",
       "label": "设置onChange",
       "props": {

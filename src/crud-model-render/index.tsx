@@ -36,6 +36,7 @@ export default ({
       decode(schema),
       require,
     );
+    console.log(parseSchema);
     if (type === 'form') {
       return <CardForm {...parseSchema} />;
     } else if (type === 'table') {

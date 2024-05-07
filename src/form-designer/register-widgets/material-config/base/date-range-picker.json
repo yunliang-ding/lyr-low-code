@@ -1,5 +1,5 @@
 {
-  "type": "RangePicker",
+  "widget": "RangePicker",
   "label": "日期区间",
   "props": {
     "allowClear": true,
@@ -8,12 +8,12 @@
   },
   "propsConfig": [
     {
-      "type": "Switch",
+      "widget": "Switch",
       "name": "disabled",
       "label": "是否禁用"
     },
     {
-      "type": "RadioGroup",
+      "widget": "RadioGroup",
       "name": "mode",
       "label": "模式",
       "props": {
@@ -30,12 +30,12 @@
       }
     },
     {
-      "type": "Switch",
+      "widget": "Switch",
       "name": "allowClear",
       "label": "是否允许清除"
     },
     {
-      "type": "CodeEditor",
+      "widget": "CodeEditor",
       "name": "onChange",
       "label": "设置onChange",
       "props": {

@@ -6,27 +6,27 @@ import { CodeEditor } from 'lyr-code-editor';
 
 const cellDetailFields: SchemaProps<{}>[] = [
   {
-    type: 'Input',
+    widget: 'Input',
     label: '列标签',
     name: 'title',
   },
   {
-    type: 'Input',
+    widget: 'Input',
     label: '列标识',
     name: 'dataIndex',
   },
   {
-    type: 'InputNumber',
+    widget: 'InputNumber',
     label: '列宽度',
     name: 'width',
   },
   {
-    type: 'Input',
+    widget: 'Input',
     label: '列后缀',
     name: 'suffix',
   },
   {
-    type: 'Select',
+    widget: 'Select',
     label: '日期格式转换',
     name: 'dateFormat',
     props: {
@@ -47,33 +47,33 @@ const cellDetailFields: SchemaProps<{}>[] = [
     },
   },
   {
-    type: 'Switch',
+    widget: 'Switch',
     name: 'ellipsis',
     label: '超出是否展示...',
   },
   {
-    type: 'Switch',
+    widget: 'Switch',
     name: 'copyable',
     label: '是否支持拷贝文案',
   },
   {
-    type: 'Switch',
+    widget: 'Switch',
     name: 'resize',
     label: '是否可拖拽调整宽度',
   },
   {
-    type: 'Switch',
+    widget: 'Switch',
     name: 'useThousandth',
     label: '是否展示千分位',
   },
   ...([
     {
-      type: 'InputNumber',
+      widget: 'InputNumber',
       name: 'minimumFractionDigits',
       label: '小数点最小位数',
     },
     {
-      type: 'InputNumber',
+      widget: 'InputNumber',
       name: 'maximumFractionDigits',
       label: '小数点最大位数',
     },
@@ -87,12 +87,12 @@ const cellDetailFields: SchemaProps<{}>[] = [
     };
   }) as any),
   {
-    type: 'Switch',
+    widget: 'Switch',
     name: 'link',
     label: '是否展示成链接',
   },
   {
-    type: 'CodeEditor',
+    widget: 'CodeEditor',
     name: 'render',
     label: '自定义渲染',
     props: {
@@ -119,14 +119,14 @@ const drawerCellForm = CreateDrawer({
 
 const cellFields: SchemaProps<{}>[] = [
   {
-    type: 'BlockQuote',
+    widget: 'BlockQuote',
     name: '-',
     props: {
       title: '数据列设置',
     },
   },
   {
-    type: 'TableList',
+    widget: 'TableList',
     name: 'columns',
     props: {
       showNo: false,
@@ -138,7 +138,7 @@ const cellFields: SchemaProps<{}>[] = [
       },
       children: [
         {
-          type: 'Input',
+          widget: 'Input',
           name: 'title',
           label: '名称',
           props: {
@@ -146,7 +146,7 @@ const cellFields: SchemaProps<{}>[] = [
           },
         },
         {
-          type: 'Input',
+          widget: 'Input',
           name: 'dataIndex',
           label: '唯一标识',
           props: {

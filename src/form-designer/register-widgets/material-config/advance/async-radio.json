@@ -1,5 +1,5 @@
 {
-  "type": "AsyncRadioGroup",
+  "widget": "AsyncRadioGroup",
   "label": "异步单选框",
   "props": {
     "placeholder": "请选择",
@@ -7,12 +7,12 @@
   },
   "propsConfig": [
     {
-      "type": "Switch",
+      "widget": "Switch",
       "name": "disabled",
       "label": "是否禁用"
     },
     {
-      "type": "CodeEditor",
+      "widget": "CodeEditor",
       "label": "设置options",
       "name": "options",
       "props": {
@@ -22,7 +22,7 @@
       }
     },
     {
-      "type": "CodeEditor",
+      "widget": "CodeEditor",
       "name": "onChange",
       "label": "设置onChange",
       "props": {

@@ -1,5 +1,5 @@
 {
-  "type": "Empty",
+  "widget": "Empty",
   "label": "空提示",
   "props": {
     "description": "数据为空",
@@ -7,13 +7,13 @@
   },
   "propsConfig": [
     {
-      "type": "Switch",
+      "widget": "Switch",
       "valuePropName": "checked",
       "name": "simple",
       "label": "展示简单的logo"
     },
     {
-      "type": "Input",
+      "widget": "Input",
       "name": "description",
       "label": "提示文案"
     }

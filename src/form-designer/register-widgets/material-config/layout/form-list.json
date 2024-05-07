@@ -1,5 +1,5 @@
 {
-  "type": "FormList",
+  "widget": "FormList",
   "label": "子表单容器",
   "span": "fill",
   "props": {
@@ -12,27 +12,27 @@
   },
   "propsConfig": [
     {
-      "type": "Input",
+      "widget": "Input",
       "name": "label",
       "label": "子项标题"
     },
     {
-      "type": "Switch",
+      "widget": "Switch",
       "name": "disabled",
       "label": "是否禁用"
     },
     {
-      "type": "Switch",
+      "widget": "Switch",
       "name": "leastOne",
       "label": "至少保留一条"
     },
     {
-      "type": "InputNumber",
+      "widget": "InputNumber",
       "name": "maxCount",
       "label": "最大条数限制"
     },
     {
-      "type": "RadioGroup",
+      "widget": "RadioGroup",
       "name": "column",
       "label": "容器排版",
       "props": {

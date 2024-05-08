@@ -1,6 +1,9 @@
 import { create } from 'lyr-hooks';
 import { CardFormProps, SchemaProps } from 'lyr-component';
-import { getStandardSchema as getFormStandardSchema } from '../util';
+import {
+  getStandardSchema as getFormStandardSchema,
+  recursionFind,
+} from '../util';
 import materialConfig from './register-widgets/material-config';
 import { ReactNode } from 'react';
 
@@ -27,8 +30,8 @@ export default create<{
   customWidgets: any;
   /** 数据模型 */
   schema: DesignerSchemaProps[];
-  /** 选中的模型 */
-  selectedSchema: DesignerSchemaProps;
+  /** 选中的模型Key */
+  selectedKey: string;
   /** 获取标准的模型 */
   getStandardSchema: () => any;
   /** 获取选中的属性配置 */
@@ -56,20 +59,25 @@ export default create<{
     },
   ],
   schema: undefined,
-  selectedSchema: undefined,
+  selectedKey: undefined,
   getPropsConfig() {
-    if (this.selectedSchema) {
+    if (this.selectedKey) {
       let propsConfig = undefined;
+      const selectedSchema = recursionFind(this.schema, this.selectedKey);
       this.builtInWidget.forEach((item) => {
         const widget = item.value.find(
-          (i) => i.widget === this.selectedSchema.widget,
+          (i: any) => i.widget === selectedSchema.widget,
         );
         if (widget) {
           propsConfig = widget.propsConfig;
         }
       });
-      return propsConfig;
+      return {
+        propsConfig,
+        selectedSchema,
+      };
     }
+    return {};
   },
   getStandardSchema() {
     return getFormStandardSchema({

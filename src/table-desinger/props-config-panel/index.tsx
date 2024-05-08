@@ -23,29 +23,23 @@ export default ({
   debounceTime = 100,
   selectModelOptions = async () => [],
 }: PropsConfigPanelTypes) => {
-  const {
-    formProps,
-    columns,
-    tableProps,
-    selectTable,
-    schema,
-    selectedSchema,
-  } = store.useSnapshot(); // 拿到ctx
+  const { formProps, columns, tableProps, selectTable, schema, selectedKey } =
+    store.useSnapshot(); // 拿到ctx
   const [compontentType, setCompontentType]: any = useState('表单项属性');
   const [tableType, setTableType]: any = useState('表格属性');
-  const propsConfig = store.getPropsConfig();
+  const { propsConfig, selectedSchema } = store.getPropsConfig();
   /** 防抖0.1s */
   const onFormValuesChange = debounce((_, values) => {
     store.formProps = values;
   }, debounceTime);
   /** 防抖0.1s */
   const onItemValuesChange = debounce((value) => {
-    Object.assign(store.selectedSchema, value);
+    Object.assign(selectedSchema, value);
     store.schema = [...store.schema];
   }, debounceTime);
   /** 防抖0.1s */
   const onWidgetValuesChange = debounce((value) => {
-    Object.assign(store.selectedSchema.props, value);
+    Object.assign(selectedSchema.props, value);
     store.schema = [...store.schema];
   }, debounceTime);
   /** 防抖0.1s */
@@ -69,7 +63,7 @@ export default ({
         columns,
       }}
     />
-  ) : isEmpty(selectedSchema) ? (
+  ) : isEmpty(selectedKey) ? (
     <Empty
       description="请选择需要设置的表单项"
       className="props-config-panel-empty"
@@ -92,7 +86,7 @@ export default ({
     />
   );
   return (
-    <div className="props-config-panel" style={style} key={selectedSchema?.key}>
+    <div className="props-config-panel" style={style} key={selectedKey}>
       {PanelRender}
     </div>
   );

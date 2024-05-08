@@ -1,10 +1,8 @@
-import { recursionFind } from '@/util';
 import { DragForm } from 'lyr-component';
 import store from '../store';
 
 export default () => {
-  const { schema, formProps, customWidgets, selectedSchema } =
-    store.useSnapshot();
+  const { schema, formProps, customWidgets, selectedKey } = store.useSnapshot();
   return (
     <div className="form-canvas">
       <DragForm
@@ -14,9 +12,9 @@ export default () => {
         onChange={(value) => {
           store.schema = value;
         }}
-        selectedKey={selectedSchema?.key}
+        selectedKey={selectedKey}
         onSelected={(key: string) => {
-          store.selectedSchema = recursionFind(schema, key);
+          store.selectedKey = key;
         }}
       />
     </div>

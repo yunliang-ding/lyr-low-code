@@ -4,7 +4,7 @@ import { create } from 'lyr-hooks';
 import { SearchProps } from 'lyr-component/dist/search/types';
 import { TableColumnType } from 'lyr-component/dist/table/type.column';
 import { getStandardSchema as getTableStandardSchema } from './util';
-import { encrypt } from '@/util';
+import { encrypt, recursionFind } from '@/util';
 import { ReactNode } from 'react';
 import materialConfig from '@/form-designer/register-widgets/material-config';
 
@@ -31,8 +31,8 @@ export default create<{
   builtInWidget: any[];
   /** 自定义组件 */
   customWidgets: any;
-  /** 选中的模型 */
-  selectedSchema?: DesignerSchemaProps;
+  /** 选中的模型Key */
+  selectedKey?: string;
   /** 表格模型 */
   columns: TableColumnType[];
   /** 选中表格 */
@@ -65,7 +65,6 @@ export default create<{
     },
   ],
   schema: undefined,
-  selectedSchema: undefined,
   columns: [
     {
       title: '用户姓名',
@@ -147,17 +146,22 @@ export default create<{
     });
   },
   getPropsConfig() {
-    if (this.selectedSchema) {
+    if (this.selectedKey) {
       let propsConfig = undefined;
+      const selectedSchema = recursionFind(this.schema, this.selectedKey);
       this.builtInWidget.forEach((item) => {
         const widget = item.value.find(
-          (i) => i.widget === this.selectedSchema.widget,
+          (i: any) => i.widget === selectedSchema.widget,
         );
         if (widget) {
           propsConfig = widget.propsConfig;
         }
       });
-      return propsConfig;
+      return {
+        propsConfig,
+        selectedSchema,
+      };
     }
+    return {};
   },
 });

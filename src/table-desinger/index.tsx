@@ -18,10 +18,10 @@ const TableDesigner: any = forwardRef((props, ref) => {
       return {
         schema: store.schema,
         formProps: store.formProps,
-        selectedSchema: store.selectedSchema,
         columns: store.columns,
-        selectTable: store.selectTable,
         tableProps: store.tableProps,
+        selectedKey: store.selectedKey,
+        selectTable: store.selectTable,
       };
     },
     setStore: (newStore) => {

@@ -20,25 +20,25 @@ export interface PropsConfigPanelTypes {
 
 export default ({ style = {}, debounceTime = 100 }: PropsConfigPanelTypes) => {
   const [compontentType, setCompontentType]: any = useState('表单项配置');
-  const { schema, selectedSchema, formProps } = store.useSnapshot();
-  const propsConfig = store.getPropsConfig();
+  const { schema, selectedKey, formProps } = store.useSnapshot();
+  const { propsConfig, selectedSchema } = store.getPropsConfig();
   /** 防抖0.1s */
   const onFormValuesChange = debounce((_, values) => {
     store.formProps = values;
   }, debounceTime);
   /** 防抖0.1s */
   const onItemValuesChange = debounce((value) => {
-    Object.assign(store.selectedSchema, value);
+    Object.assign(selectedSchema, value);
     store.schema = [...store.schema];
   }, debounceTime);
   /** 防抖0.1s */
   const onPropsValuesChange = debounce((value) => {
-    Object.assign(store.selectedSchema.props, value);
+    Object.assign(selectedSchema.props, value);
     store.schema = [...store.schema];
   }, debounceTime);
   return (
-    <div className="props-config-panel" style={style} key={selectedSchema?.key}>
-      {isEmpty(selectedSchema) ? (
+    <div className="props-config-panel" style={style} key={selectedKey}>
+      {isEmpty(selectedKey) ? (
         <Empty
           description="请选择需要设置的表单项"
           className="props-config-panel-empty"

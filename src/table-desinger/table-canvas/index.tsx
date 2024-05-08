@@ -1,18 +1,12 @@
-import { cloneDeep, recursionFind } from '@/util';
+import { cloneDeep } from '@/util';
 import { DragForm, Table } from 'lyr-component';
 import { parseTableColumns, parseTableSchema } from '../util';
-import store from '../store';
 import { useEffect, useState } from 'react';
+import store from '../store';
 
 export default () => {
-  const {
-    schema,
-    formProps,
-    tableProps,
-    columns,
-    selectTable,
-    selectedSchema,
-  } = store.useSnapshot();
+  const { schema, formProps, tableProps, columns, selectTable, selectedKey } =
+    store.useSnapshot();
   /** request 变化刷新下 table */
   const [refreshTable, setRefreshTable] = useState(Math.random());
   const [table] = Table.useTable();
@@ -28,16 +22,16 @@ export default () => {
         onChange={(value) => {
           store.schema = value;
         }}
-        selectedKey={selectedSchema?.key}
+        selectedKey={selectedKey}
         onSelected={(key: string) => {
           store.selectTable = false;
-          store.selectedSchema = recursionFind(schema, key);
+          store.selectedKey = key;
         }}
       />
       <div
         onClick={() => {
           store.selectTable = true;
-          store.selectedSchema = undefined;
+          store.selectedKey = undefined;
         }}
       >
         <Table

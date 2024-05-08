@@ -19,7 +19,7 @@ const FormDesigner: any = forwardRef((props, ref) => {
         delete custom[key].render;
         value.push({
           ...custom[key],
-          type: key,
+          widget: key,
         });
       });
       store.customWidgets = customWidgets;
@@ -35,7 +35,7 @@ const FormDesigner: any = forwardRef((props, ref) => {
       return {
         schema: store.schema,
         formProps: store.formProps,
-        selectedSchema: store.selectedSchema,
+        selectedKey: store.selectedKey,
       };
     },
     setStore: (newStore) => {

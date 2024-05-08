@@ -1,5 +1,6 @@
 import { Space } from '@arco-design/web-react';
 import { IconClose } from '@arco-design/web-react/icon';
+import cloneDeep from 'lodash.clonedeep';
 import { Button, DragWrapper } from 'lyr-component';
 import { uuid } from 'lyr-extra';
 import formStore from '../store';
@@ -34,24 +35,21 @@ export default ({ style = {}, store = formStore }: RegisterWidgetsType) => {
                 <DragWrapper
                   accept={false}
                   items={item.value?.map((widget: any) => {
-                    const schema = {
-                      widget: widget.widget,
-                      label: widget.label,
-                      ...widget,
-                      propsConfig: undefined,
-                      span:
-                        widget.span === 'fill' ? store.formProps?.column : 1,
-                    };
+                    const schema = cloneDeep(widget);
+                    delete schema.propsConfig;
+                    schema.span =
+                      widget.span === 'fill' ? store.formProps?.column : 1;
                     return {
                       key: schema.name,
                       schema,
                       content: (
                         <Button
                           onClick={() => {
+                            const _schema = cloneDeep(schema);
                             const unikey = uuid(8);
                             if (Array.isArray(store.schema)) {
                               store.schema.push({
-                                ...schema,
+                                ..._schema,
                                 key: unikey,
                                 name: unikey,
                               });
@@ -59,7 +57,7 @@ export default ({ style = {}, store = formStore }: RegisterWidgetsType) => {
                             } else {
                               store.schema = [
                                 {
-                                  ...schema,
+                                  ..._schema,
                                   key: unikey,
                                   name: unikey,
                                 },

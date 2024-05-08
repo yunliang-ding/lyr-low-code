@@ -1,37 +1,12 @@
 import React, { useEffect, useRef } from 'react';
-import { Button, CreateDrawer } from 'lyr-component';
-import { CodeEditor } from 'lyr-code-editor';
 import { FormDesigner } from 'lyr-low-code';
-import { Message, Space } from '@arco-design/web-react';
-import { encode, getUrlSearchParams } from 'lyr-extra';
-import Preview from './preview';
-import './index.less';
-
-const exportDrawer = CreateDrawer({
-  title: '标准数据模型',
-  width: 600,
-  footer: false,
-  drawerProps: {
-    headerStyle: {
-      display: 'none',
-    },
-    bodyStyle: {
-      padding: 0,
-    },
-  },
-  render({ value }) {
-    return <CodeEditor value={value.code} minimapEnabled={false} />;
-  },
-});
+import { Space } from '@arco-design/web-react';
+import { IconLarkColor } from '@arco-design/web-react/icon';
 
 export default () => {
   const formDesignerRef: any = useRef({});
-  const { schema } = getUrlSearchParams(location.hash);
-  if (schema) {
-    return <Preview schema={schema} />;
-  }
-  /** 注册业务组件 */
   useEffect(() => {
+    /** 注册业务组件 */
     formDesignerRef.current.startRegisterWidgets({
       CustomInput: {
         label: '原生输入框',
@@ -60,64 +35,16 @@ export default () => {
     });
   }, []);
   return (
-    <div className="form-designer-playground">
-      <div className="form-designer-playground-header">
-        <div className="form-designer-playground-header-title">表单设计器</div>
-        <Space>
-          <Button
-            type="primary"
-            onClick={() => {
-              if (formDesignerRef.current.getStore().schema?.length > 0) {
-                window.open(
-                  `${
-                    location.pathname
-                  }#/~demos/docs-designer-form?schema=${encode(
-                    formDesignerRef.current.getStandardSchema(),
-                  )}`,
-                );
-              } else {
-                Message.info('暂无数据');
-              }
-            }}
-          >
-            新窗口预览
-          </Button>
-          <Button
-            type="primary"
-            onClick={() => {
-              if (formDesignerRef.current.getStore().schema?.length > 0) {
-                exportDrawer.open({
-                  initialValues: {
-                    code: formDesignerRef.current.getStandardSchema(),
-                  },
-                });
-              } else {
-                Message.info('暂无数据');
-              }
-            }}
-          >
-            导出schema
-          </Button>
-          <Button
-            type="primary"
-            onClick={() => {
-              formDesignerRef.current.setStore({
-                schema: undefined,
-                selectedSchema: undefined,
-              });
-            }}
-          >
-            清空
-          </Button>
-        </Space>
-      </div>
-      <div className="form-designer-playground-body">
-        <FormDesigner ref={formDesignerRef}>
-          <FormDesigner.RegisterWidgets />
-          <FormDesigner.FormCanvas />
-          <FormDesigner.PropsConfigPanel />
-        </FormDesigner>
-      </div>
+    <div style={{ height: '80vh' }}>
+      <FormDesigner
+        ref={formDesignerRef}
+        logo={
+          <Space>
+            <IconLarkColor style={{ fontSize: 34 }} />
+            <h2>FormDesigner</h2>
+          </Space>
+        }
+      />
     </div>
   );
 };

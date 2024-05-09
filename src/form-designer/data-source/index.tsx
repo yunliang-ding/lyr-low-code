@@ -13,6 +13,7 @@ export default () => {
           }}
         />
       </div>
+      <div className="panel-body">设计中...</div>
     </div>
   );
 };

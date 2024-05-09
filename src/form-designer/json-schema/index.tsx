@@ -14,11 +14,13 @@ export default () => {
           }}
         />
       </div>
-      <CodeEditor
-        value={store.getStandardSchema()}
-        minimapEnabled={false}
-        readOnly
-      />
+      <div className="panel-body">
+        <CodeEditor
+          value={store.getStandardSchema()}
+          minimapEnabled={false}
+          readOnly
+        />
+      </div>
     </div>
   );
 };

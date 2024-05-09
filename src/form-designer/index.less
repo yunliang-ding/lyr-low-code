@@ -175,14 +175,14 @@
         cursor: pointer;
       }
     }
+    .panel-body {
+      height: calc(100% - 48px);
+    }
   }
-  // &-outline-tree{
-
-  // }
-  // &-data-source{
-
-  // }
-  // &-json-schema{
-
-  // }
+  &-outline-tree,
+  &-data-source {
+    .panel-body {
+      padding: 10px;
+    }
+  }
 }

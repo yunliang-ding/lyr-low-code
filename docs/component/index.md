@@ -48,7 +48,9 @@ nav:
 ## 注册自定义组件
 
 ```jsx | pure
-formDesignerRef.current.registerWidgets({
+const [form] = FormDesigner.useForm();
+
+form.registerWidgets({
   CustomInput: {
     label: '自定义组件',
     props: {

@@ -1,13 +1,17 @@
 import { CardForm, DragForm } from 'lyr-component';
+import { babelParse } from 'lyr-extra';
 import store from '../store';
 
 export default () => {
   const { schema, formProps, customWidgets, selectedKey, preview } =
     store.useSnapshot();
+  const pureProps = babelParse({
+    code: store.getStandardSchema(),
+  });
   return (
     <div className="form-canvas">
       {preview ? (
-        <CardForm {...formProps} schema={schema} widgets={customWidgets} />
+        <CardForm {...pureProps} widgets={customWidgets} />
       ) : (
         <DragForm
           {...formProps}

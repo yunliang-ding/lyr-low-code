@@ -10,7 +10,7 @@ nav:
 <div style="display:flex;align-items:center;margin-bottom:24px">
   <span style="font-size:30px;font-weight:600;display:inline-block;">lyr-low-code</span>
 </div>
-<p style="display:flex;justify-content:space-between;width:220px">
+<p style="display:flex;justify-content:space-between;width:200px">
   <a href="https://npmmirror.com/package/lyr-low-code">
     <img alt="npm" src="https://img.shields.io/npm/dt/lyr-low-code.svg">
   </a>
@@ -48,7 +48,7 @@ nav:
 ## 注册自定义组件
 
 ```jsx | pure
-formDesignerRef.current.startRegisterWidgets({
+formDesignerRef.current.registerWidgets({
   CustomInput: {
     label: '自定义组件',
     props: {

@@ -5,7 +5,7 @@ import {
   recursionFind,
 } from '../util';
 import materialConfig from './register-widgets/material-config';
-import { ReactNode } from 'react';
+import { ReactElement } from 'react';
 
 interface DesignerSchemaProps extends SchemaProps {
   key: string;
@@ -17,7 +17,7 @@ export interface CustomWidgetsProps {
     label: string;
     props: any;
     propsConfig: any[];
-    render: () => ReactNode;
+    render: (props: any) => ReactElement;
   };
 }
 

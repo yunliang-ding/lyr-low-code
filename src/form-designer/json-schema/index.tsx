@@ -17,7 +17,6 @@ export default () => {
       <CodeEditor
         value={store.getStandardSchema()}
         minimapEnabled={false}
-        theme="vs"
         readOnly
       />
     </div>

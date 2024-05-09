@@ -1,0 +1,29 @@
+{
+  "widget": "VerificationCode",
+  "label": "验证码输入",
+  "props": {
+    "length": 5,
+    "masked": false
+  },
+  "propsConfig": [
+    {
+      "widget": "Switch",
+      "name": "masked",
+      "label": "是否是密码模式"
+    },
+    {
+      "widget": "InputNumber",
+      "name": "length",
+      "label": "长度"
+    },
+    {
+      "widget": "CodeEditor",
+      "name": "onChange",
+      "label": "设置onChange",
+      "props": {
+        "mode": "function",
+        "useEncrypt": true
+      }
+    }
+  ]
+}

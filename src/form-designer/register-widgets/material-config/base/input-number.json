@@ -1,6 +1,6 @@
 {
   "widget": "InputNumber",
-  "label": "数字框",
+  "label": "数字输入框",
   "props": {
     "placeholder": "请输入",
     "allowClear": true,

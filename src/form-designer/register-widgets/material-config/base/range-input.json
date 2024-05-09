@@ -1,6 +1,6 @@
 {
   "widget": "RangeInput",
-  "label": "区间范围",
+  "label": "区间输入框",
   "props": {
     "disabled": false,
     "mode": "Number"

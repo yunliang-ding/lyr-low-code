@@ -1,6 +1,6 @@
 {
   "widget": "Input",
-  "label": "输入框",
+  "label": "单行文本",
   "props": {
     "placeholder": "请输入",
     "allowClear": true,

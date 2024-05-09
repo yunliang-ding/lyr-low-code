@@ -15,6 +15,9 @@ import rate from './base/rate.json';
 import slider from './base/slider.json';
 import treeselect from './base/tree-select.json';
 import upload from './base/upload.json';
+import colorPicker from './base/color-picker.json';
+import verificationCode from './base/verification-code.json';
+
 /** 高级组件 */
 import asyncSelect from './advance/async-select.json';
 import asyncCascader from './advance/async-cascader.json';
@@ -36,9 +39,11 @@ export default {
     inputNumber,
     rangeInput,
     textArea,
+    verificationCode,
     radio,
     checked,
     select,
+    colorPicker,
     timePicker,
     datePicker,
     dateRangePicker,

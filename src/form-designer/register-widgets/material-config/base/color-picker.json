@@ -1,0 +1,61 @@
+{
+  "widget": "ColorPicker",
+  "label": "颜色选择器",
+  "props": {
+    "format": false,
+    "size": "default"
+  },
+  "propsConfig": [
+    {
+      "widget": "RadioGroup",
+      "name": "format",
+      "label": "格式",
+      "props": {
+        "options": [
+          {
+            "label": "hex",
+            "value": "hex"
+          },
+          {
+            "label": "rgb",
+            "value": "rgb"
+          }
+        ]
+      }
+    },
+    {
+      "widget": "RadioGroup",
+      "name": "size",
+      "label": "尺寸",
+      "props": {
+        "options": [
+          {
+            "label": "mini",
+            "value": "mini"
+          },
+          {
+            "label": "small",
+            "value": "small"
+          },
+          {
+            "label": "default",
+            "value": "default"
+          },
+          {
+            "label": "large",
+            "value": "large"
+          }
+        ]
+      }
+    },
+    {
+      "widget": "CodeEditor",
+      "name": "onChange",
+      "label": "设置onChange",
+      "props": {
+        "mode": "function",
+        "useEncrypt": true
+      }
+    }
+  ]
+}

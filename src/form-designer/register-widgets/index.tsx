@@ -3,6 +3,7 @@ import cloneDeep from 'lodash.clonedeep';
 import { Button, DragWrapper } from 'lyr-component';
 import { uuid } from 'lyr-extra';
 import formStore from '../store';
+import Icon from './icon';
 
 export interface RegisterWidgetsType {
   /** 主容器样式 */
@@ -38,6 +39,7 @@ export default ({ style = {}, store = formStore }: RegisterWidgetsType) => {
                       schema,
                       content: (
                         <Button
+                          icon={Icon[widget.widget]}
                           onClick={() => {
                             const _schema = cloneDeep(schema);
                             const unikey = uuid(8);

@@ -1,6 +1,6 @@
 {
   "widget": "TextArea",
-  "label": "大输入框",
+  "label": "多行文本",
   "props": {
     "placeholder": "请输入",
     "allowClear": true,

@@ -3,7 +3,7 @@ import store, { CustomWidgetsProps } from './store';
 import SiderPanel from './sider-panel';
 import RegisterWidgets from './register-widgets';
 import PropsConfigPanel from './props-config-panel';
-import FormCanvas from './form-canvas';
+import FormCanvas from './canvas';
 import Header from './header';
 import JsonSchema from './json-schema';
 import OutlineTree from './outline-tree';

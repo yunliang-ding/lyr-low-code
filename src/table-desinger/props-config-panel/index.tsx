@@ -1,12 +1,12 @@
 import { useState } from 'react';
+import store from '../store';
 import ItemPropsConfig from './config/props-item';
 import FormPropsConfig from './config/props-form';
 import TablePropsConfig from './config/props-table';
 import CellPropsConfig from './config/props-table-cell';
-import SearchFormPropsConfig from './search-form-props-config';
-import SearchTablePropsConfig from './search-table-props-config';
+import PropsSearchPanel from './props-search-panel';
+import PropsTablePanel from './props-table-panel';
 import debounce from 'lodash.debounce';
-import store from '../store';
 import { Empty } from '@arco-design/web-react';
 import { isEmpty } from '@/util';
 
@@ -51,7 +51,7 @@ export default ({
     store.columns = values.columns;
   }, debounceTime);
   const PanelRender = selectTable ? (
-    <SearchTablePropsConfig
+    <PropsTablePanel
       {...{
         tableType,
         setTableType,
@@ -69,7 +69,7 @@ export default ({
       className="props-config-panel-empty"
     />
   ) : (
-    <SearchFormPropsConfig
+    <PropsSearchPanel
       {...{
         setCompontentType,
         compontentType,

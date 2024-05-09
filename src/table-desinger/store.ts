@@ -47,6 +47,8 @@ export default create<{
   getStandardSchema(): any;
   /** 获取选中的属性配置 */
   getPropsConfig: () => any;
+  activeBar?: 1 | 2 | 3;
+  preview?: boolean;
 }>({
   selectTable: true,
   formProps: {

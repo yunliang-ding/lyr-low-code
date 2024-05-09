@@ -1,94 +1,33 @@
-import React, { useRef } from 'react';
-import { CreateDrawer } from 'lyr-component';
-import { CodeEditor } from 'lyr-code-editor';
+import React from 'react';
 import { TableDesigner } from 'lyr-low-code';
 import { Button, Message, Space } from '@arco-design/web-react';
-import { encode, getUrlSearchParams } from 'lyr-extra';
-import Preview from './preview';
-import './index.less';
-
-const exportDrawer = CreateDrawer({
-  title: '标准数据模型',
-  footer: false,
-  width: 600,
-  drawerProps: {
-    headerStyle: {
-      display: 'none',
-    },
-    bodyStyle: {
-      padding: 0,
-    },
-  },
-  render({ value }) {
-    return <CodeEditor value={value.code} minimapEnabled={false} />;
-  },
-});
+import { IconLarkColor, IconSave } from '@arco-design/web-react/icon';
 
 export default () => {
-  const { schema } = getUrlSearchParams(location.hash);
-  if (schema) {
-    return <Preview schema={schema} />;
-  }
-  const tableDesignerRef: any = useRef({});
+  const [table] = TableDesigner.useTable();
   return (
-    <div className="table-designer-playground">
-      <div className="table-designer-playground-header">
-        <div className="table-designer-playground-header-title">表格设计器</div>
-        <Space>
+    <div style={{ height: '80vh' }}>
+      <TableDesigner
+        table={table}
+        logo={
+          <Space>
+            <IconLarkColor style={{ fontSize: 34 }} />
+            <h2>TableDesigner</h2>
+          </Space>
+        }
+        extra={[
           <Button
             type="primary"
+            icon={<IconSave />}
             onClick={() => {
-              if (tableDesignerRef.current.getStore().columns?.length > 0) {
-                window.open(
-                  `${
-                    location.pathname
-                  }#/~demos/docs-designer-table?schema=${encode(
-                    tableDesignerRef.current.getStandardSchema(),
-                  )}`,
-                );
-              } else {
-                Message.info('暂无数据');
-              }
+              Message.success('保存成功');
+              console.log(table.getStandardSchema());
             }}
           >
-            新窗口预览
-          </Button>
-          <Button
-            type="primary"
-            onClick={() => {
-              if (tableDesignerRef.current.getStore().columns?.length > 0) {
-                exportDrawer.open({
-                  initialValues: {
-                    code: tableDesignerRef.current.getStandardSchema(),
-                  },
-                });
-              } else {
-                Message.info('暂无数据');
-              }
-            }}
-          >
-            导出schema
-          </Button>
-        </Space>
-      </div>
-      <div className="table-designer-playground-body">
-        <TableDesigner ref={tableDesignerRef}>
-          <TableDesigner.RegisterWidgets />
-          <TableDesigner.TableCanvas />
-          <TableDesigner.PropsConfigPanel
-            selectModelOptions={async () => [
-              {
-                label: '新增用户',
-                value: 1,
-              },
-              {
-                label: '新增角色',
-                value: 2,
-              },
-            ]}
-          />
-        </TableDesigner>
-      </div>
+            保存
+          </Button>,
+        ]}
+      />
     </div>
   );
 };

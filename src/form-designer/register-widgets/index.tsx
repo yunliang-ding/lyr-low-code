@@ -1,5 +1,4 @@
 import { Space } from '@arco-design/web-react';
-import { IconClose } from '@arco-design/web-react/icon';
 import cloneDeep from 'lodash.clonedeep';
 import { Button, DragWrapper } from 'lyr-component';
 import { uuid } from 'lyr-extra';
@@ -20,11 +19,6 @@ export default ({ style = {}, store = formStore }: RegisterWidgetsType) => {
           <h3>组件</h3>
           <span>添加组件点击即可</span>
         </Space>
-        <IconClose
-          onClick={() => {
-            store.collspan = false;
-          }}
-        />
       </div>
       <div className="register-widgets-body">
         {builtInWidget.map((item) => {

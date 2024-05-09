@@ -5,6 +5,9 @@ import RegisterWidgets from './register-widgets';
 import PropsConfigPanel from './props-config-panel';
 import FormCanvas from './form-canvas';
 import Header from './header';
+import JsonSchema from './json-schema';
+import OutlineTree from './outline-tree';
+import DataSource from './data-source';
 import './index.less';
 
 export interface FormInstance {
@@ -29,7 +32,7 @@ const FormDesigner = ({
   extra = [],
   form = FormDesigner.useForm()[0],
 }: FormDesignerProps) => {
-  const { collspan } = store.useSnapshot();
+  const { activeBar } = store.useSnapshot();
   useEffect(() => {
     Object.assign(form, {
       getStandardSchema: () => {
@@ -74,17 +77,14 @@ const FormDesigner = ({
       </div>
       <div className="form-designer-body">
         <SiderPanel />
-        <div
-          className={
-            collspan
-              ? 'form-designer-body-content-collspan'
-              : 'form-designer-body-content'
-          }
-        >
+        <div className="form-designer-body-content">
           <RegisterWidgets />
           <FormCanvas />
           <PropsConfigPanel />
         </div>
+        {activeBar === 1 && <OutlineTree />}
+        {activeBar === 2 && <DataSource />}
+        {activeBar === 3 && <JsonSchema />}
       </div>
     </div>
   );

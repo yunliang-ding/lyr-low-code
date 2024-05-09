@@ -1,5 +1,9 @@
 import { Message, Tooltip } from '@arco-design/web-react';
-import { IconCodeBlock, IconSort } from '@arco-design/web-react/icon';
+import {
+  IconCodeBlock,
+  IconSort,
+  IconStorage,
+} from '@arco-design/web-react/icon';
 import jsonSchema from '../json-schema';
 import store from '../store';
 
@@ -8,7 +12,20 @@ export default () => {
     <div className="form-designer-body-sider">
       <div className="form-designer-body-sider-item">
         <Tooltip content="大纲树" position="right">
-          <IconSort />
+          <IconSort
+            onClick={() => {
+              store.activeBar = 1;
+            }}
+          />
+        </Tooltip>
+      </div>
+      <div className="form-designer-body-sider-item">
+        <Tooltip content="配置数据源" position="right">
+          <IconStorage
+            onClick={() => {
+              store.activeBar = 2;
+            }}
+          />
         </Tooltip>
       </div>
       <div className="form-designer-body-sider-item">
@@ -18,7 +35,7 @@ export default () => {
             width="26"
             height="26"
             onClick={() => {
-              store.collspan = !store.collspan;
+              store.activeBar = undefined;
             }}
           >
             <path
@@ -32,15 +49,7 @@ export default () => {
         <Tooltip content="JsonSchema" position="right">
           <IconCodeBlock
             onClick={() => {
-              if (store.schema?.length > 0) {
-                jsonSchema.open({
-                  initialValues: {
-                    code: store.getStandardSchema(),
-                  },
-                });
-              } else {
-                Message.info('暂无数据');
-              }
+              store.activeBar = 3;
             }}
           />
         </Tooltip>

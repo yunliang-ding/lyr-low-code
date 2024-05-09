@@ -1,12 +1,11 @@
 import { IconClose } from '@arco-design/web-react/icon';
-import { CodeEditor } from 'lyr-code-editor';
 import store from '../store';
 
 export default () => {
   return (
-    <div className="form-designer-absolute-panel form-designer-json-schema">
+    <div className="form-designer-absolute-panel form-designer-outline-tree">
       <div className="panel-header">
-        <span className="panel-title">JsonSchema</span>
+        <span className="panel-title">大纲树</span>
         <IconClose
           className="icon-close"
           onClick={() => {
@@ -14,12 +13,6 @@ export default () => {
           }}
         />
       </div>
-      <CodeEditor
-        value={store.getStandardSchema()}
-        minimapEnabled={false}
-        theme="vs"
-        readOnly
-      />
     </div>
   );
 };

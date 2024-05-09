@@ -36,10 +36,9 @@ export default create<{
   getStandardSchema: () => any;
   /** 获取选中的属性配置 */
   getPropsConfig: () => any;
-  collspan: boolean;
   preview: boolean;
+  activeBar?: 1 | 2 | 3;
 }>({
-  collspan: true,
   preview: false,
   formProps: {
     column: 2,

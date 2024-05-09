@@ -111,7 +111,7 @@ export const formItemSchema = (
       noChangeClearCode: true,
       defaultCode: `async (name, form) => {
   
- }`,
+}`,
     },
   },
   {
@@ -135,8 +135,8 @@ export const formItemSchema = (
       useEncrypt: true,
       noChangeClearCode: true,
       defaultCode: `(values) => {
-   return true;
- }`,
+  return true;
+}`,
     },
   },
   {
@@ -153,7 +153,7 @@ export const formItemSchema = (
       mode: 'function',
       defaultCode: `(dom, { form }) => {
   
- }`,
+}`,
     },
   },
 ];

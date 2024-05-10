@@ -5,9 +5,14 @@ import store from '../store';
 export default () => {
   const { schema, formProps, customWidgets, selectedKey, preview } =
     store.useSnapshot();
-  const pureProps = babelParse({
-    code: store.getStandardSchema(),
-  });
+  let pureProps = {};
+  try {
+    pureProps = babelParse({
+      code: store.getStandardSchema(),
+    });
+  } catch (error) {
+    console.log(error);
+  }
   return (
     <div className="form-canvas">
       {preview ? (

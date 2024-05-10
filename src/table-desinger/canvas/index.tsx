@@ -21,9 +21,14 @@ export default () => {
   useEffect(() => {
     setRefreshTable(Math.random());
   }, [columns]);
-  const pureProps = babelParse({
-    code: store.getStandardSchema(),
-  });
+  let pureProps;
+  try {
+    pureProps = babelParse({
+      code: store.getStandardSchema(),
+    });
+  } catch (error) {
+    console.log(error);
+  }
   return (
     <div className="table-canvas">
       {preview ? (

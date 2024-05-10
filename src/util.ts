@@ -194,19 +194,23 @@ export const getCleanCloneSchema = (schema = []) => {
   });
   // 替换并且使用prettier格式化代码
   const prettier = (window as any).prettier;
-  const code = prettier.format(
-    decrypt(
-      `export default ${JSON.stringify(schema[0], null, 2)?.replaceAll(
-        '\\"',
-        '"',
-      )}`,
-    )
-      .replaceAll('\\n', '\n')
-      .replaceAll('\\', ''),
-    {
-      parser: 'typescript',
-      plugins: (window as any).prettierPlugins,
-    },
-  );
-  return code;
+  try {
+    const code = prettier.format(
+      decrypt(
+        `export default ${JSON.stringify(schema[0], null, 2)?.replaceAll(
+          '\\"',
+          '"',
+        )}`,
+      )
+        .replaceAll('\\n', '\n')
+        .replaceAll('\\', ''),
+      {
+        parser: 'typescript',
+        plugins: (window as any).prettierPlugins,
+      },
+    );
+    return code;
+  } catch (error) {
+    return error;
+  }
 };

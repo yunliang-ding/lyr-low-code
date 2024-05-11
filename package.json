@@ -1,6 +1,6 @@
 {
   "name": "lyr-low-code",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "低码相关组件",
   "author": "yunliang-ding",
   "homepage": "http://dev-ops.yunliang.cloud/website/lyr-low-code",
@@ -45,13 +45,13 @@
     "react": ">=17.0.2",
     "react-dom": ">=17.0.2",
     "lyr-extra": ">=0.0.1",
-    "lyr-component": ">=1.0.3",
+    "lyr-component": ">=1.0.4",
     "lyr-code-editor": ">=0.0.1",
     "@arco-design/web-react": ">=2.61.3"
   },
   "devDependencies": {
     "axios": "^0.21.1",
-    "lyr-component": "^1.0.3",
+    "lyr-component": "^1.0.4",
     "lyr-extra": "^0.0.1",
     "lyr-code-editor": "^0.0.1",
     "@arco-design/web-react": "^2.61.3",

@@ -1,6 +1,6 @@
 {
-  "widget": "AsyncSelect",
-  "label": "异步选择框",
+  "widget": "AsyncCascader",
+  "label": "异步级联",
   "props": {
     "placeholder": "请选择",
     "allowClear": true,
@@ -23,29 +23,11 @@
       "label": "提示文案"
     },
     {
-      "widget": "Select",
-      "name": "mode",
-      "label": "模式",
-      "props": {
-        "allowClear": true,
-        "options": [
-          {
-            "label": "multiple",
-            "value": "multiple"
-          },
-          {
-            "label": "tags",
-            "value": "tags"
-          }
-        ]
-      }
-    },
-    {
       "widget": "CodeEditor",
       "label": "设置options",
-      "name": "options",
+      "name": "initOptions",
       "props": {
-        "defaultCode": "async (form) => { \n  return [] \n}",
+        "defaultCode": "async (formInstance) =>{\n  await new Promise((res) => setTimeout(res, 1000));\n  return [\n    {\n      value: 'zhejiang',\n      label: '浙江省',\n      children: [\n        {\n          value: 'hangzhou',\n          label: '杭州市',\n        },\n      ],\n    },\n  ];\n}",
         "mode": "function",
         "useEncrypt": true
       }

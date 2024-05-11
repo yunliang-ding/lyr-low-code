@@ -16,7 +16,7 @@
       "label": "设置options",
       "name": "options",
       "props": {
-        "defaultCode": "async (form) => { \n  return [{ \n    label: '选项1',\n   value: 1\n  }] \n}",
+        "defaultCode": "async (formInstance) => {\n  await new Promise((res) => setTimeout(res, 1000));\n  return [\n    {\n      label: '选项1',\n      value: 1,\n    },\n    {\n      label: '选项2',\n      value: 2,\n    },\n  ];\n}",
         "mode": "function",
         "useEncrypt": true
       }

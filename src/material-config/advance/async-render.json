@@ -1,0 +1,24 @@
+{
+  "widget": "AsyncRender",
+  "label": "异步渲染",
+  "props": {
+    "spin": true
+  },
+  "propsConfig": [
+    {
+      "widget": "Switch",
+      "name": "spin",
+      "label": "是否展示loading"
+    },
+    {
+      "widget": "CodeEditor",
+      "label": "渲染函数",
+      "name": "render",
+      "props": {
+        "mode": "function",
+        "defaultCode": "async (formInstance) => {\n  await new Promise((res) => setTimeout(res, 1000));\n  return <button>我是异步渲染</button>; \n}",
+        "useEncrypt": true
+      }
+    }
+  ]
+}

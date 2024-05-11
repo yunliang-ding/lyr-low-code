@@ -4,7 +4,7 @@ import {
   getStandardSchema as getFormStandardSchema,
   recursionFind,
 } from '../util';
-import materialConfig from './register-widgets/material-config';
+import materialConfig from '@/material-config';
 import { ReactElement } from 'react';
 
 interface DesignerSchemaProps extends SchemaProps {
@@ -53,12 +53,12 @@ export default create<{
       value: materialConfig.base,
     },
     {
-      label: '高级组件',
-      value: materialConfig.advance,
-    },
-    {
       label: '布局组件',
       value: materialConfig.layout,
+    },
+    {
+      label: '高级组件',
+      value: materialConfig.advance,
     },
   ],
   schema: undefined,

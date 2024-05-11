@@ -6,7 +6,7 @@ import { TableColumnType } from 'lyr-component/dist/table/type.column';
 import { getStandardSchema as getTableStandardSchema } from './util';
 import { encrypt, recursionFind } from '@/util';
 import { ReactNode } from 'react';
-import materialConfig from '@/form-designer/register-widgets/material-config';
+import materialConfig from '@/material-config';
 
 interface DesignerSchemaProps extends SchemaProps {
   key: string;

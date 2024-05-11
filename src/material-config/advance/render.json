@@ -1,6 +1,6 @@
 {
-  "widget": "AsyncRender",
-  "label": "异步自定义渲染",
+  "widget": "Render",
+  "label": "自定义渲染",
   "props": {},
   "propsConfig": [
     {
@@ -9,6 +9,7 @@
       "name": "render",
       "props": {
         "mode": "function",
+        "defaultCode": "(formInstance) => {\n  return <button>我是自定义渲染</button>;\n}",
         "useEncrypt": true
       }
     }

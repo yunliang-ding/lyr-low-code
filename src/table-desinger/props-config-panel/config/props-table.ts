@@ -8,7 +8,7 @@ import { CodeEditor } from 'lyr-code-editor';
 /** 顶部工具栏和操作栏相同部分 */
 const toolPropsConfig = (
   isRowOperation = false,
-  selectModelOptions,
+  queryFormModel,
 ): SchemaProps<{}>[] => {
   return [
     {
@@ -93,7 +93,7 @@ const toolPropsConfig = (
       },
       effectClearField: true,
       props: {
-        options: selectModelOptions,
+        options: queryFormModel,
       },
     },
     {
@@ -251,7 +251,7 @@ const drawerMenuForm = CreateDrawer({
   },
 });
 
-export default ({ selectModelOptions }) =>
+export default ({ queryFormModel }) =>
   [
     {
       widget: 'Input',
@@ -347,7 +347,7 @@ export default ({ selectModelOptions }) =>
                       ],
                     },
                   },
-                  ...toolPropsConfig(false, selectModelOptions),
+                  ...toolPropsConfig(false, queryFormModel),
                 ],
                 onValuesChange: (v) => {
                   onCellChange(v);
@@ -422,7 +422,7 @@ export default ({ selectModelOptions }) =>
                       return confirm;
                     },
                   },
-                  ...toolPropsConfig(true, selectModelOptions),
+                  ...toolPropsConfig(true, queryFormModel),
                 ],
                 onValuesChange: (v: any) => {
                   onCellChange(v);

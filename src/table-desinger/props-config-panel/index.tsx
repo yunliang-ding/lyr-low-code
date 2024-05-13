@@ -15,13 +15,18 @@ export interface PropsConfigPanelTypes {
   /** 设置防抖时间 */
   debounceTime?: number;
   /** 选择模型 */
-  selectModelOptions?: () => Promise<[]>;
+  queryFormModel?(): Promise<
+    {
+      label: string;
+      value: number;
+    }[]
+  >;
 }
 
 export default ({
   style = {},
   debounceTime = 100,
-  selectModelOptions = async () => [],
+  queryFormModel = async () => [],
 }: PropsConfigPanelTypes) => {
   const { formProps, columns, tableProps, selectTable, schema, selectedKey } =
     store.useSnapshot(); // 拿到ctx
@@ -55,7 +60,7 @@ export default ({
       {...{
         tableType,
         setTableType,
-        tablePropsConfig: TablePropsConfig({ selectModelOptions }),
+        tablePropsConfig: TablePropsConfig({ queryFormModel }),
         onTableValuesChange,
         cellPropsConfig: CellPropsConfig,
         onCellValuesChange,

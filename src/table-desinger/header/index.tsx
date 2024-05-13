@@ -1,8 +1,10 @@
-import { Button, Radio, Space } from '@arco-design/web-react';
+import { copyImg } from '@/util';
+import { Message, Radio, Space } from '@arco-design/web-react';
 import { IconEdit, IconEmpty, IconEye } from '@arco-design/web-react/icon';
+import { Button } from 'lyr-component';
 import store from '../store';
 
-export default ({ logo, extra }) => {
+export default ({ logo, extra, preview }) => {
   return (
     <>
       {logo}
@@ -35,6 +37,24 @@ export default ({ logo, extra }) => {
       />
       <Space>
         {extra}
+        {preview && (
+          <Button
+            type="primary"
+            spin
+            onClick={async () => {
+              await new Promise((res) => {
+                setTimeout(res, 600);
+              });
+              if (store.columns?.length > 0) {
+                await copyImg(document.querySelector('.table-canvas'));
+              } else {
+                Message.info('暂无模型数据.');
+              }
+            }}
+          >
+            一键截图
+          </Button>
+        )}
         <Button
           type="primary"
           icon={<IconEmpty />}

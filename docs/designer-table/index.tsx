@@ -27,6 +27,14 @@ export default () => {
             保存
           </Button>,
         ]}
+        queryFormModel={async () => {
+          return [
+            {
+              label: '新增用户',
+              value: 1,
+            },
+          ];
+        }}
       />
     </div>
   );

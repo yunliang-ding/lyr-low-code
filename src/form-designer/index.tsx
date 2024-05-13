@@ -32,7 +32,7 @@ const FormDesigner = ({
   extra = [],
   form = FormDesigner.useForm()[0],
 }: FormDesignerProps) => {
-  const { activeBar } = store.useSnapshot();
+  const { activeBar, preview } = store.useSnapshot();
   useEffect(() => {
     Object.assign(form, {
       getStandardSchema: () => {
@@ -73,7 +73,7 @@ const FormDesigner = ({
   return (
     <div className="form-designer">
       <div className="form-designer-header">
-        <Header logo={logo} extra={extra} />
+        <Header logo={logo} extra={extra} preview={preview} />
       </div>
       <div className="form-designer-body">
         <SiderPanel />

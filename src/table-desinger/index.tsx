@@ -25,14 +25,21 @@ export interface TableDesignerProps {
   logo?: ReactNode;
   extra?: ReactNode[];
   table?: TableInstance;
+  queryFormModel?(): Promise<
+    {
+      label: string;
+      value: number;
+    }[]
+  >;
 }
 
 const TableDesigner = ({
   logo = null,
   extra = [],
   table = TableDesigner.useTable()[0],
+  queryFormModel = async () => [],
 }: TableDesignerProps) => {
-  const { activeBar } = store.useSnapshot();
+  const { activeBar, preview } = store.useSnapshot();
   useEffect(() => {
     Object.assign(table, {
       getStandardSchema: () => {
@@ -56,14 +63,14 @@ const TableDesigner = ({
   return (
     <div className="table-designer">
       <div className="table-designer-header">
-        <Header logo={logo} extra={extra} />
+        <Header logo={logo} extra={extra} preview={preview} />
       </div>
       <div className="table-designer-body">
         <SiderPanel />
         <div className="table-designer-body-content">
           <RegisterWidgets />
           <TableCanvas />
-          <PropsConfigPanel />
+          <PropsConfigPanel queryFormModel={queryFormModel} />
         </div>
         {activeBar === 1 && <OutlineTree />}
         {activeBar === 2 && <DataSource />}

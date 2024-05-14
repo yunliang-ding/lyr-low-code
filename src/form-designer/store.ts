@@ -1,6 +1,7 @@
 import { create } from 'lyr-hooks';
 import { CardFormProps, SchemaProps } from 'lyr-component';
 import {
+  encrypt,
   getStandardSchema as getFormStandardSchema,
   recursionFind,
 } from '../util';
@@ -38,8 +39,28 @@ export default create<{
   getPropsConfig: () => any;
   preview: boolean;
   activeBar?: 1 | 2 | 3;
+  /** 状态管理配置 */
+  storeCode?: string;
+  /** 数据源配置 */
+  servicesCode?: string;
+  /** 基本设置 */
+  setting?: {
+    baseURL?: string;
+  };
 }>({
   preview: false,
+  setting: {
+    baseURL: 'https://api-online.yunliang.cloud',
+  },
+  storeCode: encrypt(`import axios from 'axios';
+
+export default {
+  name: "张三",
+  age: "18",
+  async queryUser(){
+    await axios.get("xx/xx")
+  }
+}`),
   formProps: {
     column: 2,
     title: '新建表单',

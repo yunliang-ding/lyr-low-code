@@ -49,7 +49,25 @@ export default create<{
   getPropsConfig: () => any;
   activeBar?: 1 | 2 | 3;
   preview?: boolean;
+  /** 数据模型 */
+  storeCode?: string;
+  /** 基本设置 */
+  setting?: {
+    baseURL?: string;
+  };
 }>({
+  setting: {
+    baseURL: 'https://api-online.yunliang.cloud',
+  },
+  storeCode: encrypt(`import axios from 'axios';
+
+export default {
+  name: "张三",
+  age: "18",
+  async queryUser(){
+    await axios.get("xx/xx")
+  }
+}`),
   selectTable: true,
   formProps: {
     column: 2,

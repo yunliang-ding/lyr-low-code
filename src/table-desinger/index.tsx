@@ -6,8 +6,8 @@ import PropsConfigPanel from './props-config-panel';
 import TableCanvas from './canvas';
 import Header from './header';
 import JsonSchema from './json-schema';
-import OutlineTree from './outline-tree';
-import DataSource from './data-source';
+import GlobalStore from './global-store';
+import Setting from './setting';
 import './index.less';
 
 export interface TableInstance {
@@ -72,9 +72,9 @@ const TableDesigner = ({
           <TableCanvas />
           <PropsConfigPanel queryFormModel={queryFormModel} />
         </div>
-        {activeBar === 1 && <OutlineTree />}
-        {activeBar === 2 && <DataSource />}
-        {activeBar === 3 && <JsonSchema />}
+        {activeBar === 1 && <GlobalStore />}
+        {activeBar === 2 && <JsonSchema />}
+        {activeBar === 3 && <Setting />}
       </div>
     </div>
   );

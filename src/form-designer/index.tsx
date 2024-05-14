@@ -1,13 +1,13 @@
 import { MutableRefObject, ReactNode, useEffect, useRef } from 'react';
 import store, { CustomWidgetsProps } from './store';
 import SiderPanel from './sider-panel';
+import GlobalStore from './global-store';
+import JsonSchema from './json-schema';
+import Setting from './setting';
 import RegisterWidgets from './register-widgets';
 import PropsConfigPanel from './props-config-panel';
 import FormCanvas from './canvas';
 import Header from './header';
-import JsonSchema from './json-schema';
-import OutlineTree from './outline-tree';
-import DataSource from './data-source';
 import './index.less';
 
 export interface FormInstance {
@@ -82,9 +82,9 @@ const FormDesigner = ({
           <FormCanvas />
           <PropsConfigPanel />
         </div>
-        {activeBar === 1 && <OutlineTree />}
-        {activeBar === 2 && <DataSource />}
-        {activeBar === 3 && <JsonSchema />}
+        {activeBar === 1 && <GlobalStore />}
+        {activeBar === 2 && <JsonSchema />}
+        {activeBar === 3 && <Setting />}
       </div>
     </div>
   );

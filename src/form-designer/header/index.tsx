@@ -35,7 +35,7 @@ export default ({ logo, extra, preview }) => {
         ]}
         type="button"
       />
-      <Space>
+      <Space style={{ width: 300, justifyContent: 'flex-end' }}>
         {extra}
         {preview && (
           <Button

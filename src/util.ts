@@ -3,7 +3,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import cloneDeep from 'lodash.clonedeep';
 import { isEmpty, uuid } from 'lyr-extra';
-import html2canvas from 'html2canvas';
 import { Notification } from '@arco-design/web-react';
 /**
  * 判断容器
@@ -223,7 +222,7 @@ export const getCleanCloneSchema = (schema = []) => {
  */
 export const copyImg = async (element) => {
   return new Promise((res) => {
-    html2canvas(element, {
+    (window as any).html2canvas(element, {
       useCORS: true,
     }).then((canvas) => {
       canvas.toBlob(async (blob) => {

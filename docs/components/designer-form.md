@@ -1,4 +1,9 @@
-import React, { useEffect } from 'react';
+> 表单设计器
+
+## 基本使用
+
+```jsx | react
+import { useEffect } from 'react';
 import { FormDesigner } from 'lyr-low-code';
 import { Button, Message, Space } from '@arco-design/web-react';
 import { IconLarkColor, IconSave } from '@arco-design/web-react/icon';
@@ -34,7 +39,7 @@ export default () => {
     });
   }, []);
   return (
-    <div style={{ height: '80vh' }}>
+    <div style={{ height: '80vh', width: '80vw' }}>
       <FormDesigner
         form={form}
         logo={
@@ -59,3 +64,4 @@ export default () => {
     </div>
   );
 };
+```

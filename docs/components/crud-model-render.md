@@ -1,16 +1,8 @@
----
-order: 10
-title: CrudModelRender 渲染器
-toc: menu
----
+> CrudModelRender 渲染器
 
 ## 基本使用
 
-```tsx
-/**
- * background: '#f8f8f8'
- */
-import React from 'react';
+```tsx | react
 import { CrudModelRender } from 'lyr-low-code';
 
 export default () => {
@@ -25,11 +17,7 @@ export default () => {
 
 ## 注入依赖
 
-```tsx
-/**
- * background: '#f8f8f8'
- */
-import React from 'react';
+```jsx | react
 import { CrudModelRender } from 'lyr-low-code';
 
 export default () => {
@@ -46,7 +34,3 @@ export default () => {
   );
 };
 ```
-
-## API
-
-<!-- <API src="../../src/crud-model-render/index.tsx" hideTitle></API> -->

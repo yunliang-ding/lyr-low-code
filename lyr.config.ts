@@ -1,7 +1,7 @@
 import { defineConfig } from 'lyr';
 
 export default defineConfig({
-  title: 'lyr-extra',
+  title: 'lyr-low-code',
   favicon: 'https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/assets/favicon.ico',
   link: [
     'https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/arco.min.css',
@@ -24,6 +24,7 @@ export default defineConfig({
     'https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/prettier-parser-typescript.min.js',
     'https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/lyr-extra.min.js',
     'https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/html2canvas.min.js',
+    'https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/lyr-code-editor.min.js',
   ],
   buildScript: [
     'https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/react.production.min.js',
@@ -43,7 +44,15 @@ export default defineConfig({
     'https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/prettier-parser-typescript.min.js',
     'https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/lyr-extra.min.js',
     'https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/html2canvas.min.js',
+    'https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/lyr-code-editor.min.js',
   ],
+  webpackConfig: () => {
+    return {
+      externals: {
+        'lyr-code-editor': 'lyrCodeEditor',
+      },
+    };
+  },
   serverPath: '/apis',
   docsRequire: {
     ArcoDesign: '@arco-design/web-react',

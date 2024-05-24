@@ -1,3 +1,10 @@
+> 目前仅打包了 umd 版本
+
+```html
+<!-- window.lyrLowCode -->
+<script src="https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/lyr-low-code.min.js"></script>
+```
+
 ## 依赖 cdn 资源
 
 ```html
@@ -19,6 +26,8 @@
   href="https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/lyr-component.min.css"
 />
 <script src="https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/lyr-component.min.js"></script>
+<!-- window.lyrCodeEditor -->
+<script src="https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/lyr-code-editor.min.js"></script>
 <!-- dark+ 主题 -->
 <script src="https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/prism.min.js"></script>
 <!-- code 格式化 -->

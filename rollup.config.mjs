@@ -1,25 +1,41 @@
-import { defineConfig } from "rollup";
-import resolve from "@rollup/plugin-node-resolve";
-import commonjs from "@rollup/plugin-commonjs";
-import typescript from "@rollup/plugin-typescript";
-import less from "rollup-plugin-less";
-import external from "rollup-plugin-peer-deps-external";
-import { terser } from "rollup-plugin-terser";
-import json from "@rollup/plugin-json";
-import replace from "rollup-plugin-replace";
+import { defineConfig } from 'rollup';
+import resolve from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
+import typescript from '@rollup/plugin-typescript';
+import less from 'rollup-plugin-less';
+import external from 'rollup-plugin-peer-deps-external';
+import { terser } from 'rollup-plugin-terser';
+import json from '@rollup/plugin-json';
+import replace from 'rollup-plugin-replace';
 
 const env = process.env.NODE_ENV;
 
 export default defineConfig({
-  input: "./src/index.ts",
+  input: './src/index.ts',
   output: [
     {
-      file: "dist/index.esm.js",
-      format: "esm",
+      file: 'dist/index.esm.js',
+      format: 'esm',
     },
     {
-      file: "dist/index.js",
-      format: "cjs",
+      file: 'dist/index.js',
+      format: 'cjs',
+    },
+    {
+      file: 'dist/index.umd.js',
+      format: 'umd',
+      name: 'lyrLowCode',
+      globals: {
+        axios: 'axios',
+        react: 'React',
+        'react-dom': 'ReactDOM',
+        'react/jsx-runtime': 'jsxRuntime',
+        '@arco-design/web-react': 'arco',
+        '@arco-design/web-react/icon': 'arcoIcon',
+        'lyr-extra': 'lyrExtra',
+        "lyr-component": 'lyr',
+        "lyr-code-editor": 'lyrCodeEditor',
+      },
     },
   ],
   plugins: [
@@ -28,11 +44,11 @@ export default defineConfig({
     external(),
     commonjs(),
     replace({
-      "process.env.NODE_ENV": JSON.stringify(env),
+      'process.env.NODE_ENV': JSON.stringify(env),
     }),
     less({
       insert: true,
-      output: "dist/index.min.css",
+      output: 'dist/index.min.css',
       option: {
         compress: true,
       },
@@ -40,20 +56,20 @@ export default defineConfig({
     terser(),
     typescript({
       compilerOptions: {
-        lib: ["es6", "dom", "es2021"],
-        target: "es2016",
-        module: "esnext",
+        lib: ['es6', 'dom', 'es2021'],
+        target: 'es2016',
+        module: 'esnext',
         esModuleInterop: true,
-        moduleResolution: "node",
+        moduleResolution: 'node',
         declaration: true,
-        jsx: "react-jsx",
+        jsx: 'react-jsx',
         strict: false,
         sourceMap: false,
         skipLibCheck: true,
-        outDir: "./dist",
+        outDir: './dist',
       },
-      include: ["src/**/*"],
-      exclude: ["node_modules/**/*"],
+      include: ['src/**/*'],
+      exclude: ['node_modules/**/*'],
     }),
   ],
 });

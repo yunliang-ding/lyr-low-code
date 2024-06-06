@@ -10,7 +10,7 @@ import { IconLarkColor, IconSave } from '@arco-design/web-react/icon';
 export default () => {
   const [table] = TableDesigner.useTable();
   return (
-    <div style={{ height: '80vh', width: '80vw' }}>
+    <div style={{ height: '80vh', width: '100vw' }}>
       <TableDesigner
         table={table}
         logo={

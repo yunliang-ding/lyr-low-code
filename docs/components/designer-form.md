@@ -39,7 +39,7 @@ export default () => {
     });
   }, []);
   return (
-    <div style={{ height: '80vh', width: '80vw' }}>
+    <div style={{ height: '80vh', width: '100vw' }}>
       <FormDesigner
         form={form}
         logo={

@@ -14,21 +14,12 @@ export default defineConfig({
   input: "./src/index.ts",
   output: [
     {
-      file: "dist/index.umd.js",
-      format: "umd",
-      name: "lyrLowCode",
-      globals: {
-        react: "React",
-        html2canvas: "html2canvas",
-        jszip: "JSZip",
-        "axios": 'axios',
-        "react-dom": "ReactDOM",
-        '@arco-design/web-react': 'arco',
-        '@arco-design/web-react/icon': 'arcoicon',
-        "react/jsx-runtime": "jsxRuntime",
-        "lyr-component": "lyr",
-        "lyr-code-editor": "lyrCodeEditor",
-      },
+      file: "dist/index.esm.js",
+      format: "esm",
+    },
+    {
+      file: "dist/index.js",
+      format: "cjs",
     },
   ],
   plugins: [

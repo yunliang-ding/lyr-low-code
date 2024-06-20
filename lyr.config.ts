@@ -53,6 +53,13 @@ export default defineConfig({
     ArcoDesign: '@arco-design/web-react',
     ArcoDesignIcon: '@arco-design/web-react/icon',
   },
+  webpackConfig(){
+    return {
+      externals: {
+        "lyr-code-editor": "lyrCodeEditor"
+      }
+    }
+  },
   menus: [
     {
       label: '介绍',

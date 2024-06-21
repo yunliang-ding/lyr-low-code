@@ -40,23 +40,11 @@
     "lyr-extra": "0.1.1"
   },
   "devDependencies": {
+    "lyr-docs": "0.0.61",
     "axios": "1.7.2",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
     "html2canvas": "1.4.1",
-    "lyr-hooks": "0.0.3",
-    "lyr-component": "1.1.0",
-    "lyr-code-editor": "1.0.1",
-    "lyr-docs": "0.0.51",
-    "typescript": "5.3.2",
-    "@arco-design/web-react": "^2.61.3",
     "@types/lodash.clonedeep": "4.5.9",
-    "@types/lodash.debounce": "4.0.9",
-    "@rollup/plugin-json": "6.1.0",
-    "rollup-plugin-replace": "2.2.0",
-    "eslint": "^7.27.0",
-    "prettier": "^2.2.1",
-    "@types/react": "17.0.2"
+    "@types/lodash.debounce": "4.0.9"
   },
   "resolutions": {
     "@types/react": "17.0.2"

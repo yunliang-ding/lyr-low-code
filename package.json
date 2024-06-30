@@ -40,7 +40,7 @@
     "lyr-extra": "0.1.1"
   },
   "devDependencies": {
-    "lyr-docs": "0.0.64",
+    "lyr-docs": "0.0.77",
     "html2canvas": "1.4.1",
     "@types/lodash.clonedeep": "4.5.9",
     "@types/lodash.debounce": "4.0.9"

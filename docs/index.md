@@ -1,3 +1,32 @@
+```jsx | pureReact
+export default () => {
+  return (
+    <>
+      <p
+        className="package-version"
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: 20,
+          position: 'relative',
+          top: 3,
+        }}
+      >
+        <a href={`https://npmmirror.com/package/lyr-low-code`} target="_blank">
+          <img alt="npm" src={`https://img.shields.io/npm/dt/lyr-low-code`} />
+        </a>
+        <a href={`https://npmmirror.com/package/lyr-low-code`} target="_blank">
+          <img
+            alt="NPM downloads"
+            src={`https://img.shields.io/npm/v/lyr-low-code.svg`}
+          />
+        </a>
+      </p>
+    </>
+  );
+};
+```
+
 ## 安装
 
 ```shell
